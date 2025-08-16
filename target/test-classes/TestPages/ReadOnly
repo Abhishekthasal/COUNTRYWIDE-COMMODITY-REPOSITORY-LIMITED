@@ -1,0 +1,87 @@
+
+
+***Requirement for Automation Testing
+1)Logins -RP,WareHouse for Physical ,Assayer,WareHaouse Confirmation
+2)DashBord- All Function
+  1)RP-Deposite Request
+    a)Maker
+     1)Login
+     2)Transaction
+     3)logout
+    b)Checker
+     1)Login
+     2)Transaction
+     3)logout
+  2)WSP-Physical Deposite Request
+    a)Maker
+     1)Login
+     2)Transaction
+     3)logout
+    b)Checker
+     1)Login
+     2)Transaction
+     3)logout
+  3)Assayer- Deposite Assayer
+    a)Maker
+     1)Login
+     2)Transaction
+     3)logout
+    b)Checker
+     1)Login
+     2)Transaction
+     3)logout
+  4)WSP-WareHouse Confirmation Request
+    a)Maker
+     1)Login
+     2)Transaction
+     3)logout
+    b)Checker
+     1)Login
+     2)Transaction
+     3)logout
+     
+     
+   Working Issues:
+   
+Issue List:
+1)In Physical Deposit Checker when we adding multiple bags then quantity is get null
+ or not equal  in few cases which results in POP as 
+  "quantity is not match" 
+2)In Physical Deposit Checker when we adding multiple bags then 
+quantity is get null or not equal in few cases which results
+ in POP as   "quantity is not match" for Exchange 
+3)Exchange Non-Agri Is underDevelopment
+4)In pledgeCreation page when we try to Authorized in  checker login  
+then  getting "An internal error occurred during your request" pop up
+
+
+
+   
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
