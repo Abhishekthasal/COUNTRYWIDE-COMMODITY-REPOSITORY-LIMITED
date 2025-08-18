@@ -21,7 +21,8 @@ public class Withdrawal_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Withdrawal Report");
 
-	//@Test
+	
+	@Test
 	void Withdrawal() throws IOException { 
 		try { 
 			test.log(LogStatus.INFO, "RP_Exchange_Deposite_Request_Maker start");
