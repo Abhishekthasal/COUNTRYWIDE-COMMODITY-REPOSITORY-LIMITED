@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -61,6 +63,21 @@ public class Withdrawal_Confirm_WSP_Maker {
 	@FindBy(xpath="//input[@name='auth_code']")
 	WebElement auth_code_txt;
 	
+	@FindBy(xpath="//button[normalize-space()='Submit']")
+	WebElement Submit_bttn;
+	
+	@FindBy(xpath="//button[normalize-space()='Select']")
+	WebElement Select_bttn;
+	
+	@FindBy(xpath="//input[@name='no_of_bags']")
+	WebElement no_of_bags_txt;
+	
+	@FindBy(xpath = "//button[@class='btn btn-primary blue']//span[contains(text(),'Verify')]")
+	WebElement verify_bttn;
+
+	@FindBy(xpath = "//span[normalize-space()='Save']")
+	WebElement Save_Bttn;
+
 	
 	
 	public void Withdrawal_Confirm_WSP() {
@@ -116,8 +133,40 @@ public class Withdrawal_Confirm_WSP_Maker {
 		
 		auth_code_txt.sendKeys(String.valueOf(auth_code));
 		
+		Submit_bttn.click();
 		
+		Select_bttn.click();
 		
+		no_of_bags_txt.sendKeys(String.valueOf(Withdrawal_Function.noOfBag));
+		
+		try {
+			if (verify_bttn.isDisplayed() && verify_bttn.isEnabled()) {
+				verify_bttn.click();
+			} else {
+				System.out.println("verify_bttn is not visible");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript verify_bttn click...");
+			js.executeScript("arguments[0].click();", verify_bttn);
+		} catch (NoSuchElementException e) {
+			System.out.println("verify_bttn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for verify_bttn: " + e.getMessage());
+		}
+		try {
+			if (Save_Bttn.isDisplayed() && Save_Bttn.isEnabled()) {
+				Save_Bttn.click();
+			} else {
+				System.out.println("Save_Bttn is not visible");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Save_Bttn click...");
+			js.executeScript("arguments[0].click();", Save_Bttn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Bttn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Bttn: " + e.getMessage());
+		}
 		
 	}
 

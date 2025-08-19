@@ -70,7 +70,7 @@ public class Withdrawal_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	@Test
+	//@Test
 		void Withdrawal_Confirm() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Withdrawal_checker start");
@@ -92,7 +92,7 @@ public class Withdrawal_TestCase extends BaseClass {
 			Report.flush();
 		}
 		
-		//@Test
+		@Test
 		void Withdrawal_Confirm_checker() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Withdrawal_checker start");

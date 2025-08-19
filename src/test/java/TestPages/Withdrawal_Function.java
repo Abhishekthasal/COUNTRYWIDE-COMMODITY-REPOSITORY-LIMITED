@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 
 import Utillity.ExcelUtils;
 
@@ -39,7 +39,7 @@ public class Withdrawal_Function {
 	int Commodity_Code = excel.getCommodity_Code_Withdrawal(dataRow);
 	public long Client_ID = excel.getClient_ID_Withdrawal(dataRow);
 	public static long ENWR = excel.getENWR_Withdrawal(dataRow);
-	int noOfBag = excel.getnoOfBag_Withdrawal(dataRow);
+	static int noOfBag = excel.getnoOfBag_Withdrawal(dataRow);
 
 	public Withdrawal_Function(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
