@@ -33,7 +33,7 @@ public class Withdrawal_Function {
 	 * 5750013; public long Client_ID = 100673000000011L; public static long ENWR =
 	 * 110001018628l; String Commodity_Segment="Agricultural";
 	 */
-	public static int Withdrawal_Request_No = excel.getWithdrawal_Request_No(dataRow);
+	public static int Withdrawal_Request_No =90904321; // excel.getWithdrawal_Request_No(dataRow);
 	public static int WH_ID = excel.getWH_ID_Withdrawal(dataRow);
 	String Commodity_Segment = excel.getCommodity_Segment_Withdrawal(dataRow);
 	int Commodity_Code = excel.getCommodity_Code_Withdrawal(dataRow);

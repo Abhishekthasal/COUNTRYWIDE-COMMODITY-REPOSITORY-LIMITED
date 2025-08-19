@@ -32,14 +32,13 @@ public class TestNGListeners implements ITestListener, ISuiteListener {
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		// TODO Auto-generated method stub
+		System.out.println("********* Tests TestFailedButWithinSuccessPercentage : "+result.getName());
 
 	}
 
 	@Override
 	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
-
+		System.out.println("********* Tests started : "+context.getName());
 	}
 
 	@Override
@@ -50,13 +49,14 @@ public class TestNGListeners implements ITestListener, ISuiteListener {
 
 	@Override
 	public void onStart(ISuite suite) {
-		// TODO Auto-generated method stub
+		
+		System.out.println("********* Test started : "+suite.getName());
 
 	}
 
 	@Override
 	public void onFinish(ISuite suite) {
-		// TODO Auto-generated method stub
+		System.out.println("********* Test Finished : "+suite.getName());
 
 	}
 

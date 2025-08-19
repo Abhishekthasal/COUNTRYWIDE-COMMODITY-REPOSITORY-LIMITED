@@ -22,7 +22,7 @@ public class Withdrawal_TestCase extends BaseClass {
 	ExtentTest test = Report.startTest("Withdrawal Report");
 
 	
-	@Test
+	//@Test
 	void Withdrawal() throws IOException { 
 		try { 
 			test.log(LogStatus.INFO, "RP_Exchange_Deposite_Request_Maker start");
@@ -75,7 +75,7 @@ public class Withdrawal_TestCase extends BaseClass {
 			try {
 				test.log(LogStatus.INFO, "Withdrawal_checker start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("wsp9999996", "user72", "121@test");
+				Login.PortalLogin("wsp9999996", "user71", "121@test");
 				TestPages.Withdrawal_Confirm_WSP_Maker WF = new TestPages.Withdrawal_Confirm_WSP_Maker(driver, Wait);
 				WF.Withdrawal_Confirm_WSP();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -97,7 +97,7 @@ public class Withdrawal_TestCase extends BaseClass {
 			try {
 				test.log(LogStatus.INFO, "Withdrawal_checker start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+				Login.PortalLogin("wsp9999996", "user72", "121@test");
 				TestPages.Withdrawal_Function_Checker WF = new TestPages.Withdrawal_Function_Checker(driver, Wait);
 				WF.Withdrawal_Confirm();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))

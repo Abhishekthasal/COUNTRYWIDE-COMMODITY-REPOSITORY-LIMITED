@@ -15,10 +15,12 @@ public class BrowserFactory {
 
 	public static WebDriver initializeDriver(WebDriver driver, String browser, String URL) {
 
+		String projectPath = System.getProperty("user.dir");
+		
 		if (browser.equals("Chrome")) {
 			WebDriverManager.chromedriver().setup();
 			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Driver\\chromedriver.exe");
+					projectPath+"\\Driver\\chromedriver.exe");
 
 			 ChromeOptions options = new ChromeOptions();
 			options.setBinary("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");
@@ -27,7 +29,7 @@ public class BrowserFactory {
 
 		} else if (browser.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
-					"C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Driver\\geckodriver.exe"); // Set
+					projectPath+"\\Driver\\geckodriver.exe"); // Set
 																															// path
 																															// to
 																															// geckodriver
