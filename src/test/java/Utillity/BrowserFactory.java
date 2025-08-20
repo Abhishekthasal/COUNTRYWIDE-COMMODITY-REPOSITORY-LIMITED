@@ -15,7 +15,7 @@ public class BrowserFactory {
 
 	public static WebDriver initializeDriver(WebDriver driver, String browser, String URL) {
 
-		String projectPath = System.getProperty("user.dir");
+		 String projectPath = System.getProperty("user.dir");
 		
 		if (browser.equals("Chrome")) {
 			WebDriverManager.chromedriver().setup();

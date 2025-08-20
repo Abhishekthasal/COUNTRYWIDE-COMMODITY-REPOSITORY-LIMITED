@@ -23,7 +23,7 @@ import TestPages.ScreenShort;
 public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Reports\\ExtentReport"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"
 					+ System.currentTimeMillis() + ".html",
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
@@ -50,7 +50,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	// @Test
+	 //@Test
 	void RP_Deposite_Request_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "General_Deposite_Agriculture_Multiple_GSL_Checker is start");
@@ -67,7 +67,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	// @Test
+	 //@Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is start");
@@ -102,7 +102,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	 //@Test
+	 @Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Agriculture_Multiple_GSL_Maker is start");
@@ -154,7 +154,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		}
 	}
 
-	@Test
+	//@Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker is start");

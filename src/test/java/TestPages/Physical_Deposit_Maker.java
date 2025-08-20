@@ -26,7 +26,7 @@ public class Physical_Deposit_Maker {
 	// private static final String Commodity_Code = null;
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "Physical_Deposit_Maker";
 	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1119,12 +1119,12 @@ public class Physical_Deposit_Maker {
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
 						.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
 
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 				if (i < remainingBags) {
 					try {
 						if (Add_Button.isDisplayed() && Add_Button.isEnabled()) {

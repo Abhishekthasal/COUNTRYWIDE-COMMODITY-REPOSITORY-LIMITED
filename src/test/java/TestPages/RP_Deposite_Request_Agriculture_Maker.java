@@ -22,9 +22,10 @@ public class RP_Deposite_Request_Agriculture_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	 String projectPath = System.getProperty("user.dir");
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "RP_Deposite_Request_Agriculture";
-	static int dataRow = 6; // second row of data
+	static int dataRow = 7; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
