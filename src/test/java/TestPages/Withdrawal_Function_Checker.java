@@ -49,11 +49,12 @@ public class Withdrawal_Function_Checker {
 	
 	@FindBy(xpath = "//div[@role='dialog']")
 	WebElement Scroll;
-
-	@FindBy(xpath = "//label[normalize-space()='Authorize']")
+	//label[normalize-space()='Authorize']
+	//(//input[@id='EditDeposit_Checked'])
+	@FindBy(xpath = "(//input[@id='EditDeposit_Checked'])")
 	WebElement Authorize_chek;
 
-	@FindBy(xpath = "//button[@ng-show='!WithdrawalRequestForm.$invalid']")
+	@FindBy(xpath = "//button[@class='btn btn-primary blue']//span[contains(text(),'Verify')]")
 	WebElement verify_bttn;
 
 	@FindBy(xpath = "//span[normalize-space()='Save']")
@@ -146,7 +147,7 @@ public class Withdrawal_Function_Checker {
 
 		try {
 			if (Authorize_chek.isDisplayed() && Authorize_chek.isEnabled()) {
-				Authorize_chek.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_chek)).click();
 			} else {
 				System.out.println("Authorize_chek box is not visible");
 			}
@@ -160,7 +161,7 @@ public class Withdrawal_Function_Checker {
 		}
 		try {
 			if (verify_bttn.isDisplayed() && verify_bttn.isEnabled()) {
-				verify_bttn.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(verify_bttn)).click();
 			} else {
 				System.out.println("verify_bttn is not visible");
 			}
@@ -174,7 +175,7 @@ public class Withdrawal_Function_Checker {
 		}
 		try {
 			if (Save_Bttn.isDisplayed() && Save_Bttn.isEnabled()) {
-				Save_Bttn.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Bttn)).click();
 			} else {
 				System.out.println("Save_Bttn is not visible");
 			}

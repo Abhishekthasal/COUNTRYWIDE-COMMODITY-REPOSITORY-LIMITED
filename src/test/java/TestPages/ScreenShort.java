@@ -16,7 +16,7 @@ public class ScreenShort extends BaseClass {
 
 		File srcfile =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
-		File Destinationfile =new File("C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\ScreenShort\\image"+System.currentTimeMillis()+".png");
+		File Destinationfile =new File("C:\\Users\\abhishekyt\\git\\repository\\Automation\\ScreenShort\\image"+System.currentTimeMillis()+".png");
 
 		String absolutepath_Screen = Destinationfile.getAbsolutePath();
 

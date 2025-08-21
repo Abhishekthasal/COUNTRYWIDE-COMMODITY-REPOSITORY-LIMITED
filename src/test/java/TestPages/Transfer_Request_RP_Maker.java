@@ -19,9 +19,9 @@ public class Transfer_Request_RP_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\Transfer.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Transfer.xlsx";
 	static String sheet = "Transfer_Request";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 3; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	
