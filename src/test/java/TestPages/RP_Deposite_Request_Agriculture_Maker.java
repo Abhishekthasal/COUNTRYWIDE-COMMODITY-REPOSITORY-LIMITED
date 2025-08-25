@@ -25,7 +25,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 	 String projectPath = System.getProperty("user.dir");
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "RP_Deposite_Request_Agriculture";
-	static int dataRow = 7; // second row of data
+	static int dataRow = 8; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -295,12 +295,8 @@ public class RP_Deposite_Request_Agriculture_Maker {
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
 					 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-					// WebElement AC =
-					// driver.findElement(By.xpath("(//li[@class='active']//a)[2]"));
 					 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
 					 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-					 //WH_ID_txt.sendKeys(Keys.ENTER);
-					// Wait.until(ExpectedConditions.elementToBeClickable(AC)).click();
 				}
 			}
 		} catch (ElementClickInterceptedException e) {

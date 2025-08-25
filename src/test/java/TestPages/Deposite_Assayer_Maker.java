@@ -509,7 +509,6 @@ public class Deposite_Assayer_Maker {
 			Grade_Desig.click();
 			Select Pre_Qualification = new Select(Pre_Qualification_Txt);
 			Pre_Qualification.selectByIndex(1);
-
 			STAPLE_LENGTH.sendKeys("33");
 			TRASH_CONTENT.sendKeys("3");
 			MOISTURE_BY_MASS.sendKeys("5");

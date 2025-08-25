@@ -1115,9 +1115,7 @@ public class Physical_Deposit_Maker {
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				NO_Bag.sendKeys(String.valueOf(Bags));
-
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
-
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));

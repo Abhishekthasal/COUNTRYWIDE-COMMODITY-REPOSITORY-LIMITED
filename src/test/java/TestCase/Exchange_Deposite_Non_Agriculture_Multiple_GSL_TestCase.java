@@ -41,12 +41,12 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
 	}
-	// @Test
+	 //@Test
 	void RP_Deposite_Request_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculture_Checker is start");

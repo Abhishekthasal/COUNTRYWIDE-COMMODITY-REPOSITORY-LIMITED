@@ -1,7 +1,6 @@
 package TestPages;
 
 import java.time.Duration;
-
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -13,8 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-
 import Utillity.ExcelUtils;
 
 public class Withdrawal_Function {
@@ -24,7 +21,7 @@ public class Withdrawal_Function {
 
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Withdrawal.xlsx";
 	static String sheet = "Withdrawal_Request";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 9; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet); 
 
@@ -33,7 +30,7 @@ public class Withdrawal_Function {
 	 * 5750013; public long Client_ID = 100673000000011L; public static long ENWR =
 	 * 110001018628l; String Commodity_Segment="Agricultural";
 	 */
-	public static int Withdrawal_Request_No =90904321; // excel.getWithdrawal_Request_No(dataRow);
+	public static int Withdrawal_Request_No = excel.getWithdrawal_Request_No(dataRow);
 	public static int WH_ID = excel.getWH_ID_Withdrawal(dataRow);
 	String Commodity_Segment = excel.getCommodity_Segment_Withdrawal(dataRow);
 	int Commodity_Code = excel.getCommodity_Code_Withdrawal(dataRow);
@@ -45,7 +42,6 @@ public class Withdrawal_Function {
 		this.driver = driver;
 		this.Wait = Wait;
 		PageFactory.initElements(driver, this);
-
 	}
 
 	@FindBy(xpath = "(//span[normalize-space()='Transactions'])[1]")
@@ -112,8 +108,6 @@ public class Withdrawal_Function {
 
 	@FindBy(xpath = "//span[normalize-space()='Save']")
 	WebElement Save_Bttn;
-
-	
 	
 	public void Withdrawal_Request_RP() {
 		
@@ -131,15 +125,39 @@ public class Withdrawal_Function {
 		Date_Selecter.click();
 
 		Date.click();
+		
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
+		try {
 		if (String.valueOf(WH_ID).matches("^[a-zA-Z0-9]{0,7}$")) {
-			WH_ID_With.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys((String.valueOf(WH_ID)));
+			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			 //WH_ID_With_Txt.sendKeys(Keys.ENTER);
+			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
 			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
 			//WH_ID_With_Txt.click();
 		} else {
 			System.out.println("Invalid WH_ID ");
 		}
+		}catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript WH_ID_Btn click...");
+			js.executeScript("arguments[0].click();", WH_ID_With);
+			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_With_Txt);
+			js.executeScript("arguments[0].click();", WH_ID_With_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("WH_ID_With_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for WH_ID_With_Txt: " + e.getMessage());
+		}
+//		finally {
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With)).click();
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys((String.valueOf(WH_ID)));
+//			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).click();
+//		}
+		//driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		Select Se = new Select(Commodity_Segment_txt);
 		Se.selectByContainsVisibleText(Commodity_Segment);
 

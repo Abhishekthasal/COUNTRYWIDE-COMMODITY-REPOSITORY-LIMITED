@@ -2,7 +2,7 @@ package TestCase;
 
 import java.io.IOException;
 import java.time.Duration;
-import org.testng.Assert;
+//import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -21,20 +21,19 @@ public class Withdrawal_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Withdrawal Report");
 
-	
 	//@Test
 	void Withdrawal() throws IOException { 
 		try { 
-			test.log(LogStatus.INFO, "RP_Exchange_Deposite_Request_Maker start");
+			test.log(LogStatus.INFO, "Withdrawal_Request_Maker start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			try {
 			TestPages.Withdrawal_Function WF = new TestPages.Withdrawal_Function(driver, Wait);
 			WF.Withdrawal_Request_RP();
-			   Assert.assertTrue(false, "Something went wrong");
+			  // Assert.assertTrue(false, "Something went wrong");
 		} catch (Exception e) {
-		    e.printStackTrace();
-		    System.out.println("Error occurred while running Exchange_Non_Agriculture_Physical_Multiple_GSL: " + e.getMessage());
+		    e.printStackTrace(); 
+		    System.out.println("Error occurred while running Withdrawal_Request: " + e.getMessage());
 		}
 			test.log(LogStatus.PASS, "Withdrawal_Request is success full");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
@@ -57,8 +56,8 @@ public class Withdrawal_TestCase extends BaseClass {
 			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 			TestPages.Withdrawal_Function_Checker WF = new TestPages.Withdrawal_Function_Checker(driver, Wait);
 			WF.Withdrawal_Checker();
-			test.log(LogStatus.PASS, /*test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-					*/  "Withdrawal_checker is success full");
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+  "Withdrawal_checker is success full");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 			TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 			Log.Logout();
@@ -73,13 +72,13 @@ public class Withdrawal_TestCase extends BaseClass {
 	//@Test
 		void Withdrawal_Confirm() throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Withdrawal_checker start");
+				test.log(LogStatus.INFO, "Withdrawal_Confirm start");
 				LoginPages Login = new LoginPages(driver, Wait);
 				Login.PortalLogin("wsp9999996", "user71", "121@test");
 				TestPages.Withdrawal_Confirm_WSP_Maker WF = new TestPages.Withdrawal_Confirm_WSP_Maker(driver, Wait);
 				WF.Withdrawal_Confirm_WSP();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-						+ "Withdrawal_checker is success full");
+						+ "Withdrawal_Confirm is success full");
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 				Log.Logout();
@@ -95,13 +94,13 @@ public class Withdrawal_TestCase extends BaseClass {
 		@Test
 		void Withdrawal_Confirm_checker() throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Withdrawal_checker start");
+				test.log(LogStatus.INFO, "Withdrawal_Confirm_checker start");
 				LoginPages Login = new LoginPages(driver, Wait);
 				Login.PortalLogin("wsp9999996", "user72", "121@test");
 				TestPages.Withdrawal_Function_Checker WF = new TestPages.Withdrawal_Function_Checker(driver, Wait);
 				WF.Withdrawal_Confirm();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-						+ "Withdrawal_checker is success full");
+						+ "Withdrawal_Confirm_checker is success full");
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 				Log.Logout();

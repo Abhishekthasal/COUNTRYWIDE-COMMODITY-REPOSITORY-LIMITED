@@ -21,7 +21,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "RP_Exchange_Deposite_Agricultur";
 	static int dataRow = 2; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -96,7 +96,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	WebElement WSP_ID_txt;
 	// label[text()='WH Id']/following-sibling::div//button//span[text()='NOTHING
 	// SELECTED']
-	@FindBy(xpath = "(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]")
+	@FindBy(xpath = "//label[text()='WH Id']/following-sibling::div//button//span[text()='NOTHING SELECTED']")
 	WebElement WH_ID_Btn;
 
 	@FindBy(xpath = "(//input[@type='text'])[8]")
@@ -254,59 +254,118 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for exchangeMaster: " + e.getMessage());
 		}
-		// String.valueOf() for Int to String
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		try {
 			if (WSP_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				// WSP_ID_btn.click();
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
-				WSP_ID_txt.sendKeys(Keys.ENTER);
-				WSP_ID_txt.sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(String.valueOf(WSP_ID));
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
+				// Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid WSP_ID. Please enter exactly 7 alphanumeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			WebElement WSP_ID_btn_J = driver.findElement(
-					By.xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]"));
-			js.executeScript("arguments[0].click();", WSP_ID_btn_J);
-			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
-			WSP_ID_txt.click();
-			// WSP_ID_txt.sendKeys(Keys.ENTER);
+			js.executeScript("arguments[0].click();", WSP_ID_btn);
+			js.executeScript("arguments[0].value='" + WSP_ID + "';", WSP_ID_txt);
+			js.executeScript("arguments[0].click();", WSP_ID_txt);
+			// WSP_ID_txt.click();
 		} catch (NoSuchElementException e) {
 			System.out.println("WSP_ID_btn not found: " + e.getMessage());
+
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WSP_ID_btn: " + e.getMessage());
-		} finally {
-
-			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
-			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
-			WSP_ID_txt.sendKeys(Keys.ENTER);
-			WSP_ID_txt.sendKeys(Keys.ENTER);
-			WSP_ID_txt.sendKeys(Keys.ENTER);
 		}
-
+		// WebElement AC =
+		// driver.findElement(By.xpath("(//li[@class='active']//a)[2]"));
 		try {
-			if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				WH_ID_Btn.click();
-				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-				WH_ID_txt.sendKeys(Keys.ENTER);
-				WH_ID_txt.sendKeys(Keys.ENTER);
-				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+			if (WH_ID_Btn.isDisplayed()) {
+				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+					// WebElement AC =
+					// driver.findElement(By.xpath("(//li[@class='active']//a)[2]"));
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+					// WH_ID_txt.sendKeys(Keys.ENTER);
+					// Wait.until(ExpectedConditions.elementToBeClickable(AC)).click();
+				}else {
+					System.out.println("Invalid WH_ID. Please enter  7 alphanumeric characters.");
+				}
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, trying JavaScript WH_ID_Btn click...");
+			WebElement WH_ID_JAVA = driver.findElement(
+					By.xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[3]"));
+			js.executeScript("arguments[0].scrollIntoView(true)", WH_ID_JAVA);
 			js.executeScript("arguments[0].click();", WH_ID_Btn);
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-			WH_ID_txt.click();
-			System.out.println("Element not clickable at the moment: " + e.getMessage());
+			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_txt);
+			js.executeScript("arguments[0].click();", WH_ID_txt);
+			// AC.click();
 		} catch (NoSuchElementException e) {
 			System.out.println("WH_ID_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 		}
+		// String.valueOf() for Int to String
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+//		try {
+//			if (WSP_ID.matches("^[a-zA-Z0-9]{7}$")) {
+//				// WSP_ID_btn.click();
+//				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
+//				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(String.valueOf(WSP_ID));
+//				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+//				WSP_ID_txt.sendKeys(Keys.ENTER);
+//				WSP_ID_txt.sendKeys(Keys.ENTER);
+//			} else {
+//				System.out.println("Invalid WSP_ID. Please enter exactly 7 alphanumeric characters:");
+//			}
+//		} catch (ElementClickInterceptedException e) {
+//			System.out.println("Normal click failed, trying JavaScript click...");
+//			WebElement WSP_ID_btn_J = driver.findElement(
+//					By.xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]"));
+//			js.executeScript("arguments[0].click();", WSP_ID_btn_J);
+//			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
+//			WSP_ID_txt.click();
+//			// WSP_ID_txt.sendKeys(Keys.ENTER);
+//		} catch (NoSuchElementException e) {
+//			System.out.println("WSP_ID_btn not found: " + e.getMessage());
+//		} catch (Exception e) {
+//			System.out.println("Unexpected error for WSP_ID_btn: " + e.getMessage());
+//		}
+////		} finally {
+////
+////			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
+////			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
+////			WSP_ID_txt.sendKeys(Keys.ENTER);
+////			WSP_ID_txt.sendKeys(Keys.ENTER);
+////			WSP_ID_txt.sendKeys(Keys.ENTER);
+////		}
+//
+//		try {
+//			if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+//				WH_ID_Btn.click();
+//				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
+//				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
+//				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+//				WH_ID_txt.sendKeys(Keys.ENTER);
+//				WH_ID_txt.sendKeys(Keys.ENTER);
+//				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+//			}
+//		} catch (ElementClickInterceptedException e) {
+//			System.out.println("Normal click failed, trying JavaScript click...");
+//			js.executeScript("arguments[0].click();", WH_ID_Btn);
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
+//			WH_ID_txt.click();
+//			System.out.println("Element not clickable at the moment: " + e.getMessage());
+//		} catch (NoSuchElementException e) {
+//			System.out.println("WH_ID_Btn not found: " + e.getMessage());
+//		} catch (Exception e) {
+//			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
+//		}
 
 		if (Negotiable_eceipt_Required.isDisplayed()) {
 			Negotiable_eceipt_Required.click();

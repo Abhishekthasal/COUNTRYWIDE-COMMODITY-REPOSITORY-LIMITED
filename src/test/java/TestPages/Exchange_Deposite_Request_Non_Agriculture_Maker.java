@@ -2,6 +2,7 @@ package TestPages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -20,9 +21,9 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "Exchange_Deposite_Non_Agricult";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 3; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -273,26 +274,55 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 			System.out.println("Unexpected error for WSP_ID_btn: " + e.getMessage());
 		}
 		try {
-			if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				WH_ID_Btn.click();
-				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-				// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-				 //Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Option)).sendKeys(Keys.ENTER);
-				WH_ID_Option.sendKeys(Keys.RETURN);
-				WH_ID_txt.sendKeys(Keys.ENTER);
-				//Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+			if (WH_ID_Btn.isDisplayed()) {
+				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
+					 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+					// WebElement AC =
+					// driver.findElement(By.xpath("(//li[@class='active']//a)[2]"));
+					 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+					 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+					 //WH_ID_txt.sendKeys(Keys.ENTER);
+					// Wait.until(ExpectedConditions.elementToBeClickable(AC)).click();
+				}
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, trying JavaScript WH_ID_Btn click...");
+			WebElement WH_ID_JAVA = driver.findElement(
+					By.xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[3]"));
+			js.executeScript("arguments[0].scrollIntoView(true)", WH_ID_JAVA);
 			js.executeScript("arguments[0].click();", WH_ID_Btn);
 			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_txt);
-			js.executeScript("arguments[0].click();", WH_ID_Option);
+			js.executeScript("arguments[0].click();", WH_ID_txt);
+			// AC.click();
 		} catch (NoSuchElementException e) {
 			System.out.println("WH_ID_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 		}
+
+//		try {
+//			if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+//				WH_ID_Btn.click();
+//				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
+//				 driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+//				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+//				 //Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Option)).sendKeys(Keys.ENTER);
+//				 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Option)).sendKeys(Keys.ENTER);
+//				 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+//				//Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+//			}
+//		} catch (ElementClickInterceptedException e) {
+//			System.out.println("Normal click failed, trying JavaScript click...");
+//			js.executeScript("arguments[0].click();", WH_ID_Btn);
+//			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_txt);
+//			js.executeScript("arguments[0].click();", WH_ID_Option);
+//		} catch (NoSuchElementException e) {
+//			System.out.println("WH_ID_Btn not found: " + e.getMessage());
+//		} catch (Exception e) {
+//			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
+//		}
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		try {
@@ -337,6 +367,7 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 			if (symbol.matches("^[a-zA-Z0-9]{0,10}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(symbol_btn)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(symbol);
+				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(Keys.ENTER);
 				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(Keys.ENTER);
 			}
 		} catch (ElementClickInterceptedException e) {

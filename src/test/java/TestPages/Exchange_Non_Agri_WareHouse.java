@@ -24,7 +24,7 @@ public class Exchange_Non_Agri_WareHouse {
 	WebDriver driver;
 	WebDriverWait Wait;
 
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "Exchange_Non_Agriculture_Physic";
 	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -52,7 +52,6 @@ public class Exchange_Non_Agri_WareHouse {
 	String assaying_type = excel.getassaying_type_ex_py(dataRow);
 	String Weight_bridge = excel.getWeight_bridge_ex_py(dataRow);
 	String Weight_bridge_Receipt = excel.getWeight_bridge_Receipt_ex_py(dataRow);
-
 	String EstimatedValue = excel.getEstimatedValue_ex_py(dataRow);
 	String Lot_Heat_Cast_Batch_number = excel.getLot_Heat_Cast_Batch_number_ex_py(dataRow);
 	String Per_Month = excel.getPer_Month_ex_py(dataRow);
@@ -125,6 +124,8 @@ public class Exchange_Non_Agri_WareHouse {
 	WebElement web_bridge_Value;
 	@FindBy(xpath = "//input[@name='EstimatedValue' and @ng-model='vm.CreateDepositWspWh.est_value_deposit']")
 	WebElement EstimatedValue_text;
+	@FindBy(xpath = "//button[@type='button' and @class='btn btn-info' and @ng-click='vm.addLotDetails()']")
+	WebElement Add_Button;
 	@FindBy(xpath = "//input[@name='Lot_Heat_Cast_Batch_number']")
 	WebElement Lot_Heat_Cast_Batch_number_text;
 	@FindBy(xpath = "//input[@placeholder='Per Month']")
@@ -869,13 +870,21 @@ public class Exchange_Non_Agri_WareHouse {
 			System.out.println("Unexpected error for peruom: " + e.getMessage());
 		}
 		Lot.click();
-		WebElement remainingBagsElement = driver.findElement(By.xpath("(//div[@class='col-sm-2'])[7]"));
+	WebElement remainingBagsElement = driver.findElement(By.xpath("(//div[@class='col-sm-2'])[7]"));
+//		//int remainingBags = Integer.parseInt(remainingBagsElement.getText());
+//		WebElement Add_Button = driver.findElement(By.xpath("//button[normalize-space()='Add']"));
+//
+//		//int maxLoops = Math.min(50, remainingBags);
+	
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView()", Add_Button);
+		WebElement remainingBag = driver
+				.findElement(By.xpath("//div[@class='row ng-scope']//div[@class='col-sm-2']")); // Adjust ID
 		int remainingBags = Integer.parseInt(remainingBagsElement.getText());
-		WebElement Add_Button = driver.findElement(By.xpath("//button[normalize-space()='Add']"));
+		int noOfBags = Integer.parseInt(Bag_Total);
+		if (remainingBags != noOfBags) {
+			for (int i = 1; i <= remainingBags; i++) {
 
-		int maxLoops = Math.min(50, remainingBags);
-
-		for (int i = 1; i <= maxLoops; i++) {
 			System.out.println(" value of remainingBags in I:"+remainingBags);
 		    try {
 		        driver.findElement(By.xpath("(//input[@name='godown'])[" + i + "]")).sendKeys("Godown " + i);
@@ -961,10 +970,11 @@ public class Exchange_Non_Agri_WareHouse {
 
 		    // Update remainingBags if dynamically changing
 		    try {
-		        remainingBags = Integer.parseInt(remainingBagsElement.getText());
+		    	remainingBags = Integer.parseInt(remainingBag.getText());
 		    } catch (Exception e) {
 		        System.out.println("Error updating remainingBags: " + e.getMessage());
 		    }
+		}
 		}
 		try {
 			Depositor_Detail.sendKeys(Keys.ENTER);
