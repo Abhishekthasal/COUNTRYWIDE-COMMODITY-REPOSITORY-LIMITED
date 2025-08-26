@@ -23,7 +23,7 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "Exchange_Deposite_Non_Agricult";
-	static int dataRow = 3; // second row of data
+	static int dataRow = 4; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -118,7 +118,7 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 	// pull-left'][normalize-space()='NOTHING SELECTED']
 	// (//span[@class='filter-option pull-left'][normalize-space()='NOTHING
 	// SELECTED'])[2]
-	@FindBy(xpath = "(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[2]")
+	@FindBy(xpath = "(//button[@data-id='symbolSelectionCombobox'])[1]")
 	WebElement symbol_btn;
 
 	@FindBy(xpath = "(//input[@type='text'])[19]")
@@ -362,13 +362,27 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error: " + e.getMessage());
 		}
-
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 		try {
+			if(symbol_btn.isDisplayed()&& symbol_btn.isEnabled()) {
 			if (symbol.matches("^[a-zA-Z0-9]{0,10}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(symbol_btn)).click();
+				symbol_btn.click();
+				System.out.println("Click on symbol_btn");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(symbol);
-				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(Keys.ENTER);
-				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(Keys.ENTER);
+				System.out.println("Click on symbol_text");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+				symbol_text.sendKeys(Keys.ENTER);
+				System.out.println("Click on symbol_text submit");
+				//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+				//Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(Keys.ENTER);
+			}
+			else {
+				System.out.println("Invalid value of symbol");
+			}
+			}else {
+				System.out.println("Symbol_btn is not visible");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript symbol_btn click...");
