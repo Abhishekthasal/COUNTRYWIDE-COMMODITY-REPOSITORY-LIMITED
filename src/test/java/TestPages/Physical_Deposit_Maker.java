@@ -75,6 +75,7 @@ public class Physical_Deposit_Maker {
 	int shelflife = excel.getshelflife_py(dataRow);
 	public static String Bag_Total = excel.getBag_Total_py(dataRow);
 	static int Bags = excel.getBags_py(dataRow);
+	int j = 3;
 
 	public Physical_Deposit_Maker(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -1111,7 +1112,6 @@ public class Physical_Deposit_Maker {
 				} catch (Exception e) {
 					System.out.println(" Number_Of_Bags_PopUp Element not found");
 				}
-				int j = 3;
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				NO_Bag.sendKeys(String.valueOf(Bags));
@@ -1121,7 +1121,18 @@ public class Physical_Deposit_Maker {
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
 						.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
+				  // Wait for Quantity field to auto-fill by backend
+	            WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
 
+	            // Wait until quantity field has a non-empty value
+	            Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
+
+	            // Fetch the auto-filled value
+	            String autoFilledQuantity = quantityField.getAttribute("value");
+	            System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
+				
+				
+				
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 				if (i < remainingBags) {
 					try {
@@ -1871,7 +1882,9 @@ public class Physical_Deposit_Maker {
 		WebElement remainingBagsElement = driver
 				.findElement(By.xpath("//div[@class='row ng-scope']//div[@class='col-sm-2']")); // Adjust ID
 		int remainingBags = Integer.parseInt(remainingBagsElement.getText());
+		System.out.println("remainingBags is: "+remainingBags);
 		int noOfBags = Integer.parseInt(Bag_Total);
+		System.out.println("noOfBags is :"+noOfBags);
 		if (remainingBags != noOfBags) {
 			for (int i = 1; i <= remainingBags; i++) {
 
@@ -1894,7 +1907,7 @@ public class Physical_Deposit_Maker {
 				} catch (Exception e) {
 					System.out.println(" Number_Of_Bags_PopUp Element not found");
 				}
-				int j = 3;
+				
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				NO_Bag.sendKeys(String.valueOf(Bags));

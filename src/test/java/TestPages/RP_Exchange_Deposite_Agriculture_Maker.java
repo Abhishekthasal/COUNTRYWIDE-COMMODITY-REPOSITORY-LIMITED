@@ -262,7 +262,6 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
-				// Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid WSP_ID. Please enter exactly 7 alphanumeric characters:");
 			}
@@ -281,21 +280,15 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 		// WebElement AC =
 		// driver.findElement(By.xpath("(//li[@class='active']//a)[2]"));
 		try {
-			if (WH_ID_Btn.isDisplayed()) {
 				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
 					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-					// WebElement AC =
-					// driver.findElement(By.xpath("(//li[@class='active']//a)[2]"));
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-					// WH_ID_txt.sendKeys(Keys.ENTER);
-					// Wait.until(ExpectedConditions.elementToBeClickable(AC)).click();
 				}else {
 					System.out.println("Invalid WH_ID. Please enter  7 alphanumeric characters.");
 				}
-			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript WH_ID_Btn click...");
 			WebElement WH_ID_JAVA = driver.findElement(

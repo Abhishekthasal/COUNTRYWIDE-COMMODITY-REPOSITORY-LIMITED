@@ -287,8 +287,6 @@ public class RP_Deposite_Request_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WSP_ID_btn: " + e.getMessage());
 		}
-		// WebElement AC =
-		// driver.findElement(By.xpath("(//li[@class='active']//a)[2]"));
 		try {
 			if (WH_ID_Btn.isDisplayed()) {
 				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {

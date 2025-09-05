@@ -29,7 +29,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase  extends BaseCl
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Deposite");
 
-@Test
+//@Test
 	void RP_Exchange_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Request_Agriculture_Multiple_GSL_Maker start");
@@ -67,13 +67,13 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase  extends BaseCl
 		Report.flush();
 	}
 
-//@Test
+@Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("wsp9997115", "bhanu", "121@test");
-			Login.PortalLogin("wsp9999996", "user71", "121@test");
+			Login.PortalLogin("wsp9997115", "bhanu", "121@test");
+			//Login.PortalLogin("wsp9999996", "user71", "121@test");
 			Physical_Deposit_Maker WSP = new Physical_Deposit_Maker(driver, Wait);
 			WSP.Exchange_Deposite_Transaction_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is successfull");
