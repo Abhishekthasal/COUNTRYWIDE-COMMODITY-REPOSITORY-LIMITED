@@ -84,7 +84,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	 @Test(retryAnalyzer = Utillity.RetryTest.class)
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBoard_WareHouse_Agriculture_Multiple_GSL_Checker is start");

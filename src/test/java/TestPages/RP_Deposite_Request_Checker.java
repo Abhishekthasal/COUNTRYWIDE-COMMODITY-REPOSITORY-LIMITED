@@ -570,7 +570,7 @@ public class RP_Deposite_Request_Checker {
 		try {
 			if (Authorize_page.isDisplayed()) {
 				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-				Authorize_page.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).click();
 				// Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).sendKeys(Keys.ENTER);
 
 			}
@@ -582,6 +582,8 @@ public class RP_Deposite_Request_Checker {
 			System.out.println("Authorize_page not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Authorize_page: " + e.getMessage());
+		}finally {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).click();
 		}
 		try {
 			if (Verify_btn.isDisplayed()) {

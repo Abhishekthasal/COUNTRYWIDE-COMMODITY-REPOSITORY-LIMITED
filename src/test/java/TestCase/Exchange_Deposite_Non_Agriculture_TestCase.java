@@ -26,7 +26,7 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Non_Agriculture");
 
-	@Test
+	//@Test
 	void Exchange_Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculturet_Maker start");
@@ -66,14 +66,14 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test
+	@Test
 	void DashBoard_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user71", "121@test");
+			//Login.PortalLogin("wsp9999996", "user71", "121@test");
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
-			// Login.PortalLogin("wsp9996059", "user102", "121@test");
+			 Login.PortalLogin("wsp9996059", "user102", "121@test");
 			Exchange_Non_Agri_WareHouse WSP_CH = new Exchange_Non_Agri_WareHouse(driver, Wait);
 			WSP_CH.Exchange_Non_Agriculture_Physical();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is successfull");

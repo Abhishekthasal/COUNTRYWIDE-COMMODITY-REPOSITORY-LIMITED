@@ -67,7 +67,8 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Maker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user71", "121@test");
+			//Login.PortalLogin("wsp9999996", "user71", "121@test");
+			 Login.PortalLogin("wsp9996059", "user102", "121@test");
 			try {
 				Exchange_Non_Agri_WareHouse WSP_CH = new Exchange_Non_Agri_WareHouse(driver, Wait);
 			    WSP_CH.Exchange_Non_Agriculture_Physical_Multiple_GSL();

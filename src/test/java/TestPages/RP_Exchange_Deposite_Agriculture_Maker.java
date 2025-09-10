@@ -23,7 +23,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "RP_Exchange_Deposite_Agricultur";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 4; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -44,7 +44,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	public String Deposit_Type = excel.getDepositType_ex(dataRow);
 	public static String Commodity_Code = excel.getCommodityCode_ex(dataRow);
 	public static String bags = excel.getBags_ex(dataRow);
-	public float Bag_Size = excel.getBagSize_ex(dataRow);
+	public static float Bag_Size = excel.getBagSize_ex(dataRow);
 	public String Bag_Type = excel.getBagType_ex(dataRow);
 	public String Qty_UOM = excel.getQtyUOM_ex(dataRow);
 	public String Bag_UOM = excel.getBagUOM_ex(dataRow);

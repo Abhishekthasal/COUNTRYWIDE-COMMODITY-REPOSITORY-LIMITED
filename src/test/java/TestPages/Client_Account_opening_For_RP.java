@@ -195,10 +195,9 @@ public class Client_Account_opening_For_RP {
 		Client_Name.sendKeys(Keys.ENTER);
 		Client_Name.sendKeys(Client_holder_Name);
 
-		
-		  Select Sa = new Select(Client_Type_btn);
-		  Sa.selectByContainsVisibleText(Client_Type);
-		 
+		Select Sa = new Select(Client_Type_btn);
+		Sa.selectByContainsVisibleText(Client_Type);
+
 		Wait.until(ExpectedConditions.elementToBeClickable(Client_Sub_Type_checkBox)).click();
 
 		if (Client_Sub_Type.equals("Individual")) {
@@ -284,8 +283,14 @@ public class Client_Account_opening_For_RP {
 		} else {
 			System.out.println("Save_Button is not Visible ");
 		}
-		
-		
+
+	}
+
+	public void Account_opening_for_CM() {
+
+	}
+
+	public void Account_opening_for_TM() {
 
 	}
 }
