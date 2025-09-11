@@ -753,4 +753,126 @@ public class ExcelUtils {
 		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
 	}
 	
+	/*************************************Client_Account_opening_For_RP***************************************/
+	
+	
+	public int getclientid_Num(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+	}
+	
+	public String getFormID(int rowNum) {
+		return getCellData(rowNum, 1);
+	}
+	
+	public String getClient_holder_Name(int rowNum) {
+		return getCellData(rowNum, 2);
+	}
+	
+	public String getClient_Type(int rowNum) {
+		return getCellData(rowNum, 3);
+	}
+	
+	public String getClient_Sub_Type(int rowNum) {
+		return getCellData(rowNum, 4);
+	}
+	
+	public String getFrequency(int rowNum) {
+		return getCellData(rowNum, 5);
+	}
+	
+	public String getStatement(int rowNum) {
+		return getCellData(rowNum, 6);
+	}
+	
+	public String getLine1(int rowNum) {
+		return getCellData(rowNum, 7);
+	}
+	
+	public String getLine2(int rowNum) {
+		return getCellData(rowNum, 8);
+	}
+	
+	public String getLine3(int rowNum) {
+		return getCellData(rowNum, 9);
+	}
+	
+	public String getLine4(int rowNum) {
+		return getCellData(rowNum, 10);
+	}
+	
+	public String getCity(int rowNum) {
+		return getCellData(rowNum, 11);
+	}
+	
+	public int getPinCode(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(12).getNumericCellValue();
+	}
+	
+	public int getmobile_Isd(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(13).getNumericCellValue();
+	}
+
+	public long getmobile_NUmber(int rowNum) {
+	    Cell cell = Sheet.getRow(rowNum).getCell(14);
+	    DataFormatter formatter = new DataFormatter();
+	    String cellValue = formatter.formatCellValue(cell); // Always returns String
+	    return Long.parseLong(cellValue); // Convert to long
+	}
+	
+	public String getEmail_Id(int rowNum) {
+		return getCellData(rowNum, 15);
+	}
+	
+	public int getAccount_No(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(16).getNumericCellValue();
+	}
+	
+	public String getIFSC(int rowNum) {
+		return getCellData(rowNum, 17);
+	}
+	
+	public String getBankAccount(int rowNum) {
+		return getCellData(rowNum, 18);
+	}
+	
+	public String getIncomeRange(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	
+	public String getPanCardNo(int rowNum) {
+		return getCellData(rowNum, 20);
+	}
+	
+	public String getPOI(int rowNum) {
+		return getCellData(rowNum, 21);
+	}
+	
+	public String getPOA(int rowNum) {
+		return getCellData(rowNum, 22);
+	}
+	
+	public String getAuthsignatory_Name(int rowNum) {
+		return getCellData(rowNum, 23);
+	}
+	
+	public String getAuthorized_Representative_Name(int rowNum) {
+		return getCellData(rowNum, 24);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

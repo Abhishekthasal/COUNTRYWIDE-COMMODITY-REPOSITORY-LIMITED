@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-10T17:36:25 IST" name="Default suite" finished-at="2025-09-10T17:38:43 IST" duration-ms="138260">
+  <suite started-at="2025-09-11T17:57:27 IST" name="Default suite" finished-at="2025-09-11T17:59:44 IST" duration-ms="136494">
     <groups>
     </groups>
-    <test started-at="2025-09-10T17:36:25 IST" name="Default test" finished-at="2025-09-10T17:38:43 IST" duration-ms="138260">
+    <test started-at="2025-09-11T17:57:27 IST" name="Default test" finished-at="2025-09-11T17:59:44 IST" duration-ms="136494">
       <class name="TestCase.TM_CM_Linking_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.TM_CM_Linking_TestCase@29d89d5d]" started-at="2025-09-10T17:36:25 IST" name="setup" finished-at="2025-09-10T17:36:30 IST" duration-ms="4458" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.TM_CM_Linking_TestCase@29d89d5d]" started-at="2025-09-11T17:57:27 IST" name="setup" finished-at="2025-09-11T17:57:32 IST" duration-ms="4468" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="CM_Master_File_Upload()[pri:0, instance:TestCase.TM_CM_Linking_TestCase@29d89d5d]" started-at="2025-09-10T17:36:30 IST" name="CM_Master_File_Upload" finished-at="2025-09-10T17:38:43 IST" duration-ms="133742" status="PASS">
+        <test-method signature="CM_Master_File_Upload()[pri:0, instance:TestCase.TM_CM_Linking_TestCase@29d89d5d]" started-at="2025-09-11T17:57:32 IST" name="CM_Master_File_Upload" finished-at="2025-09-11T17:59:44 IST" duration-ms="131990" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CM_Master_File_Upload -->
