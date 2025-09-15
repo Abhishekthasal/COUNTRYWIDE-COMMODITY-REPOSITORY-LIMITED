@@ -302,7 +302,7 @@ public class RP_Deposite_Request_Checker {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
 		try {
-			caret.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(caret)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript  caret click...");
 			js.executeScript("arguments[0].click();", caret);
@@ -327,15 +327,15 @@ public class RP_Deposite_Request_Checker {
 		scroll.sendKeys(Keys.PAGE_DOWN);
 		scroll.sendKeys(Keys.PAGE_DOWN);
 		try {
-			if (Authorize_page.isDisplayed()) {
+			if (Authorizee_pag_GA.isDisplayed()) {
 				// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorizee_pag_GA)).click();
 				// Authorize_page.click();
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
 			// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", Authorize_page);
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", Authorizee_pag_GA);
 		} catch (NoSuchElementException e) {
 			System.out.println("Element not found: " + e.getMessage());
 		} catch (Exception e) {

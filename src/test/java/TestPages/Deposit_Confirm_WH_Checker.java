@@ -468,7 +468,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=4;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=2;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 		
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite+i));
@@ -493,23 +493,25 @@ public class Deposit_Confirm_WH_Checker {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());	
 		}
 	
-		// Define FluentWait
-		/*FluentWait<WebDriver> fluentWait = new FluentWait<>(driver)
-		    .withTimeout(Duration.ofSeconds(60))            // Total wait time
-		    .pollingEvery(Duration.ofSeconds(2))            // Check every 2 seconds
-		    .ignoring(NoSuchElementException.class)         // Ignore not found
-		    .ignoring(ElementClickInterceptedException.class); // Optional: ignore click issues
-		    */
-
-		try {
-		   /* WebElement Action_btn = fluentWait.until(driver -> {
-		        WebElement Action_bttn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])[1]"));
-		        if (Action_bttn.isDisplayed() && Action_bttn.isEnabled()) {
-		            return Action_bttn;
-		        }
-		        return null;
-		    });*/
-		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+		/*
+		 * Define FluentWait FluentWait<WebDriver> fluentWait = new FluentWait<>(driver)
+		 * .withTimeout(Duration.ofSeconds(60)) // Total wait time
+		 * .pollingEvery(Duration.ofSeconds(2)) // Check every 2 seconds
+		 * .ignoring(NoSuchElementException.class) // Ignore not found
+		 * .ignoring(ElementClickInterceptedException.class); // Optional: ignore click
+		 * issues
+		 * 
+		 * WebElement Action_btn = fluentWait.until(driver -> { WebElement Action_bttn =
+		 * driver.findElement(By.xpath("(//button[normalize-space()='Actions'])[1]"));
+		 * if (Action_bttn.isDisplayed() && Action_bttn.isEnabled()) { return
+		 * Action_bttn; } return null; });
+		 */
+		
+			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+			
+			//implicitlyWait(Duration.ofSeconds(90));
+		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		    try {
 		    // Click the element after wait
 		    Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
 		    System.out.println("Element clicked successfully.");

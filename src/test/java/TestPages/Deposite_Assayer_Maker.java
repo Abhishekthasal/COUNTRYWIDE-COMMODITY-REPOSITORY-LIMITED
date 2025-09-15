@@ -1358,16 +1358,11 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for SampleId_txt: " + e.getMessage());
 			}
-			try {
-				if(Confirm_Ok.isDisplayed()) {
-					Confirm_Ok.click();
-				}
-				else {
-					System.out.println("Confirm_Ok is not visible");
-				}
-				} catch (Exception e) {
-					System.out.println("Unexpected error for Confirm_Ok: " + e.getMessage());
-				}
+			/*
+			 * try { if(Confirm_Ok.isDisplayed()) { Confirm_Ok.click(); } else {
+			 * System.out.println("Confirm_Ok is not visible"); } } catch (Exception e) {
+			 * System.out.println("Unexpected error for Confirm_Ok: " + e.getMessage()); }
+			 */
 			
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).sendKeys(Keys.ENTER);

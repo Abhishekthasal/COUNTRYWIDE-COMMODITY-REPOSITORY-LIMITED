@@ -1,9 +1,12 @@
 package TestPages;
 
+import java.io.File;
 import java.time.Duration;
 
 import org.apache.commons.collections4.bag.SynchronizedSortedBag;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +23,7 @@ public class CM_Master_File_Upload {
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "Physical_Deposit_Maker";
 	static int dataRow = 1; // second row of data
-	static ExcelUtils excel = new ExcelUtils(path, sheet); 
+	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -33,55 +36,81 @@ public class CM_Master_File_Upload {
 
 	@FindBy(xpath = "//span[normalize-space()='Imports']")
 	WebElement Imports_btn;
-	
-	@FindBy(css="a[ui-sref='Imports.CMUpload'] span[class='title ng-binding']")
+
+	@FindBy(css = "a[ui-sref='Imports.CMUpload'] span[class='title ng-binding']")
 	WebElement CM_Master_Upload_bttn;
-	
-	@FindBy(xpath="(//input[@id='files'])[1]")
+	// input[@id='files' and @name='files']\
+	// input[contains(@accept,'spreadsheetml') or contains(@accept,'ms-excel')]
+
+	@FindBy(xpath = "//input[contains(@accept,'spreadsheetml') or contains(@accept,'ms-excel')]")
 	WebElement Upload_files;
-	@FindBy(xpath="//span[normalize-space()='CM Master File Upload']")
+	@FindBy(xpath = "//span[normalize-space()='CM Master File Upload']")
 	WebElement CM_Master_File_Upload_txt;
-	
-	@FindBy(xpath="//button[normalize-space()='Yes']")
+
+	@FindBy(xpath = "//button[normalize-space()='Yes']")
 	WebElement Are_you_sure_popup;
-	
-	
-	
-	
+
+	@FindBy(xpath = "//div[@class='sweet-alert hideSweetAlert']")
+	WebElement Success_txt;
+
 	public void CM_Master_File_Upload_CC() {
-		
-		
+
+		/*
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Imports_btn)).click();
+		 * 
+		 * Wait.until(ExpectedConditions.elementToBeClickable(CM_Master_Upload_bttn)).
+		 * click(); driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+		 * System.out.println(CM_Master_File_Upload_txt.getText()); try { //
+		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+		 * Upload_files.sendKeys(
+		 * "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData\\CM_Matser.xlsx"
+		 * ); driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+		 * System.out.println("✅ File uploaded successfully");
+		 * 
+		 * } catch (Exception e) { System.out.println("File uploaded:" +
+		 * e.getMessage()); } try { if (Are_you_sure_popup.isDisplayed()) {
+		 * //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Are_you_sure_popup)).click
+		 * (); // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		 * driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+		 * System.out.println(" Are_you_sure_popup  is selected"); } else {
+		 * System.out.println(" Are_you_sure_popup  not selected"); } } catch (Exception
+		 * e) { System.out.println("File uploaded:" + e.getMessage()); }
+		 * 
+		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		 * 
+		 * // String Complete //
+		 * =Wait.until(ExpectedConditions.elementToBeClickable(Success_txt)).getText();
+		 * // System.out.println(Complete);
+		 */
+		// 1. Click Import
 		Wait.until(ExpectedConditions.elementToBeClickable(Imports_btn)).click();
-		
+
+		// 2. Click Master Upload
 		Wait.until(ExpectedConditions.elementToBeClickable(CM_Master_Upload_bttn)).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
-		System.out.println(CM_Master_File_Upload_txt.getText());
-		
-		
-		if(Upload_files.isDisplayed()) {
-			
-			System.out.println("Upload_files is displayed");
+
+		// 3. Verify Upload Text is visible
+		System.out.println(Wait.until(ExpectedConditions.visibilityOf(CM_Master_File_Upload_txt)).getText());
+
+		// 4. Upload File
+		try {
+		    Wait.until(ExpectedConditions.presenceOfElementLocated(By.id("//input[contains(@accept,'spreadsheetml') or contains(@accept,'ms-excel')]"))); // locator for <input type="file">
+		    Upload_files.sendKeys("C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData\\CM_Matser.xlsx");
+		    System.out.println("✅ File uploaded successfully");
+		} catch (Exception e) {
+		    System.out.println("❌ File upload failed: " + e.getMessage());
 		}
-		else {
-			System.out.println(" File uploaded not displayed");
+
+		// 5. Handle "Are you sure" popup
+		try {
+		    WebElement popupBtn = Wait.until(ExpectedConditions.elementToBeClickable(Are_you_sure_popup));
+		    popupBtn.click();
+		    System.out.println("✅ Are_you_sure_popup is selected");
+		} catch (TimeoutException e) {
+		    System.out.println("⚠️ Are_you_sure_popup not found within wait time");
 		}
-			try {
-		Wait.until(ExpectedConditions.elementToBeClickable(Upload_files)).sendKeys("D:\\Abhishek Thasal\\Test\\CCRL Test\\CM_Master_AK.xlsx");
-		System.out.println("✅ File uploaded successfully");
-			}
-			catch (Exception e) {
-				System.out.println("File uploaded:"+e.getMessage());		
-				}
-		/*else {
-			System.out.println(" File uploaded not selected");
-		}*/
 		
-		Wait.until(ExpectedConditions.elementToBeClickable(Are_you_sure_popup)).click();
 		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 	}
-	
-	
-	
-	
+
 }

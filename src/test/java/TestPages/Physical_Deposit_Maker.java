@@ -1118,6 +1118,10 @@ public class Physical_Deposit_Maker {
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				NO_Bag.sendKeys(String.valueOf(Bags));
+				NO_Bag.clear();
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				NO_Bag.sendKeys(String.valueOf(Bags));
+				
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
@@ -1134,7 +1138,16 @@ public class Physical_Deposit_Maker {
 	            String autoFilledQuantity = quantityField.getAttribute("value");
 	            System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
 				
-				
+	            try {
+					if (Number_Of_Bags_PopUp.isDisplayed()) {
+						Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
+					}
+				} catch (NoSuchElementException e) {
+					System.out.println(" Number_Of_Bags_PopUp Element is not visible");
+
+				} catch (Exception e) {
+					System.out.println(" Number_Of_Bags_PopUp Element not found");
+				}
 				
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 				if (i < remainingBags) {
@@ -1757,12 +1770,16 @@ public class Physical_Deposit_Maker {
 		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
 		 /* Assert.assertTrue(Variety_Code.isDisplayed(),
 		  "Variety_Code button not visible");*/
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)). sendKeys(Variety_Code);
+		  Variety_Code_Text.clear();
+		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)). sendKeys(Variety_Code);
 		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);	
-		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).click();
+		  //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+	//	  Variety_Code_Text.click();
+		  //Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
 			/* Assert.assertTrue(Variety_Code_Text.isDisplayed(),
 			 * "Variety_Code_Text Box not visible");
 			 */
@@ -1935,9 +1952,16 @@ public class Physical_Deposit_Maker {
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(Bags));
+				//NO_Bag.sendKeys(String.valueOf(Bags));
+				 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				 Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).clear();
+				 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				//NO_Bag.sendKeys(String.valueOf(Bags));
+				 Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(Bags));
+				 Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(Keys.TAB );
 
 				
-				 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+				// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				 /* 
 				 * Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(Keys.TAB );
 				 *  driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
