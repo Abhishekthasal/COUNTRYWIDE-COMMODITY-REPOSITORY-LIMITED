@@ -6,10 +6,9 @@ import org.testng.annotations.Test;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-
 import TestPages.BaseClass;
 import TestPages.CM_Master_File_Upload;
-import TestPages.Client_Account_opening_For_RP;
+//import TestPages.Client_Account_opening_For_RP;
 import TestPages.LoginPages;
 
 public class TM_CM_Linking_TestCase extends BaseClass {

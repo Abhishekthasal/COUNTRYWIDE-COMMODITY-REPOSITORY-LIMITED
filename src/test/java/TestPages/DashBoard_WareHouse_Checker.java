@@ -22,12 +22,15 @@ public class DashBoard_WareHouse_Checker {
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "Physical_Deposit_Maker";
 	static int dataRow = 1; // second row of data
-	static ExcelUtils excel = new ExcelUtils(path, sheet); 
+	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	String Bag_Total = excel.getBag_Total_py(dataRow);
 	static int totalBags = excel.gettotalBags(dataRow);
 	int updated_Bags;
 	int j = 3;
+	int A = Integer.parseInt(Exchange_Deposite_Request_Non_Agriculture_Maker.No_of_Bundle);
+	int B = Integer.parseInt(Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundle);
+	int total_pieces = A * B;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	public DashBoard_WareHouse_Checker(WebDriver driver, WebDriverWait Wait) {
@@ -437,7 +440,7 @@ public class DashBoard_WareHouse_Checker {
 		 * //break; }
 		 */
 		// int i=1;
-		//int j = 3;
+		// int j = 3;
 		// for( i=1; i <= totalBags; i += 3) {
 		for (int i = 1; i <= totalBags; i++) {
 			System.out.println("value of i:" + totalBags);
@@ -1133,9 +1136,6 @@ public class DashBoard_WareHouse_Checker {
 			System.out.println("Unexpected error for Authorize_btn: " + e.getMessage());
 		}
 
-		int A = Integer.parseInt(Exchange_Deposite_Request_Non_Agriculture_Maker.No_of_Bundle);
-		int B = Integer.parseInt(Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundle);
-		int total_pieces = A * B;
 		no_of_bags.sendKeys(String.valueOf(total_pieces));
 
 		Weighbridge_Net_Weight.sendKeys(Exchange_Deposite_Request_Non_Agriculture_Maker.NQuantity);
@@ -1255,10 +1255,10 @@ public class DashBoard_WareHouse_Checker {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
 		try {
-			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite));
+			Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + "';",
+			js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + "';",
 					Search_txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_txt not found: " + e.getMessage());
@@ -1328,31 +1328,46 @@ public class DashBoard_WareHouse_Checker {
 			System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
 		}
 
+		for (int i = 1; i <= totalBags; i++) {
+			for (int j = 5; j <= totalBags; j += 3) {
 
-		int i = 1;
-		int j = 3;
+				// int k = j * i;
+				WebElement bagField = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + j + "]"));
+				System.out.println("value of J:" + j);
+				try {
 
-		while (i <= totalBags) {
-			int k = j * i;
-			WebElement bagField = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
-			Wait.until(ExpectedConditions.elementToBeClickable(bagField))
-					.sendKeys(String.valueOf(Physical_Deposit_Maker.Bags)); // Incremented input value
-			Wait.until(ExpectedConditions.elementToBeClickable(bagField)).sendKeys(Keys.TAB);
-			try {
-				WebElement AvgBag = driver.findElement(By.xpath("//button[@class='confirm']"));
-				AvgBag.click();
-			} catch (NoSuchElementException e) {
-				System.out.println("Verification_manu not found: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Unexpected error for Verification_manu: " + e.getMessage());
+					Wait.until(ExpectedConditions.elementToBeClickable(bagField))
+							.sendKeys(String.valueOf(total_pieces)); // Incremented input value
+					// Wait.until(ExpectedConditions.elementToBeClickable(bagField)).sendKeys(Keys.TAB);
+				} catch (NoSuchElementException e) {
+					System.out.println("bagField not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for bagField: " + e.getMessage());
+				}
+				try {
+					WebElement AvgBag = driver.findElement(By.xpath("//button[@class='confirm']"));
+					AvgBag.click();
+				} catch (NoSuchElementException e) {
+					System.out.println("Verification_manu not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Verification_manu: " + e.getMessage());
+				}
+				// Wait.until(ExpectedConditions.elementToBeClickable(bagField)).sendKeys(Keys.TAB);
+				/*
+				 * WebElement SampleID_text =
+				 * driver.findElement(By.xpath("(//input[@name='sample_Id'])[i]")); String SID =
+				 * SampleID_text.getText(); System.out.println(SID);
+				 */
+				WebElement QTY = driver.findElement(By.xpath("(//input[@name='QTY'])[" + i + "]"));
+				try {
+
+					QTY.sendKeys(Exchange_Non_Agri_WareHouse.Quantity);
+				} catch (NoSuchElementException e) {
+					System.out.println("bagField not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for bagField: " + e.getMessage());
+				}
 			}
-			// Wait.until(ExpectedConditions.elementToBeClickable(bagField)).sendKeys(Keys.TAB);
-			/*
-			 * WebElement SampleID_text =
-			 * driver.findElement(By.xpath("(//input[@name='sample_Id'])[i]")); String SID =
-			 * SampleID_text.getText(); System.out.println(SID);
-			 */
-			i++;
 		}
 		try {
 			Verification_manu.click();

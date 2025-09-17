@@ -62,7 +62,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	@Test
+	//@Test
 	void DashBoard_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Maker is start");
@@ -85,16 +85,16 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	// @Test
+	 //@Test
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is start");
 			DashBoard_WareHouse_Checker WSP_CH = new DashBoard_WareHouse_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user72", "121@test");
+			//Login.PortalLogin("wsp9999996", "user72", "121@test");
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
-			// Login.PortalLogin("wsp9996059", "user102", "121@test");
-			WSP_CH.Exchange_Non_Agriculture_Physical_Deposit_Request_Checker();
+			 Login.PortalLogin("wsp9996059", "user101", "121@test");
+			WSP_CH.Exchange_Deposit_Non_Agriculture_Multiple_GSL_Checker();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
@@ -103,7 +103,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	// @Test
+	 @Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is start");

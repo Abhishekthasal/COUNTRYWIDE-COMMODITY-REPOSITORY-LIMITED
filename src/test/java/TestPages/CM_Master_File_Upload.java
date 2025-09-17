@@ -1,9 +1,9 @@
 package TestPages;
 
-import java.io.File;
 import java.time.Duration;
-
-import org.apache.commons.collections4.bag.SynchronizedSortedBag;
+/*import java.io.File;
+import java.time.Duration;
+import org.apache.commons.collections4.bag.SynchronizedSortedBag;*/
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -92,25 +92,43 @@ public class CM_Master_File_Upload {
 		// 3. Verify Upload Text is visible
 		System.out.println(Wait.until(ExpectedConditions.visibilityOf(CM_Master_File_Upload_txt)).getText());
 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 		// 4. Upload File
+		/*
+		 * try { // Wait.until(ExpectedConditions.presenceOfElementLocated(By.
+		 * id("//input[contains(@accept,'spreadsheetml') or contains(@accept,'ms-excel')]"
+		 * ))); // locator for <input type="file"> Upload_files.sendKeys(
+		 * "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData\\CM_Matser.xlsx"
+		 * ); System.out.println("✅ File uploaded successfully"); } catch (Exception e)
+		 * { System.out.println("❌ File upload failed: " + e.getMessage()); }
+		 */
 		try {
-		    Wait.until(ExpectedConditions.presenceOfElementLocated(By.id("//input[contains(@accept,'spreadsheetml') or contains(@accept,'ms-excel')]"))); // locator for <input type="file">
-		    Upload_files.sendKeys("C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData\\CM_Matser.xlsx");
-		    System.out.println("✅ File uploaded successfully");
+			WebElement hiddenInput = driver.findElement(By.cssSelector("#files"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].style.display='block';", hiddenInput);
+			hiddenInput.sendKeys("C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData\\CM_Matser.xlsx");
 		} catch (Exception e) {
-		    System.out.println("❌ File upload failed: " + e.getMessage());
+			System.out.println("❌ hiddenInput upload failed: " + e.getMessage());
 		}
 
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 		// 5. Handle "Are you sure" popup
 		try {
-		    WebElement popupBtn = Wait.until(ExpectedConditions.elementToBeClickable(Are_you_sure_popup));
-		    popupBtn.click();
-		    System.out.println("✅ Are_you_sure_popup is selected");
+			WebElement popupBtn = Wait.until(ExpectedConditions.elementToBeClickable(Are_you_sure_popup));
+			Wait.until(ExpectedConditions.elementToBeClickable(popupBtn)).click();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+			System.out.println("✅ Are_you_sure_popup is selected");
 		} catch (TimeoutException e) {
-		    System.out.println("⚠️ Are_you_sure_popup not found within wait time");
+			System.out.println("❌ Are_you_sure_popup  failed: " + e.getMessage());
+			//System.out.println("⚠️ Are_you_sure_popup not found within wait time");
 		}
-		
-		
-	}
 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+		System.out.println(CM_Master_File_Upload_txt.getText());
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+
+	}
 }
