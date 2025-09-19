@@ -10,6 +10,7 @@ import TestPages.BaseClass;
 import TestPages.CM_Master_File_Upload;
 //import TestPages.Client_Account_opening_For_RP;
 import TestPages.LoginPages;
+import TestPages.RP_Deposite_Request_Checker;
 
 public class TM_CM_Linking_TestCase extends BaseClass {
 	
@@ -19,7 +20,7 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("TM_CM_Linking");
 	
-	@Test
+	//@Test
 	  void CM_Master_File_Upload () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "CM_Master_File_Upload start");
@@ -42,7 +43,7 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.flush();
 	}
 	
-	//@Test
+	@Test
 	  void TM_CM_Master_File_Upload () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "TM_CM_Master_File_Upload start");
@@ -70,7 +71,7 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Account_opening_for_CM start");
 		  LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("cc8880013", "user1", "121@test");
+			Login.PortalLogin("rp-abhishek", "user51", "121@test");
 			TestPages.Client_Account_opening_For_RP CM = new TestPages.Client_Account_opening_For_RP(driver,Wait);
 			CM.Account_opening_for_CM();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -87,13 +88,34 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
+	  
+	//@Test
+		void Account_opening_for_CM_Checker () throws IOException {
+			try {
+				test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
+			  LoginPages Login = new LoginPages(driver, Wait);
+				Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+				RP_Deposite_Request_Checker Client = new RP_Deposite_Request_Checker(driver,Wait);
+				Client.Client_Account_opening_Checker();
+				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+						+ "Client Account Opening for REPOSITORY is success full");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+				Log.Logout();
+			} catch (Exception e) {
+				test.log(LogStatus.FAIL,
+						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+			}
+			Report.endTest(test);
+			Report.flush();
+		}
 	
 	//@Test
 	  void Account_opening_for_TM () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Account_opening_for_TM start");
 		  LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("cc8880013", "user1", "121@test");
+			Login.PortalLogin("rp-abhishek", "user51", "121@test");
 			TestPages.Client_Account_opening_For_RP CM = new TestPages.Client_Account_opening_For_RP(driver,Wait);
 			CM.Account_opening_for_TM();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -110,13 +132,34 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
+	  
+	//@Test
+		void Account_opening_for_TM_Checker () throws IOException {
+			try {
+				test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
+			  LoginPages Login = new LoginPages(driver, Wait);
+				Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+				RP_Deposite_Request_Checker Client = new RP_Deposite_Request_Checker(driver,Wait);
+				Client.Client_Account_opening_Checker();
+				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+						+ "Client Account Opening for REPOSITORY is success full");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+				Log.Logout();
+			} catch (Exception e) {
+				test.log(LogStatus.FAIL,
+						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+			}
+			Report.endTest(test);
+			Report.flush();
+		}
 	
 	//@Test
 	  void TM_CM_Linking_RP () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "TM_CM_Linking_RP start");
 		  LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("cc8880013", "user1", "121@test");
+			Login.PortalLogin("rp-abhishek", "user51", "121@test");
 			TestPages.TM_CM_Linking_RP CM = new TestPages.TM_CM_Linking_RP(driver,Wait);
 			CM.TM_CM_Linking();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))

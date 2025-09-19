@@ -23,7 +23,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
 	static String sheet = "RP_Exchange_Deposite_Agricultur";
-	static int dataRow = 6; // second row of data
+	static int dataRow = 8; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*

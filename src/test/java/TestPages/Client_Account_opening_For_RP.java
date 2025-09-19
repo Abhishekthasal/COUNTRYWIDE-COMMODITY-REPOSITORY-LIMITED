@@ -18,14 +18,31 @@ public class Client_Account_opening_For_RP {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	String projectPath = System.getProperty("user.dir");
+	// String projectPath = System.getProperty("user.dir");
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ClientOpening.xlsx";
 	static String sheet = "ClientOpening";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 2; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	static int clientid_Num = excel.getclientid_Num(dataRow);
+	/*
+	 * static int clientid_Num = 9090; String FormID = "3214"; static String
+	 * Client_holder_Name = "CCRL_HR"; String Client_Type = "Individual"; String
+	 * Client_Sub_Type = "Individual"; String Frequency = "Annually"; String
+	 * Statement = "Physical"; String Line1 = "Lep Gaulwadi"; String Line2 =
+	 * "Mhasala"; String Line3 = "Raigad"; String Line4 = "Lep"; String City =
+	 * "Mhasala"; int PinCode = 401202; int mobile_Isd = 91; static long
+	 * mobile_NUmber = 9730150615L; String Email_Id = "Abdj@gmail.com"; int
+	 * Account_No = 9696696; String IFSC = "HDFC0000002"; String BankAccount =
+	 * "Saving Bank Account"; String IncomeRange = "500001-1000000"; String
+	 * PanCardNo = "PBTPT5612N"; String POI = "PAN CARD"; String POA =
+	 * "AADHAR CARD (POA)"; String Authsignatory_Name = "Abhishek Thasal"; String
+	 * Authorized_Representative_Name = "Kalpesh"; String CIN_Number = "4rf4adq";
+	 * String GSTIN_Number ="22 AAAAA0000A1Z5"; String SEBI_Registration_Number
+	 * ="r35r24";
+	 */
+
+	public int clientid_Num = excel.getclientid_Num(dataRow);
 	String FormID = excel.getFormID(dataRow);
 	static String Client_holder_Name = excel.getClient_holder_Name(dataRow);
 	String Client_Type = excel.getClient_Type(dataRow);
@@ -39,7 +56,7 @@ public class Client_Account_opening_For_RP {
 	String City = excel.getCity(dataRow);
 	int PinCode = excel.getPinCode(dataRow);
 	int mobile_Isd = excel.getmobile_Isd(dataRow);
-	static long mobile_NUmber = excel.getmobile_NUmber(dataRow);
+	public static long mobile_NUmber = excel.getmobile_NUmber(dataRow);
 	String Email_Id = excel.getEmail_Id(dataRow);
 	int Account_No = excel.getAccount_No(dataRow);
 	String IFSC = excel.getIFSC(dataRow);
@@ -50,9 +67,9 @@ public class Client_Account_opening_For_RP {
 	String POA = excel.getPOA(dataRow);
 	String Authsignatory_Name = excel.getAuthsignatory_Name(dataRow);
 	String Authorized_Representative_Name = excel.getAuthorized_Representative_Name(dataRow);
-	String CIN_Number = "wee2wsq1e";
-	String GSTIN_Number = "802dw2";
-	String SEBI_Registration_Number = "1425tsr";
+	String CIN_Number = excel.getCIN_Number(dataRow);
+	String GSTIN_Number = excel.getGSTIN_Number(dataRow);
+	String SEBI_Registration_Number = excel.getSEBI_Registration_Number(dataRow);
 
 	public Client_Account_opening_For_RP(WebDriver driver, WebDriverWait Wait) {
 

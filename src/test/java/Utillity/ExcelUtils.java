@@ -2,13 +2,15 @@ package Utillity;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-//import java.io.IOException;
+import java.io.IOException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
-//import com.google.common.collect.Table.Cell;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelUtils {
 	static String projectPath;
@@ -17,14 +19,21 @@ public class ExcelUtils {
 
 	public ExcelUtils(String excelPath, String sheetName) {
 		try {
-			workbook = new XSSFWorkbook(excelPath);
+
+			/*
+			 * workbook = new XSSFWorkbook(excelPath); Sheet = workbook.getSheet(sheetName);
+			 */
+
+			FileInputStream fis = new FileInputStream(excelPath);
+			workbook = (XSSFWorkbook) WorkbookFactory.create(fis); // Handles both .xls and .xlsx
 			Sheet = workbook.getSheet(sheetName);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.getMessage();
 			e.getCause();
 		}
-	} 
+	}
 
 	public static int getRowCount() {
 		int rowCount = 0;
@@ -33,7 +42,7 @@ public class ExcelUtils {
 			rowCount = Sheet.getPhysicalNumberOfRows();
 			System.out.println("total number of rows" + rowCount);
 		} catch (Exception exp) {
-		
+
 			exp.getMessage();
 			exp.getCause();
 			exp.printStackTrace();
@@ -95,7 +104,7 @@ public class ExcelUtils {
 	}
 
 	/************ RP_Deposite_Request_Agriculture_Maker *************************/
-	public String getCommoditySegment(int rowNum) {
+	public static String getCommoditySegment(int rowNum) {
 		return getCellData(rowNum, 0);
 	}
 
@@ -260,6 +269,7 @@ public class ExcelUtils {
 	public int getBags_py(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(27).getNumericCellValue();
 	}
+
 	public int gettotalBags(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(28).getNumericCellValue();
 	}
@@ -608,11 +618,11 @@ public class ExcelUtils {
 	 * DPlageRequest
 	 ************************************************/
 	public long getPledgor_Client_ID(int rowNum) {
-		//return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
-		 Cell cell = Sheet.getRow(rowNum).getCell(0);
-		    DataFormatter formatter = new DataFormatter();
-		    String cellValue = formatter.formatCellValue(cell); // Always returns String
-		    return Long.parseLong(cellValue);
+		// return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+		Cell cell = Sheet.getRow(rowNum).getCell(0);
+		DataFormatter formatter = new DataFormatter();
+		String cellValue = formatter.formatCellValue(cell); // Always returns String
+		return Long.parseLong(cellValue);
 	}
 
 	public int getpledge_Seq_No_D(int rowNum) {
@@ -669,210 +679,215 @@ public class ExcelUtils {
 	public String getAddress_Value(int rowNum) {
 		return getCellData(rowNum, 5);
 	}
-/*********************Transfer_Request_RP_Maker***************/
-	
+
+	/********************* Transfer_Request_RP_Maker ***************/
+
 	public String getInstr_Slip_No(int rowNum) {
 		return getCellData(rowNum, 0);
 	}
-	
+
 	public int getWSP_ID(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public int getWH_ID(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
-	
+
 	public int getCommodity_Code(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
-	
+
 	public long getClient_ID_Transfer(int rowNum) {
-		//return (long) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
-		 Cell cell = Sheet.getRow(rowNum).getCell(4);
-		    DataFormatter formatter = new DataFormatter();
-		    String cellValue = formatter.formatCellValue(cell); // Always returns String
-		    return Long.parseLong(cellValue);
+		// return (long) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
+		Cell cell = Sheet.getRow(rowNum).getCell(4);
+		DataFormatter formatter = new DataFormatter();
+		String cellValue = formatter.formatCellValue(cell); // Always returns String
+		return Long.parseLong(cellValue);
 	}
-	
+
 	public long gettargetClient_Id_Transfer(int rowNum) {
-		//return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
-		 Cell cell = Sheet.getRow(rowNum).getCell(5);
-		    DataFormatter formatter = new DataFormatter();
-		    String cellValue = formatter.formatCellValue(cell); // Always returns String
-		    return Long.parseLong(cellValue);
+		// return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
+		Cell cell = Sheet.getRow(rowNum).getCell(5);
+		DataFormatter formatter = new DataFormatter();
+		String cellValue = formatter.formatCellValue(cell); // Always returns String
+		return Long.parseLong(cellValue);
 	}
-	
+
 	public long getENWR_Transfer(int rowNum) {
-		//return (long) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
-		 Cell cell = Sheet.getRow(rowNum).getCell(6);
-		    DataFormatter formatter = new DataFormatter();
-		    String cellValue = formatter.formatCellValue(cell); // Always returns String
-		    return Long.parseLong(cellValue);
+		// return (long) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
+		Cell cell = Sheet.getRow(rowNum).getCell(6);
+		DataFormatter formatter = new DataFormatter();
+		String cellValue = formatter.formatCellValue(cell); // Always returns String
+		return Long.parseLong(cellValue);
 	}
-	
+
 	public int getBags_Transfer(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(7).getNumericCellValue();
 	}
-	
+
 	public String getTransferReason(int rowNum) {
 		return getCellData(rowNum, 8);
 	}
-	
-	/*******************************Withdrawal Request*******************/
-	
+
+	/******************************* Withdrawal Request *******************/
+
 	public int getWithdrawal_Request_No(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+
 	public int getWH_ID_Withdrawal(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
+
 	public String getCommodity_Segment_Withdrawal(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
+
 	public int getCommodity_Code_Withdrawal(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
-	
+
 	public long getClient_ID_Withdrawal(int rowNum) {
-	    Cell cell = Sheet.getRow(rowNum).getCell(4);
-	    DataFormatter formatter = new DataFormatter();
-	    String cellValue = formatter.formatCellValue(cell); // Always returns String
-	    return Long.parseLong(cellValue); // Convert to long
+		Cell cell = Sheet.getRow(rowNum).getCell(4);
+		DataFormatter formatter = new DataFormatter();
+		String cellValue = formatter.formatCellValue(cell); // Always returns String
+		return Long.parseLong(cellValue); // Convert to long
 	}
-	
+
 	public long getENWR_Withdrawal(int rowNum) {
-	    Cell cell = Sheet.getRow(rowNum).getCell(5);
-	    DataFormatter formatter = new DataFormatter();
-	    String cellValue = formatter.formatCellValue(cell); // Always returns String
-	    return Long.parseLong(cellValue); // Convert to long
+		Cell cell = Sheet.getRow(rowNum).getCell(5);
+		DataFormatter formatter = new DataFormatter();
+		String cellValue = formatter.formatCellValue(cell); // Always returns String
+		return Long.parseLong(cellValue); // Convert to long
 	}
-	
+
 	public int getnoOfBag_Withdrawal(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
 	}
-	
-	/*************************************Client_Account_opening_For_RP***************************************/
-	
-	
+
+	/*************************************
+	 * Client_Account_opening_For_RP
+	 ***************************************/
 	public int getclientid_Num(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+	/*
+	 * public static int getclientid_Num(int rowNum) { return (int)
+	 * Sheet.getRow(rowNum).getCell(0).getNumericCellValue(); }
+	 */
+
 	public String getFormID(int rowNum) {
 		return getCellData(rowNum, 1);
 	}
-	
+
 	public String getClient_holder_Name(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
-	
+
 	public String getClient_Type(int rowNum) {
 		return getCellData(rowNum, 3);
 	}
-	
+
 	public String getClient_Sub_Type(int rowNum) {
 		return getCellData(rowNum, 4);
 	}
-	
+
 	public String getFrequency(int rowNum) {
 		return getCellData(rowNum, 5);
 	}
-	
+
 	public String getStatement(int rowNum) {
 		return getCellData(rowNum, 6);
 	}
-	
+
 	public String getLine1(int rowNum) {
 		return getCellData(rowNum, 7);
 	}
-	
+
 	public String getLine2(int rowNum) {
 		return getCellData(rowNum, 8);
 	}
-	
+
 	public String getLine3(int rowNum) {
 		return getCellData(rowNum, 9);
 	}
-	
+
 	public String getLine4(int rowNum) {
 		return getCellData(rowNum, 10);
 	}
-	
+
 	public String getCity(int rowNum) {
 		return getCellData(rowNum, 11);
 	}
-	
+
 	public int getPinCode(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(12).getNumericCellValue();
 	}
-	
+
 	public int getmobile_Isd(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(13).getNumericCellValue();
 	}
 
 	public long getmobile_NUmber(int rowNum) {
-	    Cell cell = Sheet.getRow(rowNum).getCell(14);
-	    DataFormatter formatter = new DataFormatter();
-	    String cellValue = formatter.formatCellValue(cell); // Always returns String
-	    return Long.parseLong(cellValue); // Convert to long
-	}
-	
+
+		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+		/*
+		 * Cell cell = Sheet.getRow(rowNum).getCell(14); DataFormatter formatter = new
+		 * DataFormatter(); String cellValue = formatter.formatCellValue(cell); //
+		 * Always returns String return Long.parseLong(cellValue); // Convert to long
+		 */ }
+
 	public String getEmail_Id(int rowNum) {
 		return getCellData(rowNum, 15);
 	}
-	
+
 	public int getAccount_No(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(16).getNumericCellValue();
 	}
-	
+
 	public String getIFSC(int rowNum) {
 		return getCellData(rowNum, 17);
 	}
-	
+
 	public String getBankAccount(int rowNum) {
 		return getCellData(rowNum, 18);
 	}
-	
+
 	public String getIncomeRange(int rowNum) {
 		return getCellData(rowNum, 19);
 	}
-	
+
 	public String getPanCardNo(int rowNum) {
 		return getCellData(rowNum, 20);
 	}
-	
+
 	public String getPOI(int rowNum) {
 		return getCellData(rowNum, 21);
 	}
-	
+
 	public String getPOA(int rowNum) {
 		return getCellData(rowNum, 22);
 	}
-	
+
 	public String getAuthsignatory_Name(int rowNum) {
 		return getCellData(rowNum, 23);
 	}
-	
+
 	public String getAuthorized_Representative_Name(int rowNum) {
 		return getCellData(rowNum, 24);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public String getCIN_Number(int rowNum) {
+		return getCellData(rowNum, 25);
+	}
+
+	public String getGSTIN_Number(int rowNum) {
+		return getCellData(rowNum, 26);
+	}
+
+	public String getSEBI_Registration_Number(int rowNum) {
+		return getCellData(rowNum, 27);
+	}
+
 }

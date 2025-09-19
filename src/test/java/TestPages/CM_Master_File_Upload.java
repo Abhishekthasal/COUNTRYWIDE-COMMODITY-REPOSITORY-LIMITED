@@ -53,7 +53,7 @@ public class CM_Master_File_Upload {
 	@FindBy(xpath = "//div[@class='sweet-alert hideSweetAlert']")
 	WebElement Success_txt;
 
-	public void CM_Master_File_Upload_CC() {
+	public void CM_Master_File_Upload_CC() throws InterruptedException {
 
 		/*
 		 * Wait.until(ExpectedConditions.elementToBeClickable(Imports_btn)).click();
@@ -110,9 +110,12 @@ public class CM_Master_File_Upload {
 		} catch (Exception e) {
 			System.out.println("❌ hiddenInput upload failed: " + e.getMessage());
 		}
+		Thread.sleep(3000);
 
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+		/*
+		 * driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+		 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+		 */
 		// 5. Handle "Are you sure" popup
 		try {
 			WebElement popupBtn = Wait.until(ExpectedConditions.elementToBeClickable(Are_you_sure_popup));
