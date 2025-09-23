@@ -2007,7 +2007,7 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer : " + e.getMessage());
 		}
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 2; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
@@ -2035,7 +2035,7 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for WareHouse_Id_btn: " + e.getMessage());
 		}
 		try {
-			SampleId_txt.sendKeys(String.valueOf(Exchange_Non_Agri_WareHouse.Sample));
+			SampleId_txt.sendKeys(String.valueOf(Exchange_Non_Agri_WareHouse.Sample +i));
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
 			js.executeScript("arguments[0].value='" + Exchange_Non_Agri_WareHouse.Sample + "';",

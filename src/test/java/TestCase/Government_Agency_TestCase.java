@@ -26,8 +26,8 @@ public class Government_Agency_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_Deposite_Request_Maker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
-			
+			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			Login.PortalLogin("RP-KML", "USER_A", "121@test");
 			Government_Agency_Deposite_Request_Maker Depo = new Government_Agency_Deposite_Request_Maker(driver, Wait);
 			Depo.Government_Agency_Deposite();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -47,7 +47,8 @@ public class Government_Agency_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_Deposite_Request_Checker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("RP-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("RP-Abhishek", "user52", "121@test");
+			Login.PortalLogin("RP-KML", "USER_B", "121@test");
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			Dash.Government_Agency_Deposite_Request();
 			test.log(LogStatus.PASS, "Government_Agency_Deposite_Request_Checker is successfull");
@@ -59,14 +60,14 @@ public class Government_Agency_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-//@Test
+@Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_WareHouse_Maker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("wsp9996059", "user102", "121@test");
-			
-			Login.PortalLogin("wsp9997115", "bhanu", "121@test");
+			Login.PortalLogin("WSP9999996", "Swarupv", "121@test");
+			//Login.PortalLogin("wsp9997115", "bhanu", "121@test");
 			Physical_Deposit_Maker WSP = new Physical_Deposit_Maker(driver, Wait);
 			WSP.Government_Agency_Deposite_Transaction();
 			test.log(LogStatus.PASS, "Government_Agency_WareHouse_Maker is successfull");
@@ -78,7 +79,7 @@ public class Government_Agency_TestCase extends BaseClass {
 			Report.flush();
 		
 	}
-	@Test
+	//@Test
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_WareHouse_Checker is start");

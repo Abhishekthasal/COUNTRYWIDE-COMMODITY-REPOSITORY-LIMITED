@@ -38,8 +38,8 @@ public class Client_Account_opening_For_RP {
 	 * PanCardNo = "PBTPT5612N"; String POI = "PAN CARD"; String POA =
 	 * "AADHAR CARD (POA)"; String Authsignatory_Name = "Abhishek Thasal"; String
 	 * Authorized_Representative_Name = "Kalpesh"; String CIN_Number = "4rf4adq";
-	 * String GSTIN_Number ="22 AAAAA0000A1Z5"; String SEBI_Registration_Number
-	 * ="r35r24";
+	 * String GSTIN_Number = "22 AAAAA0000A1Z5"; String SEBI_Registration_Number =
+	 * "r35r24";
 	 */
 
 	public int clientid_Num = excel.getclientid_Num(dataRow);
@@ -70,6 +70,9 @@ public class Client_Account_opening_For_RP {
 	String CIN_Number = excel.getCIN_Number(dataRow);
 	String GSTIN_Number = excel.getGSTIN_Number(dataRow);
 	String SEBI_Registration_Number = excel.getSEBI_Registration_Number(dataRow);
+	String CM_ID=excel.getCM_ID(dataRow);
+	
+	
 
 	public Client_Account_opening_For_RP(WebDriver driver, WebDriverWait Wait) {
 
@@ -79,7 +82,7 @@ public class Client_Account_opening_For_RP {
 
 	}
 
-	@FindBy(xpath = "//li[@class='nav-item ng-scope start']//a[@class='auto ng-scope']")
+	@FindBy(xpath = "//body/div[@class='page-container']/div[@class='page-sidebar-wrapper ng-scope']/div[@class='page-sidebar navbar-collapse collapse ng-scope']/ul[@class='page-sidebar-menu ng-scope']/li[2]/a[1]")
 	WebElement Client;
 
 	@FindBy(xpath = "//span[normalize-space()='Account Opening']")
@@ -129,8 +132,9 @@ public class Client_Account_opening_For_RP {
 
 	@FindBy(xpath = "//input[@name='gstnNo']")
 	WebElement GSTN_GSTIN_Number_txt;
-
-	@FindBy(xpath = "//label[normalize-space()='SEBI Registration Number']")
+//input[@name='sebiRegNo']
+	//label[normalize-space()='SEBI Registration Number']
+	@FindBy(xpath = "//input[@name='sebiRegNo']")
 	WebElement SEBI_Registration_Number_txt;
 
 	@FindBy(xpath = "//input[@name='sebiregdate']")
@@ -370,7 +374,18 @@ public class Client_Account_opening_For_RP {
 		Wait.until(ExpectedConditions.elementToBeClickable(Client_Sub_Type_checkBox)).click();
 
 		if (Client_Sub_Type.equals("Clearing Member")) {
+			try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Individual_Sub_Type)).sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript Transaction_btn click...");
+				js.executeScript("arguments[0].click();", Individual_Sub_Type);
+			} catch (NoSuchElementException e) {
+				System.out.println("Transaction_Btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
+			}
+			
+			
 		} else if (Client_Sub_Type.equals("CM – Client Margin Pledge Account")) {
 			Wait.until(ExpectedConditions.elementToBeClickable(Eligible_Foreign_Entities_Sub_Type))
 					.sendKeys(Keys.ENTER);
@@ -399,7 +414,7 @@ public class Client_Account_opening_For_RP {
 
 		openPick.click();
 
-		Search_txt.sendKeys("scscv");
+		Search_txt.sendKeys(CM_ID);
 
 		Search_bttn.click();
 
@@ -416,7 +431,9 @@ public class Client_Account_opening_For_RP {
 
 		mobile1_Isd.sendKeys(String.valueOf(mobile_Isd));
 
+		mobile_No.click();
 		mobile_No.sendKeys(String.valueOf(mobile_NUmber));
+		
 		Email.sendKeys(Email_Id);
 
 		Correspondence.click();

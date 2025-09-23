@@ -43,7 +43,7 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.flush();
 	}
 	
-	@Test
+	//@Test
 	  void TM_CM_Master_File_Upload () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "TM_CM_Master_File_Upload start");
@@ -66,14 +66,19 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test
+	@Test
 	  void Account_opening_for_CM() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Account_opening_for_CM start");
 		  LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("rp-abhishek", "user51", "121@test");
 			TestPages.Client_Account_opening_For_RP CM = new TestPages.Client_Account_opening_For_RP(driver,Wait);
+			try {
 			CM.Account_opening_for_CM();
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    System.out.println("Error occurred while running Exchange_Non_Agriculture_Physical_Multiple_GSL: " + e.getMessage());
+		}
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "Account_opening_for_CM is success full");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));

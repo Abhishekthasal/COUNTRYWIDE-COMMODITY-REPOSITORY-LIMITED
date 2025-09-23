@@ -1631,7 +1631,7 @@ public class Physical_Deposit_Maker {
 
 	}
 
-	public void Exchange_Deposite_Transaction_Multiple_GSL() {
+	public void Exchange_Deposite_Transaction_Multiple_GSL() throws InterruptedException {
 
 		try {
 			Connection conn = DataBaseUtility.getConnection();
@@ -1952,13 +1952,24 @@ public class Physical_Deposit_Maker {
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(Bags));
-				//NO_Bag.sendKeys(String.valueOf(Bags));
-				 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				 Thread.sleep(3000);
 				 Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).clear();
-				 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-				//NO_Bag.sendKeys(String.valueOf(Bags));
-				 Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(Bags));
-				 Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(Keys.TAB );
+				  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				  NO_Bag.sendKeys(String.valueOf(Bags));
+				  //Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.
+				  //valueOf(Bags));
+				/*
+				 * //NO_Bag.sendKeys(String.valueOf(Bags));
+				 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				 * Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).clear();
+				 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				 * //NO_Bag.sendKeys(String.valueOf(Bags));
+				 * Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.
+				 * valueOf(Bags));
+				 * Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(Keys.TAB
+				 * );
+				 */
+				
 
 				
 				// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
@@ -1975,55 +1986,55 @@ public class Physical_Deposit_Maker {
 				 */
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i);
 				
-				 // 2. Locate Quantity text field
-	            WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
-
-	            // 3. Wait until Quantity field is updated with auto-calculated value
-	            Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
-	            try {
-					Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
-					} catch (ElementClickInterceptedException e) {
-						System.out.println("Normal click failed, trying JavaScript Add_Button_before click...");
-						js.executeScript("arguments[0].click();", Lots_Confirmation);
-					} catch (NoSuchElementException e) {
-						System.out.println("Add_Button_before not found: " + e.getMessage());
-					} catch (Exception e) {
-						System.out.println("Unexpected error for Add_Button_before: " + e.getMessage());
-					}
-	            // 4. Fetch auto-calculated value
-	            String autoQuantityStr = quantityField.getAttribute("value");
-	            double autoQuantity = Double.parseDouble(autoQuantityStr);
-
-	            // 5. Your expected calculation (for example: each bag = 50 units)
-	            double expectedQuantity = remainingBags * RP_Exchange_Deposite_Agriculture_Maker.Bag_Size;  // 🔹 Change logic as per your app's formula
-
-	            // 6. Compare
-	            if (autoQuantity == expectedQuantity) {
-	                System.out.println("✅ Correct Calculation: " + autoQuantity);
-	            } else {
-	                System.out.println("❌ Wrong Calculation! Expected: " + expectedQuantity + " but got: " + autoQuantity);
-	            }
+				/*
+				 * // 2. Locate Quantity text field WebElement quantityField =
+				 * driver.findElement(By.xpath("//input[@name='QTY']"));
+				 * 
+				 * // 3. Wait until Quantity field is updated with auto-calculated value
+				 * Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
+				 * try {
+				 * Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click(
+				 * ); } catch (ElementClickInterceptedException e) { System.out.
+				 * println("Normal click failed, trying JavaScript Add_Button_before click...");
+				 * js.executeScript("arguments[0].click();", Lots_Confirmation); } catch
+				 * (NoSuchElementException e) {
+				 * System.out.println("Add_Button_before not found: " + e.getMessage()); } catch
+				 * (Exception e) { System.out.println("Unexpected error for Add_Button_before: "
+				 * + e.getMessage()); } // 4. Fetch auto-calculated value String autoQuantityStr
+				 * = quantityField.getAttribute("value"); double autoQuantity =
+				 * Double.parseDouble(autoQuantityStr);
+				 * 
+				 * // 5. Your expected calculation (for example: each bag = 50 units) double
+				 * expectedQuantity = remainingBags *
+				 * RP_Exchange_Deposite_Agriculture_Maker.Bag_Size; // 🔹 Change logic as per
+				 * your app's formula
+				 * 
+				 * // 6. Compare if (autoQuantity == expectedQuantity) {
+				 * System.out.println("✅ Correct Calculation: " + autoQuantity); } else {
+				 * System.out.println("❌ Wrong Calculation! Expected: " + expectedQuantity +
+				 * " but got: " + autoQuantity); }
+				 */
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 				if (i < remainingBags) {
 					try {
 						if (Add_Button.isDisplayed() && Add_Button.isEnabled()) {
 							try {
 								if (Add_Button.isDisplayed()) {
-									Add_Button.click();
+									Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
 									try {
 									Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
 									} catch (ElementClickInterceptedException e) {
-										System.out.println("Normal click failed, trying JavaScript Add_Button_before click...");
+										System.out.println("Normal click failed, trying JavaScript Lots_Confirmation click...");
 										js.executeScript("arguments[0].click();", Lots_Confirmation);
 									} catch (NoSuchElementException e) {
-										System.out.println("Add_Button_before not found: " + e.getMessage());
+										System.out.println("Lots_Confirmation not found: " + e.getMessage());
 									} catch (Exception e) {
-										System.out.println("Unexpected error for Add_Button_before: " + e.getMessage());
+										System.out.println("Unexpected error for Lots_Confirmation: " + e.getMessage());
 									}
-									Add_Button.click();
+									Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
 								}
 							} catch (ElementClickInterceptedException e) {
-								System.out.println("Normal click failed, trying JavaScript Add_Button_before click...");
+								System.out.println("Normal click failed, trying JavaScript Add_Button click...");
 								js.executeScript("arguments[0].click();", Add_Button);
 							} catch (NoSuchElementException e) {
 								System.out.println("Add_Button_before not found: " + e.getMessage());

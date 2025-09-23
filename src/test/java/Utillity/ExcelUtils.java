@@ -889,5 +889,9 @@ public class ExcelUtils {
 	public String getSEBI_Registration_Number(int rowNum) {
 		return getCellData(rowNum, 27);
 	}
+	
+	public String getCM_ID(int rowNum) {
+		return getCellData(rowNum, 28);
+	}
 
 }

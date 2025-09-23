@@ -942,8 +942,8 @@ public class Exchange_Non_Agri_WareHouse {
 		        }
 
 		        try {
-		            driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"))
-		                  .sendKeys("sample_ID" + i);
+		        	 WebElement Sample= driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
+		        	 	 Sample.sendKeys("sample_ID" + i);
 		        } catch (Exception e) {
 		            System.out.println("Sample ID error at " + i + ": " + e.getMessage());
 		        }

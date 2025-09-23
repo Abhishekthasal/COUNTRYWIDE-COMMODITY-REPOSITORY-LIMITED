@@ -110,7 +110,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			Deposite_Assayer_Maker Assayer = new Deposite_Assayer_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("Assayer01", "user1", "121@test");
-			Assayer.Exchange_Non_Agriculture_Deposit_Assayer();
+			Assayer.Exchange_Deposit_Assayer_Non_Agriculture_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
@@ -126,7 +126,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			Deposite_Assayer_Checker Assayer = new Deposite_Assayer_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("Assayer01", "user2", "121@test");
-			Assayer.Exchange_Non_Agriculture_Deposit_Assayer();
+			Assayer.Exchange_Deposite_Assayer_Non_Agriculture_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposite_Assayer_Checker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
