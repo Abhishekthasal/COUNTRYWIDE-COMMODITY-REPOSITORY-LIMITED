@@ -1,5 +1,8 @@
 package TestPages;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -70,9 +73,8 @@ public class Client_Account_opening_For_RP {
 	String CIN_Number = excel.getCIN_Number(dataRow);
 	String GSTIN_Number = excel.getGSTIN_Number(dataRow);
 	String SEBI_Registration_Number = excel.getSEBI_Registration_Number(dataRow);
-	String CM_ID=excel.getCM_ID(dataRow);
-	
-	
+	String CM_ID = excel.getCM_ID(dataRow);
+	int netWorth = excel.getnetWorth(dataRow);
 
 	public Client_Account_opening_For_RP(WebDriver driver, WebDriverWait Wait) {
 
@@ -133,7 +135,7 @@ public class Client_Account_opening_For_RP {
 	@FindBy(xpath = "//input[@name='gstnNo']")
 	WebElement GSTN_GSTIN_Number_txt;
 //input[@name='sebiRegNo']
-	//label[normalize-space()='SEBI Registration Number']
+	// label[normalize-space()='SEBI Registration Number']
 	@FindBy(xpath = "//input[@name='sebiRegNo']")
 	WebElement SEBI_Registration_Number_txt;
 
@@ -208,17 +210,33 @@ public class Client_Account_opening_For_RP {
 	@FindBy(xpath = "(//select[@id='IncomeRangeSelectionCombobox'])[1]")
 	WebElement IncomeRangeSelection;
 
+	@FindBy(xpath = "//input[@name='netWorth']")
+	WebElement netWorth_txt;
+
 	@FindBy(xpath = "//a[normalize-space()='Documents']")
 	WebElement Documents;
 
 	@FindBy(xpath = "(//input[@id='PanNo'])[1]")
 	WebElement PanNo;
 
+	@FindBy(xpath = "//input[@id='Holder_Dob']")
+	WebElement Incorporation_Date;
+
+	@FindBy(xpath = "//td[@class='today active start-date active end-date available']")
+	WebElement Today_dates;
+	// (//td[@class='today weekend active start-date active end-date available'])[1]
+	// td[@class='today weekend active start-date active end-date available']
+	@FindBy(xpath = "//td[@class='today weekend active start-date active end-date available']")
+	WebElement WeekEnd_Date;
+
 	@FindBy(xpath = "(//select[@id='POASelectionCombobox'])[1]")
 	WebElement POI_Documents;
 
 	@FindBy(xpath = "(//select[@id='POISelectionCombobox'])[1]")
 	WebElement POASelection;
+
+	@FindBy(xpath = "//input[@id='tick_Checked']")
+	WebElement Authorized_Signatory_Check_box;
 
 	@FindBy(xpath = "(//a[normalize-space()='Authorized Signatory'])[1]")
 	WebElement Authorized_Signatory;
@@ -349,7 +367,7 @@ public class Client_Account_opening_For_RP {
 
 	}
 
-	public void Account_opening_for_CM() {
+	public void Account_opening_for_CM() throws InterruptedException {
 		Wait.until(ExpectedConditions.elementToBeClickable(Client)).click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Account_Opening)).click();
@@ -372,10 +390,10 @@ public class Client_Account_opening_For_RP {
 		Sa.selectByContainsVisibleText(Client_Type);
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Client_Sub_Type_checkBox)).click();
-
+		Thread.sleep(3000);
 		if (Client_Sub_Type.equals("Clearing Member")) {
 			try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Individual_Sub_Type)).sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(Individual_Sub_Type)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript Transaction_btn click...");
 				js.executeScript("arguments[0].click();", Individual_Sub_Type);
@@ -384,8 +402,7 @@ public class Client_Account_opening_For_RP {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 			}
-			
-			
+
 		} else if (Client_Sub_Type.equals("CM – Client Margin Pledge Account")) {
 			Wait.until(ExpectedConditions.elementToBeClickable(Eligible_Foreign_Entities_Sub_Type))
 					.sendKeys(Keys.ENTER);
@@ -433,7 +450,7 @@ public class Client_Account_opening_For_RP {
 
 		mobile_No.click();
 		mobile_No.sendKeys(String.valueOf(mobile_NUmber));
-		
+
 		Email.sendKeys(Email_Id);
 
 		Correspondence.click();
@@ -447,19 +464,46 @@ public class Client_Account_opening_For_RP {
 		ifsc_No.click();
 		ifsc_No.sendKeys(String.valueOf(IFSC));
 		ifsc_No.sendKeys(Keys.TAB);
+		Thread.sleep(3000);
+		ifsc_No.clear();
+		ifsc_No.click();
+		ifsc_No.sendKeys(String.valueOf(IFSC));
+		ifsc_No.sendKeys(Keys.TAB);
+
 		Wait.until(ExpectedConditions.elementToBeClickable(MICR)).click();
-		Wait.until(ExpectedConditions.elementToBeClickable(MICR_Code)).click();
+		MICR_Code.click();
+		// Wait.until(ExpectedConditions.elementToBeClickable(MICR_Code)).click();
 
 		Select S = new Select(BankAccType);
 		S.selectByContainsVisibleText(BankAccount);
 
-		Select A = new Select(IncomeRangeSelection);
-		A.selectByContainsVisibleText(IncomeRange);
+		/*
+		 * Select A = new Select(IncomeRangeSelection);
+		 * A.selectByContainsVisibleText(IncomeRange);
+		 */
+
+		// netWorth_txt.click();
+		netWorth_txt.sendKeys(String.valueOf(netWorth));
 
 		Documents.click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(PanNo)).click();
 		Wait.until(ExpectedConditions.elementToBeClickable(PanNo)).sendKeys(PanCardNo);
+
+		Incorporation_Date.click();
+
+		DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+		if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+			// Click on Weekend date button
+			WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+			weekendButton.click();
+			System.out.println("Weekend button clicked");
+		} else {
+			// Click on Today date button
+			WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+			todayButton.click();
+			System.out.println("Today date button clicked");
+		}
 
 		Select B = new Select(POI_Documents);
 		B.selectByContainsVisibleText(POI);
@@ -468,7 +512,7 @@ public class Client_Account_opening_For_RP {
 		C.selectByContainsVisibleText(POA);
 
 		Authorized_Signatory.click();
-
+		Authorized_Signatory_Check_box.click();
 		authsignatoryname.sendKeys(Authsignatory_Name);
 
 		Representative.click();
@@ -506,7 +550,7 @@ public class Client_Account_opening_For_RP {
 		}
 	}
 
-	public void Account_opening_for_TM() {
+	public void Account_opening_for_TM() throws InterruptedException {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Client)).click();
 
@@ -530,7 +574,7 @@ public class Client_Account_opening_For_RP {
 		Sa.selectByContainsVisibleText(Client_Type);
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Client_Sub_Type_checkBox)).click();
-
+		Thread.sleep(3000);
 		if (Client_Sub_Type.equals("Trading Member")) {
 			Wait.until(ExpectedConditions.elementToBeClickable(Individual_Sub_Type)).sendKeys(Keys.ENTER);
 		} else if (Client_Sub_Type.equals("TM – Client Margin Pledge Account")) {
@@ -595,19 +639,43 @@ public class Client_Account_opening_For_RP {
 		ifsc_No.click();
 		ifsc_No.sendKeys(String.valueOf(IFSC));
 		ifsc_No.sendKeys(Keys.TAB);
+		Thread.sleep(3000);
+		ifsc_No.clear();
+		ifsc_No.click();
+		ifsc_No.sendKeys(String.valueOf(IFSC));
+		ifsc_No.sendKeys(Keys.TAB);
+
 		Wait.until(ExpectedConditions.elementToBeClickable(MICR)).click();
 		Wait.until(ExpectedConditions.elementToBeClickable(MICR_Code)).click();
 
 		Select S = new Select(BankAccType);
 		S.selectByContainsVisibleText(BankAccount);
 
-		Select A = new Select(IncomeRangeSelection);
-		A.selectByContainsVisibleText(IncomeRange);
+		netWorth_txt.sendKeys(String.valueOf(netWorth));
+		/*
+		 * Select A = new Select(IncomeRangeSelection);
+		 * A.selectByContainsVisibleText(IncomeRange);
+		 */
 
 		Documents.click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(PanNo)).click();
 		Wait.until(ExpectedConditions.elementToBeClickable(PanNo)).sendKeys(PanCardNo);
+
+		Incorporation_Date.click();
+
+		DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+		if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+			// Click on Weekend date button
+			WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+			weekendButton.click();
+			System.out.println("Weekend button clicked");
+		} else {
+			// Click on Today date button
+			WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+			todayButton.click();
+			System.out.println("Today date button clicked");
+		}
 
 		Select B = new Select(POI_Documents);
 		B.selectByContainsVisibleText(POI);
@@ -616,7 +684,7 @@ public class Client_Account_opening_For_RP {
 		C.selectByContainsVisibleText(POA);
 
 		Authorized_Signatory.click();
-
+		Authorized_Signatory_Check_box.click();
 		authsignatoryname.sendKeys(Authsignatory_Name);
 
 		Representative.click();

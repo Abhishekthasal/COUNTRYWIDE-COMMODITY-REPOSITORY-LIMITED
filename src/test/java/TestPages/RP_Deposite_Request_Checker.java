@@ -43,11 +43,17 @@ public class RP_Deposite_Request_Checker {
 	@FindBy(xpath = "//span[normalize-space()='Deposit Request']")
 	WebElement Deposit;
 
-	@FindBy(xpath = "//li[@class='nav-item ng-scope start']//a[@class='auto ng-scope']")
+	@FindBy(xpath = "//body/div[@class='page-container']/div[@class='page-sidebar-wrapper ng-scope']/div[@class='page-sidebar navbar-collapse collapse ng-scope']/ul[@class='page-sidebar-menu ng-scope']/li[2]/a[1]")
 	WebElement Client;
 
 	@FindBy(xpath = "//span[normalize-space()='Account Opening']")
 	WebElement Account_Opening;
+	
+	@FindBy(xpath = "//span[normalize-space()='Masters']")
+	WebElement Masters_btn;
+	
+	@FindBy(xpath = "//span[normalize-space()='TM CM Linking']")
+	WebElement TM_CM_Linking_bttn;
 
 	@FindBy(xpath = "//input[@placeholder='Search...']")
 	WebElement Search_TextBox;
@@ -63,6 +69,9 @@ public class RP_Deposite_Request_Checker {
 
 	@FindBy(xpath = "(//a[normalize-space()='Authorize'])[1]")
 	WebElement Authorize_Exch;
+	
+	@FindBy(xpath="//a[normalize-space()='Authorized']")
+	WebElement Authorized_TM_CM_Linking;
 
 	@FindBy(xpath = "//body/ul[@class='dropdown-menu']/li[2]/a[1]")
 	WebElement Authorize_CA;
@@ -81,6 +90,9 @@ public class RP_Deposite_Request_Checker {
 	@FindBy(xpath = "//label[normalize-space()='Authorize']")
 	WebElement Authorizee_pag_GA;
 
+	@FindBy(xpath="(//span[@class='box'])[4]")
+	WebElement Authorize_page_TM_CM;
+	
 	@FindBy(xpath = "//label[@for='EditClient_Checked']//span[@class='box']")
 	WebElement Authorizee_CA;
 
@@ -722,4 +734,284 @@ public class RP_Deposite_Request_Checker {
 		}
 
 	}
+	
+	public void Account_opening_for_CM_checker() throws InterruptedException {
+
+		try {
+			Connection conn = DataBaseUtility.getConnection();
+
+			String query_OTP = "SELECT a.auth_Code FROM auth_code_generation a JOIN client d ON a.ref_id = d.Id WHERE d.Holder_Name like ? and a.tran_type =\"CL\";";
+			PreparedStatement stmt = conn.prepareStatement(query_OTP);
+			// stmt.setString(1, "%" + Client_Account_opening_For_RP.clientid_Num + "%"); //
+			// bind the variable to query
+			stmt.setString(1, "%" + Client_Account_opening_For_RP.Client_holder_Name + "%"); // bind the variable to
+																								// query
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				OTP_Auth = rs.getString("auth_Code");
+				System.out.println("OTP: " + OTP_Auth);
+
+				rs.close();
+				stmt.close();
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Client)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Account_Opening)).click();
+
+		Search_TextBox.sendKeys(String.valueOf(Client_Account_opening_For_RP.Client_holder_Name));
+
+		submit_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(caret)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_CA)).click();
+
+		Auth_Code.sendKeys(OTP_Auth);
+
+		Submit_CA.click();
+
+		Thread.sleep(3000);
+		try {
+			if (Authorizee_CA.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorizee_CA)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Authorizee_CA);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_page not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_page: " + e.getMessage());
+		}
+
+		try {
+			if (Verify_CA.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Verify_CA)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Verify_CA);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_page not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_page: " + e.getMessage());
+		}
+		try {
+			if (Save_CA.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_CA)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Save_btn click...");
+			// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", Save_CA);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Save_btn: " + e.getMessage());
+		}
+	}
+	
+	public void Account_opening_for_TM_checker() throws InterruptedException {
+
+		try {
+			Connection conn = DataBaseUtility.getConnection();
+
+			String query_OTP = "SELECT a.auth_Code FROM auth_code_generation a JOIN client d ON a.ref_id = d.Id WHERE d.Holder_Name like ? and a.tran_type =\"CL\";";
+			PreparedStatement stmt = conn.prepareStatement(query_OTP);
+			// stmt.setString(1, "%" + Client_Account_opening_For_RP.clientid_Num + "%"); //
+			// bind the variable to query
+			stmt.setString(1, "%" + Client_Account_opening_For_RP.Client_holder_Name + "%"); // bind the variable to
+																								// query
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				OTP_Auth = rs.getString("auth_Code");
+				System.out.println("OTP: " + OTP_Auth);
+
+				rs.close();
+				stmt.close();
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Client)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Account_Opening)).click();
+
+		Search_TextBox.sendKeys(String.valueOf(Client_Account_opening_For_RP.Client_holder_Name));
+
+		submit_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(caret)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_CA)).click();
+
+		Auth_Code.sendKeys(OTP_Auth);
+
+		Submit_CA.click();
+
+		Thread.sleep(3000);
+		try {
+			if (Authorizee_CA.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorizee_CA)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Authorizee_CA);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_page not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_page: " + e.getMessage());
+		}
+
+		try {
+			if (Verify_CA.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Verify_CA)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Verify_CA);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_page not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_page: " + e.getMessage());
+		}
+		try {
+			if (Save_CA.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_CA)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Save_btn click...");
+			// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", Save_CA);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Save_btn: " + e.getMessage());
+		}
+	}
+	
+	public void TM_CM_Linking_RP_Checker() throws InterruptedException {
+		
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Masters_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Masters_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Transaction_Bttn_Xpath not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Bttn_Xpath: " + e.getMessage());
+		}
+		// Deposit function to be Click
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(TM_CM_Linking_bttn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].click();", TM_CM_Linking_bttn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Deposit not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Deposit: " + e.getMessage());
+		}
+		try {
+			Search_TextBox.sendKeys(String.valueOf(TM_CM_Linking_RP.TM_ID));
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Search_TextBox click...");
+			js.executeScript("arguments[0].value='" + TM_CM_Linking_RP.TM_ID + "';",
+					Search_TextBox);
+		} catch (NoSuchElementException e) {
+			System.out.println("Search_TextBox not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for  Search_TextBox: " + e.getMessage());
+		}
+		try {
+			submit_btn.click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript  submit_btn click...");
+			js.executeScript("arguments[0].click();", submit_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("submit_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(caret)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript  caret click...");
+			js.executeScript("arguments[0].click();", caret);
+		} catch (NoSuchElementException e) {
+			System.out.println("caret not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for caret: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorized_TM_CM_Linking)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript  Authorize_btn click...");
+			js.executeScript("arguments[0].click();", Authorized_TM_CM_Linking);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_btn: " + e.getMessage());
+		}
+
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		// WebElement scroll = driver.findElement(By.xpath("//div[@role='dialog']"));
+		scroll.sendKeys(Keys.PAGE_DOWN);
+		scroll.sendKeys(Keys.PAGE_DOWN);
+		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		
+		Thread.sleep(2000);
+		try {
+			if (Authorize_page_TM_CM.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page_TM_CM)).click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).sendKeys(Keys.ENTER);
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
+			js.executeScript("arguments[0].click();", Authorize_page);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_page not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_page: " + e.getMessage());
+		}
+		/*
+		 * try { if (Verify_btn.isDisplayed()) {
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click(); } }
+		 * catch (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript Verify_btn click...");
+		 * js.executeScript("arguments[0].click();", Verify_btn); } catch
+		 * (NoSuchElementException e) { System.out.println("Verify_btn not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for Verify_btn: " + e.getMessage()); }
+		 */
+		try {
+			if (Save_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Save_btn click...");
+			// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", Save_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Save_btn: " + e.getMessage());
+		}
+		System.out.println(
+				"--------------------Exchange_Deposite_Request_Non_Agriculture Checker is Done-------------------------");
+
+	}	
+	
+	
 }

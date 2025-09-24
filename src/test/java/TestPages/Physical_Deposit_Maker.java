@@ -91,7 +91,6 @@ public class Physical_Deposit_Maker {
 	WebElement Transaction_btn;
 	@FindBy(xpath = "//span[normalize-space()='Physical Deposit']")
 	WebElement Physical_Deposite;
-
 	@FindBy(xpath = "(//a[@ui-sref='Transactions.Depositgoverment'])[1]")
 	WebElement Depositgoverment;
 	@FindBy(xpath = "//button[normalize-space()='New']")
@@ -2265,22 +2264,25 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Physical_New_Req: " + e.getMessage());
 		}
-		try {
+		//try {
 			if (Internal_Ref.matches("^[0-9]{5}$")) {
-				Internal_Ref_No.sendKeys(String.valueOf(Internal_Ref));
+				//Internal_Ref_No.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Internal_Ref_No)).sendKeys(String.valueOf(Internal_Ref));
+				System.out.println("Internal_Ref no is:"+Internal_Ref);
 				Internal_Ref_No.sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Internal_Ref. Please enter exactly 5 digits (numbers only):");
 			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Internal_Ref_No click...");
-			js.executeScript("arguments[0].value='" + Internal_Ref + "';", Internal_Ref_No);
-			js.executeScript("arguments[0].click();", Internal_Ref_No);
-		} catch (NoSuchElementException e) {
-			System.out.println("Internal_Ref_No not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Internal_Ref_No: " + e.getMessage());
-		}
+			/*
+			 * } catch (ElementClickInterceptedException e) { System.out.
+			 * println("Normal click failed, trying JavaScript Internal_Ref_No click...");
+			 * js.executeScript("arguments[0].value='" + Internal_Ref + "';",
+			 * Internal_Ref_No); js.executeScript("arguments[0].click();", Internal_Ref_No);
+			 * } catch (NoSuchElementException e) {
+			 * System.out.println("Internal_Ref_No not found: " + e.getMessage()); } catch
+			 * (Exception e) { System.out.println("Unexpected error for Internal_Ref_No: " +
+			 * e.getMessage()); }
+			 */
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 

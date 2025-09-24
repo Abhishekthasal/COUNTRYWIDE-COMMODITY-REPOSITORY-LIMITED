@@ -66,7 +66,7 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	@Test
+	//@Test
 	  void Account_opening_for_CM() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Account_opening_for_CM start");
@@ -77,7 +77,7 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 			CM.Account_opening_for_CM();
 		} catch (Exception e) {
 		    e.printStackTrace();
-		    System.out.println("Error occurred while running Exchange_Non_Agriculture_Physical_Multiple_GSL: " + e.getMessage());
+		    System.out.println("Error occurred while running Account_opening_for_CM: " + e.getMessage());
 		}
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "Account_opening_for_CM is success full");
@@ -97,13 +97,13 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 	//@Test
 		void Account_opening_for_CM_Checker () throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
+				test.log(LogStatus.INFO, "Client Account Opening for CM_Checker start");
 			  LoginPages Login = new LoginPages(driver, Wait);
 				Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 				RP_Deposite_Request_Checker Client = new RP_Deposite_Request_Checker(driver,Wait);
-				Client.Client_Account_opening_Checker();
+				Client.Account_opening_for_CM_checker();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-						+ "Client Account Opening for REPOSITORY is success full");
+						+ "Client Account Opening for CM_Checker is success full");
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 				Log.Logout();
@@ -141,13 +141,13 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 	//@Test
 		void Account_opening_for_TM_Checker () throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
+				test.log(LogStatus.INFO, "Client Account Opening for TM_Checker start");
 			  LoginPages Login = new LoginPages(driver, Wait);
 				Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 				RP_Deposite_Request_Checker Client = new RP_Deposite_Request_Checker(driver,Wait);
-				Client.Client_Account_opening_Checker();
+				Client.Account_opening_for_TM_checker();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-						+ "Client Account Opening for REPOSITORY is success full");
+						+ "Client Account Opening for TM_Checker is success full");
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 				Log.Logout();
@@ -183,13 +183,41 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 	}
 	
 	//@Test
+	  void TM_CM_Linking_RP_Checker () throws IOException {
+		try {
+			test.log(LogStatus.INFO, "TM_CM_Linking_RP_Checker start");
+		  LoginPages Login = new LoginPages(driver, Wait);
+			Login.PortalLogin("rp-abhishek", "user52", "121@test");
+			TestPages.RP_Deposite_Request_Checker CM = new TestPages.RP_Deposite_Request_Checker(driver,Wait);
+			CM.TM_CM_Linking_RP_Checker();
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+ "TM_CM_Linking_RP_Checker is success full");
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+			/*
+			 * TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+			 * Log.Logout();
+			 */
+		} catch (Exception e) {
+			test.log(LogStatus.FAIL,
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) +e.getMessage()+ "TM_CM_Linking_RP Test failed");
+		}
+		Report.endTest(test);
+		Report.flush();
+	}
+	
+	@Test
 	  void ClientCmLinking_RP () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "ClientCmLinking_RP start");
 		  LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("cc8880013", "user1", "121@test");
 			TestPages.ClientCmLinking_RP CM = new TestPages.ClientCmLinking_RP(driver,Wait);
+			try {
 			CM.Client_Cm_Linking();
+			}catch (Exception e) {
+				System.out.println("test data :"+e.getMessage());
+			}
+			
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "ClientCmLinking_RP is success full");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));

@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase">
+      <class name="TestCase.TM_CM_Linking_TestCase">
         <methods>
-          <include name="DashBord_WareHouse_Maker"/>
+          <include name="TM_CM_Linking_RP_Checker"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase -->
+      </class> <!-- TestCase.TM_CM_Linking_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

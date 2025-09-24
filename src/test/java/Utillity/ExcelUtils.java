@@ -831,7 +831,7 @@ public class ExcelUtils {
 
 	public long getmobile_NUmber(int rowNum) {
 
-		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+		return (long) Sheet.getRow(rowNum).getCell(14).getNumericCellValue();
 		/*
 		 * Cell cell = Sheet.getRow(rowNum).getCell(14); DataFormatter formatter = new
 		 * DataFormatter(); String cellValue = formatter.formatCellValue(cell); //
@@ -893,5 +893,57 @@ public class ExcelUtils {
 	public String getCM_ID(int rowNum) {
 		return getCellData(rowNum, 28);
 	}
+	
+	
+	public int getnetWorth(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(29).getNumericCellValue();
+	}
+	
+	
+	/************************************* * TM_CM_Linking_RP ***************************************/
+	
+	
+	public String getRequestNo(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+	
+	
+	public int getCE_CC_Id(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public int getTM_ID(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+	
+	public long getTM_client_ID(int rowNum) {
+
+		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	
+	/**************************ClientCmLinking_RP*********************************/
+	
+	public String getRequestNo_ClientCmLinking(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+	
+	
+	public int getUCC_ID(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public long getClient_Id_ClientCmLinking(int rowNum) {
+
+		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+	
+	
+	public int getTMID_ClientCmLinking(int rowNum) {
+
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	
 
 }

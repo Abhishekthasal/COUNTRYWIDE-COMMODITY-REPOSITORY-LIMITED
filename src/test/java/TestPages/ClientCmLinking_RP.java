@@ -19,14 +19,15 @@ public class ClientCmLinking_RP {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
-	static String sheet = "Physical_Deposit_Maker";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TM_CM_Linking.xlsx";
+	static String sheet = "ClientCmLinking_RP";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	String Bag_Total = excel.getBag_Total_py(dataRow);
-	static int UCC_ID = excel.gettotalBags(dataRow);
-	long  Client_Id;
+	String RequestNo = excel.getRequestNo_ClientCmLinking(dataRow);
+	static int UCC_ID = excel.getUCC_ID(dataRow);
+	long  Client_Id=excel.getClient_Id_ClientCmLinking(dataRow);
+	int TMID = excel.getTMID_ClientCmLinking(dataRow);
 	int j = 3;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -91,13 +92,22 @@ public class ClientCmLinking_RP {
 
 	public void Client_Cm_Linking() {
 
-		Masters_btn.click();
-
+		try {
+		Wait.until(ExpectedConditions.elementToBeClickable(Masters_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Transaction_btn click...");
+			js.executeScript("arguments[0].click();", Masters_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Transaction_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
+		}
+		
 		Client_CM_Linking_bttn.click();
 
 		New_bttn.click();
 
-		RequestNo_txt.sendKeys();
+		RequestNo_txt.sendKeys(RequestNo);
 		
 		Request_Date_bttn.click();
 		
@@ -114,9 +124,6 @@ public class ClientCmLinking_RP {
 		    System.out.println("Today date button clicked");
 		}
 		
-		
-		
-
 		Client_Id_bttn.click();
 		Client_Id_txt.sendKeys(String.valueOf(Client_Id));
 		Client_Id_txt.click();
@@ -125,7 +132,7 @@ public class ClientCmLinking_RP {
 		
 		openPick_bttn.click();
 		
-		Search_txt.sendKeys("scscv");
+		Search_txt.sendKeys();
 
 		Search_bttn.click();
 

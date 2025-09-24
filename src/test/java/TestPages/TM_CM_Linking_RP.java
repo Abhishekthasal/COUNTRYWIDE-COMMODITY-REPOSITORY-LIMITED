@@ -2,6 +2,7 @@ package TestPages;
 
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,19 +10,23 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.relevantcodes.extentreports.LogStatus;
+
 import Utillity.ExcelUtils;
 
 public class TM_CM_Linking_RP {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
-	static String sheet = "Physical_Deposit_Maker";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TM_CM_Linking.xlsx";
+	static String sheet = "TM_CM_Linking_RP";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet); 
 
-	String RequestNo = excel.getBag_Total_py(dataRow);
-	static int CE_CC_Id = excel.gettotalBags(dataRow);
+	String RequestNo = excel.getRequestNo(dataRow);
+	static int CE_CC_Id = excel.getCE_CC_Id(dataRow);
+	static int TM_ID= excel.getTM_ID(dataRow);
+	long TM_client_ID=excel.getTM_client_ID(dataRow);
 	
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -43,11 +48,15 @@ public class TM_CM_Linking_RP {
 	
 	@FindBy(xpath = "//input[@name='RequestNo']")
 	WebElement RequestNo_txt;
-	
+	@FindBy(xpath="//button[normalize-space()='Ok']")
+	WebElement popup;
 	@FindBy(xpath = "//button[@data-id='ClientMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement TM_client_ID_drop;
 	
-	@FindBy(xpath = "(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[2]")
+	@FindBy(xpath="(//input[@type='text'])[2]")
+	WebElement TM_client_ID_txt;
+	
+	@FindBy(xpath = "//button[@class='btn dropdown-toggle btn-default']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement CE_CC_Id_bttn;
 	
 	@FindBy(xpath = "(//input[@type='text'])[4]")
@@ -78,20 +87,36 @@ public class TM_CM_Linking_RP {
 		Masters_btn.click();
 		
 		TM_CM_Linking_bttn.click();
+		try {
+			popup.click();
+		}catch (Exception e) {
+				System.out.println("pop up is visible:"+e.getMessage());
+			}
 		
 		New_bttn.click();
 		
-		RequestNo_txt.sendKeys();
+		RequestNo_txt.sendKeys(RequestNo);
+		
+		try {
+			popup.click();
+		}catch (Exception e) {
+				System.out.println("pop up is visible:"+e.getMessage());
+			}
+		
+		
 		
 		TM_client_ID_drop.click();
+		TM_client_ID_txt.sendKeys(String.valueOf(TM_client_ID));
+		TM_client_ID_txt.sendKeys(Keys.ENTER);
 		
 		CE_CC_Id_bttn.click();
 		
 		CE_CC_Id_txt.sendKeys(String.valueOf(CE_CC_Id));
+		CE_CC_Id_txt.sendKeys(Keys.ENTER);
 		
 		openPick_bttn.click();
 		
-		Search_txt.sendKeys("scscv");
+		Search_txt.sendKeys(String.valueOf(TM_ID));
 
 		Search_bttn.click();
 
