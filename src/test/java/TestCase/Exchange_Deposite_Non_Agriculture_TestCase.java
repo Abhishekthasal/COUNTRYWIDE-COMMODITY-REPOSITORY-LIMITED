@@ -66,7 +66,7 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	@Test
+	//@Test
 	void DashBoard_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is start");

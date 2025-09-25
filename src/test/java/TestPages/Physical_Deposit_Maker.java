@@ -26,7 +26,7 @@ public class Physical_Deposit_Maker {
 	// private static final String Commodity_Code = null;
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "Physical_Deposit_Maker";
 	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;

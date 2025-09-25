@@ -2,14 +2,14 @@ package Utillity;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import java.io.IOException;
+//import java.io.IOException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
+//import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Workbook;
+//import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelUtils {
@@ -924,8 +924,8 @@ public class ExcelUtils {
 	
 	/**************************ClientCmLinking_RP*********************************/
 	
-	public String getRequestNo_ClientCmLinking(int rowNum) {
-		return getCellData(rowNum, 0);
+	public int getRequestNo_ClientCmLinking(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
 	
 	
@@ -938,12 +938,14 @@ public class ExcelUtils {
 		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
 	
-	
-	public int getTMID_ClientCmLinking(int rowNum) {
-
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	public String getTMID_ClientCmLinking(int rowNum) {
+		return getCellData(rowNum, 3);
+		
 	}
 	
+	public int getCeCcID_ClientCmLinking(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
+	}
 	
 
 }

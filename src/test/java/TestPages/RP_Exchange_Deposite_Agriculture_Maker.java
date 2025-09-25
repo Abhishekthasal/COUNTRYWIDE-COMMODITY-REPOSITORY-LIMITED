@@ -21,7 +21,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "RP_Exchange_Deposite_Agricultur";
 	static int dataRow = 8; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;

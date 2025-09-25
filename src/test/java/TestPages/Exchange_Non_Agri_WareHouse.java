@@ -24,7 +24,7 @@ public class Exchange_Non_Agri_WareHouse {
 	WebDriver driver;
 	WebDriverWait Wait;
 
-	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "Exchange_Non_Agriculture_Physic";
 	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -139,7 +139,7 @@ public class Exchange_Non_Agri_WareHouse {
 	WebElement Stack_No_Text;
 	@FindBy(xpath = "//input[@name='lot_no']")
 	WebElement lot_no_Text;
-	@FindBy(xpath = "//input[@ng-model='LotDetails.NoOfBundles']")
+	@FindBy(xpath = "(//input[@name='no_of_bag'])[3]")
 	WebElement no_of_bag;
 	@FindBy(xpath = "//input[@ng-class=\"{'edited':LotDetails.NoOfPiecesPerBundle}\"]")
 	WebElement NoOfPiecesPerBundle;
@@ -502,20 +502,19 @@ public class Exchange_Non_Agri_WareHouse {
 			System.out.println("Unexpected error for no_of_bag: " + e.getMessage());
 		}
 		
-		try {
-			// Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundles
-			if (String.valueOf(pieces_per_bundles).matches("^[0-9]{0,5}$")) {
-				NoOfPiecesPerBundle.sendKeys(String.valueOf(pieces_per_bundles));
-			}
-		} catch (ElementClickInterceptedException e) {
-			js.executeScript(
-					"arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundle + "';",
-					NoOfPiecesPerBundle);
-		} catch (NoSuchElementException e) {
-			System.out.println("NoOfPiecesPerBundle not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for NoOfPiecesPerBundle: " + e.getMessage());
-		}
+		/*
+		 * try { // Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundles
+		 * if (String.valueOf(pieces_per_bundles).matches("^[0-9]{0,5}$")) {
+		 * NoOfPiecesPerBundle.sendKeys(String.valueOf(pieces_per_bundles)); } } catch
+		 * (ElementClickInterceptedException e) { js.executeScript(
+		 * "arguments[0].value='" +
+		 * Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundle + "';",
+		 * NoOfPiecesPerBundle); } catch (NoSuchElementException e) {
+		 * System.out.println("NoOfPiecesPerBundle not found: " + e.getMessage()); }
+		 * catch (Exception e) {
+		 * System.out.println("Unexpected error for NoOfPiecesPerBundle: " +
+		 * e.getMessage()); }
+		 */
 		
 		try {
 			if (Sample.matches("^[a-zA-Z0-9]{0,50}$")) {

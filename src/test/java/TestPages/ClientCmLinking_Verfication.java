@@ -19,11 +19,6 @@ public class ClientCmLinking_Verfication {
 	static String sheet = "Physical_Deposit_Maker";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet); 
-
-	String Client_ID = excel.getBag_Total_py(dataRow);
-	static int totalBags = excel.gettotalBags(dataRow);
-	int updated_Bags;
-	int j = 3;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	public ClientCmLinking_Verfication(WebDriver driver, WebDriverWait Wait) {
@@ -67,7 +62,7 @@ WebElement 	Actions_Bttn;
 		
 		Client_CM_Linking_bttn.click();
 		
-		Search_txt.sendKeys(Client_ID);
+		Search_txt.sendKeys(String.valueOf(ClientCmLinking_RP.Client_Id));
 		
 		Search_bttn.click();
 		

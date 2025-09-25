@@ -21,9 +21,9 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "Exchange_Deposite_Non_Agricult";
-	static int dataRow = 4; // second row of data
+	static int dataRow = 5; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -124,7 +124,7 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 	@FindBy(xpath = "(//input[@type='text'])[19]")
 	WebElement symbol_text;
 
-	@FindBy(xpath = "(//input[@name='no_of_bundles'])[1]")
+	@FindBy(xpath = "//input[@name='no_of_bags']")
 	WebElement No_of_Bundles;
 
 	@FindBy(xpath = "(//input[@name='no_of_pieces'])[1]")
@@ -301,28 +301,6 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 		}
-
-//		try {
-//			if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-//				WH_ID_Btn.click();
-//				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-//				 driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-//				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-//				 //Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Option)).sendKeys(Keys.ENTER);
-//				 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Option)).sendKeys(Keys.ENTER);
-//				 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-//				//Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-//			}
-//		} catch (ElementClickInterceptedException e) {
-//			System.out.println("Normal click failed, trying JavaScript click...");
-//			js.executeScript("arguments[0].click();", WH_ID_Btn);
-//			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_txt);
-//			js.executeScript("arguments[0].click();", WH_ID_Option);
-//		} catch (NoSuchElementException e) {
-//			System.out.println("WH_ID_Btn not found: " + e.getMessage());
-//		} catch (Exception e) {
-//			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
-//		}
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		try {
@@ -368,15 +346,10 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 			if(symbol_btn.isDisplayed()&& symbol_btn.isEnabled()) {
 			if (symbol.matches("^[a-zA-Z0-9]{0,10}$")) {
 				symbol_btn.click();
-				System.out.println("Click on symbol_btn");
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+				Thread.sleep(3000);
 				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(symbol);
-				System.out.println("Click on symbol_text");
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 				symbol_text.sendKeys(Keys.ENTER);
-				System.out.println("Click on symbol_text submit");
-				//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-				//Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(Keys.ENTER);
 			}
 			else {
 				System.out.println("Invalid value of symbol");
@@ -408,18 +381,18 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for  No_of_Bundles: " + e.getMessage());
 		}
-		try {
-			if (Pieces_Per_Bundle.matches("^[0-9]{0,5}$")) {
-				No_Of_Pieces_Per_Bundle.sendKeys(Pieces_Per_Bundle);
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript  No_Of_Pieces_Per_Bundle click...");
-			js.executeScript("arguments[0].value='" + Pieces_Per_Bundle + "';", No_Of_Pieces_Per_Bundle);
-		} catch (NoSuchElementException e) {
-			System.out.println("No_Of_Pieces_Per_Bundle not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for No_Of_Pieces_Per_Bundle: " + e.getMessage());
-		}
+		/*
+		 * try { if (Pieces_Per_Bundle.matches("^[0-9]{0,5}$")) {
+		 * No_Of_Pieces_Per_Bundle.sendKeys(Pieces_Per_Bundle); } } catch
+		 * (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript  No_Of_Pieces_Per_Bundle click..."
+		 * ); js.executeScript("arguments[0].value='" + Pieces_Per_Bundle + "';",
+		 * No_Of_Pieces_Per_Bundle); } catch (NoSuchElementException e) {
+		 * System.out.println("No_Of_Pieces_Per_Bundle not found: " + e.getMessage()); }
+		 * catch (Exception e) {
+		 * System.out.println("Unexpected error for No_Of_Pieces_Per_Bundle: " +
+		 * e.getMessage()); }
+		 */
 		try {
 			if (Qty_UOM.matches("^[a-zA-Z0-9]{0,5}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(qtyuom)).click();

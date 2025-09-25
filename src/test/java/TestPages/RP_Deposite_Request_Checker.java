@@ -508,7 +508,7 @@ public class RP_Deposite_Request_Checker {
 
 	}
 
-	public void Exchange_Deposite_Request_Non_Agriculture_Checker() {
+	public void Exchange_Deposite_Request_Non_Agriculture_Checker() throws InterruptedException {
 		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 		// Transaction Button to be Click
 		try {
@@ -579,12 +579,12 @@ public class RP_Deposite_Request_Checker {
 		scroll.sendKeys(Keys.PAGE_DOWN);
 		scroll.sendKeys(Keys.PAGE_DOWN);
 		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		Thread.sleep(3000);
 		try {
 			if (Authorize_page.isDisplayed()) {
 				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).click();
 				// Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).sendKeys(Keys.ENTER);
-
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
@@ -594,8 +594,6 @@ public class RP_Deposite_Request_Checker {
 			System.out.println("Authorize_page not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Authorize_page: " + e.getMessage());
-		}finally {
-			Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).click();
 		}
 		try {
 			if (Verify_btn.isDisplayed()) {

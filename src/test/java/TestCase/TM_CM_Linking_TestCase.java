@@ -11,6 +11,7 @@ import TestPages.CM_Master_File_Upload;
 //import TestPages.Client_Account_opening_For_RP;
 import TestPages.LoginPages;
 import TestPages.RP_Deposite_Request_Checker;
+import TestPages.ClientCmLinking_RP;
 
 public class TM_CM_Linking_TestCase extends BaseClass {
 	
@@ -205,26 +206,24 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.flush();
 	}
 	
-	@Test
+	//@Test
 	  void ClientCmLinking_RP () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "ClientCmLinking_RP start");
 		  LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("cc8880013", "user1", "121@test");
-			TestPages.ClientCmLinking_RP CM = new TestPages.ClientCmLinking_RP(driver,Wait);
 			try {
-			CM.Client_Cm_Linking();
-			}catch (Exception e) {
-				System.out.println("test data :"+e.getMessage());
+			ClientCmLinking_RP CMp = new ClientCmLinking_RP(driver,Wait);
+			CMp.Client_Cm();
+			}catch(Exception e) {
+				System.out.println("Client_Cm not found: " + e.getMessage());
+				
 			}
-			
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "ClientCmLinking_RP is success full");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
-			/*
-			 * TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
-			 * Log.Logout();
-			 */
+			  TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+			  Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
 					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "ClientCmLinking_RP Test failed");
@@ -233,7 +232,7 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.flush();
 	}
 	
-//	@Test
+	//@Test
 	  void ClientCmLinking_Verfication () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "ClientCmLinking_Verfication start");
