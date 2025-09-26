@@ -71,9 +71,9 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("wsp9999996", "user71", "121@test");
+			Login.PortalLogin("wsp9999996", "user71", "121@test");
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
-			 Login.PortalLogin("wsp9996059", "user102", "121@test");
+			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			Exchange_Non_Agri_WareHouse WSP_CH = new Exchange_Non_Agri_WareHouse(driver, Wait);
 			WSP_CH.Exchange_Non_Agriculture_Physical();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is successfull");
@@ -83,7 +83,6 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		}
 		Report.endTest(test);
 		Report.flush();
-
 	}
 
 	// @Test
@@ -103,10 +102,8 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		}
 		Report.endTest(test);
 		Report.flush();
-
 	}
-
-	// @Test
+	 @Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is start");
@@ -122,7 +119,6 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-
 	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Deposite_Assayer_Checker() throws IOException {
 		try {

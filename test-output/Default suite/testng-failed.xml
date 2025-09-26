@@ -5,9 +5,8 @@
     <classes>
       <class name="TestCase.Exchange_Deposite_Non_Agriculture_TestCase">
         <methods>
-          <include name="Exchange_Deposite_Request_Non_Agriculture_Maker"/>
+          <include name="DashBoard_WareHouse_Checker"/>
           <include name="setup"/>
-          <include name="DashBoard_WareHouse_Maker"/>
         </methods>
       </class> <!-- TestCase.Exchange_Deposite_Non_Agriculture_TestCase -->
     </classes>

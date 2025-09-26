@@ -947,5 +947,29 @@ public class ExcelUtils {
 		return (int) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
 	
+	/************************Settlement_Master_CC_Login********************************/
+	public String getExchangeMaster(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+	
+	public int getSettlement_Type(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public int getsettlement_No(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+	
+	public int getsettlement_Year(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	public String getexpiry_Date(int rowNum) {
+		return getCellData(rowNum, 4);
+	}
+	
+	public String gettrade_Start_Date(int rowNum) {
+		return getCellData(rowNum, 5);
+	}
 
 }
