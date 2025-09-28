@@ -1279,7 +1279,7 @@ public class Deposite_Assayer_Maker {
 
 	}
 
-	public void Deposit_Assayer_Agriculture_Multiple_GSL_Maker() {
+	public void Deposit_Assayer_Agriculture_Multiple_GSL_Maker() throws InterruptedException {
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
@@ -1320,6 +1320,7 @@ public class Deposite_Assayer_Maker {
 				if (RP_Deposite_Request_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{0,7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WareHouse_Id_btn)).click();
 					WareHouse_Id_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.WH_ID));
+					Thread.sleep(1000);
 					WareHouse_Id_txt.sendKeys(Keys.ENTER);
 				} else {
 					System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
@@ -1617,7 +1618,8 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 			}
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Thread.sleep(3000);
+		//	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		//	driver.manage().timeouts().pageLoadTimeout(60,TimeUnit.SECONDS);
 		}
 

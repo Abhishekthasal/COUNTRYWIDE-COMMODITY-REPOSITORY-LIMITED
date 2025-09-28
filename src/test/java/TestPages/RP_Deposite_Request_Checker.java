@@ -203,22 +203,22 @@ public class RP_Deposite_Request_Checker {
 		//driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 		// Define FluentWait
-		FluentWait<WebDriver> fluentWait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(30)) // Total wait
-																										// time
-				.pollingEvery(Duration.ofSeconds(2)) // Check every 2 seconds
-				.ignoring(NoSuchElementException.class) // Ignore not found
-				.ignoring(ElementClickInterceptedException.class); // Optional: ignore click issues
-
-		try {
-			WebElement Authorize_page = fluentWait.until(driver -> {
-				WebElement el = driver.findElement(By.cssSelector("label[for='EditDeposit_Checked'] span[class='box'"));
-				if (el.isDisplayed() && el.isEnabled()) {
-					//System.out.println("value of e1:"+el);
-					return el;
-					
-				}
-				return null;
-			});
+		/*
+		 * FluentWait<WebDriver> fluentWait = new
+		 * FluentWait<>(driver).withTimeout(Duration.ofSeconds(30)) // Total wait //
+		 * time .pollingEvery(Duration.ofSeconds(2)) // Check every 2 seconds
+		 * .ignoring(NoSuchElementException.class) // Ignore not found
+		 * .ignoring(ElementClickInterceptedException.class); // Optional: ignore click
+		 * issues
+		 * 
+		 * try { WebElement Authorize_page = fluentWait.until(driver -> { WebElement el
+		 * = driver.findElement(By.
+		 * cssSelector("label[for='EditDeposit_Checked'] span[class='box'")); if
+		 * (el.isDisplayed() && el.isEnabled()) {
+		 * //System.out.println("value of e1:"+el); return el;
+		 * 
+		 * } return null; });
+		 */
 			/*
 			 * // Click the element after wait elementToClick.click();
 			 * System.out.println("Element clicked successfully."); } catch
@@ -226,6 +226,14 @@ public class RP_Deposite_Request_Checker {
 			 * System.out.println("Element not clickable within timeout: " +
 			 * e.getMessage()); }
 			 */
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			try {
 			if (Authorize_page.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).click();
 				//Authorize_page.click();

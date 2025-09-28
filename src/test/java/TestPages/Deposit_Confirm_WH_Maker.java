@@ -488,7 +488,7 @@ public class Deposit_Confirm_WH_Maker {
 
 	}
 
-	public void Deposit_Confirm_WH_Agriculture_Multiple_GSL_Maker() {
+	public void Deposit_Confirm_WH_Agriculture_Multiple_GSL_Maker() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -525,6 +525,7 @@ public class Deposit_Confirm_WH_Maker {
 			if (RP_Deposite_Request_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id)).click();
 				Warehouse_id_Txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.WH_ID));
+				Thread.sleep(2000);
 				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
@@ -626,6 +627,7 @@ public class Deposit_Confirm_WH_Maker {
 		try {
 			if (save_btn.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(save_btn)).click();
+				Thread.sleep(1000);
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
@@ -635,7 +637,7 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for save_btn: " + e.getMessage());
 		}
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); 
+		Thread.sleep(3000);
 		}
 
 	}

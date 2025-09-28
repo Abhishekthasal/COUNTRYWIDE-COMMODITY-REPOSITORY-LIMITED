@@ -56,6 +56,9 @@ public class Deposite_Assayer_Checker {
 
 	@FindBy(xpath = "//label[normalize-space()='Authorized']")
 	WebElement Authorized_checkbox;
+	
+	@FindBy(xpath="(//span[@class='box'])[7]")
+	WebElement Authorized_GSL;
 
 	@FindBy(xpath = "(//span[contains(text(),'Verify')])[2]")
 	WebElement Verify_btn;
@@ -65,7 +68,7 @@ public class Deposite_Assayer_Checker {
 
 	public void Deposit_Assayer() {
 
-		try { 
+		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Transaction_Btn click...");
@@ -414,7 +417,7 @@ public class Deposite_Assayer_Checker {
 
 	}
 
-	public void Deposit_Assayer_Agriculture_Multiple_GSL_Checker() {
+	public void Deposit_Assayer_Agriculture_Multiple_GSL_Checker() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -436,7 +439,7 @@ public class Deposite_Assayer_Checker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 		// 55555263
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 2; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_txt))
@@ -461,7 +464,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Thread.sleep(3000);
 			try {
 				Actions_btn.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -503,7 +506,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Assaying_Report_Menu: " + e.getMessage());
 			}
-			try {
+			/*try {
 				if (confirm_pop_up.isDisplayed()) {
 					Wait.until(ExpectedConditions.elementToBeClickable(confirm_pop_up)).click();
 					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -555,21 +558,19 @@ public class Deposite_Assayer_Checker {
 				}
 			} catch (Exception e) {
 				System.out.println("Unexpected error for confirm_pop_up: " + e.getMessage());
-			}
+			}*/
 
-			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+			Thread.sleep(2000);
 			try {
-				if (Authorized_checkbox.isDisplayed()) {
-					Wait.until(ExpectedConditions.elementToBeClickable(Authorized_checkbox)).click();
+				if (Authorized_GSL.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Authorized_GSL)).click();
 				} else {
 					System.out.println("Authorized_checkbox checkBox is not Visible");
 				}
 			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript click...");
-				// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Authorized_checkbox);
-				// System.out.println("Element not clickable at the moment: " + e.getMessage());
+				System.out.println("Normal click failed, Authorized_GSL JavaScript click...");
+				
+				js.executeScript("arguments[0].click();", Authorized_GSL);
 			} catch (NoSuchElementException e) {
 				System.out.println("Authorized_checkbox not found: " + e.getMessage());
 			} catch (Exception e) {
@@ -584,7 +585,7 @@ public class Deposite_Assayer_Checker {
 					Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
 				}
 			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript Verify_btn click...");
+				System.out.println("Normal click failed, Verify_btn JavaScript Verify_btn click...");
 				js.executeScript("arguments[0].click();", Verify_btn);
 			} catch (NoSuchElementException e) {
 				System.out.println("Verify_btn not found: " + e.getMessage());
@@ -596,14 +597,14 @@ public class Deposite_Assayer_Checker {
 					Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
 				}
 			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript Save_btn click...");
+				System.out.println("Normal click failed, Save_btn JavaScript Save_btn click...");
 				js.executeScript("arguments[0].scrollIntoView(true);", Save_btn);
 			} catch (NoSuchElementException e) {
 				System.out.println("Save_btn not found: " + e.getMessage());
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 			}
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Thread.sleep(3000);
 			Search_txt.clear();
 			// driver.manage().timeouts().implicitlyWait(60,TimeUnit.SECONDS);
 		}

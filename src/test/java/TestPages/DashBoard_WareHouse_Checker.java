@@ -292,7 +292,7 @@ public class DashBoard_WareHouse_Checker {
 
 	}
 
-	public void Deposit_Maker_Multiple_GSL_Checker() {
+	public void Deposit_Maker_Multiple_GSL_Checker() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -444,12 +444,14 @@ public class DashBoard_WareHouse_Checker {
 			int k = i * j;
 			System.out.println("value of i:" + i);
 			WebElement bagField = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			Thread.sleep(1000);
 			Wait.until(ExpectedConditions.elementToBeClickable(bagField))
 					.sendKeys(String.valueOf(Physical_Deposit_Maker.Bags));
 			// Incremented input value
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			Thread.sleep(1000);
 			Wait.until(ExpectedConditions.elementToBeClickable(bagField)).sendKeys(Keys.TAB);
+			Thread.sleep(2000);
 			try {
 				WebElement AvgBag = driver.findElement(By.xpath("//button[@class='confirm']"));
 				AvgBag.click();
