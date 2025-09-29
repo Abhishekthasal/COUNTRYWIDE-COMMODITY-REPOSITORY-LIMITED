@@ -1082,8 +1082,6 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Lot : " + e.getMessage());
 		}
-
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView()", Add_Button);
 		WebElement remainingBagsElement = driver
 				.findElement(By.xpath("//div[@class='row ng-scope']//div[@class='col-sm-2']")); // Adjust ID
@@ -1916,104 +1914,66 @@ public class Physical_Deposit_Maker {
 		int noOfBags = Integer.parseInt(Bag_Total);
 		System.out.println("noOfBags is :"+noOfBags);
 		if (remainingBags != noOfBags) {
-			for ( i=1 ; i <= remainingBags; i++) {
+			for (int i = 1; i <= remainingBags; i++) {
+				System.out.println("remainingBags is for:" + remainingBags);
+				// WebElement godown = driver.findElement(By.xpath("(//input[@name='godown'])["
+				// + i + "]"));
+				// godown.sendKeys("Godown " + i);
 
 				driver.findElement(By.xpath("(//input[@name='godown'])[" + i + "]")).sendKeys("Godown " + i);
 
 				WebElement stack_no = driver.findElement(By.xpath("(//input[@name='stack_no'])[" + i + "]"));
-
 				Wait.until(ExpectedConditions.elementToBeClickable(stack_no)).sendKeys("stack_no" + i);
 
 				WebElement lot_no = driver.findElement(By.xpath("(//input[@name='lot_no'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(lot_no)).sendKeys("Lot " + i);
 
-				/*
-				 * try { if (Number_Of_Bags_PopUp.isDisplayed()) {
-				 * Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).
-				 * click(); } } catch (NoSuchElementException e) {
-				 * System.out.println(" Number_Of_Bags_PopUp Element is not visible");
-				 * 
-				 * } catch (Exception e) {
-				 * System.out.println(" Number_Of_Bags_PopUp Element not found"); }
-				 */
-				/*
-				 * try {
-				 * Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click(
-				 * ); } catch (ElementClickInterceptedException e) { System.out.
-				 * println("Normal click failed, trying JavaScript Add_Button_before click...");
-				 * js.executeScript("arguments[0].click();", Lots_Confirmation); } catch
-				 * (NoSuchElementException e) {
-				 * System.out.println("Add_Button_before not found: " + e.getMessage()); } catch
-				 * (Exception e) { System.out.println("Unexpected error for Add_Button_before: "
-				 * + e.getMessage()); }
-				 */
-				
+				try {
+					if (Number_Of_Bags_PopUp.isDisplayed()) {
+						Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
+					}
+				} catch (NoSuchElementException e) {
+					System.out.println(" Number_Of_Bags_PopUp Element is not visible");
+
+				} catch (Exception e) {
+					System.out.println(" Number_Of_Bags_PopUp Element not found");
+				}
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
-				Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(Bags));
-				 Thread.sleep(3000);
-				 Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).clear();
-				  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-				  NO_Bag.sendKeys(String.valueOf(Bags));
-				  //Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.
-				  //valueOf(Bags));
-				/*
-				 * //NO_Bag.sendKeys(String.valueOf(Bags));
-				 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-				 * Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).clear();
-				 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-				 * //NO_Bag.sendKeys(String.valueOf(Bags));
-				 * Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.
-				 * valueOf(Bags));
-				 * Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(Keys.TAB
-				 * );
-				 */
-				
-
-				
-				// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
-				 /* 
-				 * Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(Keys.TAB );
-				 *  driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-				 */
-				//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
-				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
-				/*
-				 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
-				 * Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.
-				 * TAB);
-				 */
-				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i);
-				
-				/*
-				 * // 2. Locate Quantity text field WebElement quantityField =
-				 * driver.findElement(By.xpath("//input[@name='QTY']"));
-				 * 
-				 * // 3. Wait until Quantity field is updated with auto-calculated value
-				 * Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
-				 * try {
-				 * Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click(
-				 * ); } catch (ElementClickInterceptedException e) { System.out.
-				 * println("Normal click failed, trying JavaScript Add_Button_before click...");
-				 * js.executeScript("arguments[0].click();", Lots_Confirmation); } catch
-				 * (NoSuchElementException e) {
-				 * System.out.println("Add_Button_before not found: " + e.getMessage()); } catch
-				 * (Exception e) { System.out.println("Unexpected error for Add_Button_before: "
-				 * + e.getMessage()); } // 4. Fetch auto-calculated value String autoQuantityStr
-				 * = quantityField.getAttribute("value"); double autoQuantity =
-				 * Double.parseDouble(autoQuantityStr);
-				 * 
-				 * // 5. Your expected calculation (for example: each bag = 50 units) double
-				 * expectedQuantity = remainingBags *
-				 * RP_Exchange_Deposite_Agriculture_Maker.Bag_Size; // 🔹 Change logic as per
-				 * your app's formula
-				 * 
-				 * // 6. Compare if (autoQuantity == expectedQuantity) {
-				 * System.out.println("✅ Correct Calculation: " + autoQuantity); } else {
-				 * System.out.println("❌ Wrong Calculation! Expected: " + expectedQuantity +
-				 * " but got: " + autoQuantity); }
-				 */
+				NO_Bag.sendKeys(String.valueOf(Bags));
+				NO_Bag.clear();
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				NO_Bag.sendKeys(String.valueOf(Bags));
+				
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
+				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
+						.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
+				  // Wait for Quantity field to auto-fill by backend
+	            WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
+
+	            // Wait until quantity field has a non-empty value
+	            Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
+
+	            // Fetch the auto-filled value
+	            String autoFilledQuantity = quantityField.getAttribute("value");
+	            System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
+				
+	            try {
+					if (Number_Of_Bags_PopUp.isDisplayed()) {
+						Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
+					}
+				} catch (NoSuchElementException e) {
+					System.out.println(" Number_Of_Bags_PopUp Element is not visible");
+
+				} catch (Exception e) {
+					System.out.println(" Number_Of_Bags_PopUp Element not found");
+				}
+				
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+
 				if (i < remainingBags) {
 					try {
 						if (Add_Button.isDisplayed() && Add_Button.isEnabled()) {

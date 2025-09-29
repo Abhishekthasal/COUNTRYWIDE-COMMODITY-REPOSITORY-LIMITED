@@ -506,7 +506,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Assaying_Report_Menu: " + e.getMessage());
 			}
-			/*try {
+			try {
 				if (confirm_pop_up.isDisplayed()) {
 					Wait.until(ExpectedConditions.elementToBeClickable(confirm_pop_up)).click();
 					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -558,7 +558,7 @@ public class Deposite_Assayer_Checker {
 				}
 			} catch (Exception e) {
 				System.out.println("Unexpected error for confirm_pop_up: " + e.getMessage());
-			}*/
+			}
 
 			Thread.sleep(2000);
 			try {
@@ -611,7 +611,7 @@ public class Deposite_Assayer_Checker {
 
 	}
 
-	public void Exchange_Deposite_Assayer_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposite_Assayer_Agriculture_Multiple_GSL() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -633,7 +633,7 @@ public class Deposite_Assayer_Checker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Thread.sleep(2000);
 			try {
 				Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
 			} catch (ElementClickInterceptedException e) {
@@ -656,6 +656,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
+			Thread.sleep(2000);
 			try {
 				Actions_btn.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -689,6 +690,62 @@ public class Deposite_Assayer_Checker {
 
 			Assaying_Report_Menu.sendKeys(Keys.ENTER);
 
+			try {
+				if (confirm_pop_up.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(confirm_pop_up)).click();
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+					Wait.until(ExpectedConditions.elementToBeClickable(Cancel_bttn)).click();
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+
+					try {
+						Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).sendKeys(Keys.ENTER);
+					} catch (ElementClickInterceptedException e) {
+						System.out.println("Normal click failed, trying JavaScript Actions_btn click...");
+						js.executeScript("arguments[0].click();", Actions_btn);
+					} catch (NoSuchElementException e) {
+						System.out.println("Actions_btn not found: " + e.getMessage());
+					} catch (Exception e) {
+						System.out.println("Unexpected error for Actions_btn: " + e.getMessage());
+					}
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+					try {
+						Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
+					} catch (ElementClickInterceptedException e) {
+						System.out.println("Normal click failed, trying JavaScript Authorized_btn click...");
+						js.executeScript("arguments[0].click();", Authorized_btn);
+					} catch (NoSuchElementException e) {
+						System.out.println("Authorized_btn not found: " + e.getMessage());
+					} catch (Exception e) {
+						System.out.println("Unexpected error for Authorized_btn: " + e.getMessage());
+					}
+					try {
+						Goods_Quality_menu.sendKeys(Keys.ENTER);
+					} catch (ElementClickInterceptedException e) {
+						System.out.println("Normal click failed, trying JavaScript Goods_Quality_menu click...");
+						js.executeScript("arguments[0].click();", Goods_Quality_menu);
+					} catch (NoSuchElementException e) {
+						System.out.println("Goods_Quality_menu not found: " + e.getMessage());
+					} catch (Exception e) {
+						System.out.println("Unexpected error for Goods_Quality_menu: " + e.getMessage());
+					}
+					try {
+						Wait.until(ExpectedConditions.elementToBeClickable(Assaying_Report_Menu)).sendKeys(Keys.ENTER);
+					} catch (ElementClickInterceptedException e) {
+						System.out.println("Normal click failed, trying JavaScript Assaying_Report_Menu click...");
+						js.executeScript("arguments[0].click();", Assaying_Report_Menu);
+					} catch (NoSuchElementException e) {
+						System.out.println("Assaying_Report_Menu not found: " + e.getMessage());
+					} catch (Exception e) {
+						System.out.println("Unexpected error for Assaying_Report_Menu: " + e.getMessage());
+					}
+					break;
+				}
+			} catch (Exception e) {
+				System.out.println("Unexpected error for confirm_pop_up: " + e.getMessage());
+			}
+
+			Thread.sleep(2000);
+			
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_checkbox)).click();
 			} catch (ElementClickInterceptedException e) {
@@ -726,7 +783,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 			}
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+			Thread.sleep(3000);
 			Search_txt.clear();
 		}
 	}

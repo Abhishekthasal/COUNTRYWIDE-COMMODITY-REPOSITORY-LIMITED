@@ -67,7 +67,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase  extends BaseCl
 		Report.flush();
 	}
 
-@Test   //5244451
+//@Test   //5244451
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is start");
@@ -138,7 +138,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase  extends BaseCl
 		Report.flush();
 
 	}
-//@Test
+@Test
 	void Deposit_Confirm_WH_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL_Maker is start");

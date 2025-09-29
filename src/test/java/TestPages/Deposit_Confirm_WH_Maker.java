@@ -511,6 +511,7 @@ public class Deposit_Confirm_WH_Maker {
 		}
 		
 		for(int i=1; i<=DashBoard_WareHouse_Checker.totalBags; i++) {
+			Thread.sleep(2000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
@@ -642,7 +643,7 @@ public class Deposit_Confirm_WH_Maker {
 
 	}
 
-	public void Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -664,8 +665,9 @@ public class Deposit_Confirm_WH_Maker {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
 		for(int i=1; i<=DashBoard_WareHouse_Checker.totalBags; i++) {
+			Thread.sleep(3000);
 		try {
-			New_btn.sendKeys(Keys.ENTER);
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
 			js.executeScript("arguments[0].click();", New_btn);
@@ -674,10 +676,9 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for New_btn: " + e.getMessage());
 		}
-
 		try {
 			if (RP_Exchange_Deposite_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				Warehouse_id.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt))
 						.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.WH_ID));
 				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
@@ -710,10 +711,24 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
-		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS)
+		
 		try {
-			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		
+		Sample_id_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite +i));
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite+i  + "';",
+					Warehouse_id_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Search_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+		}
+		
+		Thread.sleep(2000);
+		try {
+			
 			Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
@@ -734,7 +749,7 @@ public class Deposit_Confirm_WH_Maker {
 			System.out.println("Unexpected error for Select_btn: " + e.getMessage());
 		}
 		try {
-			Lot_Details.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Lot_Details)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
 			js.executeScript("arguments[0].click();", Lot_Details);
@@ -743,11 +758,11 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
 		}
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		
+		//js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
 		try {
-			View_Report.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(View_Report)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
 			js.executeScript("arguments[0].click();", View_Report);
@@ -772,6 +787,7 @@ public class Deposit_Confirm_WH_Maker {
 		try {
 			if (save_btn.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(save_btn)).click();
+				Thread.sleep(3000);
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
@@ -781,7 +797,7 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for save_btn: " + e.getMessage());
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(3000);
 		}
 
 	}
