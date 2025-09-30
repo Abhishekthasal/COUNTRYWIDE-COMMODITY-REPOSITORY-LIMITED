@@ -713,7 +713,7 @@ public class Deposite_Assayer_Maker {
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Transaction_Btn click...");
 			js.executeScript("arguments[0].click();", Transaction_Btn);
-		} catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) { 
 			System.out.println("Transaction_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
@@ -754,9 +754,9 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for WareHouse_Id_btn: " + e.getMessage());
 		}
 		try {
-			if (String.valueOf(Physical_Deposit_Maker.Sample).matches("^[a-zA-Z0-9]{50}$")) {
-				SampleId_txt.sendKeys(String.valueOf(Physical_Deposit_Maker.Sample));
-			}
+			//if (String.valueOf(Physical_Deposit_Maker.Sample).matches("^[a-zA-Z0-9]{50}$")) {
+				SampleId_txt.sendKeys(String.valueOf(46202560));
+			//}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript SampleId_txt click...");
 			js.executeScript("arguments[0].value='" + Physical_Deposit_Maker.Sample + "';", SampleId_txt);

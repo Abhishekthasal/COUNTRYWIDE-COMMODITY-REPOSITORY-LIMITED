@@ -29,7 +29,7 @@ public class ON_Market_TestCase extends BaseClass {
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Settlement_Master creation  start");
 			TestPages.Settlement_Master_CC_Login Pledge = new TestPages.Settlement_Master_CC_Login(driver, Wait);
-			Pledge.Settlement_Master();
+			Pledge.Settlement_Master(); 
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "Settlement_Master is success full");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));

@@ -964,12 +964,120 @@ public class ExcelUtils {
 		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
 	
-	public String getexpiry_Date(int rowNum) {
+	public String getcommodity(int rowNum) {
 		return getCellData(rowNum, 4);
 	}
-	
-	public String gettrade_Start_Date(int rowNum) {
+	public String getexpectedDay(int rowNum) {
 		return getCellData(rowNum, 5);
 	}
+	
+	public String getexpectedMonth(int rowNum) {
+		return getCellData(rowNum, 6);
+	}
+	
+	public String getexpectedYear(int rowNum) {
+		return getCellData(rowNum, 7);
+	}
+	
+	public String gettrade_Day(int rowNum) {
+		return getCellData(rowNum, 8);
+	}
+	
+	public String gettrade_Month(int rowNum) {
+		return getCellData(rowNum, 9);
+	}
+	
+	public String gettrade_Year(int rowNum) {
+		return getCellData(rowNum, 10);
+	}
+	
+	public String getPostExpiry_Validity_Date(int rowNum) {
+		return getCellData(rowNum, 11);
+	}
+	
+	public String getPostExpiry_Validity_Month(int rowNum) {
+		return getCellData(rowNum, 12);
+	}
+	
+	public String getPostExpiry_Validity_Year(int rowNum) {
+		return getCellData(rowNum, 13);
+	}
+	
+	public String getDelivery_Marking(int rowNum) {
+		return getCellData(rowNum, 14);
+	}
+	
+	public String getDelivery_Marking_Month(int rowNum) {
+		return getCellData(rowNum, 15);
+	}
+	
+	public String getDelivery_Marking_Year(int rowNum) {
+		return getCellData(rowNum, 16);
+	}
+	public String getpay_In_date(int rowNum) {
+		return getCellData(rowNum, 17);
+	}
+	public String getpay_In_Month(int rowNum) {
+		return getCellData(rowNum, 18);
+	}
+	public String getpay_In_Year(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public int getpay_In_Date_hr(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	public int getpay_In_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	public String getpay_out_date(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public String getpay_out_Month(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public String getpay_out_Year(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public int getpay_out_Date_hr(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	public int getpay_out_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	public String getearly_pay_In_date(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public String getearly_pay_In_Month(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public String getearly_pay_In_Year(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public int getearly_pay_In_Date_hr(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	public int getearly_pay_In_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	public String getearly_Payin_End_date(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public String getearly_Payin_End_Month(int rowNum) {
+		return getCellData(rowNum, 19);
+	}
+	public String getearly_Payin_End_Year(int rowNum) {
+		return getCellData(rowNum, 1);
+	}
+	public int getearly_Payin_End_Date_hr(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	public int getearly_Payin_End_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	
+	
+	
+	
 
 }

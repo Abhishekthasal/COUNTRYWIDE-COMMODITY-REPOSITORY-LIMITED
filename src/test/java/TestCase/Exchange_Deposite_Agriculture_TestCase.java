@@ -138,7 +138,7 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 
 	}
-//@Test
+@Test
 	void Deposit_Confirm_WH_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Maker is start");
@@ -156,7 +156,7 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 
 	}
-@Test
+//@Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Checker is start");

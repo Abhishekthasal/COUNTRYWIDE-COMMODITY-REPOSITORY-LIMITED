@@ -1940,17 +1940,18 @@ public class Physical_Deposit_Maker {
 				}
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
-				NO_Bag.sendKeys(String.valueOf(Bags));
-				NO_Bag.clear();
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-				NO_Bag.sendKeys(String.valueOf(Bags));
+				Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(Bags));
+			      Thread.sleep(2000); 
+			      NO_Bag.clear(); 
+			      NO_Bag.sendKeys(String.valueOf(Bags));
+				 
 				
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
-						.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
+						.sendKeys(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i);
 				  // Wait for Quantity field to auto-fill by backend
 	            WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
 

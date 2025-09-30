@@ -1,12 +1,18 @@
 package TestPages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utillity.ExcelUtils;
@@ -21,15 +27,47 @@ public class Settlement_Master_CC_Login {
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	String ExchangeMaster =excel.getExchangeMaster(dataRow);  
+	String ExchangeMaster = excel.getExchangeMaster(dataRow);
 	int Settlement_Type = excel.getSettlement_Type(dataRow);
 	int settlement_No = excel.getsettlement_No(dataRow);
 	int settlement_Year = excel.getsettlement_Year(dataRow);
-	String expiry_Date = excel.getexpiry_Date(dataRow);
-	String trade_Start_Date = excel.gettrade_Start_Date(dataRow);
+	String commodity = excel.getcommodity(dataRow);
+	String expectedDay = excel.getexpectedDay(dataRow);
+	String expectedMonth = excel.getexpectedMonth(dataRow);
+	String expectedYear = excel.getexpectedYear(dataRow);
+	String trade_Day = excel.gettrade_Day(dataRow);
+	String trade_Month = excel.gettrade_Month(dataRow);
+	String trade_Year = excel.gettrade_Year(dataRow);
+	String PostExpiry_Validity = excel.getPostExpiry_Validity_Date(dataRow);
+	String PostExpiry_Validity_Month = excel.getPostExpiry_Validity_Month(dataRow);
+	String PostExpiry_Validity_Year = excel.getPostExpiry_Validity_Year(dataRow);
+	String Delivery_Marking = excel.getDelivery_Marking(dataRow);
+	String Delivery_Marking_Month = excel.getDelivery_Marking_Month(dataRow);
+	String Delivery_Marking_Year = excel.getDelivery_Marking_Year(dataRow);
+	String pay_In_date = excel.getpay_In_date(dataRow);
+	String pay_In_Month = excel.getpay_In_Month(dataRow);
+	String pay_In_Year = excel.getpay_In_Year(dataRow);
+	//String pay_Out_Date=excel.getpay_Out_Date_hr(dataRow);
+	int pay_In_Date_hr=excel.getpay_In_Date_hr(dataRow);
+	int pay_In_Date_mn=excel.getpay_In_Date_mn(dataRow);
+	String pay_out_date=excel.getpay_out_date(dataRow);
+	String pay_out_Month=excel.getpay_out_Month(dataRow);
+	String pay_out_Year=excel.getpay_out_Year(dataRow);
+    int pay_out_Date_hr=excel.getpay_out_Date_hr(dataRow);
+	int pay_out_Date_mn=excel.getpay_out_Date_mn(dataRow);
+	String early_pay_In_date=excel.getearly_pay_In_date(dataRow);
+	String early_pay_In_Month=excel.getearly_pay_In_Month(dataRow);
+	String early_pay_In_Year=excel.getearly_pay_In_Year(dataRow);
+	int early_pay_In_Date_hr=excel.getearly_pay_In_Date_hr(dataRow);
+	int early_pay_In_Date_mn=excel.getearly_pay_In_Date_mn(dataRow);
+	String early_Payin_End_date=excel.getearly_Payin_End_date(dataRow);
+	String early_Payin_End_Month=excel.getearly_Payin_End_Month(dataRow);
+	String early_Payin_End_Year=excel.getearly_Payin_End_Year(dataRow);
+	int early_Payin_End_Date_hr=excel.getearly_Payin_End_Date_hr(dataRow);
+	int early_Payin_End_Date_mn=excel.getearly_Payin_End_Date_mn(dataRow);
 	
-
 	JavascriptExecutor js = (JavascriptExecutor) driver;
+	
 
 	public Settlement_Master_CC_Login(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -76,26 +114,71 @@ public class Settlement_Master_CC_Login {
 	@FindBy(xpath = "//button[@aria-expanded='false']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement COMM_CODE_NAME_btn;
 
+	@FindBy(xpath = "(//input[@type='text'])[1]")
+	WebElement COMM_CODE_NAME_Txt;
+
 	@FindBy(xpath = "(//input[@id='expiry_Date'])[1]")
 	WebElement expiry_Date_txt;
 
 	@FindBy(xpath = "(//input[@id='trade_Start_Date'])[1]")
 	WebElement trade_Start_Date_txt;
+	
+	@FindBy(xpath="//select[@name='pay_In_Date_hr']")
+	WebElement pay_In_Date_hr_s;
+	
+	@FindBy(xpath="//select[@name='pay_In_Date_mn']")
+	WebElement  pay_In_Date_mn_s;
+	
+	@FindBy(xpath="//select[@name='pay_Out_Date_hr']")
+	WebElement  pay_Out_Date_hr_s;
+	
+	@FindBy(xpath="//select[@name='pay_Out_Date_mn']")
+	WebElement  pay_Out_Date_mn_s;
+	 
+	@FindBy(xpath="//select[@name='early_pay_In_Date_hr']")
+	WebElement  early_pay_In_Date_hr_s;
+	
+	@FindBy(xpath="//select[@name='early_pay_In_Date_mn']")
+	WebElement  early_pay_In_Date_mn_s;
+	
+	@FindBy(xpath="//select[@name='early_Payin_End_Date_hr']")
+	WebElement  early_Payin_End_Date_hr_s;
+	
+	@FindBy(xpath="//select[@name='early_Payin_End_Date_mn']")
+	WebElement early_Payin_End_Date_mn_s ;
+	
 
 	public void Settlement_Master() throws InterruptedException {
 
-		Thread.sleep(3000);
-		
-		if (Masters_Btn.isDisplayed()) {
-			Wait.until(ExpectedConditions.elementToBeClickable(Masters_Btn)).click();
-		} else {
-			System.out.println("Masters_Btn is not visible");
+		// Thread.sleep(3000);
+		try {
+			if (Masters_Btn.isDisplayed()) {
+				Masters_Btn.click();
+			} else {
+				System.out.println("Masters_Btn is not visible");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Masters_Btn click...");
+			js.executeScript("arguments[0].click();", Masters_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Masters_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Masters_Btn: " + e.getMessage());
 		}
 
-		if (Settlement_Btn.isDisplayed()) {
-			Wait.until(ExpectedConditions.elementToBeClickable(Settlement_Btn)).click();
-		} else {
-			System.out.println("Settlement_Btn is not visible");
+		try {
+			if (Settlement_Btn.isDisplayed()) {
+				Settlement_Btn.click();
+			} else {
+				System.out.println("Settlement_Btn is not visible");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Settlement_Btn click...");
+			js.executeScript("arguments[0].click();", Settlement_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Settlement_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Settlement_Btn: " + e.getMessage());
 		}
 
 		if (New_btn.isDisplayed()) {
@@ -107,10 +190,11 @@ public class Settlement_Master_CC_Login {
 		ExchangeMasterCombobox_btn.click();
 		ExchangeMasterCombobox_txt.sendKeys(ExchangeMaster);
 		ExchangeMasterCombobox_txt.sendKeys(Keys.ENTER);
-		
+
 		Settlement_Type_Btn.click();
 		Settlement_Type_Txt.sendKeys(String.valueOf(Settlement_Type));
 		Settlement_Type_Txt.sendKeys(Keys.ENTER);
+
 		settlement_No_txt.click();
 		settlement_No_txt.sendKeys(String.valueOf(settlement_No));
 
@@ -127,10 +211,251 @@ public class Settlement_Master_CC_Login {
 		Add_Commodity.click();
 
 		COMM_CODE_NAME_btn.click();
+		COMM_CODE_NAME_Txt.sendKeys(commodity);
+		COMM_CODE_NAME_Txt.sendKeys(Keys.ENTER);
 
-		expiry_Date_txt.sendKeys(String.valueOf(expiry_Date));
+		// Open the calendar
+		WebElement dateField = driver.findElement(By.xpath("//input[@id='expiry_Date']"));
+		dateField.click();
 
-		trade_Start_Date_txt.sendKeys(trade_Start_Date);
+		// Loop until correct month and year are displayed
+		while (true) {
+			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+
+			if (currentMonth.equals(expectedMonth) && currentYear.equals(expectedYear)) {
+				break; // Correct month and year found
+			} else {
+				// Click next button to move calendar forward
+				driver.findElement(By.xpath("//a[@title='Next']")).click();
+			}
+		}
+
+		// Select the expectedDay
+		List<WebElement> days = driver.findElements(
+				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
+		for (WebElement d : days) {
+			if (d.getText().equals(expectedDay)) {
+				d.click();
+				break;
+			}
+		}
+		// Open the calendar
+		WebElement trade_Start_Date = driver.findElement(By.xpath(" //input[@id='trade_Start_Date']"));
+		trade_Start_Date.click();
+
+		// Loop until correct month and year are displayed
+		while (true) {
+			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+
+			if (currentMonth.equals(trade_Month) && currentYear.equals(trade_Year)) {
+				break; // Correct month and year found
+			} else {
+				// Click next button to move calendar forward
+				driver.findElement(By.xpath("//a[@title='Next']")).click();
+			}
+		}
+
+		// Select the trade_Start_Date_days
+		List<WebElement> trade_Start_Date_days = driver.findElements(
+				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
+		for (WebElement d : trade_Start_Date_days) {
+			if (d.getText().equals(trade_Day)) {
+				d.click();
+				break;
+			}
+		}
+		// Open the calendar
+		WebElement PostExpiry_Validity_Date = driver.findElement(By.xpath("//input[@ng-class=\"{'vm.Settlement.post_expiry_Date'}\"]"));
+		PostExpiry_Validity_Date.click();
+
+		// Loop until correct month and year are displayed
+		while (true) {
+			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+
+			if (currentMonth.equals(PostExpiry_Validity_Month) && currentYear.equals(PostExpiry_Validity_Year)) {
+				break; // Correct month and year found
+			} else {
+				// Click next button to move calendar forward
+				driver.findElement(By.xpath("//a[@title='Next']")).click();
+			}
+		}
+
+		// Select the PostExpiry_Validity_days
+		List<WebElement> PostExpiry_Validity_days = driver.findElements(
+				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
+		for (WebElement d : PostExpiry_Validity_days) {
+			if (d.getText().equals(PostExpiry_Validity)) {
+				d.click();
+				break;
+			}
+		}
+		// Open the calendar
+		WebElement Delivery_Marking_Date = driver.findElement(By.xpath("//input[@ng-class=\"{'vm.Settlement.delivery_Marking_Date'}\"]"));
+		Delivery_Marking_Date.click();
+
+		// Loop until correct month and year are displayed
+		while (true) {
+			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+
+			if (currentMonth.equals(Delivery_Marking_Month) && currentYear.equals(Delivery_Marking_Year)) {
+				break; // Correct month and year found
+			} else {
+				// Click next button to move calendar forward
+				driver.findElement(By.xpath("//a[@title='Next']")).click();
+			}
+		}
+
+		// Select the Delivery_Marking_Date_days
+		List<WebElement> Delivery_Marking_Date_days = driver.findElements(
+				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
+		for (WebElement d : Delivery_Marking_Date_days) {
+			if (d.getText().equals(Delivery_Marking)) {
+				d.click();
+				break;
+			}
+		}
+		// Open the calendar
+		WebElement pay_In = driver.findElement(By.xpath("//input[@id='pay_In_Date']"));
+		pay_In.click();
+
+		// Loop until correct month and year are displayed
+		while (true) {
+			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+
+			if (currentMonth.equals(pay_In_Month) && currentYear.equals(pay_In_Year)) {
+				break; // Correct month and year found
+			} else {
+				// Click next button to move calendar forward
+				driver.findElement(By.xpath("//a[@title='Next']")).click();
+			}
+		}
+
+		// Select the Delivery_Marking_Date_days
+		List<WebElement> Dpay_In_days = driver.findElements(
+				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
+		for (WebElement d : Dpay_In_days) {
+			if (d.getText().equals(pay_In_date)) {
+				d.click();
+				break;
+			}
+		}
+		Select pay_in = new Select(pay_In_Date_hr_s);
+		pay_in.selectByContainsVisibleText(String.valueOf(pay_In_Date_hr));
+		
+		Select pay_in_mm = new Select(pay_In_Date_mn_s);
+		pay_in_mm.selectByContainsVisibleText(String.valueOf(pay_In_Date_mn));
+		
+		// Open the calendar
+				WebElement pay_out = driver.findElement(By.xpath("(//input[@id='pay_Out_Date'])[1]"));
+				pay_out.click();
+
+				// Loop until correct month and year are displayed
+				while (true) {
+					String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+					String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+
+					if (currentMonth.equals(pay_out_Month) && currentYear.equals(pay_out_Year)) {
+						break; // Correct month and year found
+					} else {
+						// Click next button to move calendar forward
+						driver.findElement(By.xpath("//a[@title='Next']")).click();
+					}
+				}
+
+				// Select the Delivery_Marking_Date_days
+				List<WebElement> pay_out_days = driver.findElements(
+						By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
+				for (WebElement d : pay_out_days) {
+					if (d.getText().equals(pay_out_date)) {
+						d.click();
+						break;
+					}
+				}
+		
+		
+		Select pay_Out = new Select(pay_Out_Date_hr_s);
+		pay_Out.selectByContainsVisibleText(String.valueOf(pay_out_Date_hr));
+		
+		Select pay_Out_mm = new Select(pay_Out_Date_mn_s);
+		pay_Out_mm.selectByContainsVisibleText(String.valueOf(pay_out_Date_mn));
+		
+		// Open the calendar
+				WebElement early_pay_In = driver.findElement(By.xpath("//input[@id='early_Payin_Start_Date']"));
+				early_pay_In.click();
+
+				// Loop until correct month and year are displayed
+				while (true) {
+					String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+					String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+
+					if (currentMonth.equals(early_pay_In_Month) && currentYear.equals(early_pay_In_Year)) {
+						break; // Correct month and year found
+					} else {
+						// Click next button to move calendar forward
+						driver.findElement(By.xpath("//a[@title='Next']")).click();
+					}
+				}
+
+				// Select the Delivery_Marking_Date_days
+				List<WebElement> early_pay_In_days = driver.findElements(
+						By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
+				for (WebElement d : early_pay_In_days) {
+					if (d.getText().equals(early_pay_In_date)) {
+						d.click();
+						break;
+					}
+				}
+		Select early_pay_In_hr = new Select(early_pay_In_Date_hr_s);
+		early_pay_In_hr.selectByContainsVisibleText(String.valueOf(early_pay_In_Date_hr));
+		
+		Select early_pay_In_mm = new Select(early_pay_In_Date_mn_s);
+		early_pay_In_mm.selectByContainsVisibleText(String.valueOf(early_pay_In_Date_mn));
+		
+		// Open the calendar
+				WebElement early_Payin_End = driver.findElement(By.xpath("//input[@ng-class=\"{'vm.Settlement.early_Payin_End_Date'}\"]"));
+				early_Payin_End.click();
+
+				// Loop until correct month and year are displayed
+				while (true) {
+					String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+					String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+
+					if (currentMonth.equals(early_Payin_End_Month) && currentYear.equals(early_Payin_End_Year)) {
+						break; // Correct month and year found
+					} else {
+						// Click next button to move calendar forward
+						driver.findElement(By.xpath("//a[@title='Next']")).click();
+					}
+				}
+
+				// Select the Delivery_Marking_Date_days
+				List<WebElement> early_Payin_End_days = driver.findElements(
+						By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
+				for (WebElement d : early_Payin_End_days) {
+					if (d.getText().equals(early_Payin_End_date)) {
+						d.click();
+						break;
+					}
+				}
+		Select early_Payin_End_hr = new Select(early_Payin_End_Date_hr_s);
+		early_Payin_End_hr.selectByContainsVisibleText(String.valueOf(early_Payin_End_Date_hr));
+		
+		Select early_Payin_End_mm = new Select(early_Payin_End_Date_mn_s);
+		early_Payin_End_mm.selectByContainsVisibleText(String.valueOf(early_Payin_End_Date_mn));
+		
+		
+		
+		
+		
+		
+		
+		
+
 	}
 
 }
