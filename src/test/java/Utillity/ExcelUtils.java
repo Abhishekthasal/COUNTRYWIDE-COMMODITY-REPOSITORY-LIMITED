@@ -1024,60 +1024,91 @@ public class ExcelUtils {
 		return getCellData(rowNum, 19);
 	}
 	public int getpay_In_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(20).getNumericCellValue();
 	}
 	public int getpay_In_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(21).getNumericCellValue();
 	}
 	public String getpay_out_date(int rowNum) {
-		return getCellData(rowNum, 19);
+		return getCellData(rowNum, 22);
 	}
 	public String getpay_out_Month(int rowNum) {
-		return getCellData(rowNum, 19);
+		return getCellData(rowNum, 23);
 	}
 	public String getpay_out_Year(int rowNum) {
-		return getCellData(rowNum, 19);
+		return getCellData(rowNum, 24);
 	}
 	public int getpay_out_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(25).getNumericCellValue();
 	}
 	public int getpay_out_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(26).getNumericCellValue();
 	}
 	public String getearly_pay_In_date(int rowNum) {
-		return getCellData(rowNum, 19);
+		return getCellData(rowNum, 27);
 	}
 	public String getearly_pay_In_Month(int rowNum) {
-		return getCellData(rowNum, 19);
+		return getCellData(rowNum, 28);
 	}
 	public String getearly_pay_In_Year(int rowNum) {
-		return getCellData(rowNum, 19);
+		return getCellData(rowNum, 29);
 	}
 	public int getearly_pay_In_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(30).getNumericCellValue();
 	}
 	public int getearly_pay_In_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(31).getNumericCellValue();
 	}
 	public String getearly_Payin_End_date(int rowNum) {
-		return getCellData(rowNum, 19);
+		return getCellData(rowNum, 32);
 	}
 	public String getearly_Payin_End_Month(int rowNum) {
-		return getCellData(rowNum, 19);
+		return getCellData(rowNum, 33);
 	}
 	public String getearly_Payin_End_Year(int rowNum) {
-		return getCellData(rowNum, 1);
+		return getCellData(rowNum, 34);
 	}
 	public int getearly_Payin_End_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(35).getNumericCellValue();
 	}
 	public int getearly_Payin_End_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(36).getNumericCellValue();
 	}
 	
+	/*************************************On_Market_RP_Login**********************************/
 	
-	
-	
-	
+	public String getPayinType(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+	public int getInstr_Slip_On_Market(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	public int getWSP_Id_On_Market(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+	public int getWH_Id_On_Market(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	public int getCommodity_On_Market(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
+	}
+	public int getClient_Id(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
+	}
+	public int getUCC_Id_On_Market(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
+	}
+	public int getTM_Id(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(7).getNumericCellValue();
+	}
+	public int getCM_Id(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(8).getNumericCellValue();
+	}
+	public int getSettlement_No(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
+	}
+	public int getENWR_No(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
+	}
 
 }

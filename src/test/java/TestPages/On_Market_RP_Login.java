@@ -1,10 +1,18 @@
 package TestPages;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import Utillity.ExcelUtils;
 
@@ -12,16 +20,23 @@ public class On_Market_RP_Login {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\PlageData.xlsx";
-	static String sheet = "DPlageRequest";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ON_Market.xlsx";
+	static String sheet = "OnMarket";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
-	
-	
-	int pledge_Cls_Confrim_Req_No = excel.getpledge_Cls_Confrim_Req_No(dataRow);
-	int pledge_value = excel.getpledge_value_d(dataRow);
-	
 	JavascriptExecutor js = (JavascriptExecutor) driver;
+
+	String PayinType = excel.getPayinType(dataRow);
+	int Instr_Slip_No = excel.getInstr_Slip_On_Market(dataRow);
+	int WSP_Id = excel.getWSP_Id_On_Market(dataRow);
+	int WH_Id = excel.getWH_Id_On_Market(dataRow);
+	int Commodity = excel.getCommodity_On_Market(dataRow);
+	int Client_Id = excel.getClient_Id(dataRow);
+	int UCC_Id = excel.getUCC_Id_On_Market(dataRow);
+	int TM_Id = excel.getTM_Id(dataRow);
+	int CM_Id =excel.getCM_Id(dataRow);
+	int Settlement_No=excel.getSettlement_No(dataRow);
+	int ENWR_No=excel.getENWR_No(dataRow);
 
 	public On_Market_RP_Login(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -32,11 +47,177 @@ public class On_Market_RP_Login {
 	// --------------for Request for Depledge_Request creation process-------------
 	@FindBy(xpath = "//span[normalize-space()='Transactions']")
 	WebElement Transaction_Btn;
+
+	@FindBy(xpath = "//span[normalize-space()='OnMarket']")
+	WebElement OnMarket_Btn;
+
+	@FindBy(xpath = "//button[normalize-space()='New']")
+	WebElement New_Btn;
+
+	@FindBy(xpath = "//select[@placeholder='mm']")
+	WebElement PayinType_Drop;
+
+	@FindBy(xpath = "//input[@name='Instr_Slip_No']")
+	WebElement Instr_Slip_No_txt;
+
+	@FindBy(xpath = "//input[@id='Request_Date']")
+	WebElement Request_Date_btn;
+
+	@FindBy(xpath = "//td[@class='today active start-date active end-date available']")
+	WebElement Today_dates;
+	// (//td[@class='today weekend active start-date active end-date available'])[1]
+	// td[@class='today weekend active start-date active end-date available']
+	@FindBy(xpath = "//td[@class='today weekend active start-date active end-date available']")
+	WebElement WeekEnd_Date;
+
+	@FindBy(xpath = "//button[@data-id='WspMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement WSP_Id_btn;
+
+	@FindBy(xpath = "//div[@class='btn-group bootstrap-select form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required open']//input[@type='text']")
+	WebElement WSP_Id_txt;
+
+	@FindBy(xpath = "//button[@data-id='WhMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement WH_Id_Btn;
+
+	@FindBy(xpath = "(//input[@type='text'])[7]")
+	WebElement WH_Id_txt;
+
+	@FindBy(xpath = "//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement Commodity_Btn;
+
+	@FindBy(xpath = "(//input[@type='text'])[9]")
+	WebElement Commodity_Txt;
+
+	@FindBy(xpath = "//button[@data-id='ClientMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement Client_Id_Btn;
+
+	@FindBy(xpath = "(//input[@type='text'])[11]")
+	WebElement Client_Id_Txt;
+
+	@FindBy(xpath = "//button[@data-id='ucc']")
+	WebElement UCC_Id_Btn;
+
+	@FindBy(xpath = "(//input[@type='text'])[13]")
+	WebElement UCC_Id_txt;
+
+	@FindBy(xpath = "//button[@data-id='tm_IdCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement TM_Id_Btn;
+
+	@FindBy(xpath = "(//input[@type='text'])[15]")
+	WebElement TM_Id_Txt;
 	
-	public void On_Market() {
-		
-		
-		
+	@FindBy(xpath="//button[@data-id='cm_IdCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement CM_Id_Btn;
+	
+	@FindBy(xpath="(//input[@type='text'])[17]")
+	WebElement CM_Id_Txt;
+	
+	@FindBy(xpath="(//button[@id='TransctionStlmt'])[1]")
+	WebElement TransctionStlmt;
+	
+	@FindBy(xpath="(//input[@placeholder='Search...'])[1]")
+	WebElement Search_Txt;
+	
+	@FindBy(xpath="//button[@ng-click='vm.GetDetails()']")
+	WebElement Search_Btn;
+	
+	@FindBy(xpath="(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[1]")
+	WebElement Select_Btn;
+	
+	@FindBy(xpath="//button[@button-busy='vm.saving']")
+	WebElement Saving_Btn;
+	
+
+	public void On_Market() throws InterruptedException {
+
+		Transaction_Btn.click();
+
+		OnMarket_Btn.click();
+
+		New_Btn.click();
+
+		Select Pay = new Select(PayinType_Drop);
+		Pay.selectByVisibleText(PayinType);
+
+		Instr_Slip_No_txt.click();
+		Instr_Slip_No_txt.sendKeys(String.valueOf(Instr_Slip_No));
+
+		Request_Date_btn.click();
+
+		DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+
+		if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+			// Click on Weekend date button
+			WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+			weekendButton.click();
+			System.out.println("Weekend button clicked");
+		} else {
+			// Click on Today date button
+			WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+			todayButton.click();
+			System.out.println("Today date button clicked");
+
+			WSP_Id_btn.click();
+			WSP_Id_txt.sendKeys(String.valueOf(WSP_Id));
+			Thread.sleep(1000);
+			WSP_Id_txt.sendKeys(Keys.ENTER);
+
+			WH_Id_Btn.click();
+			WH_Id_txt.sendKeys(String.valueOf(WH_Id));
+			Thread.sleep(1000);
+			WH_Id_txt.sendKeys(Keys.ENTER);
+
+			Commodity_Btn.click();
+			Commodity_Txt.sendKeys(String.valueOf(Commodity));
+			Thread.sleep(1000);
+			Commodity_Txt.sendKeys(Keys.ENTER);
+
+			Client_Id_Btn.click();
+			Client_Id_Txt.sendKeys(String.valueOf(Client_Id));
+			Thread.sleep(1000);
+			Client_Id_Txt.sendKeys(Keys.ENTER);
+
+			UCC_Id_Btn.click();
+			UCC_Id_txt.sendKeys(String.valueOf(UCC_Id));
+			UCC_Id_txt.sendKeys(Keys.ENTER);
+
+			TM_Id_Btn.click();
+			TM_Id_Txt.sendKeys(String.valueOf(TM_Id));
+			TM_Id_Txt.sendKeys(Keys.ENTER);
+			
+			CM_Id_Btn.click();
+			CM_Id_Txt.sendKeys(String.valueOf(CM_Id));
+			CM_Id_Txt.sendKeys(Keys.ENTER);
+			
+			TransctionStlmt.click();
+			
+			Search_Txt.sendKeys(String.valueOf(Settlement_No));
+			Search_Btn.click();
+			
+			Select_Btn.click();
+			
+			TransctionStlmt.click();
+			
+			Search_Txt.sendKeys(String.valueOf(ENWR_No));
+			Search_Btn.click();
+			
+			Select_Btn.click();
+			
+			try {
+				if (Saving_Btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Saving_Btn)).click();
+				} else {
+					System.out.println("Saving_Btn is not visible");
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying Saving_Btn click...");
+				js.executeScript("arguments[0].click();", Saving_Btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Saving_Btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Saving_Btn: " + e.getMessage());
+			}
+
+		}
 	}
-	
 }

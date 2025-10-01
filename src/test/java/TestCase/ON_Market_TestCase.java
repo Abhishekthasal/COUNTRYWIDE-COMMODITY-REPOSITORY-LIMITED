@@ -18,9 +18,9 @@ public class ON_Market_TestCase extends BaseClass {
 			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"
 					+ System.currentTimeMillis() + ".html",
 			true);
-	ExtentTest test = Report.startTest("Pledge_Creation Report");
+	ExtentTest test = Report.startTest("ON Market Report");
 
-	@Test
+	//@Test
 	void Settlement_Master_CC_Login() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Settlement_Master start");
@@ -40,6 +40,31 @@ public class ON_Market_TestCase extends BaseClass {
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
 					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "Settlement_Master Test failed");
+		}
+		Report.endTest(test);
+		Report.flush();
+	}
+	
+	@Test
+	void ON_Market_Checker() throws IOException {
+		try {
+			test.log(LogStatus.INFO, "Login for ON_Market_Checker start");
+			LoginPages Login = new LoginPages(driver, Wait);
+			Login.PortalLogin("cc8880013", "user1", "121@test");
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
+			test.log(LogStatus.INFO, "ON_Market_Checker creation  start");
+			TestPages.ON_Market_Checker Pledge = new TestPages.ON_Market_Checker(driver, Wait);
+			Pledge.Settlement_Master_Checker(); 
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+ "ON_Market_Checker is success full");
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			test.log(LogStatus.INFO, "LogOut for ON_Market_Checker Authorized Start");
+			TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+			Log.Logout();
+			test.log(LogStatus.INFO, "LogOut for ON_Market_Checker Authorized END");
+		} catch (Exception e) {
+			test.log(LogStatus.FAIL,
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "ON_Market_Checker Test failed");
 		}
 		Report.endTest(test);
 		Report.flush();
