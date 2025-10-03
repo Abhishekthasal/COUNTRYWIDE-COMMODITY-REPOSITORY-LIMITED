@@ -55,6 +55,9 @@ public class RP_Deposite_Request_Checker {
 	@FindBy(xpath = "//span[normalize-space()='TM CM Linking']")
 	WebElement TM_CM_Linking_bttn;
 
+	@FindBy(xpath = "//span[normalize-space()='Client CM Linking']")
+	WebElement Client_CM_Linking_bttn;
+
 	@FindBy(xpath = "//input[@placeholder='Search...']")
 	WebElement Search_TextBox;
 
@@ -1015,8 +1018,123 @@ public class RP_Deposite_Request_Checker {
 			System.out.println("Unexpected error Save_btn: " + e.getMessage());
 		}
 		System.out.println(
-				"--------------------Exchange_Deposite_Request_Non_Agriculture Checker is Done-------------------------");
+				"--------------------TM_CM_Linking_RP_Checker Checker is Done-------------------------");
 
+	}
+
+	public void ClientCmLinking_RP_Checker() throws InterruptedException {
+		
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Masters_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Masters_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Transaction_Bttn_Xpath not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Bttn_Xpath: " + e.getMessage());
+		}
+		// Deposit function to be Click
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Client_CM_Linking_bttn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Client_CM_Linking_bttn click...");
+			js.executeScript("arguments[0].click();", Client_CM_Linking_bttn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Client_CM_Linking_bttn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Client_CM_Linking_bttn: " + e.getMessage());
+		}
+		try {
+			Search_TextBox.sendKeys(String.valueOf(TM_CM_Linking_RP.TM_ID));
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Search_TextBox click...");
+			js.executeScript("arguments[0].value='" + TM_CM_Linking_RP.TM_ID + "';",
+					Search_TextBox);
+		} catch (NoSuchElementException e) {
+			System.out.println("Search_TextBox not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for  Search_TextBox: " + e.getMessage());
+		}
+		try {
+			submit_btn.click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript  submit_btn click...");
+			js.executeScript("arguments[0].click();", submit_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("submit_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(caret)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript  caret click...");
+			js.executeScript("arguments[0].click();", caret);
+		} catch (NoSuchElementException e) {
+			System.out.println("caret not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for caret: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorized_TM_CM_Linking)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript  Authorize_btn click...");
+			js.executeScript("arguments[0].click();", Authorized_TM_CM_Linking);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_btn: " + e.getMessage());
+		}
+
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		// WebElement scroll = driver.findElement(By.xpath("//div[@role='dialog']"));
+		scroll.sendKeys(Keys.PAGE_DOWN);
+		scroll.sendKeys(Keys.PAGE_DOWN);
+		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		
+		Thread.sleep(2000);
+		try {
+			if (Authorize_page_TM_CM.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page_TM_CM)).click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).sendKeys(Keys.ENTER);
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
+			js.executeScript("arguments[0].click();", Authorize_page);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_page not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_page: " + e.getMessage());
+		}
+		/*
+		 * try { if (Verify_btn.isDisplayed()) {
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click(); } }
+		 * catch (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript Verify_btn click...");
+		 * js.executeScript("arguments[0].click();", Verify_btn); } catch
+		 * (NoSuchElementException e) { System.out.println("Verify_btn not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for Verify_btn: " + e.getMessage()); }
+		 */
+		try {
+			if (Save_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Save_btn click...");
+			// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", Save_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Save_btn: " + e.getMessage());
+		}
+		System.out.println(
+				"--------------------ClientCmLinking_RP_Checker Checker is Done-------------------------");
+
+		
 	}	
 	
 	

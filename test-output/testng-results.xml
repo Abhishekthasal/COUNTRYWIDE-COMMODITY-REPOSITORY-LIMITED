@@ -2,19 +2,19 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-01T12:53:24 IST" name="Default suite" finished-at="2025-10-01T12:53:48 IST" duration-ms="23611">
+  <suite started-at="2025-10-03T17:21:33 IST" name="Default suite" finished-at="2025-10-03T17:21:42 IST" duration-ms="9266">
     <groups>
     </groups>
-    <test started-at="2025-10-01T12:53:24 IST" name="Default test" finished-at="2025-10-01T12:53:48 IST" duration-ms="23611">
+    <test started-at="2025-10-03T17:21:33 IST" name="Default test" finished-at="2025-10-03T17:21:42 IST" duration-ms="9266">
       <class name="TestCase.ON_Market_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-10-01T12:53:24 IST" name="setup" finished-at="2025-10-01T12:53:28 IST" duration-ms="3377" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-10-03T17:21:33 IST" name="setup" finished-at="2025-10-03T17:21:37 IST" duration-ms="3949" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="ON_Market_Checker()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-10-01T12:53:28 IST" name="ON_Market_Checker" finished-at="2025-10-01T12:53:48 IST" duration-ms="20198" status="PASS">
+        <test-method signature="On_Market_RP_Login()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-10-03T17:21:37 IST" name="On_Market_RP_Login" finished-at="2025-10-03T17:21:42 IST" duration-ms="5285" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ON_Market_Checker -->
+        </test-method> <!-- On_Market_RP_Login -->
       </class> <!-- TestCase.ON_Market_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

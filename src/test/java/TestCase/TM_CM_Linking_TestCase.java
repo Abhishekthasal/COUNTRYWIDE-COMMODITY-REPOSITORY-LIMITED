@@ -231,6 +231,28 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
+	//@Test
+	  void ClientCmLinking_RP_Checker () throws IOException {
+		try {
+			test.log(LogStatus.INFO, "TM_CM_Linking_RP_Checker start");
+		  LoginPages Login = new LoginPages(driver, Wait);
+			Login.PortalLogin("rp-abhishek", "user52", "121@test");
+			TestPages.RP_Deposite_Request_Checker CCM = new TestPages.RP_Deposite_Request_Checker(driver,Wait);
+			CCM.ClientCmLinking_RP_Checker();
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+ "TM_CM_Linking_RP_Checker is success full");
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+			/*
+			 * TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+			 * Log.Logout();
+			 */
+		} catch (Exception e) {
+			test.log(LogStatus.FAIL,
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) +e.getMessage()+ "TM_CM_Linking_RP Test failed");
+		}
+		Report.endTest(test);
+		Report.flush();
+	}
 	
 	//@Test
 	  void ClientCmLinking_Verfication () throws IOException {

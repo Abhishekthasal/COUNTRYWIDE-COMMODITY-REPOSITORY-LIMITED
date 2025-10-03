@@ -5,8 +5,8 @@
     <classes>
       <class name="TestCase.ON_Market_TestCase">
         <methods>
-          <include name="Settlement_Master_CC_Login"/>
           <include name="setup"/>
+          <include name="On_Market_RP_Login"/>
         </methods>
       </class> <!-- TestCase.ON_Market_TestCase -->
     </classes>
