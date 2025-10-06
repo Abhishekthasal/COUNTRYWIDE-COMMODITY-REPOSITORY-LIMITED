@@ -89,7 +89,7 @@ public class Settlement_Master_CC_Login {
 	// div[@class='btn-group bootstrap-select form-control ng-pristine ng-untouched
 	// ng-empty ng-invalid ng-invalid-required dropup open']//input[@type='text']
 
-	@FindBy(xpath = "//div[@class='btn-group bootstrap-select form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required dropup open']//input[@type='text']")
+	@FindBy(xpath = "(//input[@type='text'])[2]")
 	WebElement ExchangeMasterCombobox_txt;
 
 	@FindBy(xpath = "(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]")
@@ -110,7 +110,7 @@ public class Settlement_Master_CC_Login {
 	@FindBy(xpath = "(//button[normalize-space()='Add Commodity Contract'])[1]")
 	WebElement Add_Commodity;
 
-	@FindBy(xpath = "//button[@aria-expanded='false']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	@FindBy(xpath = "//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement COMM_CODE_NAME_btn;
 
 	@FindBy(xpath = "(//input[@type='text'])[1]")
@@ -145,23 +145,22 @@ public class Settlement_Master_CC_Login {
 
 	@FindBy(xpath = "//select[@name='early_Payin_End_Date_mn']")
 	WebElement early_Payin_End_Date_mn_s;
-	
-	@FindBy(xpath="(//button[normalize-space()='Add To Settelment Details'])[1]")
+
+	@FindBy(xpath = "(//button[normalize-space()='Add To Settelment Details'])[1]")
 	WebElement Add_To_Settelment_Details_btn;
-	
-	@FindBy(xpath="//span[normalize-space()='Save']")
+
+	@FindBy(xpath = "//span[normalize-space()='Save']")
 	WebElement Save_btn;
-	
 
 	public void Settlement_Master() throws InterruptedException {
 
 		// Thread.sleep(3000);
 		try {
-			if (Masters_Btn.isDisplayed()) {
-				Masters_Btn.click();
-			} else {
-				System.out.println("Masters_Btn is not visible");
-			}
+			// if (Masters_Btn.isDisplayed()) {
+			Masters_Btn.click();
+			/*
+			 * } else { System.out.println("Masters_Btn is not visible"); }
+			 */
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Masters_Btn click...");
 			js.executeScript("arguments[0].click();", Masters_Btn);
@@ -172,11 +171,11 @@ public class Settlement_Master_CC_Login {
 		}
 		Thread.sleep(2000);
 		try {
-			if (Settlement_Btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Settlement_Btn)).click();
-			} else {
-				System.out.println("Settlement_Btn is not visible");
-			}
+			// if (Settlement_Btn.isDisplayed()) {
+			Wait.until(ExpectedConditions.elementToBeClickable(Settlement_Btn)).click();
+			/*
+			 * } else { System.out.println("Settlement_Btn is not visible"); }
+			 */
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Settlement_Btn click...");
 			js.executeScript("arguments[0].click();", Settlement_Btn);
@@ -194,6 +193,7 @@ public class Settlement_Master_CC_Login {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(ExchangeMasterCombobox_btn)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(ExchangeMasterCombobox_txt)).sendKeys(ExchangeMaster);
+			System.out.println("ExchangeMaster is :" + ExchangeMaster);
 			Thread.sleep(1000);
 			ExchangeMasterCombobox_txt.sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
@@ -207,22 +207,21 @@ public class Settlement_Master_CC_Login {
 			System.out.println("Unexpected error for Settlement_Btn: " + e.getMessage());
 		}
 		try {
-		Wait.until(ExpectedConditions.elementToBeClickable(Settlement_Type_Btn)).click();
-		Settlement_Type_Txt.sendKeys(String.valueOf(Settlement_Type));
-		Thread.sleep(1000);
-		Settlement_Type_Txt.sendKeys(Keys.ENTER);
-	} catch (ElementClickInterceptedException e) {
-		System.out.println("Normal click failed, trying Settlement_Type_Txt click...");
-		js.executeScript("arguments[0].click();", Settlement_Type_Btn);
-		js.executeScript("arguments[0].value='" + Settlement_Type + "';", Settlement_Type_Txt);
-		js.executeScript("arguments[0].click();", Settlement_Type_Txt);
-	} catch (NoSuchElementException e) {
-		System.out.println("Settlement_Type_Txt not found: " + e.getMessage());
-	} catch (Exception e) {
-		System.out.println("Unexpected error for Settlement_Type_Txt: " + e.getMessage());
-	}
-		
-		
+			Wait.until(ExpectedConditions.elementToBeClickable(Settlement_Type_Btn)).click();
+			Settlement_Type_Txt.sendKeys(String.valueOf(Settlement_Type));
+			Thread.sleep(1000);
+			Settlement_Type_Txt.sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Settlement_Type_Txt click...");
+			js.executeScript("arguments[0].click();", Settlement_Type_Btn);
+			js.executeScript("arguments[0].value='" + Settlement_Type + "';", Settlement_Type_Txt);
+			js.executeScript("arguments[0].click();", Settlement_Type_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Settlement_Type_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Settlement_Type_Txt: " + e.getMessage());
+		}
+
 		settlement_No_txt.click();
 		settlement_No_txt.sendKeys(String.valueOf(settlement_No));
 
@@ -237,37 +236,64 @@ public class Settlement_Master_CC_Login {
 		settlement_Year_txt.sendKeys(String.valueOf(settlement_Year));
 
 		Add_Commodity.click();
-
-		COMM_CODE_NAME_btn.click();
-		COMM_CODE_NAME_Txt.sendKeys(commodity);
-		COMM_CODE_NAME_Txt.sendKeys(Keys.ENTER);
-
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(COMM_CODE_NAME_btn)).click();
+			COMM_CODE_NAME_Txt.sendKeys(commodity);
+			Thread.sleep(1000);
+			COMM_CODE_NAME_Txt.sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying COMM_CODE_NAME_btn click...");
+			js.executeScript("arguments[0].click();", COMM_CODE_NAME_btn);
+			js.executeScript("arguments[0].value='" + commodity + "';", COMM_CODE_NAME_Txt);
+			js.executeScript("arguments[0].click();", COMM_CODE_NAME_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("COMM_CODE_NAME_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for COMM_CODE_NAME_Txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
 		// Open the calendar
 		WebElement dateField = driver.findElement(By.xpath("//input[@id='expiry_Date']"));
 		dateField.click();
 
-		// Loop until correct month and year are displayed
-		while (true) {
-			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+		// select year
+		WebElement yearDropdown = driver
+				.findElement(By.xpath("//div[@class='calendar left single']//select[@class='yearselect']"));
+		Select yearSelect = new Select(yearDropdown);
+		yearSelect.selectByVisibleText(expectedYear);
+		System.out.println("expectedYear is :" + expectedYear);
+		String expectedyearSelect = yearSelect.getFirstSelectedOption().getText();
 
-			if (currentMonth.equals(expectedMonth) && currentYear.equals(expectedYear)) {
-				break; // Correct month and year found
-			} else {
-				// Click next button to move calendar forward
-				driver.findElement(By.xpath("//a[@title='Next']")).click();
-			}
+		// select month
+		WebElement monthDropdown = driver.findElement(By.xpath("(//select[@class='monthselect'])[1]"));
+		Select monthSelect = new Select(monthDropdown);
+		monthSelect.selectByVisibleText(expectedMonth);
+		System.out.println("expectedMonth is:" + expectedMonth);
+		String selectedMonth = monthSelect.getFirstSelectedOption().getText();
+		
+		
+		while(selectedMonth.equals(expectedMonth)&&expectedyearSelect.equals(expectedYear) ) { 
+			
+			
+			
+			
+			
 		}
-
-		// Select the expectedDay
-		List<WebElement> days = driver.findElements(
-				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
-		for (WebElement d : days) {
-			if (d.getText().equals(expectedDay)) {
-				d.click();
-				break;
-			}
-		}
+		
+		
+		
+		
+		/*//td[contains(@data-title,'"+selectedMonth+" 4')]
+		 * System.out.println(); List<WebElement> Days = driver.findElements( By.
+		 * xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"
+		 * )); for (WebElement ED : Days) { if (ED.getText().equals(expectedDay)) {
+		 * ED.click(); break; } }
+		 */
+		
+		
+		
+		
+		
 		// Open the calendar
 		WebElement trade_Start_Date = driver.findElement(By.xpath(" //input[@id='trade_Start_Date']"));
 		trade_Start_Date.click();
@@ -477,9 +503,9 @@ public class Settlement_Master_CC_Login {
 
 		Select early_Payin_End_mm = new Select(early_Payin_End_Date_mn_s);
 		early_Payin_End_mm.selectByContainsVisibleText(String.valueOf(early_Payin_End_Date_mn));
-		
+
 		Wait.until(ExpectedConditions.elementToBeClickable(Add_To_Settelment_Details_btn)).click();
-		
+
 		try {
 			if (Save_btn.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();

@@ -32,11 +32,11 @@ public class On_Market_RP_Login {
 	int WSP_Id = excel.getWSP_Id_On_Market(dataRow);
 	int WH_Id = excel.getWH_Id_On_Market(dataRow);
 	int Commodity = excel.getCommodity_On_Market(dataRow);
-	int Client_Id = excel.getClient_Id(dataRow);
+	long Client_Id = excel.getClient_Id_On_Market(dataRow);
 	int UCC_Id = excel.getUCC_Id_On_Market(dataRow);
-	int TM_Id = excel.getTM_Id(dataRow);
-	int CM_Id = excel.getCM_Id(dataRow);
-	int Settlement_No = excel.getSettlement_No(dataRow);
+	long TM_Id = excel.getTM_Id(dataRow);
+	String CM_Id = excel.getCM_Id(dataRow);
+	long Settlement_No = excel.getSettlement_No(dataRow);
 	int ENWR_No = excel.getENWR_No(dataRow);
 
 	public On_Market_RP_Login(WebDriver driver, WebDriverWait Wait) {
@@ -45,11 +45,12 @@ public class On_Market_RP_Login {
 		PageFactory.initElements(driver, this);
 	}
 
-	// --------------for Request for On_Market_RP_Login creation
-	// process-------------
+	// --------------for Request for On_Market_RP_Login creation process-------------
 	// a[@class='auto ng-scope']//span[@class='title
 	// ng-binding'][normalize-space()='Transactions']
 	// span[normalize-space()='Transactions']
+	//a[@class='auto ng-scope']//span[@class='title ng-binding'][normalize-space()='Transactions']
+	//(//span[@class='title ng-binding'][normalize-space()='Transactions'])[1]
 	@FindBy(xpath = "//a[@class='auto ng-scope']//span[@class='title ng-binding'][normalize-space()='Transactions']")
 	WebElement Transaction_Btn;
 
@@ -78,7 +79,7 @@ public class On_Market_RP_Login {
 	@FindBy(xpath = "//button[@data-id='WspMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement WSP_Id_btn;
 
-	@FindBy(xpath = "//div[@class='btn-group bootstrap-select form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required open']//input[@type='text']")
+	@FindBy(xpath = "(//input[@type='text'])[5]")
 	WebElement WSP_Id_txt;
 
 	@FindBy(xpath = "//button[@data-id='WhMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
@@ -126,7 +127,7 @@ public class On_Market_RP_Login {
 	@FindBy(xpath = "//button[@ng-click='vm.GetDetails()']")
 	WebElement Search_Btn;
 
-	@FindBy(xpath = "(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[1]")
+	@FindBy(xpath = "(//button[normalize-space()='Select'])[1]")
 	WebElement Select_Btn;
 
 	@FindBy(xpath = "//button[@button-busy='vm.saving']")
@@ -137,6 +138,7 @@ public class On_Market_RP_Login {
 		try {
 			// if (Transaction_Btn.isDisplayed()) {
 			Transaction_Btn.click();
+			//Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 			/*
 			 * } else { System.out.println("Transaction_Btn is not visible"); }
 			 */
@@ -243,22 +245,37 @@ public class On_Market_RP_Login {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 		}
-		Commodity_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Btn)).click();
 		Commodity_Txt.sendKeys(String.valueOf(Commodity));
 		Thread.sleep(1000);
 		Commodity_Txt.sendKeys(Keys.ENTER);
 
-		Client_Id_Btn.click();
-		Client_Id_Txt.sendKeys(String.valueOf(Client_Id));
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Client_Id_Btn)).click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Client_Id_Txt)).sendKeys(String.valueOf(Client_Id));
 		Thread.sleep(1000);
-		Client_Id_Txt.sendKeys(Keys.ENTER);
+		Wait.until(ExpectedConditions.elementToBeClickable(Client_Id_Txt)).sendKeys(Keys.ENTER);
+	} catch (ElementClickInterceptedException e) {
+		System.out.println("Normal click failed, trying JavaScript Client_Id_Btn click...");
+		//js.executeScript("arguments[0].scrollIntoView(true)", Client_Id_Btn);
+		js.executeScript("arguments[0].click();", Client_Id_Btn);
+		js.executeScript("arguments[0].value='" + Client_Id + "';", Client_Id_Txt);
+		js.executeScript("arguments[0].click();", Client_Id_Txt);
+		// AC.click();
+	} catch (NoSuchElementException e) {
+		System.out.println("WH_ID_Btn not found: " + e.getMessage());
+	} catch (Exception e) {
+		System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
+	}
 
 		UCC_Id_Btn.click();
 		UCC_Id_txt.sendKeys(String.valueOf(UCC_Id));
+		Thread.sleep(1000);
 		UCC_Id_txt.sendKeys(Keys.ENTER);
 
 		TM_Id_Btn.click();
 		TM_Id_Txt.sendKeys(String.valueOf(TM_Id));
+		Thread.sleep(1000);
 		TM_Id_Txt.sendKeys(Keys.ENTER);
 
 		CM_Id_Btn.click();
@@ -268,10 +285,11 @@ public class On_Market_RP_Login {
 		TransctionStlmt.click();
 
 		Search_Txt.sendKeys(String.valueOf(Settlement_No));
+		Thread.sleep(1000);
 		Search_Btn.click();
 
 		Select_Btn.click();
-
+		Thread.sleep(2000);
 		TransctionStlmt.click();
 
 		Search_Txt.sendKeys(String.valueOf(ENWR_No));

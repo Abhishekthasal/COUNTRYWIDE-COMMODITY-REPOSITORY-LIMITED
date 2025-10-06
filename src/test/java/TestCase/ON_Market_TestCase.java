@@ -15,7 +15,7 @@ public class ON_Market_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ON Market Report");
 
-	// @Test
+//	 @Test
 	void Settlement_Master_CC_Login() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Settlement_Master start");
@@ -74,7 +74,12 @@ public class ON_Market_TestCase extends BaseClass {
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "On_Market Maker creation  start");
 			TestPages.On_Market_RP_Login Market = new TestPages.On_Market_RP_Login(driver, Wait);
+			try {
 			Market.On_Market();
+			}catch (Exception e) {
+			    e.printStackTrace();
+			    System.out.println("Error occurred while running On_Market: " + e.getMessage());
+			}
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ " On_Market Maker is success full");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));

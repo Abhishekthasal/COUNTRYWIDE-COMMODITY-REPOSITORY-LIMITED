@@ -1092,20 +1092,20 @@ public class ExcelUtils {
 	public int getCommodity_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
-	public int getClient_Id(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
+	public long getClient_Id_On_Market(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
 	}
 	public int getUCC_Id_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
 	}
-	public int getTM_Id(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(7).getNumericCellValue();
+	public long getTM_Id(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(7).getNumericCellValue();
 	}
-	public int getCM_Id(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(8).getNumericCellValue();
+	public String getCM_Id(int rowNum) {
+		return getCellData(rowNum, 8);
 	}
-	public int getSettlement_No(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
+	public long getSettlement_No(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
 	}
 	public int getENWR_No(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
