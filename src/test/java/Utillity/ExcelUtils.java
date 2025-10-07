@@ -1107,8 +1107,15 @@ public class ExcelUtils {
 	public long getSettlement_No(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
 	}
-	public int getENWR_No(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
+	public long getENWR_No(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
 	}
-
+	public int getno_of_bags_On_Market(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(11).getNumericCellValue();
+	}
+	public int getdeliveryunit_On_Market(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(12).getNumericCellValue();
+	}
+	
+	
 }

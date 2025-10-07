@@ -23,7 +23,7 @@ public class On_Market_RP_Login {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ON_Market.xlsx";
 	static String sheet = "OnMarket";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 3; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -37,7 +37,9 @@ public class On_Market_RP_Login {
 	long TM_Id = excel.getTM_Id(dataRow);
 	String CM_Id = excel.getCM_Id(dataRow);
 	long Settlement_No = excel.getSettlement_No(dataRow);
-	int ENWR_No = excel.getENWR_No(dataRow);
+	long ENWR_No = excel.getENWR_No(dataRow);
+	int no_of_bags_On_Market=excel.getno_of_bags_On_Market(dataRow);
+	int deliveryunit =excel.getdeliveryunit_On_Market(dataRow);
 
 	public On_Market_RP_Login(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -45,12 +47,14 @@ public class On_Market_RP_Login {
 		PageFactory.initElements(driver, this);
 	}
 
-	// --------------for Request for On_Market_RP_Login creation process-------------
+	// --------------for Request for On_Market_RP_Login creation
+	// process-------------
 	// a[@class='auto ng-scope']//span[@class='title
 	// ng-binding'][normalize-space()='Transactions']
 	// span[normalize-space()='Transactions']
-	//a[@class='auto ng-scope']//span[@class='title ng-binding'][normalize-space()='Transactions']
-	//(//span[@class='title ng-binding'][normalize-space()='Transactions'])[1]
+	// a[@class='auto ng-scope']//span[@class='title
+	// ng-binding'][normalize-space()='Transactions']
+	// (//span[@class='title ng-binding'][normalize-space()='Transactions'])[1]
 	@FindBy(xpath = "//a[@class='auto ng-scope']//span[@class='title ng-binding'][normalize-space()='Transactions']")
 	WebElement Transaction_Btn;
 
@@ -129,16 +133,41 @@ public class On_Market_RP_Login {
 
 	@FindBy(xpath = "(//button[normalize-space()='Select'])[1]")
 	WebElement Select_Btn;
+	
+	@FindBy(xpath="//button[@data-id='deliveryunitSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement deliveryunitSelectionCombobox_btn;
+	
+	@FindBy(xpath="(//input[@type='text'])[28]")
+	WebElement deliveryunitSelectionCombobox_Txt;
+	
+	
+	
+	
+	@FindBy(xpath="//button[@id='TransctionStmt']")
+	WebElement TransctionStmt;
 
+	@FindBy(xpath="(//button[normalize-space()='Select'])[1]")
+	WebElement Select_ENWR;
+	
+	@FindBy(xpath="//button[normalize-space()='OK']")
+	WebElement OK_ENWR;
+	
+	@FindBy(xpath="//input[@ng-model='personalDetailQP.prev_no_of_bags']")
+	WebElement prev_no_of_bags;
+	
+	@FindBy(xpath="//input[@name='no_of_bags']")
+	WebElement no_of_bags_txt;
+	
 	@FindBy(xpath = "//button[@button-busy='vm.saving']")
 	WebElement Saving_Btn;
+	
 
 	public void On_Market() throws InterruptedException {
-		//Thread.sleep(2000);
+		// Thread.sleep(2000);
 		try {
 			// if (Transaction_Btn.isDisplayed()) {
 			Transaction_Btn.click();
-			//Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
+			// Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 			/*
 			 * } else { System.out.println("Transaction_Btn is not visible"); }
 			 */
@@ -253,20 +282,20 @@ public class On_Market_RP_Login {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Client_Id_Btn)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Client_Id_Txt)).sendKeys(String.valueOf(Client_Id));
-		Thread.sleep(1000);
-		Wait.until(ExpectedConditions.elementToBeClickable(Client_Id_Txt)).sendKeys(Keys.ENTER);
-	} catch (ElementClickInterceptedException e) {
-		System.out.println("Normal click failed, trying JavaScript Client_Id_Btn click...");
-		//js.executeScript("arguments[0].scrollIntoView(true)", Client_Id_Btn);
-		js.executeScript("arguments[0].click();", Client_Id_Btn);
-		js.executeScript("arguments[0].value='" + Client_Id + "';", Client_Id_Txt);
-		js.executeScript("arguments[0].click();", Client_Id_Txt);
-		// AC.click();
-	} catch (NoSuchElementException e) {
-		System.out.println("WH_ID_Btn not found: " + e.getMessage());
-	} catch (Exception e) {
-		System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
-	}
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(Client_Id_Txt)).sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Client_Id_Btn click...");
+			// js.executeScript("arguments[0].scrollIntoView(true)", Client_Id_Btn);
+			js.executeScript("arguments[0].click();", Client_Id_Btn);
+			js.executeScript("arguments[0].value='" + Client_Id + "';", Client_Id_Txt);
+			js.executeScript("arguments[0].click();", Client_Id_Txt);
+			// AC.click();
+		} catch (NoSuchElementException e) {
+			System.out.println("WH_ID_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
+		}
 
 		UCC_Id_Btn.click();
 		UCC_Id_txt.sendKeys(String.valueOf(UCC_Id));
@@ -280,23 +309,107 @@ public class On_Market_RP_Login {
 
 		CM_Id_Btn.click();
 		CM_Id_Txt.sendKeys(String.valueOf(CM_Id));
+		Thread.sleep(1000);
 		CM_Id_Txt.sendKeys(Keys.ENTER);
 
 		TransctionStlmt.click();
+		Thread.sleep(1000);
+		try {
+			Search_Txt.sendKeys(String.valueOf(Settlement_No));
+			Thread.sleep(1000);
+			Search_Btn.click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying  Search_Txt click...");
+			// js.executeScript("arguments[0].scrollIntoView(true)", Client_Id_Btn);
+			// js.executeScript("arguments[0].click();", Client_Id_Btn);
+			js.executeScript("arguments[0].value='" + Settlement_No + "';", Search_Txt);
+			js.executeScript("arguments[0].click();", Search_Btn);
+			// AC.click();
+		} catch (NoSuchElementException e) {
+			System.out.println("Search_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Search_Txt: " + e.getMessage());
+		}
+		try {
+			Select_Btn.click();
+			Thread.sleep(1000);
+			Select_Btn.sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying  Select_Btn click...");
+			js.executeScript("arguments[0].click();", Select_Btn);
+			js.executeScript("arguments[0].click();", Select_Btn);
 
-		Search_Txt.sendKeys(String.valueOf(Settlement_No));
+		} catch (NoSuchElementException e) {
+			System.out.println("Select_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Select_Btn: " + e.getMessage());
+		}
+		
+		try {
+			deliveryunitSelectionCombobox_btn.click();
+			deliveryunitSelectionCombobox_Txt.sendKeys(String.valueOf(deliveryunit));
+			Thread.sleep(1000);
+			deliveryunitSelectionCombobox_Txt.sendKeys(Keys.ENTER);
+		}catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying  deliveryunitSelectionCombobox_btn click...");
+			// js.executeScript("arguments[0].scrollIntoView(true)", Client_Id_Btn);
+			 js.executeScript("arguments[0].click();", deliveryunitSelectionCombobox_btn);
+			js.executeScript("arguments[0].value='" + deliveryunit + "';", deliveryunitSelectionCombobox_Txt);
+			js.executeScript("arguments[0].click();", deliveryunitSelectionCombobox_Txt);
+			// AC.click();
+		} catch (NoSuchElementException e) {
+			System.out.println("Search_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Search_Txt: " + e.getMessage());
+		}
+		
+		
+		Thread.sleep(2000);
+		TransctionStmt.click();
+		Thread.sleep(1000);
+		try {
+		Search_Txt.sendKeys(String.valueOf(ENWR_No));
 		Thread.sleep(1000);
 		Search_Btn.click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying  Search_Txt click...");
+			js.executeScript("arguments[0].value='" + ENWR_No + "';", Search_Txt);
+			js.executeScript("arguments[0].click();", Search_Btn);
 
-		Select_Btn.click();
+		} catch (NoSuchElementException e) {
+			System.out.println("Search_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Search_Txt: " + e.getMessage());
+		}
 		Thread.sleep(2000);
-		TransctionStlmt.click();
+		//Select_ENWR.click();
+		try {
+			Select_ENWR.sendKeys(Keys.ENTER);
+			//Select_ENWR.click();
+			/*
+			 * Thread.sleep(1000); Select_ENWR.sendKeys(Keys.ENTER);
+			 */
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying  Select_ENWR click...");
+			js.executeScript("arguments[0].click();", Select_ENWR);
+			//js.executeScript("arguments[0].click();", Select_ENWR);
 
-		Search_Txt.sendKeys(String.valueOf(ENWR_No));
-		Search_Btn.click();
-
-		Select_Btn.click();
-
+		} catch (NoSuchElementException e) {
+			System.out.println("Select_ENWR not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Select_ENWR: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Wait.until(ExpectedConditions.elementToBeClickable(OK_ENWR)).click();
+		
+		/*
+		 * String prev_no_Bag=prev_no_of_bags.getText();
+		 * System.out.println("prev_no_Bag is:"+prev_no_Bag);
+		 */
+		
+		//no_of_bags_txt.sendKeys(prev_no_Bag);
+		Wait.until(ExpectedConditions.elementToBeClickable(no_of_bags_txt)).sendKeys(String.valueOf(no_of_bags_On_Market));
+		Thread.sleep(2000);
 		try {
 			if (Saving_Btn.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Saving_Btn)).click();

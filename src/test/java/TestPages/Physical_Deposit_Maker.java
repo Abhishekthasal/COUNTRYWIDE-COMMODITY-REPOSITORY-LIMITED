@@ -1298,7 +1298,7 @@ public class Physical_Deposit_Maker {
 
 	}
 
-	public void Exchange_Deposite_Transaction() {
+	public void Exchange_Deposite_Transaction() throws InterruptedException {
 		try {
 			Connection conn = DataBaseUtility.getConnection();
 
@@ -1432,12 +1432,16 @@ public class Physical_Deposit_Maker {
 		 * Wait.until(ExpectedConditions.elementToBeClickable(Bag)).sendKeys("10");
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(2000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-		//Assert.assertTrue(Variety_Code.isDisplayed(), "Variety_Code_bttn button not visible");
+		
 		Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+		Thread.sleep(2000);
 	//	Assert.assertTrue(Variety_Code_Text.isDisplayed(), "Variety_Code_Text Box not visible");
-
+		Variety_Code_Text.sendKeys(Keys.ENTER);
+		
+		
+		
 		assaying_type_Text.sendKeys(assaying_type);
 
 		if (Weight_bridge.matches("^[a-zA-Z0-9]{0,100}$")) {

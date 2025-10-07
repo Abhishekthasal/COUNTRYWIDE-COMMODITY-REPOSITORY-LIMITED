@@ -23,7 +23,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "RP_Exchange_Deposite_Agricultur";
-	static int dataRow = 10; // second row of data
+	static int dataRow = 12; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -259,7 +259,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 			if (WSP_ID.matches("^[a-zA-Z0-9]{7}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(String.valueOf(WSP_ID));
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+				Thread.sleep(1000);
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
 			} else {
@@ -283,7 +283,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
-					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+					Thread.sleep(1000);
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
 				}else {
@@ -303,63 +303,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 		}
-		// String.valueOf() for Int to String
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-//		try {
-//			if (WSP_ID.matches("^[a-zA-Z0-9]{7}$")) {
-//				// WSP_ID_btn.click();
-//				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
-//				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(String.valueOf(WSP_ID));
-//				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-//				WSP_ID_txt.sendKeys(Keys.ENTER);
-//				WSP_ID_txt.sendKeys(Keys.ENTER);
-//			} else {
-//				System.out.println("Invalid WSP_ID. Please enter exactly 7 alphanumeric characters:");
-//			}
-//		} catch (ElementClickInterceptedException e) {
-//			System.out.println("Normal click failed, trying JavaScript click...");
-//			WebElement WSP_ID_btn_J = driver.findElement(
-//					By.xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]"));
-//			js.executeScript("arguments[0].click();", WSP_ID_btn_J);
-//			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
-//			WSP_ID_txt.click();
-//			// WSP_ID_txt.sendKeys(Keys.ENTER);
-//		} catch (NoSuchElementException e) {
-//			System.out.println("WSP_ID_btn not found: " + e.getMessage());
-//		} catch (Exception e) {
-//			System.out.println("Unexpected error for WSP_ID_btn: " + e.getMessage());
-//		}
-////		} finally {
-////
-////			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
-////			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
-////			WSP_ID_txt.sendKeys(Keys.ENTER);
-////			WSP_ID_txt.sendKeys(Keys.ENTER);
-////			WSP_ID_txt.sendKeys(Keys.ENTER);
-////		}
-//
-//		try {
-//			if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-//				WH_ID_Btn.click();
-//				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
-//				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-//				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-//				WH_ID_txt.sendKeys(Keys.ENTER);
-//				WH_ID_txt.sendKeys(Keys.ENTER);
-//				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-//			}
-//		} catch (ElementClickInterceptedException e) {
-//			System.out.println("Normal click failed, trying JavaScript click...");
-//			js.executeScript("arguments[0].click();", WH_ID_Btn);
-//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-//			WH_ID_txt.click();
-//			System.out.println("Element not clickable at the moment: " + e.getMessage());
-//		} catch (NoSuchElementException e) {
-//			System.out.println("WH_ID_Btn not found: " + e.getMessage());
-//		} catch (Exception e) {
-//			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
-//		}
-
+	
 		if (Negotiable_eceipt_Required.isDisplayed()) {
 			Negotiable_eceipt_Required.click();
 			Assaying_Required.isSelected();

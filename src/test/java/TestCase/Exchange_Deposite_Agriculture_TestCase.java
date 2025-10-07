@@ -29,7 +29,7 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Deposite");
 
-//@Test
+@Test
 	void RP_Exchange_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Exchange_Deposite_Request_Maker start");
@@ -73,8 +73,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "DashBord_WareHouse_Maker is start");
 			Physical_Deposit_Maker WSP = new Physical_Deposit_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9997115", "bhanu", "121@test");
 			//Login.PortalLogin("wsp9997115", "bhanu", "121@test");
+			Login.PortalLogin("wsp9999996", "user71", "121@test");
 			WSP.Exchange_Deposite_Transaction();
 			test.log(LogStatus.PASS, "DashBord_WareHouse_Maker is successfull");
 		} catch (Exception e) {
@@ -90,8 +90,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "DashBoard_WareHouse_Checker is start");
 			DashBoard_WareHouse_Checker WSP_CH = new DashBoard_WareHouse_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("wsp9999996", "user72", "Test@123");
-			Login.PortalLogin("wsp9997115", "pratap", "121@test");
+			Login.PortalLogin("wsp9999996", "user71", "121@test");
+			//Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			WSP_CH.Exchange_Deposite_Transaction();
 			test.log(LogStatus.PASS, "DashBoard_WareHouse_Checker is successfull");
 		} catch (Exception e) {
@@ -108,8 +108,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Maker is start");
 			Deposite_Assayer_Maker Assayer = new Deposite_Assayer_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("Asyr-3338084", "user1", "121@test");
-			Login.PortalLogin("Asyr-2905202", "bhanu1", "121@test");
+			Login.PortalLogin("Asyr-3338084", "user1", "121@test");
+			//Login.PortalLogin("Asyr-2905202", "bhanu1", "121@test");
 			Assayer.Exchange_Deposit_Assayer();
 			test.log(LogStatus.PASS, "Deposite_Assayer_Maker is successfull");
 		} catch (Exception e) {
@@ -126,8 +126,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Checker is start");
 			Deposite_Assayer_Checker Assayer = new Deposite_Assayer_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("Asyr-3338084", "user2", "121@test");
-			Login.PortalLogin("Asyr-2905202", "bhanu2", "121@test");
+			Login.PortalLogin("Asyr-3338084", "user2", "121@test");
+			//Login.PortalLogin("Asyr-2905202", "bhanu2", "121@test");
 			Assayer.Exchange_Deposite_Assayer();
 			test.log(LogStatus.PASS, "Deposite_Assayer_Checker is successfull");
 		} catch (Exception e) {
@@ -144,8 +144,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Maker is start");
 			Deposit_Confirm_WH_Maker Confirn_Maker = new Deposit_Confirm_WH_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("wsp9999996", "user71", "Test@123");
-			Login.PortalLogin("wsp9997115", "bhanu", "121@test");
+			Login.PortalLogin("wsp9999996", "user71", "121@test");
+			//Login.PortalLogin("wsp9997115", "bhanu", "121@test");
 			Confirn_Maker.Exchange_Deposit_Confirm_WH();
 			test.log(LogStatus.PASS, "Deposit_Confirm_WH_Maker is successfull");
 		} catch (Exception e) {

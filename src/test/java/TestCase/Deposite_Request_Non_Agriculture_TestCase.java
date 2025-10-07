@@ -31,7 +31,7 @@ public class Deposite_Request_Non_Agriculture_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-	//@Test
+	@Test
 	void Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Deposite_Request_Maker start");
@@ -90,7 +90,7 @@ public class Deposite_Request_Non_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-@Test(retryAnalyzer= Utillity.RetryTest.class)
+//@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBoard_WareHouse_Checker is start");
