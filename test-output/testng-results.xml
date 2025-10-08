@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-07T18:07:34 IST" name="Default suite" finished-at="2025-10-07T18:08:08 IST" duration-ms="34221">
+  <suite started-at="2025-10-08T18:24:22 IST" name="Default suite" finished-at="2025-10-08T18:25:05 IST" duration-ms="42494">
     <groups>
     </groups>
-    <test started-at="2025-10-07T18:07:34 IST" name="Default test" finished-at="2025-10-07T18:08:08 IST" duration-ms="34221">
+    <test started-at="2025-10-08T18:24:22 IST" name="Default test" finished-at="2025-10-08T18:25:05 IST" duration-ms="42494">
       <class name="TestCase.ON_Market_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-10-07T18:07:34 IST" name="setup" finished-at="2025-10-07T18:07:37 IST" duration-ms="3393" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-10-08T18:24:22 IST" name="setup" finished-at="2025-10-08T18:24:26 IST" duration-ms="3521" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Settlement_Master_CC_Login()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-10-07T18:07:37 IST" name="Settlement_Master_CC_Login" finished-at="2025-10-07T18:08:08 IST" duration-ms="30793" status="PASS">
+        <test-method signature="Settlement_Master_CC_Login()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-10-08T18:24:26 IST" name="Settlement_Master_CC_Login" finished-at="2025-10-08T18:25:05 IST" duration-ms="38938" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Settlement_Master_CC_Login -->

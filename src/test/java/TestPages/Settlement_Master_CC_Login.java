@@ -1,5 +1,7 @@
 package TestPages;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -112,6 +114,8 @@ public class Settlement_Master_CC_Login {
 
 	@FindBy(xpath = "//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement COMM_CODE_NAME_btn;
+	
+	
 
 	@FindBy(xpath = "(//input[@type='text'])[1]")
 	WebElement COMM_CODE_NAME_Txt;
@@ -121,6 +125,9 @@ public class Settlement_Master_CC_Login {
 
 	@FindBy(xpath = "(//input[@id='trade_Start_Date'])[1]")
 	WebElement trade_Start_Date_txt;
+	
+	@FindBy(xpath="//td[@class='today active start-date active end-date available']")
+	WebElement today_active;
 
 	@FindBy(xpath = "//select[@name='pay_In_Date_hr']")
 	WebElement pay_In_Date_hr_s;
@@ -154,13 +161,11 @@ public class Settlement_Master_CC_Login {
 
 	public void Settlement_Master() throws InterruptedException {
 
-		// Thread.sleep(3000);
+		
 		try {
-			// if (Masters_Btn.isDisplayed()) {
-			Masters_Btn.click();
-			/*
-			 * } else { System.out.println("Masters_Btn is not visible"); }
-			 */
+			
+			Wait.until(ExpectedConditions.elementToBeClickable(Masters_Btn)).click();
+			
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Masters_Btn click...");
 			js.executeScript("arguments[0].click();", Masters_Btn);
@@ -171,11 +176,9 @@ public class Settlement_Master_CC_Login {
 		}
 		Thread.sleep(2000);
 		try {
-			// if (Settlement_Btn.isDisplayed()) {
+			
 			Wait.until(ExpectedConditions.elementToBeClickable(Settlement_Btn)).click();
-			/*
-			 * } else { System.out.println("Settlement_Btn is not visible"); }
-			 */
+			
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Settlement_Btn click...");
 			js.executeScript("arguments[0].click();", Settlement_Btn);
@@ -184,12 +187,8 @@ public class Settlement_Master_CC_Login {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Settlement_Btn: " + e.getMessage());
 		}
-
-		if (New_btn.isDisplayed()) {
-			New_btn.click();
-		} else {
-			System.out.println("New_btn is not visible");
-		}
+		Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+		Thread.sleep(2000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(ExchangeMasterCombobox_btn)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(ExchangeMasterCombobox_txt)).sendKeys(ExchangeMaster);
@@ -225,17 +224,17 @@ public class Settlement_Master_CC_Login {
 		settlement_No_txt.click();
 		settlement_No_txt.sendKeys(String.valueOf(settlement_No));
 
-		try {
-			Settlement_pop_Up.click();
-		} catch (Exception e) {
-
-			System.out.println("Settlement_pop_Up is not visible");
-		}
+		/*
+		 * try { Settlement_pop_Up.click(); } catch (Exception e) {
+		 * 
+		 * System.out.println("Settlement_pop_Up is not visible"); }
+		 */
 
 		settlement_Year_txt.click();
 		settlement_Year_txt.sendKeys(String.valueOf(settlement_Year));
 
 		Add_Commodity.click();
+		Thread.sleep(2000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(COMM_CODE_NAME_btn)).click();
 			COMM_CODE_NAME_Txt.sendKeys(commodity);
@@ -255,41 +254,36 @@ public class Settlement_Master_CC_Login {
 		// Open the calendar
 		WebElement dateField = driver.findElement(By.xpath("//input[@id='expiry_Date']"));
 		dateField.click();
-
 		// select year
 		WebElement yearDropdown = driver
 				.findElement(By.xpath("//div[@class='calendar left single']//select[@class='yearselect']"));
 		Select yearSelect = new Select(yearDropdown);
 		yearSelect.selectByVisibleText(expectedYear);
-		System.out.println("expectedYear is :" + expectedYear);
-		String expectedyearSelect = yearSelect.getFirstSelectedOption().getText();
-
+		//System.out.println("expectedYear is :" + expectedYear);
+		//String expectedyearSelect = yearSelect.getFirstSelectedOption().getText();
+		
 		// select month
 		WebElement monthDropdown = driver.findElement(By.xpath("(//select[@class='monthselect'])[1]"));
 		Select monthSelect = new Select(monthDropdown);
 		monthSelect.selectByVisibleText(expectedMonth);
-		System.out.println("expectedMonth is:" + expectedMonth);
-		String selectedMonth = monthSelect.getFirstSelectedOption().getText();
+	//	System.out.println("expectedMonth is:" + expectedMonth);
+		//String selectedMonth = monthSelect.getFirstSelectedOption().getText();
 		
-		
-		while(selectedMonth.equals(expectedMonth)&&expectedyearSelect.equals(expectedYear) ) { 
-			
-			
-			
-			
-			
+		Thread.sleep(2000);
+		// select date
+		WebElement dateElement = driver.findElement(By.xpath("//td[@class='available' and normalize-space(text())='" + expectedDay + "']"));
+		// Click on the specific date
+		try {
+		dateElement.click();
+		//System.out.println("✅ Clicked on date: " + dateElement);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying dateElement click...");
+			js.executeScript("arguments[0].click();", dateElement);
+		} catch (NoSuchElementException e) {
+			System.out.println("dateElement not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for dateElement: " + e.getMessage());
 		}
-		
-		
-		
-		
-		/*//td[contains(@data-title,'"+selectedMonth+" 4')]
-		 * System.out.println(); List<WebElement> Days = driver.findElements( By.
-		 * xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"
-		 * )); for (WebElement ED : Days) { if (ED.getText().equals(expectedDay)) {
-		 * ED.click(); break; } }
-		 */
-		
 		
 		
 		
@@ -297,213 +291,126 @@ public class Settlement_Master_CC_Login {
 		// Open the calendar
 		WebElement trade_Start_Date = driver.findElement(By.xpath(" //input[@id='trade_Start_Date']"));
 		trade_Start_Date.click();
-
-		// Loop until correct month and year are displayed
-		while (true) {
-			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
-
-			if (currentMonth.equals(trade_Month) && currentYear.equals(trade_Year)) {
-				break; // Correct month and year found
-			} else {
-				// Click next button to move calendar forward
-				driver.findElement(By.xpath("//a[@title='Next']")).click();
-			}
-		}
-
-		// Select the trade_Start_Date_days
-		List<WebElement> trade_Start_Date_days = driver.findElements(
-				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
-		for (WebElement d : trade_Start_Date_days) {
-			if (d.getText().equals(trade_Day)) {
-				d.click();
-				break;
-			}
-		}
+		
+		Thread.sleep(2000);
+		/*
+		 * try {
+		 * Wait.until(ExpectedConditions.elementToBeClickable(today_active)).click(); }
+		 * catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying today_active click...");
+		 * js.executeScript("arguments[0].click();", today_active); } catch
+		 * (NoSuchElementException e) { System.out.println("today_active not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for today_active: " + e.getMessage()); }
+		 */
+			
 		// Open the calendar
-		WebElement PostExpiry_Validity_Date = driver
-				.findElement(By.xpath("//input[@ng-class=\"{'vm.Settlement.post_expiry_Date'}\"]"));
-		PostExpiry_Validity_Date.click();
-
-		// Loop until correct month and year are displayed
-		while (true) {
-			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
-
-			if (currentMonth.equals(PostExpiry_Validity_Month) && currentYear.equals(PostExpiry_Validity_Year)) {
-				break; // Correct month and year found
-			} else {
-				// Click next button to move calendar forward
-				driver.findElement(By.xpath("//a[@title='Next']")).click();
-			}
-		}
-
-		// Select the PostExpiry_Validity_days
-		List<WebElement> PostExpiry_Validity_days = driver.findElements(
-				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
-		for (WebElement d : PostExpiry_Validity_days) {
-			if (d.getText().equals(PostExpiry_Validity)) {
-				d.click();
-				break;
-			}
-		}
-		// Open the calendar
-		WebElement Delivery_Marking_Date = driver
-				.findElement(By.xpath("//input[@ng-class=\"{'vm.Settlement.delivery_Marking_Date'}\"]"));
-		Delivery_Marking_Date.click();
-
-		// Loop until correct month and year are displayed
-		while (true) {
-			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
-
-			if (currentMonth.equals(Delivery_Marking_Month) && currentYear.equals(Delivery_Marking_Year)) {
-				break; // Correct month and year found
-			} else {
-				// Click next button to move calendar forward
-				driver.findElement(By.xpath("//a[@title='Next']")).click();
-			}
-		}
-
-		// Select the Delivery_Marking_Date_days
-		List<WebElement> Delivery_Marking_Date_days = driver.findElements(
-				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
-		for (WebElement d : Delivery_Marking_Date_days) {
-			if (d.getText().equals(Delivery_Marking)) {
-				d.click();
-				break;
-			}
-		}
-		// Open the calendar
-		WebElement pay_In = driver.findElement(By.xpath("//input[@id='pay_In_Date']"));
-		pay_In.click();
-
-		// Loop until correct month and year are displayed
-		while (true) {
-			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
-
-			if (currentMonth.equals(pay_In_Month) && currentYear.equals(pay_In_Year)) {
-				break; // Correct month and year found
-			} else {
-				// Click next button to move calendar forward
-				driver.findElement(By.xpath("//a[@title='Next']")).click();
-			}
-		}
-
-		// Select the Delivery_Marking_Date_days
-		List<WebElement> Dpay_In_days = driver.findElements(
-				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
-		for (WebElement d : Dpay_In_days) {
-			if (d.getText().equals(pay_In_date)) {
-				d.click();
-				break;
-			}
-		}
-		Select pay_in = new Select(pay_In_Date_hr_s);
-		pay_in.selectByContainsVisibleText(String.valueOf(pay_In_Date_hr));
-
-		Select pay_in_mm = new Select(pay_In_Date_mn_s);
-		pay_in_mm.selectByContainsVisibleText(String.valueOf(pay_In_Date_mn));
-
-		// Open the calendar
-		WebElement pay_out = driver.findElement(By.xpath("(//input[@id='pay_Out_Date'])[1]"));
-		pay_out.click();
-
-		// Loop until correct month and year are displayed
-		while (true) {
-			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
-
-			if (currentMonth.equals(pay_out_Month) && currentYear.equals(pay_out_Year)) {
-				break; // Correct month and year found
-			} else {
-				// Click next button to move calendar forward
-				driver.findElement(By.xpath("//a[@title='Next']")).click();
-			}
-		}
-
-		// Select the Delivery_Marking_Date_days
-		List<WebElement> pay_out_days = driver.findElements(
-				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
-		for (WebElement d : pay_out_days) {
-			if (d.getText().equals(pay_out_date)) {
-				d.click();
-				break;
-			}
-		}
-
-		Select pay_Out = new Select(pay_Out_Date_hr_s);
-		pay_Out.selectByContainsVisibleText(String.valueOf(pay_out_Date_hr));
-
-		Select pay_Out_mm = new Select(pay_Out_Date_mn_s);
-		pay_Out_mm.selectByContainsVisibleText(String.valueOf(pay_out_Date_mn));
-
-		// Open the calendar
-		WebElement early_pay_In = driver.findElement(By.xpath("//input[@id='early_Payin_Start_Date']"));
-		early_pay_In.click();
-
-		// Loop until correct month and year are displayed
-		while (true) {
-			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
-
-			if (currentMonth.equals(early_pay_In_Month) && currentYear.equals(early_pay_In_Year)) {
-				break; // Correct month and year found
-			} else {
-				// Click next button to move calendar forward
-				driver.findElement(By.xpath("//a[@title='Next']")).click();
-			}
-		}
-
-		// Select the Delivery_Marking_Date_days
-		List<WebElement> early_pay_In_days = driver.findElements(
-				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
-		for (WebElement d : early_pay_In_days) {
-			if (d.getText().equals(early_pay_In_date)) {
-				d.click();
-				break;
-			}
-		}
-		Select early_pay_In_hr = new Select(early_pay_In_Date_hr_s);
-		early_pay_In_hr.selectByContainsVisibleText(String.valueOf(early_pay_In_Date_hr));
-
-		Select early_pay_In_mm = new Select(early_pay_In_Date_mn_s);
-		early_pay_In_mm.selectByContainsVisibleText(String.valueOf(early_pay_In_Date_mn));
-
-		// Open the calendar
-		WebElement early_Payin_End = driver
-				.findElement(By.xpath("//input[@ng-class=\"{'vm.Settlement.early_Payin_End_Date'}\"]"));
-		early_Payin_End.click();
-
-		// Loop until correct month and year are displayed
-		while (true) {
-			String currentMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-			String currentYear = driver.findElement(By.className("ui-datepicker-year")).getText();
-
-			if (currentMonth.equals(early_Payin_End_Month) && currentYear.equals(early_Payin_End_Year)) {
-				break; // Correct month and year found
-			} else {
-				// Click next button to move calendar forward
-				driver.findElement(By.xpath("//a[@title='Next']")).click();
-			}
-		}
-
-		// Select the Delivery_Marking_Date_days
-		List<WebElement> early_Payin_End_days = driver.findElements(
-				By.xpath("(//div[@class='daterangepicker dropdown-menu single opensright show-calendar'])[1]"));
-		for (WebElement d : early_Payin_End_days) {
-			if (d.getText().equals(early_Payin_End_date)) {
-				d.click();
-				break;
-			}
-		}
-		Select early_Payin_End_hr = new Select(early_Payin_End_Date_hr_s);
-		early_Payin_End_hr.selectByContainsVisibleText(String.valueOf(early_Payin_End_Date_hr));
-
-		Select early_Payin_End_mm = new Select(early_Payin_End_Date_mn_s);
-		early_Payin_End_mm.selectByContainsVisibleText(String.valueOf(early_Payin_End_Date_mn));
-
+				WebElement delivery_Marking_dateField = driver.findElement(By.xpath("(//input[@id='delivery_Marking_Date'])[1]"));
+				delivery_Marking_dateField.click();
+		
+				// select year
+				WebElement delivery_Marking_year = driver
+						.findElement(By.xpath("//select[@class='yearselect'][5]"));
+				Select delivery_yearSelect = new Select(delivery_Marking_year);
+				delivery_yearSelect.selectByVisibleText(Delivery_Marking_Year);
+				System.out.println("Delivery_Marking_Year is :" + Delivery_Marking_Year);
+				//String expectedyearSelect = yearSelect.getFirstSelectedOption().getText();
+				
+				// select month
+				WebElement delivery_Marking_month = driver.findElement(By.xpath("(//select[@class='monthselect'])[5]"));
+				Select delivery_monthSelect = new Select(delivery_Marking_month);
+				delivery_monthSelect.selectByVisibleText(Delivery_Marking_Month);
+				System.out.println("Delivery_Marking_Month is:" + Delivery_Marking_Month);
+				//String selectedMonth = monthSelect.getFirstSelectedOption().getText();
+				
+				Thread.sleep(2000);
+				// select date
+				//WebElement Delivery_Marking_date = driver.findElement(By.xpath("//td[@class='available' and normalize-space(text())='" + Delivery_Marking + "'][19]"));
+				WebElement Delivery_Marking_date = driver.findElement(By.xpath("(//td[contains(text(),'" + Delivery_Marking + "')])[19]"));
+				
+				//(//td[contains(text(),'7')])[18]
+				// Click on the specific date
+				try {
+					Delivery_Marking_date.click();
+				System.out.println("✅ Clicked on date: " + Delivery_Marking);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying dateElement click...");
+					js.executeScript("arguments[0].click();", dateElement);
+				} catch (NoSuchElementException e) {
+					System.out.println("dateElement not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for dateElement: " + e.getMessage());
+				}
+				
+				
+				// Open the calendar
+				WebElement delivery_Date = driver.findElement(By.xpath("(//input[@id='delivery_Marking_Date'])[2]"));
+				delivery_Date.click();
+				
+				Thread.sleep(2000);
+				try {
+						Wait.until(ExpectedConditions.elementToBeClickable(today_active)).click();
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying today_active click...");
+					js.executeScript("arguments[0].click();", today_active);
+				} catch (NoSuchElementException e) {
+					System.out.println("today_active not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for today_active: " + e.getMessage());
+				}
+					
+		
+		
+				WebElement pay_In_Date = driver.findElement(By.xpath("//input[@id='pay_In_Date']"));
+				pay_In_Date.click();
+				
+				// select year
+				WebElement pay_In_year_btn = driver
+						.findElement(By.xpath("//select[@class='yearselect'][9]"));
+				Select pay_In_yearSelect = new Select(pay_In_year_btn);
+				pay_In_yearSelect.selectByVisibleText(pay_In_Year);
+				//System.out.println("expectedYear is :" + expectedYear);
+				//String expectedyearSelect = yearSelect.getFirstSelectedOption().getText();
+				
+				// select month
+				WebElement pay_In_month = driver.findElement(By.xpath("(//select[@class='monthselect'])[9]"));
+				Select pay_In_monthSelect = new Select(pay_In_month);
+				pay_In_monthSelect.selectByVisibleText(pay_In_Month);
+			//	System.out.println("expectedMonth is:" + expectedMonth);
+				//String selectedMonth = monthSelect.getFirstSelectedOption().getText();
+				
+				Thread.sleep(2000);
+				// select date
+				WebElement pay_In_date_btn = driver.findElement(By.xpath("//td[@class='available' and normalize-space(text())='" + pay_In_date + "']"));
+				// Click on the specific date
+				try {
+					pay_In_date_btn.click();
+				//System.out.println("✅ Clicked on date: " + dateElement);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying dateElement click...");
+					js.executeScript("arguments[0].click();", pay_In_date_btn);
+				} catch (NoSuchElementException e) {
+					System.out.println("dateElement not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for dateElement: " + e.getMessage());
+				}
+				
+				WebElement Pay_In_Hr= driver.findElement(By.xpath("(//select[@name='pay_In_Date_hr'])[1]"));
+				Select Sa=new Select (Pay_In_Hr);
+				Sa.selectByContainsVisibleText(String.valueOf(pay_In_Date_hr));
+				
+				WebElement pay_In_MM= driver.findElement(By.xpath("(//select[@name='pay_In_Date_mn'])[1]"));
+				Select Sb=new Select (pay_In_MM);
+				Sb.selectByContainsVisibleText(String.valueOf(String.valueOf(pay_In_Date_mn)));
+				
+				
+				
+				
+		
+		
+		
+		
+		
 		Wait.until(ExpectedConditions.elementToBeClickable(Add_To_Settelment_Details_btn)).click();
 
 		try {
