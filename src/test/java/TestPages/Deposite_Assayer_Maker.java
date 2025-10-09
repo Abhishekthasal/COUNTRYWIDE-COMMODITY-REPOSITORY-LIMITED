@@ -541,6 +541,27 @@ public class Deposite_Assayer_Maker {
 			Grade_Desig.click();
 			Select Pre_Qualification = new Select(Pre_Qualification_Txt);
 			Pre_Qualification.selectByIndex(1);
+			/*
+			 * System.out.println("You selected: Cotton"); Select GradeCotton = new
+			 * Select(Grade_Desig); GradeCotton.selectByVisibleText("GENERAL");
+			 * Grade_Desig.click();
+			 */
+
+			
+			STAPLE_SPAN_LENGTH_Ex.sendKeys(String.valueOf(28));
+			MICRONAIRE_EX.sendKeys(String.valueOf(4));
+			TRASH_ex.sendKeys(String.valueOf(4));
+			TENSILE_STRENGTH_EX.sendKeys(String.valueOf(28));
+			Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+			S.selectByIndex(1);
+			
+			MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(7));
+			REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
+			YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
+			
+			
+			
+			/*
 			STAPLE_LENGTH.sendKeys("33");
 			TRASH_CONTENT.sendKeys("3");
 			MOISTURE_BY_MASS.sendKeys("5");

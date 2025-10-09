@@ -71,7 +71,7 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	 @Test
+	// @Test
 	void Pledge_Creation_WareHouse() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for Pledge_Creation WareHouse start");
@@ -149,7 +149,7 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	// @Test
+	 @Test
 	void pledgee_Creation_Authorized() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for pledgee_Creation_Authorized start");

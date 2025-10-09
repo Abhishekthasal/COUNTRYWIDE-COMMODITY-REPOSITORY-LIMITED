@@ -55,11 +55,11 @@ public class ON_Market_Checker {
 	public void Settlement_Master_Checker() throws InterruptedException {
 
 		try {
-			if (Masters_Btn.isDisplayed()) {
+			//if (Masters_Btn.isDisplayed()) {
 				Masters_Btn.click();
-			} else {
-				System.out.println("Masters_Btn is not visible");
-			}
+				/*
+				 * } else { System.out.println("Masters_Btn is not visible"); }
+				 */
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Masters_Btn click...");
 			js.executeScript("arguments[0].click();", Masters_Btn);
@@ -70,11 +70,11 @@ public class ON_Market_Checker {
 		}
 		Thread.sleep(2000);
 		try {
-			if (Settlement_Btn.isDisplayed()) {
+			//if (Settlement_Btn.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Settlement_Btn)).click();
-			} else {
-				System.out.println("Settlement_Btn is not visible");
-			}
+				/*
+				 * } else { System.out.println("Settlement_Btn is not visible"); }
+				 */
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Settlement_Btn click...");
 			js.executeScript("arguments[0].click();", Settlement_Btn);
@@ -84,17 +84,49 @@ public class ON_Market_Checker {
 			System.out.println("Unexpected error for Settlement_Btn: " + e.getMessage());
 		}
 
-		Search_txt.sendKeys(String.valueOf(Settlement_Master_CC_Login.settlement_No));
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_txt)).sendKeys(String.valueOf(Settlement_Master_CC_Login.settlement_No));
 
-		Search_btn.click();
-
-		Actions_btn.click();
-
-		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_btn)).click();
-
+		try {
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Search_btn click...");
+			js.executeScript("arguments[0].click();", Search_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Search_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Actions_btn click...");
+			js.executeScript("arguments[0].click();", Actions_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions_btn: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorize_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Authorize_btn click...");
+			js.executeScript("arguments[0].click();", Authorize_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_btn: " + e.getMessage());
+		}
 		Thread.sleep(2000);
-
-		Authorized_chk.click();
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorized_chk)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Authorized_chk click...");
+			js.executeScript("arguments[0].click();", Authorized_chk);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorized_chk not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorized_chk: " + e.getMessage());
+		}
 
 		try {
 			if (Save_btn.isDisplayed()) {
@@ -115,11 +147,9 @@ public class ON_Market_Checker {
 	public void On_Market_Checker() throws InterruptedException {
 
 		try {
-			if (Transaction_Btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
-			} else {
-				System.out.println("Transaction_Btn is not visible");
-			}
+
+			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
+
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Transaction_Btn click...");
 			js.executeScript("arguments[0].click();", Transaction_Btn);
@@ -129,11 +159,9 @@ public class ON_Market_Checker {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 		}
 		try {
-			if (OnMarket_Btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(OnMarket_Btn)).click();
-			} else {
-				System.out.println("OnMarket_Btn is not visible");
-			}
+
+			Wait.until(ExpectedConditions.elementToBeClickable(OnMarket_Btn)).click();
+
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying OnMarket_Btn click...");
 			js.executeScript("arguments[0].click();", OnMarket_Btn);
@@ -146,14 +174,37 @@ public class ON_Market_Checker {
 		Search_txt.sendKeys(String.valueOf(Settlement_Master_CC_Login.settlement_No));
 
 		Search_btn.click();
-
-		Actions_btn.click();
-
-		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_btn)).click();
-
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Actions_btn click...");
+			js.executeScript("arguments[0].click();", Actions_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions_btn: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorize_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Authorize_btn click...");
+			js.executeScript("arguments[0].click();", Authorize_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_btn: " + e.getMessage());
+		}
 		Thread.sleep(2000);
-
-		Authorized_chk.click();
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorized_chk)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Authorized_chk click...");
+			js.executeScript("arguments[0].click();", Authorized_chk);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorized_chk not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorized_chk: " + e.getMessage());
+		}
 
 		try {
 			if (Save_btn.isDisplayed()) {

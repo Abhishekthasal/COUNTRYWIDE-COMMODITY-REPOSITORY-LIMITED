@@ -34,37 +34,21 @@ public class Settlement_Master_CC_Login {
 	static int settlement_No = excel.getsettlement_No(dataRow);
 	int settlement_Year = excel.getsettlement_Year(dataRow);
 	String commodity = excel.getcommodity(dataRow);
-	String expectedDay = excel.getexpectedDay(dataRow);
-	String expectedMonth = excel.getexpectedMonth(dataRow);
-	String expectedYear = excel.getexpectedYear(dataRow);
-	String trade_Day = excel.gettrade_Day(dataRow);
-	String trade_Month = excel.gettrade_Month(dataRow);
-	String trade_Year = excel.gettrade_Year(dataRow);
-	String PostExpiry_Validity = excel.getPostExpiry_Validity_Date(dataRow);
-	String PostExpiry_Validity_Month = excel.getPostExpiry_Validity_Month(dataRow);
-	String PostExpiry_Validity_Year = excel.getPostExpiry_Validity_Year(dataRow);
-	String Delivery_Marking = excel.getDelivery_Marking(dataRow);
-	String Delivery_Marking_Month = excel.getDelivery_Marking_Month(dataRow);
-	String Delivery_Marking_Year = excel.getDelivery_Marking_Year(dataRow);
-	String pay_In_date = excel.getpay_In_date(dataRow);
-	String pay_In_Month = excel.getpay_In_Month(dataRow);
-	String pay_In_Year = excel.getpay_In_Year(dataRow);
+	String expectedDay ="31-10-2025";               //excel.getexpectedDay(dataRow);
+	String trade_Day =  "01-10-2025";          // excel.gettrade_Day(dataRow);
+	String PostExpiry_Validity_Day ="31-10-2025";       //excel.getPostExpiry_Validity_Date(dataRow);
+	String Delivery_Marking_Day = "10-10-2025";              //excel.getDelivery_Marking(dataRow);
+	String pay_In_date ="31-10-2025";                      //excel.getpay_In_date(dataRow);
 	// String pay_Out_Date=excel.getpay_Out_Date_hr(dataRow);
 	int pay_In_Date_hr = excel.getpay_In_Date_hr(dataRow);
 	int pay_In_Date_mn = excel.getpay_In_Date_mn(dataRow);
-	String pay_out_date = excel.getpay_out_date(dataRow);
-	String pay_out_Month = excel.getpay_out_Month(dataRow);
-	String pay_out_Year = excel.getpay_out_Year(dataRow);
+	String pay_out_date ="31-10-2025";                     //excel.getpay_out_date(dataRow);
 	int pay_out_Date_hr = excel.getpay_out_Date_hr(dataRow);
 	int pay_out_Date_mn = excel.getpay_out_Date_mn(dataRow);
-	String early_pay_In_date = excel.getearly_pay_In_date(dataRow);
-	String early_pay_In_Month = excel.getearly_pay_In_Month(dataRow);
-	String early_pay_In_Year = excel.getearly_pay_In_Year(dataRow);
+	String early_pay_In_date ="01-10-2025";                     //excel.getearly_pay_In_date(dataRow);
 	int early_pay_In_Date_hr = excel.getearly_pay_In_Date_hr(dataRow);
 	int early_pay_In_Date_mn = excel.getearly_pay_In_Date_mn(dataRow);
-	String early_Payin_End_date = excel.getearly_Payin_End_date(dataRow);
-	String early_Payin_End_Month = excel.getearly_Payin_End_Month(dataRow);
-	String early_Payin_End_Year = excel.getearly_Payin_End_Year(dataRow);
+	String early_Payin_End_date = "01-10-2025";                   //excel.getearly_Payin_End_date(dataRow);
 	int early_Payin_End_Date_hr = excel.getearly_Payin_End_Date_hr(dataRow);
 	int early_Payin_End_Date_mn = excel.getearly_Payin_End_Date_mn(dataRow);
 
@@ -114,8 +98,6 @@ public class Settlement_Master_CC_Login {
 
 	@FindBy(xpath = "//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement COMM_CODE_NAME_btn;
-	
-	
 
 	@FindBy(xpath = "(//input[@type='text'])[1]")
 	WebElement COMM_CODE_NAME_Txt;
@@ -125,8 +107,8 @@ public class Settlement_Master_CC_Login {
 
 	@FindBy(xpath = "(//input[@id='trade_Start_Date'])[1]")
 	WebElement trade_Start_Date_txt;
-	
-	@FindBy(xpath="//td[@class='today active start-date active end-date available']")
+
+	@FindBy(xpath = "//td[@class='today active start-date active end-date available']")
 	WebElement today_active;
 
 	@FindBy(xpath = "//select[@name='pay_In_Date_hr']")
@@ -161,11 +143,10 @@ public class Settlement_Master_CC_Login {
 
 	public void Settlement_Master() throws InterruptedException {
 
-		
 		try {
-			
+
 			Wait.until(ExpectedConditions.elementToBeClickable(Masters_Btn)).click();
-			
+
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Masters_Btn click...");
 			js.executeScript("arguments[0].click();", Masters_Btn);
@@ -176,9 +157,9 @@ public class Settlement_Master_CC_Login {
 		}
 		Thread.sleep(2000);
 		try {
-			
+
 			Wait.until(ExpectedConditions.elementToBeClickable(Settlement_Btn)).click();
-			
+
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying Settlement_Btn click...");
 			js.executeScript("arguments[0].click();", Settlement_Btn);
@@ -251,166 +232,94 @@ public class Settlement_Master_CC_Login {
 			System.out.println("Unexpected error for COMM_CODE_NAME_Txt: " + e.getMessage());
 		}
 		Thread.sleep(1000);
-		// Open the calendar
-		WebElement dateField = driver.findElement(By.xpath("//input[@id='expiry_Date']"));
-		dateField.click();
-		// select year
-		WebElement yearDropdown = driver
-				.findElement(By.xpath("//div[@class='calendar left single']//select[@class='yearselect']"));
-		Select yearSelect = new Select(yearDropdown);
-		yearSelect.selectByVisibleText(expectedYear);
-		//System.out.println("expectedYear is :" + expectedYear);
-		//String expectedyearSelect = yearSelect.getFirstSelectedOption().getText();
+		// Open the calendarexpiry_Date
+		WebElement expiry_Date = driver.findElement(By.xpath("//input[@id='expiry_Date']"));
+		expiry_Date.click();
+		expiry_Date.sendKeys(expectedDay);
+		expiry_Date.sendKeys(Keys.ENTER);
+
 		
-		// select month
-		WebElement monthDropdown = driver.findElement(By.xpath("(//select[@class='monthselect'])[1]"));
-		Select monthSelect = new Select(monthDropdown);
-		monthSelect.selectByVisibleText(expectedMonth);
-	//	System.out.println("expectedMonth is:" + expectedMonth);
-		//String selectedMonth = monthSelect.getFirstSelectedOption().getText();
-		
-		Thread.sleep(2000);
-		// select date
-		WebElement dateElement = driver.findElement(By.xpath("//td[@class='available' and normalize-space(text())='" + expectedDay + "']"));
-		// Click on the specific date
-		try {
-		dateElement.click();
-		//System.out.println("✅ Clicked on date: " + dateElement);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying dateElement click...");
-			js.executeScript("arguments[0].click();", dateElement);
-		} catch (NoSuchElementException e) {
-			System.out.println("dateElement not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for dateElement: " + e.getMessage());
-		}
-		
-		
-		
-		
+
 		// Open the calendar
 		WebElement trade_Start_Date = driver.findElement(By.xpath(" //input[@id='trade_Start_Date']"));
 		trade_Start_Date.click();
-		
+		trade_Start_Date.sendKeys(trade_Day);
 		Thread.sleep(2000);
-		/*
-		 * try {
-		 * Wait.until(ExpectedConditions.elementToBeClickable(today_active)).click(); }
-		 * catch (ElementClickInterceptedException e) {
-		 * System.out.println("Normal click failed, trying today_active click...");
-		 * js.executeScript("arguments[0].click();", today_active); } catch
-		 * (NoSuchElementException e) { System.out.println("today_active not found: " +
-		 * e.getMessage()); } catch (Exception e) {
-		 * System.out.println("Unexpected error for today_active: " + e.getMessage()); }
-		 */
-			
+
 		// Open the calendar
-				WebElement delivery_Marking_dateField = driver.findElement(By.xpath("(//input[@id='delivery_Marking_Date'])[1]"));
-				delivery_Marking_dateField.click();
-		
-				// select year
-				WebElement delivery_Marking_year = driver
-						.findElement(By.xpath("//select[@class='yearselect'][5]"));
-				Select delivery_yearSelect = new Select(delivery_Marking_year);
-				delivery_yearSelect.selectByVisibleText(Delivery_Marking_Year);
-				System.out.println("Delivery_Marking_Year is :" + Delivery_Marking_Year);
-				//String expectedyearSelect = yearSelect.getFirstSelectedOption().getText();
-				
-				// select month
-				WebElement delivery_Marking_month = driver.findElement(By.xpath("(//select[@class='monthselect'])[5]"));
-				Select delivery_monthSelect = new Select(delivery_Marking_month);
-				delivery_monthSelect.selectByVisibleText(Delivery_Marking_Month);
-				System.out.println("Delivery_Marking_Month is:" + Delivery_Marking_Month);
-				//String selectedMonth = monthSelect.getFirstSelectedOption().getText();
-				
-				Thread.sleep(2000);
-				// select date
-				//WebElement Delivery_Marking_date = driver.findElement(By.xpath("//td[@class='available' and normalize-space(text())='" + Delivery_Marking + "'][19]"));
-				WebElement Delivery_Marking_date = driver.findElement(By.xpath("(//td[contains(text(),'" + Delivery_Marking + "')])[19]"));
-				
-				//(//td[contains(text(),'7')])[18]
-				// Click on the specific date
-				try {
-					Delivery_Marking_date.click();
-				System.out.println("✅ Clicked on date: " + Delivery_Marking);
-				} catch (ElementClickInterceptedException e) {
-					System.out.println("Normal click failed, trying dateElement click...");
-					js.executeScript("arguments[0].click();", dateElement);
-				} catch (NoSuchElementException e) {
-					System.out.println("dateElement not found: " + e.getMessage());
-				} catch (Exception e) {
-					System.out.println("Unexpected error for dateElement: " + e.getMessage());
-				}
-				
-				
-				// Open the calendar
-				WebElement delivery_Date = driver.findElement(By.xpath("(//input[@id='delivery_Marking_Date'])[2]"));
-				delivery_Date.click();
-				
-				Thread.sleep(2000);
-				try {
-						Wait.until(ExpectedConditions.elementToBeClickable(today_active)).click();
-				} catch (ElementClickInterceptedException e) {
-					System.out.println("Normal click failed, trying today_active click...");
-					js.executeScript("arguments[0].click();", today_active);
-				} catch (NoSuchElementException e) {
-					System.out.println("today_active not found: " + e.getMessage());
-				} catch (Exception e) {
-					System.out.println("Unexpected error for today_active: " + e.getMessage());
-				}
-					
-		
-		
-				WebElement pay_In_Date = driver.findElement(By.xpath("//input[@id='pay_In_Date']"));
-				pay_In_Date.click();
-				
-				// select year
-				WebElement pay_In_year_btn = driver
-						.findElement(By.xpath("//select[@class='yearselect'][9]"));
-				Select pay_In_yearSelect = new Select(pay_In_year_btn);
-				pay_In_yearSelect.selectByVisibleText(pay_In_Year);
-				//System.out.println("expectedYear is :" + expectedYear);
-				//String expectedyearSelect = yearSelect.getFirstSelectedOption().getText();
-				
-				// select month
-				WebElement pay_In_month = driver.findElement(By.xpath("(//select[@class='monthselect'])[9]"));
-				Select pay_In_monthSelect = new Select(pay_In_month);
-				pay_In_monthSelect.selectByVisibleText(pay_In_Month);
-			//	System.out.println("expectedMonth is:" + expectedMonth);
-				//String selectedMonth = monthSelect.getFirstSelectedOption().getText();
-				
-				Thread.sleep(2000);
-				// select date
-				WebElement pay_In_date_btn = driver.findElement(By.xpath("//td[@class='available' and normalize-space(text())='" + pay_In_date + "']"));
-				// Click on the specific date
-				try {
-					pay_In_date_btn.click();
-				//System.out.println("✅ Clicked on date: " + dateElement);
-				} catch (ElementClickInterceptedException e) {
-					System.out.println("Normal click failed, trying dateElement click...");
-					js.executeScript("arguments[0].click();", pay_In_date_btn);
-				} catch (NoSuchElementException e) {
-					System.out.println("dateElement not found: " + e.getMessage());
-				} catch (Exception e) {
-					System.out.println("Unexpected error for dateElement: " + e.getMessage());
-				}
-				
-				WebElement Pay_In_Hr= driver.findElement(By.xpath("(//select[@name='pay_In_Date_hr'])[1]"));
-				Select Sa=new Select (Pay_In_Hr);
-				Sa.selectByContainsVisibleText(String.valueOf(pay_In_Date_hr));
-				
-				WebElement pay_In_MM= driver.findElement(By.xpath("(//select[@name='pay_In_Date_mn'])[1]"));
-				Select Sb=new Select (pay_In_MM);
-				Sb.selectByContainsVisibleText(String.valueOf(String.valueOf(pay_In_Date_mn)));
-				
-				
-				
-				
-		
-		
-		
-		
-		
+		WebElement delivery_Marking_dateField = driver
+				.findElement(By.xpath("(//input[@id='delivery_Marking_Date'])[1]"));
+		delivery_Marking_dateField.click();
+		delivery_Marking_dateField.sendKeys(PostExpiry_Validity_Day);
+		Thread.sleep(1000);
+		delivery_Marking_dateField.sendKeys(Keys.ENTER);
+
+		// Open the calendar
+		WebElement delivery_Date = driver.findElement(By.xpath("(//input[@id='delivery_Marking_Date'])[2]"));
+		delivery_Date.click();
+		delivery_Date.sendKeys(Delivery_Marking_Day);
+		Thread.sleep(1000);
+		delivery_Date.sendKeys(Keys.ENTER);
+
+		// Select pay_In_Date
+		WebElement pay_In_Date = driver.findElement(By.xpath("//input[@id='pay_In_Date']"));
+		pay_In_Date.click();
+		pay_In_Date.sendKeys(pay_In_date);
+		Thread.sleep(1000);
+		pay_In_Date.sendKeys(Keys.ENTER);
+
+		WebElement Pay_In_Hr = driver.findElement(By.xpath("(//select[@name='pay_In_Date_hr'])[1]"));
+		Select Sa = new Select(Pay_In_Hr);
+		Sa.selectByContainsVisibleText(String.valueOf(pay_In_Date_hr));
+
+		WebElement pay_In_MM = driver.findElement(By.xpath("(//select[@name='pay_In_Date_mn'])[1]"));
+		Select Sb = new Select(pay_In_MM);
+		Sb.selectByContainsVisibleText(String.valueOf(String.valueOf(pay_In_Date_mn)));
+
+		// Select pay_Out_Date
+		WebElement pay_Out_Date = driver.findElement(By.xpath("//input[@id='pay_Out_Date']"));
+		pay_Out_Date.click();
+		pay_Out_Date.sendKeys(pay_out_date);
+		Thread.sleep(1000);
+		pay_Out_Date.sendKeys(Keys.ENTER);
+
+		WebElement pay_Out_Date_hr = driver.findElement(By.xpath("//select[@name='pay_Out_Date_hr']"));
+		Select SC = new Select(pay_Out_Date_hr);
+		SC.selectByContainsVisibleText(String.valueOf(pay_out_Date_hr));
+
+		WebElement pay_Out_Date_mn = driver.findElement(By.xpath("//select[@name='pay_Out_Date_mn']"));
+		Select SD = new Select(pay_Out_Date_mn);
+		SD.selectByContainsVisibleText(String.valueOf(String.valueOf(pay_out_Date_mn)));
+
+		// Select early_Payin_Start_Date
+		WebElement early_Payin_Start_Date = driver.findElement(By.xpath("//input[@id='early_Payin_Start_Date']"));
+		early_Payin_Start_Date.click();
+		early_Payin_Start_Date.sendKeys(early_pay_In_date);
+		Thread.sleep(1000);
+		early_Payin_Start_Date.sendKeys(Keys.ENTER);
+
+		WebElement early_pay_In_Date_hr = driver.findElement(By.xpath("//select[@name='early_pay_In_Date_hr']"));
+		Select SE = new Select(early_pay_In_Date_hr);
+		SE.selectByContainsVisibleText(String.valueOf(early_pay_In_Date_hr));
+
+		WebElement early_pay_In_Date = driver.findElement(By.xpath("//select[@name='early_pay_In_Date_mn']"));
+		Select SF = new Select(early_pay_In_Date);
+		SF.selectByContainsVisibleText(String.valueOf(String.valueOf(early_pay_In_Date_mn)));
+
+		// Select early_Payin_End_Date
+		WebElement early_Payin_End_Date = driver.findElement(By.xpath("(//input[@id='early_Payin_End_Date'])[1]"));
+		early_Payin_End_Date.click();
+		early_Payin_End_Date.sendKeys(early_Payin_End_date);
+		Thread.sleep(1000);
+		early_Payin_End_Date.sendKeys(Keys.ENTER);
+		WebElement early_Payin_End_Date_hr = driver.findElement(By.xpath("//select[@name='early_Payin_End_Date_hr']"));
+		Select SI = new Select(early_Payin_End_Date_hr);
+		SI.selectByContainsVisibleText(String.valueOf(early_Payin_End_Date_hr));
+
+		WebElement early_Payin_End_Date1 = driver.findElement(By.xpath("//select[@name='early_Payin_End_Date_mn']"));
+		Select SJ = new Select(early_Payin_End_Date1);
+		SJ.selectByContainsVisibleText(String.valueOf(String.valueOf(early_Payin_End_Date_mn)));
+
 		Wait.until(ExpectedConditions.elementToBeClickable(Add_To_Settelment_Details_btn)).click();
 
 		try {

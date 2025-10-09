@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.ON_Market_TestCase">
+      <class name="TestCase.Pledge_TestCase">
         <methods>
+          <include name="pledgee_Creation"/>
           <include name="setup"/>
-          <include name="On_Market_RP_Login"/>
         </methods>
-      </class> <!-- TestCase.ON_Market_TestCase -->
+      </class> <!-- TestCase.Pledge_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

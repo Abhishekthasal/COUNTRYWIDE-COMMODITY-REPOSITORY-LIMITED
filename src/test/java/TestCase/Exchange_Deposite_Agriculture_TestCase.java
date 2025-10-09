@@ -29,7 +29,7 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Deposite");
 
-@Test
+//@Test
 	void RP_Exchange_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Exchange_Deposite_Request_Maker start");
@@ -138,7 +138,7 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 
 	}
-@Test
+//@Test
 	void Deposit_Confirm_WH_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Maker is start");
@@ -162,8 +162,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Checker is start");
 			Deposit_Confirm_WH_Checker Confirm = new Deposit_Confirm_WH_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("wsp9999996", "user72", "Test@123");
-			Login.PortalLogin("wsp9997115", "pratap", "121@test");
+			Login.PortalLogin("wsp9999996", "user72", "121@test");
+			//Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			Confirm.Exchange_Deposit_Confirm_WH();
 			test.log(LogStatus.PASS, "Deposit_Confirm_WH_Checker is successfull");
 		} catch (Exception e) {

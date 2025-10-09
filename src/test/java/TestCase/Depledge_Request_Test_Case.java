@@ -24,7 +24,8 @@ public class Depledge_Request_Test_Case extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Login for Depledge_Request start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			Login.PortalLogin("rp-bhanu", "sarthak", "121@test");
+			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Depledge_Request creation  start");
 			TestPages.Depledge_Request Pledge = new TestPages.Depledge_Request(driver, Wait);
@@ -55,7 +56,8 @@ public class Depledge_Request_Test_Case extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Login for Depledge_Request_Checker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			Login.PortalLogin("rp-bhanu", "sarthakp", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Depledge_Request_Checker creation  start");
 			TestPages.Depledge_Request_Authoriz Pledge = new TestPages.Depledge_Request_Authoriz(driver, Wait);

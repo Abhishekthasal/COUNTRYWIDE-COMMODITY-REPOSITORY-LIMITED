@@ -2,15 +2,17 @@ package Utillity;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-//import java.io.IOException;
+import java.io.IOException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import freemarker.template.utility.DateUtil;
 import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
-//import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import java.text.SimpleDateFormat;
 
 public class ExcelUtils {
 	static String projectPath;
@@ -77,8 +79,18 @@ public class ExcelUtils {
 					case STRING:
 						cellData = cell.getStringCellValue(); // Direct string value
 						break;
-					case NUMERIC:
-						cellData = String.valueOf((long) cell.getNumericCellValue()); // Convert to String
+					
+					  case NUMERIC: 
+						  cellData = String.valueOf((long) cell.getNumericCellValue());
+					  // Convert to String
+					 					
+					/*
+					 * case NUMERIC: if (DateUtil.isCellDateFormatted(cell)) {
+					 * 
+					 * java.util.Date date = cell.getDateCellValue(); java.text.SimpleDateFormat sdf
+					 * = new java.text.SimpleDateFormat("dd-MMM-yyyy"); cellData = sdf.format(date);
+					 * } else { cellData = String.valueOf((long) cell.getNumericCellValue()); }
+					 */
 						break;
 					case BOOLEAN:
 						cellData = String.valueOf(cell.getBooleanCellValue()); // Convert Boolean to String
@@ -971,108 +983,50 @@ public class ExcelUtils {
 		return getCellData(rowNum, 5);
 	}
 	
-	public String getexpectedMonth(int rowNum) {
+	public String gettrade_Day(int rowNum) {
 		return getCellData(rowNum, 6);
 	}
-	
-	public String getexpectedYear(int rowNum) {
+	public String getPostExpiry_Validity_Date(int rowNum) {
 		return getCellData(rowNum, 7);
 	}
-	
-	public String gettrade_Day(int rowNum) {
+	public String getDelivery_Marking(int rowNum) {
 		return getCellData(rowNum, 8);
 	}
-	
-	public String gettrade_Month(int rowNum) {
+	public String getpay_In_date(int rowNum) {
 		return getCellData(rowNum, 9);
 	}
-	
-	public String gettrade_Year(int rowNum) {
-		return getCellData(rowNum, 10);
-	}
-	
-	public String getPostExpiry_Validity_Date(int rowNum) {
-		return getCellData(rowNum, 11);
-	}
-	
-	public String getPostExpiry_Validity_Month(int rowNum) {
-		return getCellData(rowNum, 12);
-	}
-	
-	public String getPostExpiry_Validity_Year(int rowNum) {
-		return getCellData(rowNum, 13);
-	}
-	
-	public String getDelivery_Marking(int rowNum) {
-		return getCellData(rowNum, 14);
-	}
-	
-	public String getDelivery_Marking_Month(int rowNum) {
-		return getCellData(rowNum, 15);
-	}
-	
-	public String getDelivery_Marking_Year(int rowNum) {
-		return getCellData(rowNum, 16);
-	}
-	public String getpay_In_date(int rowNum) {
-		return getCellData(rowNum, 17);
-	}
-	public String getpay_In_Month(int rowNum) {
-		return getCellData(rowNum, 18);
-	}
-	public String getpay_In_Year(int rowNum) {
-		return getCellData(rowNum, 19);
-	}
 	public int getpay_In_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(20).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
 	}
 	public int getpay_In_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(21).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(11).getNumericCellValue();
 	}
 	public String getpay_out_date(int rowNum) {
-		return getCellData(rowNum, 22);
-	}
-	public String getpay_out_Month(int rowNum) {
-		return getCellData(rowNum, 23);
-	}
-	public String getpay_out_Year(int rowNum) {
-		return getCellData(rowNum, 24);
+		return getCellData(rowNum, 12);
 	}
 	public int getpay_out_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(25).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(13).getNumericCellValue();
 	}
 	public int getpay_out_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(26).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(14).getNumericCellValue();
 	}
 	public String getearly_pay_In_date(int rowNum) {
-		return getCellData(rowNum, 27);
-	}
-	public String getearly_pay_In_Month(int rowNum) {
-		return getCellData(rowNum, 28);
-	}
-	public String getearly_pay_In_Year(int rowNum) {
-		return getCellData(rowNum, 29);
+		return getCellData(rowNum, 15);
 	}
 	public int getearly_pay_In_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(30).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(16).getNumericCellValue();
 	}
 	public int getearly_pay_In_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(31).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(17).getNumericCellValue();
 	}
 	public String getearly_Payin_End_date(int rowNum) {
-		return getCellData(rowNum, 32);
-	}
-	public String getearly_Payin_End_Month(int rowNum) {
-		return getCellData(rowNum, 33);
-	}
-	public String getearly_Payin_End_Year(int rowNum) {
-		return getCellData(rowNum, 34);
+		return getCellData(rowNum, 18);
 	}
 	public int getearly_Payin_End_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(35).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(19).getNumericCellValue();
 	}
 	public int getearly_Payin_End_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(36).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(20).getNumericCellValue();
 	}
 	
 	/*************************************On_Market_RP_Login**********************************/
