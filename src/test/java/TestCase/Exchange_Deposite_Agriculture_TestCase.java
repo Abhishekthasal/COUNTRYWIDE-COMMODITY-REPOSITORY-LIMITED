@@ -2,13 +2,10 @@ package TestCase;
 
 import java.io.IOException;
 import java.time.Duration;
-
 import org.testng.annotations.Test;
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-
 import TestPages.BaseClass;
 import TestPages.DashBoard_WareHouse_Checker;
 import TestPages.Deposit_Confirm_WH_Checker;
@@ -29,7 +26,7 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Deposite");
 
-//@Test
+@Test
 	void RP_Exchange_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Exchange_Deposite_Request_Maker start");

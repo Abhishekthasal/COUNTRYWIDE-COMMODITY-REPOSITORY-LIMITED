@@ -1070,6 +1070,40 @@ public class ExcelUtils {
 	public int getdeliveryunit_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(12).getNumericCellValue();
 	}
+	/*******************************************Pay_In_Request_Maker*********************************************/
+	public String getfileFormat_Pay_In(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+	
+	public int getce_cc_id_Pay_In(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public long getSettelment_No_Pay_In(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+	
+	public String getdeleveryStatus_Pay_In(int rowNum) {
+		return getCellData(rowNum, 3);
+	}
+	
+	public String getCommodity_Pay_In(int rowNum) {
+		return getCellData(rowNum, 4);
+	}
+	
+	
+	/*******************************************Pay_Out_Request_Maker*********************************************/
+	public int getce_cc_id_Pay_Out(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+	}
+	
+	public long getSettelment_No_Pay_Out(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public String getcommodity_Master_Id_Pay_Out(int rowNum) {
+		return getCellData(rowNum, 2);
+	}
 	
 	
 }

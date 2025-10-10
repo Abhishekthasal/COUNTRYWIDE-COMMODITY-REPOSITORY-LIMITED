@@ -5,7 +5,7 @@
     <classes>
       <class name="TestCase.Pledge_TestCase">
         <methods>
-          <include name="pledgee_Creation"/>
+          <include name="Pledge_Creation_WareHouse_Authorized"/>
           <include name="setup"/>
         </methods>
       </class> <!-- TestCase.Pledge_TestCase -->

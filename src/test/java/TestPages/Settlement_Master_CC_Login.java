@@ -1,9 +1,5 @@
 package TestPages;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
