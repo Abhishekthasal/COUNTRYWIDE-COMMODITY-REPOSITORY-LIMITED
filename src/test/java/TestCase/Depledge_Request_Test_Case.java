@@ -19,7 +19,7 @@ public class Depledge_Request_Test_Case extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Depledge_Request Report");
 
-	 @Test
+	// @Test
 	void Depledge_Request() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Depledge_Request start");
@@ -56,8 +56,8 @@ public class Depledge_Request_Test_Case extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Login for Depledge_Request_Checker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
-			Login.PortalLogin("rp-bhanu", "sarthakp", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("rp-bhanu", "sarthakp", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Depledge_Request_Checker creation  start");
 			TestPages.Depledge_Request_Authoriz Pledge = new TestPages.Depledge_Request_Authoriz(driver, Wait);
@@ -103,7 +103,7 @@ public class Depledge_Request_Test_Case extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test
+	@Test
 	void DePledge_Confirm_By_Pledgee_Authorized() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for DePledge_Confirm_By_Pledgee_Authorized start");

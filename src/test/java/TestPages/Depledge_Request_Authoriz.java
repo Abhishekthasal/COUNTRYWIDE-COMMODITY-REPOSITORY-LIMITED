@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Depledge_Request_Authoriz {
@@ -38,8 +39,8 @@ public class Depledge_Request_Authoriz {
 
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement submit_Button;
-
-	@FindBy(xpath = "//button[normalize-space()='Actions']")
+	//button[normalize-space()='Actions']
+	@FindBy(xpath = "(//button[normalize-space()='Actions'])[1]")
 	WebElement Actions;
 
 	@FindBy(xpath = "//a[normalize-space()='Authorize']")
@@ -64,9 +65,26 @@ public class Depledge_Request_Authoriz {
 
 		submit_Button.click();
 
-		Actions.click();
-
-		Authorize.click();
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Actions click...");
+			js.executeScript("arguments[0].click();", Actions);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorize)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Authorize click...");
+			js.executeScript("arguments[0].click();", Authorize);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize: " + e.getMessage());
+		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		Scroll.sendKeys(Keys.PAGE_DOWN);
 		Scroll.sendKeys(Keys.PAGE_DOWN);
@@ -96,7 +114,7 @@ public class Depledge_Request_Authoriz {
 
 	}
 
-	public void DePledge_Confirm_By_Pledgee_Checker() {
+	public void DePledge_Confirm_By_Pledgee_Checker() throws InterruptedException {
 
 		Transaction_btn.click();
 
@@ -105,10 +123,28 @@ public class Depledge_Request_Authoriz {
 		Search.sendKeys(String.valueOf(Depledge_Request.pledge_Seq_No));
 
 		submit_Button.click();
-
-		Actions.click();
-
-		Authorize.click();
+		Thread.sleep(1000);
+		try {
+			//Wait.until(ExpectedConditions.elementToBeClickable(Actions)).click();
+			Actions.click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Actions click...");
+			js.executeScript("arguments[0].click();", Actions);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorize)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Authorize click...");
+			js.executeScript("arguments[0].click();", Authorize);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize: " + e.getMessage());
+		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		Scroll.sendKeys(Keys.PAGE_DOWN);
 		Scroll.sendKeys(Keys.PAGE_DOWN);

@@ -12,7 +12,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import TestPages.BaseClass;
 import TestPages.LoginPages;
 
-public class CM_Payout_Transfer_TestCase extends BaseClass {
+public class Pay_In_Transfer_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
 			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"

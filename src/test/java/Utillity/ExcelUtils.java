@@ -1106,4 +1106,18 @@ public class ExcelUtils {
 	}
 	
 	
+	
+	/*******************************************************Pay_In_Release*****************************************************/
+	public int getce_cc_id_Pay_Out_Release(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+	}
+	
+	public long getSettelment_No_Pay_Out_Release(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public String getcommodity_Master_Id_Pay_Out_Release(int rowNum) {
+		return getCellData(rowNum, 2);
+	}
+	
 }

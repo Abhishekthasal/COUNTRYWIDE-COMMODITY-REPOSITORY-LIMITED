@@ -1,5 +1,6 @@
 package TestPages;
 
+//import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -72,8 +73,14 @@ public class Pay_Out_Request_Maker {
 	@FindBy(xpath="//button[@class='btn btn-primary blue ng-isolate-scope' and @type='submit']")
 	WebElement Start_Process_Btn;
 	
+	@FindBy(xpath = "(//button[@class='btn btn-default btn-xs ng-isolate-scope'][normalize-space()='Download'])[1]")
+	WebElement Download_Btn;
 
-	public void Pay_Out_Request() {
+	@FindBy(xpath = "//button[normalize-space()='Ok']")
+	WebElement Ok_btn;
+	
+
+	public void Pay_Out_Request() throws InterruptedException {
 
 		Transactions_Btn.click();
 
@@ -95,7 +102,16 @@ public class Pay_Out_Request_Maker {
 		Select SL = new Select(commodity_Master_Id_Btn);
 		SL.selectByContainsVisibleText(commodity_Master_Id);
 		
-		uploaderSIGN_Btn.click();
+		//uploaderSIGN_Btn.click();
+		
+		try {
+			//WebElement hiddenInput = driver.findElement(By.cssSelector("#files"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].style.display='block';", uploaderSIGN_Btn);
+			uploaderSIGN_Btn.sendKeys("C:\\Users\\abhishekyt\\Desktop\\PayOut13102025..csv");
+			Thread.sleep(3000);
+		} catch (Exception e) {
+			System.out.println("❌ uploaderSIGN_Btn upload failed: " + e.getMessage());
+		}
 		
 		try {
 			if (Start_Process_Btn.isDisplayed()) {
@@ -111,7 +127,38 @@ public class Pay_Out_Request_Maker {
 	} catch (Exception e) {
 		System.out.println("Unexpected error for Start_Process_Btn: " + e.getMessage());
 	}
+		try {
+			if (Ok_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+			} else {
+				System.out.println("We are unable to click the Ok_btn button");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Ok_btn click...");
+			js.executeScript("arguments[0].click();", Ok_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Ok_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Ok_btn: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		try {
+			if (Download_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Download_Btn)).click();
+			} else {
+				System.out.println("We are unable to click the Download_Btn button");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Download_Btn click...");
+			js.executeScript("arguments[0].click();", Download_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Download_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Download_Btn: " + e.getMessage());
+		}
 
 	}
+	
+	
 
 }
