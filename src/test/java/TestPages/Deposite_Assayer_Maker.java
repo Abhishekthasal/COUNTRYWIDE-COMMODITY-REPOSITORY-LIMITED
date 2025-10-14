@@ -2290,6 +2290,85 @@ public class Deposite_Assayer_Maker {
 					System.out.println("Unexpected error for Address: " + e.getMessage());
 				}
 				break;
+			case 1001:
+				System.out.println("You selected: ALUMINUM");
+				try {
+					Wait.until(ExpectedConditions.elementToBeClickable(Grade_Desig)).click();
+					Select Grade = new Select(Grade_Desig);
+					Grade.selectByVisibleText(Grade_Desig_type);
+					Grade_Desig.click();
+				} catch (ElementClickInterceptedException e) {
+					// js.executeScript("arguments[0].scrollIntoView(true);", Grade_Desig);
+					js.executeScript("arguments[0].click();", Grade_Desig);
+					Select Grade = new Select(Grade_Desig);
+					Grade.selectByVisibleText("GENERAL");
+					// js.executeScript("arguments[0].scrollIntoView(true);", Grade_Desig);
+					js.executeScript("arguments[0].click();", Grade_Desig);
+				} catch (NoSuchElementException e) {
+					System.out.println("Grade_Desig not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Grade_Desig: " + e.getMessage());
+				}
+				try {
+					remark.sendKeys(Remark_Value);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", remark);
+					js.executeScript("arguments[0].click();", remark);
+					js.executeScript("arguments[0].value='" + Assayring_Referance + "';", remark);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("remark not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for remark: " + e.getMessage());
+				}
+				try {
+					NABLCertificateDate.click();
+				} catch (ElementClickInterceptedException e) {
+					js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateDate);
+					js.executeScript("arguments[0].click();", NABLCertificateDate);
+				} catch (NoSuchElementException e) {
+					System.out.println("NABLCertificateDate not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for NABLCertificateDate: " + e.getMessage());
+				}
+				try {
+					Today_dates.click();
+				} catch (ElementClickInterceptedException e) {
+					js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
+					js.executeScript("arguments[0].click();", Today_dates);
+				} catch (NoSuchElementException e) {
+					System.out.println("Today_dates not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Today_dates: " + e.getMessage());
+				}
+				try {
+					NABLCertificateRefNo.sendKeys(NABLCertificateRefNum);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateRefNo);
+					js.executeScript("arguments[0].click();", NABLCertificateRefNo);
+					js.executeScript("arguments[0].value='" + NABLCertificateRefNum + "';", NABLCertificateRefNo);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("NABLCertificateRefNo not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for NABLCertificateRefNo: " + e.getMessage());
+				}
+				try {
+					Address.sendKeys(Address_Value);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", Address);
+					js.executeScript("arguments[0].click();", Address);
+					js.executeScript("arguments[0].value='" + Address_Value + "';", Address);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("Address not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Address: " + e.getMessage());
+				}
+				break;
 			default:
 				System.out.println("Invalid selection!");
 			}

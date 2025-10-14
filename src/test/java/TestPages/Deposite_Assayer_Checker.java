@@ -811,10 +811,10 @@ public class Deposite_Assayer_Checker {
 		}
 		for (int i = 1; i < DashBoard_WareHouse_Checker.totalBags; i++) {
 			try {
-				Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));
+				Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + i));
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript Search_txt click...");
-				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + i + "';",
+				js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + i + "';",
 						Search_txt);
 			} catch (NoSuchElementException e) {
 				System.out.println("Search_txt not found: " + e.getMessage());

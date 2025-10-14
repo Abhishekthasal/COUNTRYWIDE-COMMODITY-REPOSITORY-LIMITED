@@ -15,7 +15,7 @@ import TestPages.LoginPages;
 public class Pay_In_Release_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"+" Pay_In_Release"+
 					+ System.currentTimeMillis() + ".html",
 			true);
 	ExtentTest test = Report.startTest("Pay_In_Release Report");
