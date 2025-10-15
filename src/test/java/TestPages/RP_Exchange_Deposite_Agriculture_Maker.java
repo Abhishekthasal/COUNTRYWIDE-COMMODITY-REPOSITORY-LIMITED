@@ -285,7 +285,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
 					Thread.sleep(1000);
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+					//Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
 				}else {
 					System.out.println("Invalid WH_ID. Please enter  7 alphanumeric characters.");
 				}

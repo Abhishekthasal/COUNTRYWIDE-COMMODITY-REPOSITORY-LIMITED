@@ -635,10 +635,10 @@ public class Deposite_Assayer_Checker {
 		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(2000);
 			try {
-				Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
+				Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript Search_txt click...");
-				js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite + i + "';",
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + i + "';",
 						Search_txt);
 			} catch (NoSuchElementException e) {
 				System.out.println("Search_txt not found: " + e.getMessage());
@@ -743,9 +743,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for confirm_pop_up: " + e.getMessage());
 			}
-
 			Thread.sleep(2000);
-			
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_checkbox)).click();
 			} catch (ElementClickInterceptedException e) {
@@ -783,7 +781,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 			}
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			Search_txt.clear();
 		}
 	}

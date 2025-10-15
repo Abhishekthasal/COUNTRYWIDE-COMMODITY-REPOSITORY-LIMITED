@@ -1712,7 +1712,7 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 2; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -1749,15 +1749,15 @@ public class Deposite_Assayer_Maker {
 			// SA.selectByContainsVisibleText("5750013");
 
 			try {
-				if (RP_Deposite_Request_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{0,50}$")) {
-					SampleId_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
+				if (RP_Exchange_Deposite_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{0,50}$")) {
+					SampleId_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));
 				} else {
 					System.out.println("Invalid Sample. Please enter exactly 50 digits (numbers only):");
 
 				}
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript SampleId_txt click...");
-				js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite + i + "';",
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + i + "';",
 						SampleId_txt);
 
 			} catch (NoSuchElementException e) {

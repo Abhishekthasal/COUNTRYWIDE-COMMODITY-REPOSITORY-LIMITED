@@ -18,12 +18,12 @@ public class Margin_Pledge_Request {
 	WebDriverWait Wait;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Pledge.xlsx";
-	static String sheet = "Pay_In_Release";
+	static String sheet = "Margin_Pledge_Request";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	//public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); // 11;
-	public String Margin_pledge_Req_No = "shs5646";
+	public static String Margin_pledge_Req_No = "67676767";
 	long Client_Id = 155000010000027L;
 	String ucc_Id = "PR269MARGin";
 	String tm_Id = "TM23213";
@@ -33,7 +33,7 @@ public class Margin_Pledge_Request {
 	String CommoditySeg = "Agricultural";
 	int Commodity = 15;
 	long ENWR = 110000005360L;
-	int no_of_bags = 50;
+	int no_of_bags = 50; 
 
 	public Margin_Pledge_Request(WebDriver driver, WebDriverWait Wait) {
 

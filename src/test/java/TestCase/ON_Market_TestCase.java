@@ -15,7 +15,7 @@ public class ON_Market_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ON Market Report");
 
-	// @Test
+	 @Test
 	void Settlement_Master_CC_Login() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Settlement_Master start");

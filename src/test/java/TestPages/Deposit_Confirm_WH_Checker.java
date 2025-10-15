@@ -446,7 +446,7 @@ public class Deposit_Confirm_WH_Checker {
 		}
 	}
 
-	public void Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker() {
+	public void Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker() throws InterruptedException {
 		
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_btn)).click();
@@ -468,13 +468,13 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=2;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
-		
+		for(int i=3;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+			Thread.sleep(2000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite+i));
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Search_txt click...");
-			js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite + "';",
+			js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite +i + "';",
 					Search_txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_txt not found: " + e.getMessage());
@@ -606,9 +606,9 @@ public class Deposit_Confirm_WH_Checker {
 		}/*finally {
 			Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
 		}*/
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+		Thread.sleep(2000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_txt)).clear();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+		Thread.sleep(1000);
 		
 		}
 
@@ -635,12 +635,12 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-
+		for(int i=2;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 		try {
-			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite));
+			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + "';",
+			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite +i+ "';",
 					Search_txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_txt not found: " + e.getMessage());
@@ -734,6 +734,8 @@ public class Deposit_Confirm_WH_Checker {
 			System.out.println("Save_btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
+		}
+		
 		}
 
 

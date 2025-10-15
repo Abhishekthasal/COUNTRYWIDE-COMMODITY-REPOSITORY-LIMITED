@@ -21,7 +21,7 @@ public class TM_CM_Linking_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("TM_CM_Linking");
 	
-	//@Test
+	@Test
 	  void CM_Master_File_Upload () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "CM_Master_File_Upload start");

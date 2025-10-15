@@ -2,19 +2,19 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-14T18:34:38 IST" name="Default suite" finished-at="2025-10-14T18:35:07 IST" duration-ms="29419">
+  <suite started-at="2025-10-15T18:47:32 IST" name="Default suite" finished-at="2025-10-15T18:47:54 IST" duration-ms="21604">
     <groups>
     </groups>
-    <test started-at="2025-10-14T18:34:38 IST" name="Default test" finished-at="2025-10-14T18:35:07 IST" duration-ms="29419">
+    <test started-at="2025-10-15T18:47:32 IST" name="Default test" finished-at="2025-10-15T18:47:54 IST" duration-ms="21604">
       <class name="TestCase.Margin_Pledge_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Margin_Pledge_TestCase@29d89d5d]" started-at="2025-10-14T18:34:38 IST" name="setup" finished-at="2025-10-14T18:34:41 IST" duration-ms="3408" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Margin_Pledge_TestCase@29d89d5d]" started-at="2025-10-15T18:47:32 IST" name="setup" finished-at="2025-10-15T18:47:36 IST" duration-ms="3566" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Margin_Pledge()[pri:0, instance:TestCase.Margin_Pledge_TestCase@29d89d5d]" started-at="2025-10-14T18:34:41 IST" name="Margin_Pledge" finished-at="2025-10-14T18:35:07 IST" duration-ms="25973" status="PASS">
+        <test-method signature="Margin_Pledge_Request_Confirm()[pri:0, instance:TestCase.Margin_Pledge_TestCase@29d89d5d]" started-at="2025-10-15T18:47:36 IST" name="Margin_Pledge_Request_Confirm" finished-at="2025-10-15T18:47:54 IST" duration-ms="18005" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Margin_Pledge -->
+        </test-method> <!-- Margin_Pledge_Request_Confirm -->
       </class> <!-- TestCase.Margin_Pledge_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
