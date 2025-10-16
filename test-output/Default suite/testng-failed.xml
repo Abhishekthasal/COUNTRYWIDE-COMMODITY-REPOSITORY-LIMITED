@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase">
+      <class name="TestCase.Margin_Pledge_TestCase">
         <methods>
           <include name="setup"/>
-          <include name="Deposite_Assayer_Checker"/>
+          <include name="TM_RePledge_Request_Confirm_Checker"/>
         </methods>
-      </class> <!-- TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase -->
+      </class> <!-- TestCase.Margin_Pledge_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
