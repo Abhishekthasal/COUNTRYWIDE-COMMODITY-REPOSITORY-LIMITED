@@ -2,13 +2,10 @@ package TestCase;
 
 import java.io.IOException;
 import java.time.Duration;
-
 import org.testng.annotations.Test;
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-
 import TestPages.BaseClass;
 import TestPages.LoginPages;
 
@@ -19,7 +16,7 @@ public class Margin_Pledge_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Margin_Pledge_TestCase Report");
 /*******************************************Margin_Pledge_Request*******************************************************/
-	//@Test
+	@Test
 	void Margin_Pledge() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Margin_Pledge start");
@@ -280,49 +277,48 @@ public class Margin_Pledge_TestCase extends BaseClass {
 		//@Test
 				void CM_RePledge_Request_Maker() throws IOException {
 					try {
-						test.log(LogStatus.INFO, "Login for TM_RePledge_Request_Confirm_Checker start");
+						test.log(LogStatus.INFO, "Login for CM_RePledge_Request_Maker start");
 						LoginPages Login = new LoginPages(driver, Wait);
-						Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+						Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
-						test.log(LogStatus.INFO, "TM_RePledge_Request_Confirm_Checker creation  start");
+						test.log(LogStatus.INFO, "CM_RePledge_Request_Maker creation  start");
 						TestPages.CM_RePledge_Request Margin = new TestPages.CM_RePledge_Request(driver, Wait);
 						Margin.CM_RePledge_Request_Maker();
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-								+ "TM_RePledge_Request_Confirm_Checker is success full");
+								+ "CM_RePledge_Request_Maker is success full");
 						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-						test.log(LogStatus.INFO, "LogOut for TM_RePledge_Request_Confirm_Checker  Start");
+						test.log(LogStatus.INFO, "LogOut for CM_RePledge_Request_Maker  Start");
 						TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 						Log.Logout();
-						test.log(LogStatus.INFO, "LogOut for TM_RePledge_Request_Confirm_Checker  END");
+						test.log(LogStatus.INFO, "LogOut for CM_RePledge_Request_Maker  END");
 					} catch (Exception e) {
 						test.log(LogStatus.FAIL,
-								test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "TM_RePledge_Request_Confirm_Checker Test failed");
+								test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "CM_RePledge_Request_Maker Test failed");
 					}
 					Report.endTest(test);
 					Report.flush();
 				}
 		
-		
 				//@Test
 				void CM_RePledge_Request_Checker() throws IOException {
 					try {
-						test.log(LogStatus.INFO, "Login for TM_RePledge_Request_Confirm_Checker start");
+						test.log(LogStatus.INFO, "Login for CM_RePledge_Request_Checker start");
 						LoginPages Login = new LoginPages(driver, Wait);
 						Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
-						test.log(LogStatus.INFO, "TM_RePledge_Request_Confirm_Checker creation  start");
+						test.log(LogStatus.INFO, "CM_RePledge_Request_Checker creation  start");
 						TestPages.Margin_Pledge_Checker Margin = new TestPages.Margin_Pledge_Checker(driver, Wait);
 						Margin.CM_RePledge_Request_Checker();
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-								+ "TM_RePledge_Request_Confirm_Checker is success full");
+								+ "CM_RePledge_Request_Checker is success full");
 						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-						test.log(LogStatus.INFO, "LogOut for TM_RePledge_Request_Confirm_Checker  Start");
+						test.log(LogStatus.INFO, "LogOut for CM_RePledge_Request_Checker  Start");
 						TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 						Log.Logout();
-						test.log(LogStatus.INFO, "LogOut for TM_RePledge_Request_Confirm_Checker  END");
+						test.log(LogStatus.INFO, "LogOut for CM_RePledge_Request_Checker  END");
 					} catch (Exception e) {
 						test.log(LogStatus.FAIL,
-								test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "TM_RePledge_Request_Confirm_Checker Test failed");
+								test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "CM_RePledge_Request_Checker Test failed");
 					}
 					Report.endTest(test);
 					Report.flush();
@@ -330,26 +326,26 @@ public class Margin_Pledge_TestCase extends BaseClass {
 				
 				
 				/***********************************CM Re-Pledge Request Confirm********************************/
-				//@Test
+			//	@Test
 				void CM_RePledge_Request_Confirm_Maker() throws IOException {
 					try {
-						test.log(LogStatus.INFO, "Login for TM_RePledge_Request_Confirm_Checker start");
+						test.log(LogStatus.INFO, "Login for CM_RePledge_Request_Confirm_Maker start");
 						LoginPages Login = new LoginPages(driver, Wait);
-						Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+						Login.PortalLogin("CC8880013", "user1", "121@test");
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
-						test.log(LogStatus.INFO, "TM_RePledge_Request_Confirm_Checker creation  start");
+						test.log(LogStatus.INFO, "CM_RePledge_Request_Confirm_Maker creation  start");
 						TestPages.CM_RePledge_Request_Confirm Margin = new TestPages.CM_RePledge_Request_Confirm(driver, Wait);
 						Margin.CM_RePledge_Request_Confirm_Maker();
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-								+ "TM_RePledge_Request_Confirm_Checker is success full");
+								+ "CM_RePledge_Request_Confirm_Maker is success full");
 						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-						test.log(LogStatus.INFO, "LogOut for TM_RePledge_Request_Confirm_Checker  Start");
+						test.log(LogStatus.INFO, "LogOut for CM_RePledge_Request_Confirm_Maker  Start");
 						TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 						Log.Logout();
 						test.log(LogStatus.INFO, "LogOut for TM_RePledge_Request_Confirm_Checker  END");
 					} catch (Exception e) {
 						test.log(LogStatus.FAIL,
-								test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "TM_RePledge_Request_Confirm_Checker Test failed");
+								test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "CM_RePledge_Request_Confirm_Maker Test failed");
 					}
 					Report.endTest(test);
 					Report.flush();
@@ -358,23 +354,23 @@ public class Margin_Pledge_TestCase extends BaseClass {
 				//@Test
 				void CM_RePledge_Request_Confirm_Checker() throws IOException {
 					try {
-						test.log(LogStatus.INFO, "Login for TM_RePledge_Request_Confirm_Checker start");
+						test.log(LogStatus.INFO, "Login for CM_RePledge_Request_Confirm_Checker start");
 						LoginPages Login = new LoginPages(driver, Wait);
-						Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+						Login.PortalLogin("CC8880013", "user2", "121@test");
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
-						test.log(LogStatus.INFO, "TM_RePledge_Request_Confirm_Checker creation  start");
+						test.log(LogStatus.INFO, "CM_RePledge_Request_Confirm_Checker creation  start");
 						TestPages.Margin_Pledge_Checker Margin = new TestPages.Margin_Pledge_Checker(driver, Wait);
 						Margin.CM_RePledge_Request_Confirm_Checker();
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-								+ "TM_RePledge_Request_Confirm_Checker is success full");
+								+ "CM_RePledge_Request_Confirm_Checker is success full");
 						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-						test.log(LogStatus.INFO, "LogOut for TM_RePledge_Request_Confirm_Checker  Start");
+						test.log(LogStatus.INFO, "LogOut for CM_RePledge_Request_Confirm_Checker  Start");
 						TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 						Log.Logout();
-						test.log(LogStatus.INFO, "LogOut for TM_RePledge_Request_Confirm_Checker  END");
+						test.log(LogStatus.INFO, "LogOut for CM_RePledge_Request_Confirm_Checker  END");
 					} catch (Exception e) {
 						test.log(LogStatus.FAIL,
-								test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "TM_RePledge_Request_Confirm_Checker Test failed");
+								test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+e.getMessage() + "CM_RePledge_Request_Confirm_Checker Test failed");
 					}
 					Report.endTest(test);
 					Report.flush();

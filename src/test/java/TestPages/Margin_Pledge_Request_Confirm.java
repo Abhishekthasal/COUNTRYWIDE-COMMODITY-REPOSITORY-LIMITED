@@ -30,7 +30,7 @@ public class Margin_Pledge_Request_Confirm {
 	// public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); //
 	// 11;
 	long client_id = 100673000000011L;
-	int commodity = 15;
+	//int commodity = 15;
 	String OTP_Auth;
 
 	public Margin_Pledge_Request_Confirm(WebDriver driver, WebDriverWait Wait) {
@@ -84,13 +84,13 @@ public class Margin_Pledge_Request_Confirm {
 
 		try {
 			if (String.valueOf(client_id).matches("^[0-9]{0,15}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(client_id));
+				Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(Margin_Pledge_Request.Client_Id));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
-			js.executeScript("arguments[0].value='" + client_id + "';", client_id_Txt);
+			js.executeScript("arguments[0].value='" + Margin_Pledge_Request.Client_Id + "';", client_id_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("client_id_Txt not found: " + e.getMessage());
 		} catch (Exception e) {

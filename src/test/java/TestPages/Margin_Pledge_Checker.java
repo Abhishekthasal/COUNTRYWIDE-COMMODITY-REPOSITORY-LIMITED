@@ -50,7 +50,13 @@ public class Margin_Pledge_Checker {
 	
 	@FindBy(xpath="//span[@class='title ng-binding'][normalize-space()='TM Re-Pledge Request Confirm']")
 	WebElement TM_RePledge_Request_Confirm_Btn;
+	
+	@FindBy(xpath = "//span[@class='title ng-binding'][normalize-space()='CM Re-Pledge Request']")
+	WebElement CM_RePledge_Request_Btn;
 
+	@FindBy(xpath = "//span[normalize-space()='CM Re-Pledge Request Confirm']")
+	WebElement CM_RePledge_Request_Confirm_Btn;
+	
 	@FindBy(xpath = "//input[@placeholder='Search...']")
 	WebElement Search_Txt;
 
@@ -375,9 +381,9 @@ public class Margin_Pledge_Checker {
 	
 		Margin_Pledge_Btn.click();
 
-		TM_RePledge_Request_Confirm_Btn.click();
+		CM_RePledge_Request_Btn.click();
 
-		Search_Txt.sendKeys(TM_RePledge_Request.TM_pledge_Req_No);
+		Search_Txt.sendKeys(CM_RePledge_Request.CM_pledge_Req_No);
 		Thread.sleep(1000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
 		
@@ -393,7 +399,31 @@ public class Margin_Pledge_Checker {
 		}
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
+		
+		try {
+			Connection conn = DataBaseUtility.getConnection();
 
+			String query_OTP = "SELECT a.auth_code FROM auth_code_generation a JOIN cm_repledge d ON a.ref_id = d.Id WHERE a.tran_type like '%CR' and  d.Request_No  like ?";
+			PreparedStatement stmt = conn.prepareStatement(query_OTP);
+			stmt.setString(1, "%" + CM_RePledge_Request.CM_pledge_Req_No + "%"); // bind the variable to query
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				OTP_Auth = rs.getString("auth_code");
+				System.out.println("OTP: " + OTP_Auth);
+
+				rs.close();
+				stmt.close();
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(auth_code_Txt)).sendKeys(String.valueOf(OTP_Auth));
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Submit_Btn)).click();
 		Thread.sleep(1000);
 		try {
 			if (Authorize_Chek.isDisplayed()) {
@@ -429,13 +459,13 @@ public class Margin_Pledge_Checker {
 	}
 
 	public void CM_RePledge_Request_Confirm_Checker() throws InterruptedException {
-		// TODO Auto-generated method stub
 		
 		Margin_Pledge_Btn.click();
 
-		TM_RePledge_Request_Confirm_Btn.click();
+		CM_RePledge_Request_Confirm_Btn.click();
 
-		Search_Txt.sendKeys(TM_RePledge_Request.TM_pledge_Req_No);
+		//Search_Txt.sendKeys(CM_RePledge_Request.CM_pledge_Req_No);
+		Search_Txt.sendKeys("CMReplgRequMkr");
 		Thread.sleep(1000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
 		
@@ -452,7 +482,7 @@ public class Margin_Pledge_Checker {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
 
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		try {
 			if (Authorize_Chek.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chek)).click();

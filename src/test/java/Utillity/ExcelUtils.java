@@ -2,11 +2,10 @@ package Utillity;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import java.io.IOException;
+import java.io.FileInputStream;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import freemarker.template.utility.DateUtil;
-import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -1119,5 +1118,53 @@ public class ExcelUtils {
 	public String getcommodity_Master_Id_Pay_Out_Release(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
+	
+	/*******************************Margin_Pledge_Request****************/
+	
+	public String getMargin_pledge_Req_No(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+	
+	public long getClient_Id_Margin_Pledge_Request(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public String getucc_Id_Margin_Pledge_Request(int rowNum) {
+		return getCellData(rowNum, 2);
+	}
+	
+	public String gettm_Id_Margin_Pledge_Request(int rowNum) {
+		return getCellData(rowNum, 3);
+	}
+	
+	public String getcm_Id_Margin_Pledge_Request(int rowNum) {
+		return getCellData(rowNum, 4);
+	}
+	
+	public String getceccId_Margin_Pledge_Request(int rowNum) {
+		return getCellData(rowNum, 5);
+	}
+	
+	public int getWHID_Margin_Pledge_Request(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
+	}
+	
+	public String getCommoditySeg_Margin_Pledge_Request(int rowNum) {
+		return getCellData(rowNum, 7);
+	}
+	
+	public int getCommodity_Margin_Pledge_Request(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(8).getNumericCellValue();
+	}
+	
+	public long get_ENWR_Margin_Pledge_Request(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
+	}
+	
+	public int getno_of_bags_Margin_Pledge_Request(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
+	}
+	
+	
 	
 }

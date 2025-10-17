@@ -5,8 +5,8 @@
     <classes>
       <class name="TestCase.Margin_Pledge_TestCase">
         <methods>
+          <include name="CM_RePledge_Request_Confirm_Checker"/>
           <include name="setup"/>
-          <include name="TM_RePledge_Request_Confirm_Checker"/>
         </methods>
       </class> <!-- TestCase.Margin_Pledge_TestCase -->
     </classes>

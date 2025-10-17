@@ -22,8 +22,8 @@ public class Margin_Pledge_Request_Approval {
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	//public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); // 11;
-	long client_id =100673000000011L;
-    int commodity =15;
+	//long client_id =100673000000011L;
+   // int commodity =15;
 	
 	
 	
@@ -71,7 +71,7 @@ public class Margin_Pledge_Request_Approval {
 		
 		New_Btn.click();
 		
-		client_id_Txt.sendKeys(String.valueOf(client_id));
+		client_id_Txt.sendKeys(String.valueOf(Margin_Pledge_Request.Client_Id));
 		
 		//commodity_Txt.sendKeys(String.valueOf(commodity));
 		
