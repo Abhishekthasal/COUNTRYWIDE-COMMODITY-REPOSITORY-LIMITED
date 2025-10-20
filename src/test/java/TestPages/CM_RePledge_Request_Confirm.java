@@ -25,7 +25,7 @@ public class CM_RePledge_Request_Confirm {
 	// public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); //
 
 
-	long Client_Id = 180000110000033L;
+	long CC_Client_Id = excel.getCC_Client_Id(dataRow); //180000110000033L;
 
 
 //100673000019391
@@ -70,14 +70,14 @@ public class CM_RePledge_Request_Confirm {
 		New_Btn.click();
 
 		try {
-			if (String.valueOf(Client_Id).matches("^[0-9]{0,15}$")) {
-		Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(Client_Id));
+			if (String.valueOf(CC_Client_Id).matches("^[0-9]{0,15}$")) {
+		Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(CC_Client_Id));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
-			js.executeScript("arguments[0].value='" + Client_Id + "';", client_id_Txt);
+			js.executeScript("arguments[0].value='" + CC_Client_Id + "';", client_id_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("client_id_Txt not found: " + e.getMessage());
 		} catch (Exception e) {

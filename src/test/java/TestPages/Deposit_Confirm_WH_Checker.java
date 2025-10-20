@@ -468,7 +468,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=3;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(2000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite+i));
@@ -603,15 +603,13 @@ public class Deposit_Confirm_WH_Checker {
 			System.out.println("Save_btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
-		}/*finally {
+		}finally {
 			Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
-		}*/
+		}
 		Thread.sleep(2000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_txt)).clear();
 		Thread.sleep(1000);
-		
 		}
-
 	}
 
 	public void Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL() {

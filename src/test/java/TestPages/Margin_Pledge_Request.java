@@ -29,10 +29,10 @@ public class Margin_Pledge_Request {
 	String tm_Id = excel.gettm_Id_Margin_Pledge_Request(dataRow);// "TM23213";
 	String cm_Id = excel.getcm_Id_Margin_Pledge_Request(dataRow);// "CM23213";
 	String ceccId = excel.getceccId_Margin_Pledge_Request(dataRow);// "11";
-	int WHID =  excel.getWHID_Margin_Pledge_Request(dataRow);//1000421;
+	int WHID =excel.getWHID_Margin_Pledge_Request(dataRow);//1000421;
 	String CommoditySeg = excel.getCommoditySeg_Margin_Pledge_Request(dataRow);// "Agricultural";
 	int Commodity = excel.getCommodity_Margin_Pledge_Request(dataRow);// 15;
-	long ENWR = excel.get_ENWR_Margin_Pledge_Request(dataRow);// 110000005360L;
+	static long ENWR = excel.get_ENWR_Margin_Pledge_Request(dataRow);// 110000005360L;
 	int no_of_bags = excel.getno_of_bags_Margin_Pledge_Request(dataRow);// 50; 
 //100673000019391
 	public Margin_Pledge_Request(WebDriver driver, WebDriverWait Wait) {

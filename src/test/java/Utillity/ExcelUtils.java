@@ -5,13 +5,13 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import java.io.FileInputStream;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import freemarker.template.utility.DateUtil;
+//import freemarker.template.utility.DateUtil;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
+//import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Workbook;
+//import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 
 public class ExcelUtils {
 	static String projectPath;
@@ -1165,6 +1165,32 @@ public class ExcelUtils {
 		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
 	}
 	
+	/********************************TM_RePledge_Request**************************/
+	
+	public long getTM_Client_Id(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+	}
+	
+	public String getTM_pledge_Req_No(int rowNum) {
+		return getCellData(rowNum, 1);
+	}
+	
+	public long getCM_Client_Id(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+	
+	/*****************************.CM_RePledge_Request*******************/
+	public long getCM_Client_Id_CM_RePledge(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+	}
+	
+	public String getCM_pledge_Req_No(int rowNum) {
+		return getCellData(rowNum, 1);
+	}
+	
+	public long getCC_Client_Id(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
 	
 	
 }

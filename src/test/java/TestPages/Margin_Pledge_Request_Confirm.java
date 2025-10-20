@@ -27,10 +27,8 @@ public class Margin_Pledge_Request_Confirm {
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	// public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); //
-	// 11;
-	long client_id = 100673000000011L;
-	//int commodity = 15;
+	
+	//Variable Declaration 
 	String OTP_Auth;
 
 	public Margin_Pledge_Request_Confirm(WebDriver driver, WebDriverWait Wait) {
@@ -83,7 +81,7 @@ public class Margin_Pledge_Request_Confirm {
 		New_Btn.click();
 
 		try {
-			if (String.valueOf(client_id).matches("^[0-9]{0,15}$")) {
+			if (String.valueOf(Margin_Pledge_Request.Client_Id).matches("^[0-9]{0,15}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(Margin_Pledge_Request.Client_Id));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");

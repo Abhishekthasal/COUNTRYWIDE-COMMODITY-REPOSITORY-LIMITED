@@ -18,17 +18,12 @@ public class TM_RePledge_Request_Confirm {
 	WebDriverWait Wait;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Pledge.xlsx";
-	static String sheet = "Margin_Pledge_Request";
+	static String sheet = "TM_RePledge_Request";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	// public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); //
+	long CM_Client_Id =excel.getCM_Client_Id(dataRow); // 100673000019391L;
 
-
-	long Client_Id = 100673000019391L;
-
-
-//100673000019391
 	public TM_RePledge_Request_Confirm(WebDriver driver, WebDriverWait Wait) {
 
 		this.driver = driver;
@@ -36,8 +31,7 @@ public class TM_RePledge_Request_Confirm {
 		PageFactory.initElements(driver, this);
 	}
 
-	// --------------for Request for Margin_Pledge_Request creation
-	// process-------------
+	// --------------for Request for TM_RePledge_Request_Confirm creation process-------------//
 
 	@FindBy(xpath = "//span[normalize-space()='Margin Pledge']")
 	WebElement Margin_Pledge_Btn;
@@ -68,14 +62,14 @@ public class TM_RePledge_Request_Confirm {
 		New_Btn.click();
 
 		try {
-			if (String.valueOf(Client_Id).matches("^[0-9]{0,15}$")) {
-		Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(Client_Id));
+			if (String.valueOf(CM_Client_Id).matches("^[0-9]{0,15}$")) {
+		Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(CM_Client_Id));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
-			js.executeScript("arguments[0].value='" + Client_Id + "';", client_id_Txt);
+			js.executeScript("arguments[0].value='" + CM_Client_Id + "';", client_id_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("client_id_Txt not found: " + e.getMessage());
 		} catch (Exception e) {

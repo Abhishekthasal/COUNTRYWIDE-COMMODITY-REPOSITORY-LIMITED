@@ -1366,7 +1366,7 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i =3; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			// System.out.println("value of total
 			// bags:"+DashBoard_WareHouse_Checker.totalBags);
 			try {

@@ -21,12 +21,6 @@ public class Margin_Pledge_Request_Approval {
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	//public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); // 11;
-	//long client_id =100673000000011L;
-   // int commodity =15;
-	
-	
-	
 	
 	public Margin_Pledge_Request_Approval(WebDriver driver, WebDriverWait Wait) {
 		
@@ -35,7 +29,7 @@ public class Margin_Pledge_Request_Approval {
 		PageFactory.initElements(driver, this);
 	}
 
-	// --------------for Request for Margin_Pledge_Request_Confirm creation process-------------
+	// --------------for Request for Margin_Pledge_Request_Approval creation process-------------
 	
 	@FindBy(xpath = "//span[normalize-space()='Margin Pledge']")
 	WebElement Margin_Pledge_Btn;

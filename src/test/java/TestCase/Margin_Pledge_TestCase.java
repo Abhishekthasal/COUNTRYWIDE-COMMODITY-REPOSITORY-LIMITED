@@ -116,8 +116,6 @@ public class Margin_Pledge_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	
-	
 	/*********************************************Margin_Pledge_Request_Confirm*************************************/
 	
 	//@Test
@@ -171,7 +169,6 @@ public class Margin_Pledge_TestCase extends BaseClass {
 	}
 	
 	/*********************************************TM_RePledge_Request*************************************/
-	
 	//@Test
 	void TM_RePledge_Request_Maker() throws IOException {
 		try {
@@ -196,7 +193,6 @@ public class Margin_Pledge_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	
 	//@Test
 	void TM_RePledge_Request_Checker() throws IOException {
 		try {
@@ -221,7 +217,6 @@ public class Margin_Pledge_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	
 	/**************************************************TM_RePledge_Request_Confirm*********************************/
 	
 	//@Test
@@ -272,7 +267,6 @@ public class Margin_Pledge_TestCase extends BaseClass {
 			Report.endTest(test);
 			Report.flush();
 		}
-		
 		/******************************************************CM Re-Pledge Request ***************************/
 		//@Test
 				void CM_RePledge_Request_Maker() throws IOException {
@@ -323,7 +317,6 @@ public class Margin_Pledge_TestCase extends BaseClass {
 					Report.endTest(test);
 					Report.flush();
 				}
-				
 				
 				/***********************************CM Re-Pledge Request Confirm********************************/
 			//	@Test

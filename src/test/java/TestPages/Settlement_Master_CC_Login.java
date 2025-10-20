@@ -22,7 +22,7 @@ public class Settlement_Master_CC_Login {
 
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ON_Market.xlsx";
 	static String sheet = "Settlement";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 2; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	String ExchangeMaster = excel.getExchangeMaster(dataRow);
@@ -35,7 +35,6 @@ public class Settlement_Master_CC_Login {
 	String PostExpiry_Validity_Day ="31-10-2025";       //excel.getPostExpiry_Validity_Date(dataRow);
 	String Delivery_Marking_Day = "10-10-2025";              //excel.getDelivery_Marking(dataRow);
 	String pay_In_date ="31-10-2025";                      //excel.getpay_In_date(dataRow);
-	// String pay_Out_Date=excel.getpay_Out_Date_hr(dataRow);
 	int pay_In_Date_hr = excel.getpay_In_Date_hr(dataRow);
 	int pay_In_Date_mn = excel.getpay_In_Date_mn(dataRow);
 	String pay_out_date ="31-10-2025";                     //excel.getpay_out_date(dataRow);
@@ -287,8 +286,8 @@ public class Settlement_Master_CC_Login {
 		Select SD = new Select(pay_Out_Date_mn);
 		SD.selectByContainsVisibleText(String.valueOf(String.valueOf(pay_out_Date_mn)));
 
-		// Select early_Payin_Start_Date
-		WebElement early_Payin_Start_Date = driver.findElement(By.xpath("//input[@id='early_Payin_Start_Date']"));
+		// Select early_Payin_Start_Date  //input[@id='early_Payin_Start_Date'] (//input[@id='early_Payin_Start_Date'])[1]
+		WebElement early_Payin_Start_Date = driver.findElement(By.xpath("(//input[@id='early_Payin_Start_Date'])[1]"));
 		early_Payin_Start_Date.click();
 		early_Payin_Start_Date.sendKeys(early_pay_In_date);
 		Thread.sleep(1000);

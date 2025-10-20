@@ -18,15 +18,15 @@ public class CM_RePledge_Request {
 	WebDriverWait Wait;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Pledge.xlsx";
-	static String sheet = "Margin_Pledge_Request";
+	static String sheet = "CM_RePledge_Request";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	// public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); //
 
-	long CM_Client_Id = 100673000019391L;
-	static String CM_pledge_Req_No = "abhi222";
-	long ENWR = 110001029302L;
+	long CM_Client_Id =excel.getCM_Client_Id_CM_RePledge(dataRow); // 100673000019391L;
+	static String CM_pledge_Req_No =excel.getCM_pledge_Req_No(dataRow); // "abhi222";
+	//long ENWR = 110001029302L;
 
 //100673000019391
 	public CM_RePledge_Request(WebDriver driver, WebDriverWait Wait) {
@@ -124,14 +124,14 @@ public class CM_RePledge_Request {
 		Wait.until(ExpectedConditions.elementToBeClickable(TransctionStmt_Btn)).click();
 
 		try {
-			if (String.valueOf(ENWR).matches("^[0-9]{0,15}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt)).sendKeys(String.valueOf(ENWR));
+			if (String.valueOf(Margin_Pledge_Request.ENWR).matches("^[0-9]{0,15}$")) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt)).sendKeys(String.valueOf(Margin_Pledge_Request.ENWR));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Search_Txt click...");
-			js.executeScript("arguments[0].value='" + ENWR + "';", Search_Txt);
+			js.executeScript("arguments[0].value='" + Margin_Pledge_Request.ENWR + "';", Search_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_Txt not found: " + e.getMessage());
 		} catch (Exception e) {

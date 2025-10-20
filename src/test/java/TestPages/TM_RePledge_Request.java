@@ -25,9 +25,9 @@ public class TM_RePledge_Request {
 	// public int ce_cc_id_Release = excel.getce_cc_id_Pay_Out_Release(dataRow); //
 	// 11;
 	//public static String Margin_pledge_Req_No = "67676767";
-	long TM_Client_Id = 100673000099997L;
-	static String TM_pledge_Req_No ="abhi121";
-	long ENWR = 110000005360L;
+	long TM_Client_Id = excel.getTM_Client_Id(dataRow); //100673000099997L;
+	static String TM_pledge_Req_No= excel.getTM_pledge_Req_No(dataRow); //"abhi121";
+	//static long ENWR = 110000005360L;
 
 	public TM_RePledge_Request(WebDriver driver, WebDriverWait Wait) {
 
@@ -108,14 +108,14 @@ public class TM_RePledge_Request {
 		Wait.until(ExpectedConditions.elementToBeClickable(TransctionStmt_Btn)).click();
 		
 		try {
-			if (String.valueOf(ENWR).matches("^[0-9]{0,15}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt)).sendKeys(String.valueOf(ENWR));
+			if (String.valueOf(Margin_Pledge_Request.ENWR).matches("^[0-9]{0,15}$")) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt)).sendKeys(String.valueOf(Margin_Pledge_Request.ENWR));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Search_Txt click...");
-			js.executeScript("arguments[0].value='" + ENWR + "';", Search_Txt);
+			js.executeScript("arguments[0].value='" + Margin_Pledge_Request.ENWR + "';", Search_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_Txt not found: " + e.getMessage());
 		} catch (Exception e) {

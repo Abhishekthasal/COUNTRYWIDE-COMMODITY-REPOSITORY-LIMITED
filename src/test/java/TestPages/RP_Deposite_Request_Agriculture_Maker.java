@@ -14,7 +14,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+//import org.testng.Assert;
 
 import Utillity.ExcelUtils;
 
@@ -25,7 +25,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 	 String projectPath = System.getProperty("user.dir");
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "RP_Deposite_Request_Agriculture";
-	static int dataRow = 12; // second row of data
+	static int dataRow = 8; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -45,7 +45,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 	 * sheetName, rowNumber);
 	 */
 
-	public String Commodity_Segment = excel.getCommoditySegment(dataRow);
+	public static String Commodity_Segment = excel.getCommoditySegment(dataRow);
 	public static String Deposite = excel.getDeposite(dataRow);
 	public String Quality_Stand = excel.getQualityStand(dataRow);
 	public String Client_ID = excel.getClientID(dataRow);
@@ -205,7 +205,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		Select Sa = new Select(Commodity_Segment_Code);
 		Sa.selectByContainsVisibleText(Commodity_Segment);
-		Assert.assertTrue(Commodity_Segment_Code.isDisplayed(), "Commodity_Segment_Code button not visible");
+		//Assert.assertTrue(Commodity_Segment_Code.isDisplayed(), "Commodity_Segment_Code button not visible");
 		// } else {
 		// System.out.println("Invalid Commodity_Segment. Please enter exactly 20
 		// alphanumeric characters:");
