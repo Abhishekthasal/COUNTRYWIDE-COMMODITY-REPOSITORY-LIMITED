@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utillity.ExcelUtils;
@@ -19,7 +20,7 @@ public class Margin_Pledge_Request {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Pledge.xlsx";
 	static String sheet = "Margin_Pledge_Request";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 2; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	
@@ -131,17 +132,17 @@ public class Margin_Pledge_Request {
 
 	public void Margin_Pledge_Request_Maker() throws InterruptedException {
 
-		Margin_Pledge_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
 
-		Margin_Pledge_Request_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Request_Btn)).click();
 
 		New_Btn.click();
 
 		Margin_pledge_Req_No_txt.sendKeys(Margin_pledge_Req_No);
 
-		execution_Date_btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(execution_Date_btn)).click();
 
-		Today_date.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Today_date)).click();
 
 		CLIENT_PICK_LIST_Btn.click();
 
@@ -153,30 +154,37 @@ public class Margin_Pledge_Request {
 
 		ucc_Id_Btn.click();
 		ucc_Id_Txt.sendKeys(ucc_Id);
+		Thread.sleep(1000);
 		ucc_Id_Txt.sendKeys(Keys.ENTER);
 
 		tm_IdCombobox_Btn.click();
 		tm_IdCombobox_Txt.sendKeys(tm_Id);
+		Thread.sleep(1000);
 		tm_IdCombobox_Txt.sendKeys(Keys.ENTER);
 
 		cm_IdCombobox_Btn.click();
 		cm_IdCombobox_Txt.sendKeys(cm_Id);
+		Thread.sleep(1000);
 		cm_IdCombobox_Txt.sendKeys(Keys.ENTER);
 
 		ceccIdCombobox_Btn.click();
 		ceccIdCombobox_Txt.sendKeys(ceccId);
+		Thread.sleep(1000);
 		ceccIdCombobox_Txt.sendKeys(Keys.ENTER);
 
 		WhMasterSelection_Btn.click();
 		WhMasterSelection_Txt.sendKeys(String.valueOf(WHID));
+		Thread.sleep(1000);
 		WhMasterSelection_Txt.sendKeys(Keys.ENTER);
 
 		CommoditySegSelectionCombobox_btn.click();
 		CommoditySegSelectionCombobox_Txt.sendKeys(CommoditySeg);
+		Thread.sleep(1000);
 		CommoditySegSelectionCombobox_Txt.sendKeys(Keys.ENTER);
 
 		Commodity_Btn.click();
 		Commodity_Txt.sendKeys(String.valueOf(Commodity));
+		Thread.sleep(1000);
 		Commodity_Txt.sendKeys(Keys.ENTER);
 
 		eff_Start_date_Btn.click();

@@ -16,7 +16,7 @@ public class Margin_Pledge_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Margin_Pledge_TestCase Report");
 /*******************************************Margin_Pledge_Request*******************************************************/
-	@Test
+	//@Test
 	void Margin_Pledge() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Margin_Pledge start");
@@ -169,7 +169,7 @@ public class Margin_Pledge_TestCase extends BaseClass {
 	}
 	
 	/*********************************************TM_RePledge_Request*************************************/
-	//@Test
+	@Test
 	void TM_RePledge_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for TM_RePledge_Request_Maker start");

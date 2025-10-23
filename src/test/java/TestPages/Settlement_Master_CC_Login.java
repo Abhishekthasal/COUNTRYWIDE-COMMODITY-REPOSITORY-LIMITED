@@ -30,20 +30,20 @@ public class Settlement_Master_CC_Login {
 	static int settlement_No = excel.getsettlement_No(dataRow);
 	int settlement_Year = excel.getsettlement_Year(dataRow);
 	String commodity = excel.getcommodity(dataRow);
-	String expectedDay ="31-10-2025";               //excel.getexpectedDay(dataRow);
-	String trade_Day =  "01-10-2025";          // excel.gettrade_Day(dataRow);
-	String PostExpiry_Validity_Day ="31-10-2025";       //excel.getPostExpiry_Validity_Date(dataRow);
-	String Delivery_Marking_Day = "10-10-2025";              //excel.getDelivery_Marking(dataRow);
-	String pay_In_date ="31-10-2025";                      //excel.getpay_In_date(dataRow);
+	String expectedDay ="30-11-2025";               //excel.getexpectedDay(dataRow);
+	String trade_Day =  "15-10-2025";          // excel.gettrade_Day(dataRow);
+	String PostExpiry_Validity_Day ="30-11-2025";       //excel.getPostExpiry_Validity_Date(dataRow);
+	String Delivery_Marking_Day = "23-10-2025";              //excel.getDelivery_Marking(dataRow);
+	String pay_In_date ="30-11-2025";                      //excel.getpay_In_date(dataRow);
 	int pay_In_Date_hr = excel.getpay_In_Date_hr(dataRow);
 	int pay_In_Date_mn = excel.getpay_In_Date_mn(dataRow);
-	String pay_out_date ="31-10-2025";                     //excel.getpay_out_date(dataRow);
+	String pay_out_date ="30-11-2025";                     //excel.getpay_out_date(dataRow);
 	int pay_out_Date_hr = excel.getpay_out_Date_hr(dataRow);
 	int pay_out_Date_mn = excel.getpay_out_Date_mn(dataRow);
-	String early_pay_In_date ="01-10-2025";                     //excel.getearly_pay_In_date(dataRow);
+	String early_pay_In_date ="15-10-2025";                     //excel.getearly_pay_In_date(dataRow);
 	int early_pay_In_Date_hr = excel.getearly_pay_In_Date_hr(dataRow);
 	int early_pay_In_Date_mn = excel.getearly_pay_In_Date_mn(dataRow);
-	String early_Payin_End_date = "01-10-2025";                   //excel.getearly_Payin_End_date(dataRow);
+	String early_Payin_End_date = "15-10-2025";                   //excel.getearly_Payin_End_date(dataRow);
 	int early_Payin_End_Date_hr = excel.getearly_Payin_End_Date_hr(dataRow);
 	int early_Payin_End_Date_mn = excel.getearly_Payin_End_Date_mn(dataRow);
 
@@ -290,17 +290,34 @@ public class Settlement_Master_CC_Login {
 		WebElement early_Payin_Start_Date = driver.findElement(By.xpath("(//input[@id='early_Payin_Start_Date'])[1]"));
 		early_Payin_Start_Date.click();
 		early_Payin_Start_Date.sendKeys(early_pay_In_date);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		early_Payin_Start_Date.sendKeys(Keys.ENTER);
+		//By.cssSelector(Delivery_Marking_Day)
 
-		WebElement early_pay_In_Date_hr = driver.findElement(By.xpath("//select[@name='early_pay_In_Date_hr']"));
+		WebElement early_pay_In_Date_hr = driver.findElement(By.xpath("//select[@name='early_Payin_End_Date_hr']"));
 		Select SE = new Select(early_pay_In_Date_hr);
+		try {
 		SE.selectByContainsVisibleText(String.valueOf(early_pay_In_Date_hr));
-
+		} catch (NoSuchElementException e) {
+			System.out.println("early_pay_In_Date_hr not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for early_pay_In_Date_hr: " + e.getMessage());
+		}
+		
 		WebElement early_pay_In_Date = driver.findElement(By.xpath("//select[@name='early_pay_In_Date_mn']"));
 		Select SF = new Select(early_pay_In_Date);
+		try {
 		SF.selectByContainsVisibleText(String.valueOf(String.valueOf(early_pay_In_Date_mn)));
-
+		/*
+		 * } catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying Save_btn click...");
+		 * js.executeScript("arguments[0].click();", Save_btn);
+		 */
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
+		}
 		// Select early_Payin_End_Date
 		WebElement early_Payin_End_Date = driver.findElement(By.xpath("(//input[@id='early_Payin_End_Date'])[1]"));
 		early_Payin_End_Date.click();

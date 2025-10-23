@@ -27,8 +27,7 @@ public class Margin_Pledge_Request_Confirm {
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	
-	//Variable Declaration 
+	// Variable Declaration
 	String OTP_Auth;
 
 	public Margin_Pledge_Request_Confirm(WebDriver driver, WebDriverWait Wait) {
@@ -82,7 +81,8 @@ public class Margin_Pledge_Request_Confirm {
 
 		try {
 			if (String.valueOf(Margin_Pledge_Request.Client_Id).matches("^[0-9]{0,15}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(Margin_Pledge_Request.Client_Id));
+				Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt))
+						.sendKeys(String.valueOf(Margin_Pledge_Request.Client_Id));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
@@ -105,7 +105,7 @@ public class Margin_Pledge_Request_Confirm {
 		try {
 			Connection conn = DataBaseUtility.getConnection();
 
-			String query_OTP = "SELECT a.auth_code FROM auth_code_generation a JOIN margin_pledge_request d ON a.ref_id = d.Id WHERE d.Pledge_Req_No  like ?";
+			String query_OTP = "SELECT a.auth_code FROM auth_code_generation a JOIN margin_pledge_request d ON a.ref_id = d.Id WHERE a.tran_type like '%MR' and d.Pledge_Req_No  like ?";
 			PreparedStatement stmt = conn.prepareStatement(query_OTP);
 			stmt.setString(1, "%" + Margin_Pledge_Request.Margin_pledge_Req_No + "%"); // bind the variable to query
 
@@ -123,8 +123,11 @@ public class Margin_Pledge_Request_Confirm {
 			e.printStackTrace();
 		}
 
-		auth_code_Txt.sendKeys(String.valueOf(OTP_Auth));
+		// auth_code_Txt.sendKeys(String.valueOf(OTP_Auth));
+		Wait.until(ExpectedConditions.elementToBeClickable(auth_code_Txt)).sendKeys(String.valueOf(OTP_Auth));
 
+		Wait.until(ExpectedConditions.elementToBeClickable(Submit_Btn)).click();
+		Thread.sleep(1000);
 		try {
 			if (Save_Btn.isDisplayed()) {
 				Save_Btn.click();
