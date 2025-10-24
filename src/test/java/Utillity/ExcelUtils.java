@@ -1192,5 +1192,10 @@ public class ExcelUtils {
 		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
 	
+	public String getMargin_Pledge_Sequence_No(int rowNum) {
+		return getCellData(rowNum, 3);
+	}
+	
+	
 	
 }

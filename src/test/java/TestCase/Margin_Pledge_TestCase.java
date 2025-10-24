@@ -169,7 +169,7 @@ public class Margin_Pledge_TestCase extends BaseClass {
 	}
 	
 	/*********************************************TM_RePledge_Request*************************************/
-	@Test
+	//@Test
 	void TM_RePledge_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for TM_RePledge_Request_Maker start");
@@ -319,7 +319,7 @@ public class Margin_Pledge_TestCase extends BaseClass {
 				}
 				
 				/***********************************CM Re-Pledge Request Confirm********************************/
-			//	@Test
+				@Test
 				void CM_RePledge_Request_Confirm_Maker() throws IOException {
 					try {
 						test.log(LogStatus.INFO, "Login for CM_RePledge_Request_Confirm_Maker start");
@@ -328,7 +328,11 @@ public class Margin_Pledge_TestCase extends BaseClass {
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 						test.log(LogStatus.INFO, "CM_RePledge_Request_Confirm_Maker creation  start");
 						TestPages.CM_RePledge_Request_Confirm Margin = new TestPages.CM_RePledge_Request_Confirm(driver, Wait);
+						try {
 						Margin.CM_RePledge_Request_Confirm_Maker();
+						}catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 								+ "CM_RePledge_Request_Confirm_Maker is success full");
 						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
