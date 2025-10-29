@@ -72,6 +72,8 @@ public class Deposit_Confirm_WH_Checker {
 	@FindBy(xpath = "(//span[normalize-space()='Save'])[1]")
 	WebElement Save_btn;
 
+	@FindBy(xpath="//span[normalize-space()='Save']")
+	WebElement Save_btn1;
 	public void Deposit_Confirm_WH() {
 		
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
@@ -468,7 +470,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=2;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(2000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite+i));
@@ -593,26 +595,27 @@ public class Deposit_Confirm_WH_Checker {
 			System.out.println("Unexpected error for Verify_btn: " + e.getMessage());
 		}
 		try {
-			if (Save_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
+			if (Save_btn1.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn1)).click();
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript save_btn click...");
-			js.executeScript("arguments[0].click();", Save_btn);
+			System.out.println("Normal click failed, trying JavaScript Save_btn1 click...");
+			js.executeScript("arguments[0].click();", Save_btn1);
 		} catch (NoSuchElementException e) {
-			System.out.println("Save_btn not found: " + e.getMessage());
+			System.out.println("Save_btn1 not found: " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
-		}finally {
-			Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
-		}
+			System.out.println("Unexpected error for Save_btn1: " + e.getMessage());
+		} /*
+			 * finally {
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click(); }
+			 */
 		Thread.sleep(2000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_txt)).clear();
 		Thread.sleep(1000);
 		}
 	}
 
-	public void Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -633,7 +636,8 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=2;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=3;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));
 		} catch (ElementClickInterceptedException e) {
@@ -655,6 +659,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
+		Thread.sleep(1000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -733,10 +738,8 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 		}
-		
+		Thread.sleep(3000);
 		}
-
-
 	}
 
 	public void Exchange_Deposit_Confirm_WH_Non_Agriculture_Multiple_GSL() {

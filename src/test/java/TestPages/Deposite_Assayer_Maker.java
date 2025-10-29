@@ -151,6 +151,29 @@ public class Deposite_Assayer_Maker {
 	@FindBy(xpath = "(//select[@name='qual_conducted_view'])[1]")
 	WebElement Pre_Qualification;
 
+	@FindBy(xpath = "(//input[@id='Address'])[1]")
+	WebElement OTHER_FOOD_GRAINS_CHAN;
+
+	@FindBy(xpath = "(//input[@id='Address'])[2]")
+	WebElement DAMAGED_GRAINS_CHAN;
+
+	@FindBy(xpath = "(//input[@id='Address'])[3]")
+	WebElement IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chan;
+
+	@FindBy(xpath = "(//input[@id='Address'])[4]")
+	WebElement WEEVILED_GRAINS_Chan;
+
+	@FindBy(xpath = "(//input[@id='Address'])[5]")
+	WebElement ADMIXTURE_Chan;
+
+	@FindBy(xpath = "(//input[@id='Address'])[6]")
+	WebElement FOREIGN_MATTER_chan;
+	
+	
+	
+	
+	
+	
 	@FindBy(xpath = "(//input[@id='Address'])[2]")
 	WebElement OTHER_FOOD_GRAINS_CHANA;
 
@@ -1366,7 +1389,7 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 
-		for (int i =3; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i =1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			// System.out.println("value of total
 			// bags:"+DashBoard_WareHouse_Checker.totalBags);
 			try {
@@ -1406,7 +1429,7 @@ public class Deposite_Assayer_Maker {
 			// SA.selectByContainsVisibleText("5750013");
 
 			try {
-				if (Physical_Deposit_Maker.Sample.matches("^[a-zA-Z0-9]{0,50}$")) {
+				if (RP_Deposite_Request_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{0,50}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(SampleId_txt))
 							.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
 				} else {
@@ -1589,26 +1612,28 @@ public class Deposite_Assayer_Maker {
 			case 6:
 				System.out.println("You selected: CHANA ");
 				Select Grade_CHANA = new Select(Grade_CHANA_WHOLE);
-				Grade_CHANA.selectByVisibleText("NAFED FAQ"); // Grade_CHANA_WHOLE.click();
+				Grade_CHANA.selectByVisibleText("SPECIAL"); // Grade_CHANA_WHOLE.click();
 
 				Select Qualification = new Select(Pre_Qualification_Txt);
 				Qualification.selectByContainsVisibleText("Qualified");
 
-				OTHER_FOOD_GRAINS_CHANA.sendKeys("3");
+				OTHER_FOOD_GRAINS_CHAN.sendKeys("3");
 
-				DAMAGED_GRAINS_CHANA.sendKeys("4");
+				DAMAGED_GRAINS_CHAN.sendKeys("4");
 
-				IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chana.sendKeys("6");
+				IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chan.sendKeys("0.75");
 
-				WEEVILED_GRAINS_Chana.sendKeys("4");
+				WEEVILED_GRAINS_Chan.sendKeys("0.25");
 
-				ADMIXTURE_Chana.sendKeys("2");
+				ADMIXTURE_Chan.sendKeys("2");
 
-				FOREIGN_MATTER_chana.sendKeys("1");
+				FOREIGN_MATTER_chan.sendKeys("5");
 
-				MOISTURE_CONTENT_Chana.sendKeys("14");
-
-				SLIGHTLY_DAMAGED_TOUCHED_GRAINS_Chana.sendKeys("4");
+				/*
+				 * MOISTURE_CONTENT_Chana.sendKeys("14");
+				 * 
+				 * SLIGHTLY_DAMAGED_TOUCHED_GRAINS_Chana.sendKeys("4");
+				 */
 
 				break;
 			case 13:

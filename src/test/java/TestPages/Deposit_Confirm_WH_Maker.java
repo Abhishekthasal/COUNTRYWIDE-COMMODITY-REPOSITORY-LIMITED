@@ -522,11 +522,12 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for New_btn: " + e.getMessage());
 		}
+		Thread.sleep(1000);
 		try {
 			if (RP_Deposite_Request_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id)).click();
 				Warehouse_id_Txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.WH_ID));
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
@@ -664,7 +665,7 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=4; i<=DashBoard_WareHouse_Checker.totalBags; i++) {
+		for(int i=2; i<=DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(3000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);

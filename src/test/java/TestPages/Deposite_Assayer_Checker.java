@@ -506,71 +506,62 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Assaying_Report_Menu: " + e.getMessage());
 			}
-			try {
-				if (confirm_pop_up.isDisplayed()) {
-					Wait.until(ExpectedConditions.elementToBeClickable(confirm_pop_up)).click();
-					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-					Wait.until(ExpectedConditions.elementToBeClickable(Cancel_bttn)).click();
-					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+			/*
+			 * try { if (confirm_pop_up.isDisplayed()) {
+			 * Wait.until(ExpectedConditions.elementToBeClickable(confirm_pop_up)).click();
+			 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Cancel_bttn)).click();
+			 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+			 * 
+			 * try {
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).sendKeys(
+			 * Keys.ENTER); } catch (ElementClickInterceptedException e) { System.out.
+			 * println("Normal click failed, trying JavaScript Actions_btn click...");
+			 * js.executeScript("arguments[0].click();", Actions_btn); } catch
+			 * (NoSuchElementException e) { System.out.println("Actions_btn not found: " +
+			 * e.getMessage()); } catch (Exception e) {
+			 * System.out.println("Unexpected error for Actions_btn: " + e.getMessage()); }
+			 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60)); try {
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
+			 * } catch (ElementClickInterceptedException e) { System.out.
+			 * println("Normal click failed, trying JavaScript Authorized_btn click...");
+			 * js.executeScript("arguments[0].click();", Authorized_btn); } catch
+			 * (NoSuchElementException e) { System.out.println("Authorized_btn not found: "
+			 * + e.getMessage()); } catch (Exception e) {
+			 * System.out.println("Unexpected error for Authorized_btn: " + e.getMessage());
+			 * } try { Goods_Quality_menu.sendKeys(Keys.ENTER); } catch
+			 * (ElementClickInterceptedException e) { System.out.
+			 * println("Normal click failed, trying JavaScript Goods_Quality_menu click..."
+			 * ); js.executeScript("arguments[0].click();", Goods_Quality_menu); } catch
+			 * (NoSuchElementException e) {
+			 * System.out.println("Goods_Quality_menu not found: " + e.getMessage()); }
+			 * catch (Exception e) {
+			 * System.out.println("Unexpected error for Goods_Quality_menu: " +
+			 * e.getMessage()); } try {
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Assaying_Report_Menu)).
+			 * sendKeys(Keys.ENTER); } catch (ElementClickInterceptedException e) {
+			 * System.out.
+			 * println("Normal click failed, trying JavaScript Assaying_Report_Menu click..."
+			 * ); js.executeScript("arguments[0].click();", Assaying_Report_Menu); } catch
+			 * (NoSuchElementException e) {
+			 * System.out.println("Assaying_Report_Menu not found: " + e.getMessage()); }
+			 * catch (Exception e) {
+			 * System.out.println("Unexpected error for Assaying_Report_Menu: " +
+			 * e.getMessage()); } break; } } catch (Exception e) {
+			 * System.out.println("Unexpected error for confirm_pop_up: " + e.getMessage());
+			 * }
+			 */
 
-					try {
-						Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).sendKeys(Keys.ENTER);
-					} catch (ElementClickInterceptedException e) {
-						System.out.println("Normal click failed, trying JavaScript Actions_btn click...");
-						js.executeScript("arguments[0].click();", Actions_btn);
-					} catch (NoSuchElementException e) {
-						System.out.println("Actions_btn not found: " + e.getMessage());
-					} catch (Exception e) {
-						System.out.println("Unexpected error for Actions_btn: " + e.getMessage());
-					}
-					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-					try {
-						Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
-					} catch (ElementClickInterceptedException e) {
-						System.out.println("Normal click failed, trying JavaScript Authorized_btn click...");
-						js.executeScript("arguments[0].click();", Authorized_btn);
-					} catch (NoSuchElementException e) {
-						System.out.println("Authorized_btn not found: " + e.getMessage());
-					} catch (Exception e) {
-						System.out.println("Unexpected error for Authorized_btn: " + e.getMessage());
-					}
-					try {
-						Goods_Quality_menu.sendKeys(Keys.ENTER);
-					} catch (ElementClickInterceptedException e) {
-						System.out.println("Normal click failed, trying JavaScript Goods_Quality_menu click...");
-						js.executeScript("arguments[0].click();", Goods_Quality_menu);
-					} catch (NoSuchElementException e) {
-						System.out.println("Goods_Quality_menu not found: " + e.getMessage());
-					} catch (Exception e) {
-						System.out.println("Unexpected error for Goods_Quality_menu: " + e.getMessage());
-					}
-					try {
-						Wait.until(ExpectedConditions.elementToBeClickable(Assaying_Report_Menu)).sendKeys(Keys.ENTER);
-					} catch (ElementClickInterceptedException e) {
-						System.out.println("Normal click failed, trying JavaScript Assaying_Report_Menu click...");
-						js.executeScript("arguments[0].click();", Assaying_Report_Menu);
-					} catch (NoSuchElementException e) {
-						System.out.println("Assaying_Report_Menu not found: " + e.getMessage());
-					} catch (Exception e) {
-						System.out.println("Unexpected error for Assaying_Report_Menu: " + e.getMessage());
-					}
-					break;
-				}
-			} catch (Exception e) {
-				System.out.println("Unexpected error for confirm_pop_up: " + e.getMessage());
-			}
-
-			Thread.sleep(2000);
-			try {
-				if (Authorized_GSL.isDisplayed()) {
-					Wait.until(ExpectedConditions.elementToBeClickable(Authorized_GSL)).click();
-				} else {
-					System.out.println("Authorized_checkbox checkBox is not Visible");
+			Thread.sleep(1000);
+			
+			try {if (Authorized_checkbox.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_checkbox)).click();
 				}
 			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, Authorized_GSL JavaScript click...");
-				
-				js.executeScript("arguments[0].click();", Authorized_GSL);
+				System.out.println("Normal click failed, trying JavaScript click...");
+				// WebElement button = driver.findElement(By.xpath("//button[@id='submit']"));
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", Authorized_checkbox);
+				// System.out.println("Element not clickable at the moment: " + e.getMessage());
 			} catch (NoSuchElementException e) {
 				System.out.println("Authorized_checkbox not found: " + e.getMessage());
 			} catch (Exception e) {
