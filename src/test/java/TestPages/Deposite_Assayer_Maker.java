@@ -661,6 +661,23 @@ public class Deposite_Assayer_Maker {
 			MECHANICALLY_DAMAGED_BEANS.sendKeys("15");
 
 			break;
+		case 1:
+			System.out.println("You selected: WHEAT");
+			Select WHEAT_Grade = new Select(Grade_Desig);
+			WHEAT_Grade.selectByVisibleText("GRADE I");
+
+			Select Qualification_WHEAT = new Select(Pre_Qualification_WHEAT);
+			Qualification_WHEAT.selectByContainsVisibleText("Qualified");
+
+			FOREIGN_MATTER_BY_WEIGHT.sendKeys("4");
+			OTHER_FOOD_GRAINS.sendKeys("8");
+			OTHER_WHEATS.sendKeys("20");
+			DAMAGED_GRAINS.sendKeys("5");
+			SLIGHTLY_DAMAGED_GRAINS.sendKeys("10");
+			IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_WHEAT.sendKeys("10");
+			WEEVILED_GRAINS_WHEAT.sendKeys("5");
+			MOISTURE_WHEAT.sendKeys("12");
+			break;
 		default:
 			System.out.println("Invalid selection!");
 		}

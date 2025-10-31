@@ -20,22 +20,22 @@ public class Margin_Pledge_Request {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Pledge.xlsx";
 	static String sheet = "Margin_Pledge_Request";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 4; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	
 	public static String Margin_pledge_Req_No = excel.getMargin_pledge_Req_No(dataRow);// "Margin1";
 	static long Client_Id = excel.getClient_Id_Margin_Pledge_Request(dataRow);// 155000010000027L;
-	String ucc_Id =  excel.getucc_Id_Margin_Pledge_Request(dataRow);//"PR269MARGin";
+	String ucc_Id = excel.getucc_Id_Margin_Pledge_Request(dataRow);// "PR269MARGin";
 	String tm_Id = excel.gettm_Id_Margin_Pledge_Request(dataRow);// "TM23213";
 	String cm_Id = excel.getcm_Id_Margin_Pledge_Request(dataRow);// "CM23213";
 	String ceccId = excel.getceccId_Margin_Pledge_Request(dataRow);// "11";
-	int WHID =excel.getWHID_Margin_Pledge_Request(dataRow);//1000421;
+	int WHID = excel.getWHID_Margin_Pledge_Request(dataRow);// 1000421;
 	String CommoditySeg = excel.getCommoditySeg_Margin_Pledge_Request(dataRow);// "Agricultural";
 	int Commodity = excel.getCommodity_Margin_Pledge_Request(dataRow);// 15;
 	static long ENWR = excel.get_ENWR_Margin_Pledge_Request(dataRow);// 110000005360L;
-	int no_of_bags = excel.getno_of_bags_Margin_Pledge_Request(dataRow);// 50; 
+	int no_of_bags = excel.getno_of_bags_Margin_Pledge_Request(dataRow);// 50;
 //100673000019391
+
 	public Margin_Pledge_Request(WebDriver driver, WebDriverWait Wait) {
 
 		this.driver = driver;
@@ -44,7 +44,7 @@ public class Margin_Pledge_Request {
 	}
 
 	// --------------for Request for Margin_Pledge_Request creation
-	// process-------------
+	// process-------------//
 
 	@FindBy(xpath = "//span[normalize-space()='Margin Pledge']")
 	WebElement Margin_Pledge_Btn;
@@ -152,40 +152,108 @@ public class Margin_Pledge_Request {
 
 		Select_Btn.click();
 
-		ucc_Id_Btn.click();
-		ucc_Id_Txt.sendKeys(ucc_Id);
-		Thread.sleep(1000);
-		ucc_Id_Txt.sendKeys(Keys.ENTER);
+		try {
 
-		tm_IdCombobox_Btn.click();
-		tm_IdCombobox_Txt.sendKeys(tm_Id);
-		Thread.sleep(1000);
-		tm_IdCombobox_Txt.sendKeys(Keys.ENTER);
+			ucc_Id_Btn.click();
+			ucc_Id_Txt.sendKeys(ucc_Id);
+			Thread.sleep(1000);
+			ucc_Id_Txt.sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript click...");
+			js.executeScript("arguments[0].click();", ucc_Id_Btn);
+			js.executeScript("arguments[0].value='" + ucc_Id + "';", ucc_Id_Txt);
+			js.executeScript("arguments[0].click();", ucc_Id_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Deposite_No not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Deposite_No: " + e.getMessage());
+		}
 
-		cm_IdCombobox_Btn.click();
-		cm_IdCombobox_Txt.sendKeys(cm_Id);
-		Thread.sleep(1000);
-		cm_IdCombobox_Txt.sendKeys(Keys.ENTER);
+		try {
 
-		ceccIdCombobox_Btn.click();
-		ceccIdCombobox_Txt.sendKeys(ceccId);
-		Thread.sleep(1000);
-		ceccIdCombobox_Txt.sendKeys(Keys.ENTER);
+			tm_IdCombobox_Btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(tm_IdCombobox_Txt)).sendKeys(tm_Id);
+			Thread.sleep(1000);
+			tm_IdCombobox_Txt.sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, tm_Id JavaScript click...");
+			js.executeScript("arguments[0].click();", tm_IdCombobox_Btn);
+			js.executeScript("arguments[0].value='" + tm_Id + "';", tm_IdCombobox_Txt);
+			js.executeScript("arguments[0].click();", tm_IdCombobox_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("tm_Id not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for tm_Id: " + e.getMessage());
+		}
 
-		WhMasterSelection_Btn.click();
-		WhMasterSelection_Txt.sendKeys(String.valueOf(WHID));
-		Thread.sleep(1000);
-		WhMasterSelection_Txt.sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(cm_IdCombobox_Btn)).click();
+			Wait.until(ExpectedConditions.elementToBeClickable(cm_IdCombobox_Txt)).sendKeys(cm_Id);
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(cm_IdCombobox_Txt)).sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, cm_IdCombobox_Btn JavaScript click...");
+			js.executeScript("arguments[0].click();", cm_IdCombobox_Btn);
+			js.executeScript("arguments[0].value='" + cm_Id + "';", cm_IdCombobox_Txt);
+			js.executeScript("arguments[0].click();", cm_IdCombobox_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("cm_IdCombobox_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for cm_IdCombobox_Btn: " + e.getMessage());
+		}
+		try {
+			ceccIdCombobox_Btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(ceccIdCombobox_Txt)).sendKeys(ceccId);
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(ceccIdCombobox_Txt)).sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, ceccIdCombobox_Btn JavaScript click...");
+			js.executeScript("arguments[0].click();", ceccIdCombobox_Btn);
+			js.executeScript("arguments[0].value='" + ceccId + "';", ceccIdCombobox_Txt);
+			js.executeScript("arguments[0].click();", ceccIdCombobox_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("ceccIdCombobox_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for ceccIdCombobox_Btn: " + e.getMessage());
+		}
 
-		CommoditySegSelectionCombobox_btn.click();
-		CommoditySegSelectionCombobox_Txt.sendKeys(CommoditySeg);
-		Thread.sleep(1000);
-		CommoditySegSelectionCombobox_Txt.sendKeys(Keys.ENTER);
+		try {
+			WhMasterSelection_Btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(WhMasterSelection_Txt)).sendKeys(String.valueOf(WHID));
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(WhMasterSelection_Txt)).sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, WhMasterSelection_Btn JavaScript click...");
+			js.executeScript("arguments[0].click();", WhMasterSelection_Btn);
+			js.executeScript("arguments[0].value='" + WHID + "';", WhMasterSelection_Btn);
+			js.executeScript("arguments[0].click();", WhMasterSelection_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("WhMasterSelection_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for WhMasterSelection_Btn: " + e.getMessage());
+		}
+		try {
 
-		Commodity_Btn.click();
-		Commodity_Txt.sendKeys(String.valueOf(Commodity));
+			CommoditySegSelectionCombobox_btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(CommoditySegSelectionCombobox_Txt)).sendKeys(CommoditySeg);
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(CommoditySegSelectionCombobox_Txt)).sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, CommoditySegSelectionCombobox_btn JavaScript click...");
+			js.executeScript("arguments[0].click();", CommoditySegSelectionCombobox_btn);
+			js.executeScript("arguments[0].value='" + CommoditySeg + "';", CommoditySegSelectionCombobox_Txt);
+			js.executeScript("arguments[0].click();", CommoditySegSelectionCombobox_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Deposite_No not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Deposite_No: " + e.getMessage());
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Btn)).click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Txt)).sendKeys(String.valueOf(Commodity));
 		Thread.sleep(1000);
-		Commodity_Txt.sendKeys(Keys.ENTER);
+		Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Txt)).sendKeys(Keys.ENTER);
 
 		eff_Start_date_Btn.click();
 		Today_date.click();
@@ -198,7 +266,7 @@ public class Margin_Pledge_Request {
 
 		Select_Btn.click();
 		Thread.sleep(2000);
-		no_of_bags_Txt.sendKeys(String.valueOf(no_of_bags));
+		Wait.until(ExpectedConditions.elementToBeClickable(no_of_bags_Txt)).sendKeys(String.valueOf(no_of_bags));
 
 		try {
 			if (Save_Btn.isDisplayed()) {

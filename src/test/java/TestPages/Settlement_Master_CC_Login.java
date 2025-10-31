@@ -22,7 +22,7 @@ public class Settlement_Master_CC_Login {
 
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ON_Market.xlsx";
 	static String sheet = "Settlement";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	String ExchangeMaster = excel.getExchangeMaster(dataRow);

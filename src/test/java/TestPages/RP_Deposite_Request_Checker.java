@@ -279,7 +279,7 @@ public class RP_Deposite_Request_Checker {
 		System.out.println("--------------------RP Checker is Done-------------------------");
 	}
 
-	public void Exchange_Deposite_Deposite_Request() {
+	public void Exchange_Deposite_Deposite_Request() throws InterruptedException {
 		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 		// Transaction Button to be Click
 		try {
@@ -324,6 +324,7 @@ public class RP_Deposite_Request_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
+		Thread.sleep(1000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(caret)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -349,6 +350,7 @@ public class RP_Deposite_Request_Checker {
 		// js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		scroll.sendKeys(Keys.PAGE_DOWN);
 		scroll.sendKeys(Keys.PAGE_DOWN);
+		Thread.sleep(1000);
 		try {
 			if (Authorizee_pag_GA.isDisplayed()) {
 				// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
@@ -378,9 +380,7 @@ public class RP_Deposite_Request_Checker {
 		}
 		try {
 			if (Save_btn.isDisplayed()) {
-
 				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
-
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Save_btn click...");

@@ -66,12 +66,15 @@ public class Deposit_Confirm_WH_Checker {
 	@FindBy(xpath = "//label[normalize-space()='Authorized']")
 	WebElement Authorized_check_box;
 
-	@FindBy(xpath = "(//span[contains(text(),'Verify')])[2]")
+	@FindBy(xpath = "//button[@class='btn btn-primary blue']//span[contains(text(),'Verify')]")
 	WebElement Verify_btn;
 
 	@FindBy(xpath = "(//span[normalize-space()='Save'])[1]")
 	WebElement Save_btn;
 
+	@FindBy(xpath = "//button[@class='btn btn-primary blue ng-isolate-scope']")
+	WebElement Save_btn2;
+	
 	@FindBy(xpath="//span[normalize-space()='Save']")
 	WebElement Save_btn1;
 	public void Deposit_Confirm_WH() {
@@ -265,7 +268,7 @@ public class Deposit_Confirm_WH_Checker {
 		try {
 			Lot_Details.click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Lot_Details JavaScript click...");
 			js.executeScript("arguments[0].click();", Lot_Details);
 		} catch (NoSuchElementException e) {
 			System.out.println("Lot_Details not found: " + e.getMessage());
@@ -275,7 +278,7 @@ public class Deposit_Confirm_WH_Checker {
 		try {
 			View_Report.click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, View_Report JavaScript click...");
 			js.executeScript("arguments[0].click();", View_Report);
 		} catch (NoSuchElementException e) {
 			System.out.println("View_Report not found: " + e.getMessage());
@@ -287,7 +290,7 @@ public class Deposit_Confirm_WH_Checker {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_check_box)).click();
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Authorized_check_box JavaScript click...");
 			js.executeScript("arguments[0].click();", Authorized_check_box);
 		} catch (NoSuchElementException e) {
 			System.out.println("Authorized_check_box not found: " + e.getMessage());
@@ -299,7 +302,7 @@ public class Deposit_Confirm_WH_Checker {
 				Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Verify_btn JavaScript click...");
 			js.executeScript("arguments[0].click();", Verify_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Verify_btn not found: " + e.getMessage());
@@ -308,13 +311,12 @@ public class Deposit_Confirm_WH_Checker {
 		}
 
 		try {
-			if (Save_btn.isDisplayed()) {
-
-				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
+			if (Save_btn2.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn2)).click();
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Save_btn);
+			js.executeScript("arguments[0].click();", Save_btn2);
 		} catch (NoSuchElementException e) {
 			System.out.println("Save_btn not found: " + e.getMessage());
 		} catch (Exception e) {
@@ -470,7 +472,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=2;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(2000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite+i));
@@ -636,12 +638,12 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=3;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=4;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Search_txt JavaScript click...");
 			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite +i+ "';",
 					Search_txt);
 		} catch (NoSuchElementException e) {
@@ -652,7 +654,7 @@ public class Deposit_Confirm_WH_Checker {
 		try {
 			Search_btn.click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Search_btn JavaScript click...");
 			js.executeScript("arguments[0].click();", Search_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_btn not found: " + e.getMessage());
@@ -663,7 +665,7 @@ public class Deposit_Confirm_WH_Checker {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Action_btn JavaScript click...");
 			js.executeScript("arguments[0].click();", Action_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Action_btn not found: " + e.getMessage());
@@ -673,7 +675,7 @@ public class Deposit_Confirm_WH_Checker {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Authorized_btn JavaScript click...");
 			js.executeScript("arguments[0].click();", Authorized_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Authorized_btn not found: " + e.getMessage());
@@ -683,7 +685,7 @@ public class Deposit_Confirm_WH_Checker {
 		try {
 			Lot_Details.click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Lot_Details JavaScript click...");
 			js.executeScript("arguments[0].click();", Lot_Details);
 		} catch (NoSuchElementException e) {
 			System.out.println("Lot_Details not found: " + e.getMessage());
@@ -693,7 +695,7 @@ public class Deposit_Confirm_WH_Checker {
 		try {
 			View_Report.click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, View_Report JavaScript click...");
 			js.executeScript("arguments[0].click();", View_Report);
 		} catch (NoSuchElementException e) {
 			System.out.println("View_Report not found: " + e.getMessage());
@@ -705,7 +707,7 @@ public class Deposit_Confirm_WH_Checker {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_check_box)).click();
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Authorized_check_box JavaScript click...");
 			js.executeScript("arguments[0].click();", Authorized_check_box);
 		} catch (NoSuchElementException e) {
 			System.out.println("Authorized_check_box not found: " + e.getMessage());
@@ -717,7 +719,7 @@ public class Deposit_Confirm_WH_Checker {
 				Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Verify_btn JavaScript click...");
 			js.executeScript("arguments[0].click();", Verify_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Verify_btn not found: " + e.getMessage());
@@ -731,14 +733,17 @@ public class Deposit_Confirm_WH_Checker {
 				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).click();
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Save_btn JavaScript click...");
 			js.executeScript("arguments[0].click();", Save_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Save_btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_txt)).clear();
+		Thread.sleep(1000);
+		
 		}
 	}
 

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utillity.ExcelUtils;
@@ -59,9 +60,9 @@ public class Margin_Pledge_Request_Approval {
 	
 	public void Margin_Pledge_Request_Approval_Maker() throws InterruptedException {
 		
-		Margin_Pledge_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
 		
-		Margin_Pledge_Request_Approval_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Request_Approval_Btn)).click();
 		
 		New_Btn.click();
 		
@@ -77,7 +78,7 @@ public class Margin_Pledge_Request_Approval {
 		
 		try {
 			if (Save_Btn.isDisplayed()) {
-				Save_Btn.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
 			} else {
 				System.out.println("We are unable to click the Save_Btn button");
 			}

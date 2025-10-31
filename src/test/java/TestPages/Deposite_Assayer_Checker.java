@@ -88,12 +88,12 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 1; i < DashBoard_WareHouse_Checker.totalBags; i++) {
+		
 			try {
-				Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
+				Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite ));
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript Search_txt click...");
-				js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite + i + "';",
+				js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite+"';",
 						Search_txt);
 			} catch (NoSuchElementException e) {
 				System.out.println("Search_txt not found: " + e.getMessage());
@@ -181,7 +181,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 			}
-		}
+		
 
 	}
 

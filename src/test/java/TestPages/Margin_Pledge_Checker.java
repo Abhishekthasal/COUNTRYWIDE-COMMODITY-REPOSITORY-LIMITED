@@ -91,19 +91,17 @@ public class Margin_Pledge_Checker {
 
 		Search_Btn.click();
 
-		Actions_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Actions_Btn)).click();
 
-		Authorize_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
 
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		try {
 			if (Authorize_Chek.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chek)).click();
-			} else {
-				System.out.println("We are unable to click the Authorize_Chek CheckBox");
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Authorize_Chek click...");
+			System.out.println("Normal click failed, Authorize_Chek JavaScript Authorize_Chek click...");
 			js.executeScript("arguments[0].click();", Authorize_Chek);
 		} catch (NoSuchElementException e) {
 			System.out.println("Authorize_Chek not found: " + e.getMessage());
@@ -118,7 +116,7 @@ public class Margin_Pledge_Checker {
 				System.out.println("We are unable to click the Save_Btn button");
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Save_Btn click...");
+			System.out.println("Normal click failed, Save_Btn JavaScript Save_Btn click...");
 			js.executeScript("arguments[0].click();", Save_Btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Save_Btn not found: " + e.getMessage());
@@ -130,9 +128,9 @@ public class Margin_Pledge_Checker {
 
 	public void Margin_Pledge_Request_Approval_Checker() throws InterruptedException {
 
-		Margin_Pledge_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
 
-		Margin_Pledge_Request_Approval_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Request_Approval_Btn)).click();
 
 		Search_Txt.sendKeys(Margin_Pledge_Request.Margin_pledge_Req_No);
 
@@ -150,12 +148,10 @@ public class Margin_Pledge_Checker {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
 
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		try {
 			if (Authorize_Chek.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chek)).click();
-			} else {
-				System.out.println("We are unable to click the Authorize_Chek CheckBox");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Authorize_Chek click...");
