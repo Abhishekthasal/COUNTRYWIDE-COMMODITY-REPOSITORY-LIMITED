@@ -20,7 +20,7 @@ public class Margin_Pledge_Request {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Pledge.xlsx";
 	static String sheet = "Margin_Pledge_Request";
-	static int dataRow = 4; // second row of data
+	static int dataRow = 8; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	public static String Margin_pledge_Req_No = excel.getMargin_pledge_Req_No(dataRow);// "Margin1";

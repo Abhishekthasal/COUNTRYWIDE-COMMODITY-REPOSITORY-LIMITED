@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.Margin_Pledge_TestCase">
+      <class name="TestCase.Plegee_Margin_Depledge_TestCase">
         <methods>
-          <include name="Margin_Pledge_Request_Confirm_Maker"/>
+          <include name="CM_Margin_DePledge_Request_Checker"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- TestCase.Margin_Pledge_TestCase -->
+      </class> <!-- TestCase.Plegee_Margin_Depledge_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

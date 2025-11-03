@@ -1215,13 +1215,16 @@ public class ExcelUtils {
 	public long getCC_Client_Id_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
+	public int getPledge_Sequence_No_DePledge(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
 	
 	public String getCC_DePledge_Request_No(int rowNum) {
-		return getCellData(rowNum, 1);
+		return getCellData(rowNum, 2);
 	}
 	
 	public long getCC_ENWR_DePledge(int rowNum) {
-		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
 	
 	/*****************************TM_Margin_DePledge_Request*******************/

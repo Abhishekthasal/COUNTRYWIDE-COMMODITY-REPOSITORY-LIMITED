@@ -19,10 +19,11 @@ public class TM_Margin_DePledge_Request {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Depledge.xlsx";
 	static String sheet = "TM De-Pledge Request";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 1; //row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	
-	long TM_Client_Id_DePledge = excel.getTM_Client_Id_DePledge(dataRow); // 180000110000033L;
+	
+	long TM_Client_Id_DePledge = excel.getTM_Client_Id_DePledge(dataRow); 
 	String TM_DePledge_Request_No = excel.getTM_DePledge_Request_No(dataRow);
 	long ENWR_DePledge = excel.getTM_ENWR_DePledge(dataRow);
 
@@ -37,8 +38,8 @@ public class TM_Margin_DePledge_Request {
 	@FindBy(xpath = "//span[normalize-space()='Margin Pledge']")
 	WebElement Margin_Pledge_Btn;
 
-	@FindBy(xpath = "//span[normalize-space()='CC De-Pledge Request']")
-	WebElement CC_DePledge_Request_Btn;
+	@FindBy(xpath = "//span[normalize-space()='TM De-Pledge Request']")
+	WebElement TM_DePledge_Request_Btn;
 
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement New_Btn;
@@ -46,9 +47,11 @@ public class TM_Margin_DePledge_Request {
 	@FindBy(xpath = "//input[@name='client_id']")
 	WebElement client_id_Txt;
 	
+	@FindBy(xpath = "//input[@name='Pledge_Sequence_No']")
+	WebElement Pledge_Sequence_No_txt;
+	
 	@FindBy(xpath = "//button[normalize-space()='Search']")
 	WebElement Search_Btn;
-	
 	
 	@FindBy(xpath = "(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[1]")
 	WebElement Select_Btn;
@@ -64,11 +67,12 @@ public class TM_Margin_DePledge_Request {
 
 	@FindBy(xpath = "//button[@ng-click='vm.GetDetails()']")
 	WebElement Search_ENW_Btn;
+	
+	@FindBy(xpath = "(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[1]")
+	WebElement Select_ENW_Btn;
 
 	@FindBy(xpath = "//span[normalize-space()='Save']")
 	WebElement Save_Btn;
-	
-	
 	
 
 	public void TM_Margin_DePledge_Request_Maker() throws InterruptedException {
@@ -83,7 +87,7 @@ public class TM_Margin_DePledge_Request {
 			System.out.println("Unexpected error for Margin_Pledge_Btn: " + e.getMessage());
 		}
 
-		Wait.until(ExpectedConditions.elementToBeClickable(CC_DePledge_Request_Btn)).click();
+		Wait.until(ExpectedConditions.elementToBeClickable(TM_DePledge_Request_Btn)).click();
 		
 		New_Btn.click();
 
@@ -92,11 +96,27 @@ public class TM_Margin_DePledge_Request {
 				Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt))
 						.sendKeys(String.valueOf(TM_Client_Id_DePledge));
 			} else {
-				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
+				System.out.println("Invalid TM_Client_Id_DePledge. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
 			js.executeScript("arguments[0].value='" + TM_Client_Id_DePledge + "';", client_id_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("client_id_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for client_id_Txt: " + e.getMessage());
+		}
+		
+		try {
+			if (String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No).matches("^[0-9]{0,4}$")) {
+				Pledge_Sequence_No_txt.sendKeys(String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No));
+			} else {
+				System.out.println("Invalid Pledge_Sequence_No. Please enter 4 numeric characters:");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Pledge_Sequence_No JavaScript click...");
+			js.executeScript("arguments[0].value='" + CC_Margin_DePledge_Request.Pledge_Sequence_No + "';",
+					client_id_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("client_id_Txt not found: " + e.getMessage());
 		} catch (Exception e) {
@@ -127,9 +147,11 @@ public class TM_Margin_DePledge_Request {
 			System.out.println("Unexpected error for Search_Txt: " + e.getMessage());
 		}
 
-		Search_ENW_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_ENW_Btn)).click();
 
-		Select_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Select_ENW_Btn)).click();
+		
+		Thread.sleep(2000);
 
 		try {
 			if (Save_Btn.isDisplayed()) {

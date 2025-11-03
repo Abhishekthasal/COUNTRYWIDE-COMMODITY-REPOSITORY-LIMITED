@@ -22,34 +22,35 @@ public class CM_Margin_DePledge_Request {
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	long CM_Client_Id_DePledge = excel.getCM_Client_Id_DePledge(dataRow); // 180000110000033L;
-	String CM_DePledge_Request_No = excel.getCM_DePledge_Request_No(dataRow);
+	long CM_Client_Id_DePledge = excel.getCM_Client_Id_DePledge(dataRow);
+	static String CM_DePledge_Request_No = excel.getCM_DePledge_Request_No(dataRow);
 	long CM_ENWR_DePledge = excel.getENWR_DePledge(dataRow);
-	
-	
+
 	public CM_Margin_DePledge_Request(WebDriver driver, WebDriverWait Wait) {
 
 		this.driver = driver;
 		this.Wait = Wait;
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	@FindBy(xpath = "//span[normalize-space()='Margin Pledge']")
 	WebElement Margin_Pledge_Btn;
 
-	@FindBy(xpath = "//span[normalize-space()='CC De-Pledge Request']")
-	WebElement CC_DePledge_Request_Btn;
+	@FindBy(xpath = "//span[normalize-space()='CM De-Pledge Request']")
+	WebElement CM_DePledge_Request_Btn;
+
+	@FindBy(xpath = "//input[@name='Pledge_Sequence_No']")
+	WebElement Pledge_Sequence_No_txt;
 
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement New_Btn;
 
 	@FindBy(xpath = "//input[@name='client_id']")
 	WebElement client_id_Txt;
-	
+
 	@FindBy(xpath = "//button[normalize-space()='Search']")
 	WebElement Search_Btn;
-	
-	
+
 	@FindBy(xpath = "(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[1]")
 	WebElement Select_Btn;
 
@@ -67,7 +68,6 @@ public class CM_Margin_DePledge_Request {
 
 	@FindBy(xpath = "//span[normalize-space()='Save']")
 	WebElement Save_Btn;
-	
 
 	public void CM_Margin_DePledge_Request_Maker() throws InterruptedException {
 		try {
@@ -81,8 +81,8 @@ public class CM_Margin_DePledge_Request {
 			System.out.println("Unexpected error for Margin_Pledge_Btn: " + e.getMessage());
 		}
 
-		Wait.until(ExpectedConditions.elementToBeClickable(CC_DePledge_Request_Btn)).click();
-		
+		Wait.until(ExpectedConditions.elementToBeClickable(CM_DePledge_Request_Btn)).click();
+
 		New_Btn.click();
 
 		try {
@@ -100,9 +100,26 @@ public class CM_Margin_DePledge_Request {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for client_id_Txt: " + e.getMessage());
 		}
-		
+
+		try {
+			if (String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No).matches("^[0-9]{0,4}$")) {
+				Pledge_Sequence_No_txt.sendKeys(String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No));
+			} else {
+				System.out.println("Invalid Pledge_Sequence_No. Please enter 3 numeric characters:");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
+			js.executeScript("arguments[0].value='" + CC_Margin_DePledge_Request.Pledge_Sequence_No + "';",
+					client_id_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("client_id_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for client_id_Txt: " + e.getMessage());
+		}
+
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
 
+		Thread.sleep(1000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Select_Btn)).click();
 		Thread.sleep(1000);
 
@@ -112,26 +129,27 @@ public class CM_Margin_DePledge_Request {
 
 		try {
 			if (String.valueOf(Margin_Pledge_Request.ENWR).matches("^[0-9]{0,15}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt)).sendKeys(String.valueOf(CM_ENWR_DePledge));
+				Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt))
+						.sendKeys(String.valueOf(CM_ENWR_DePledge));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Search_Txt click...");
-			js.executeScript("arguments[0].value='" +CM_ENWR_DePledge+ "';", Search_Txt);
+			js.executeScript("arguments[0].value='" + CM_ENWR_DePledge + "';", Search_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_Txt not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_Txt: " + e.getMessage());
 		}
 
-		Search_ENW_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_ENW_Btn)).click();
 
-		Select_Btn.click();
-
+		Wait.until(ExpectedConditions.elementToBeClickable(Select_Btn)).click();
+		Thread.sleep(2000);
 		try {
 			if (Save_Btn.isDisplayed()) {
-				Save_Btn.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
 			} else {
 				System.out.println("We are unable to click the Save_Btn button");
 			}
@@ -144,9 +162,6 @@ public class CM_Margin_DePledge_Request {
 			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
 		}
 
-		
 	}
 
-	
-	
 }
