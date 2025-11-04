@@ -120,7 +120,7 @@ public class Plegee_Margin_Depledge_TestCase extends BaseClass {
 				}
 		
 	/************************************************TM_Margin_DePledge_Request_Maker********************************************************/	
-		@Test
+		//@Test
 		void TM_Margin_DePledge_Request_Maker() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Login for TM_Margin_DePledge_Request_Maker start");
@@ -145,7 +145,7 @@ public class Plegee_Margin_Depledge_TestCase extends BaseClass {
 			Report.flush();
 		}
 		
-		//@Test
+		@Test
 				void TM_Margin_DePledge_Request_Checker() throws IOException {
 					try {
 						test.log(LogStatus.INFO, "Login for TM_Margin_DePledge_Request_Maker start");
@@ -153,8 +153,8 @@ public class Plegee_Margin_Depledge_TestCase extends BaseClass {
 						Login.PortalLogin("rp-abhishek", "user52", "121@test");
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 						test.log(LogStatus.INFO, "TM_Margin_DePledge_Request_Maker creation  start");
-						TestPages.TM_Margin_DePledge_Request Margin = new TestPages.TM_Margin_DePledge_Request(driver, Wait);
-						Margin.TM_Margin_DePledge_Request_Maker();
+						TestPages.Margin_Pledge_Checker DePledge = new TestPages.Margin_Pledge_Checker(driver, Wait);
+						DePledge.TM_Margin_DePledge_Request_Checker();
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 								+ "TM_Margin_DePledge_Request_Maker is success full");
 						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));

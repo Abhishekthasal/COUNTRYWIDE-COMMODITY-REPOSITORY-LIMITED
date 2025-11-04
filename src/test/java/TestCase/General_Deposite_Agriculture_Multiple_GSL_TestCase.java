@@ -25,14 +25,16 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void RP_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "General_Deposite_Agriculture_Multiple_GSL_Maker start");
 			RP_Deposite_Request_Agriculture_Maker Depo = new RP_Deposite_Request_Agriculture_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			Login.PortalLogin("RP-XYZ", "user111", "121@test");
 			// Login.PortalLogin("RP-KML", "USER_A", "121@test");
+			
 			Depo.General_Deposite_Request();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "General_Deposite_Agriculture_Multiple_GSLt_Maker is success full");
@@ -53,7 +55,8 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			test.log(LogStatus.INFO, "General_Deposite_Agriculture_Multiple_GSL_Checker is start");
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("RP-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("RP-Abhishek", "user52", "121@test");
+			Login.PortalLogin("RP-XYZ", "user111", "121@test");
 			Dash.Deposite_Request();
 			test.log(LogStatus.PASS, "General_Deposite_Agriculture_Multiple_GSL_Checker is successfull");
 		} catch (Exception e) {
@@ -64,7 +67,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	//  @Test
+	// @Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is start");
@@ -99,7 +102,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	// @Test
+	 //@Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Agriculture_Multiple_GSL_Maker is start");
@@ -117,7 +120,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	 //@Test
+	// @Test
 	void Deposite_Assayer_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Agriculture_Multiple_GSL_Checker is start");
@@ -135,7 +138,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	 //@Test
+	// @Test
 	void Deposit_Confirm_WH_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Agriculture_Multiple_GSL_Maker is start");
@@ -151,7 +154,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		}
 	}
 
-	@Test
+	//@Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker is start");

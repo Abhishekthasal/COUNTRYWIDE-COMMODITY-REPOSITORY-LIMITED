@@ -438,7 +438,7 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		// 55555263
+		
 		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 			try {

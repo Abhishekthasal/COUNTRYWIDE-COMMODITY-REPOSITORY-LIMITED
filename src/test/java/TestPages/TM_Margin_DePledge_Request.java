@@ -19,12 +19,11 @@ public class TM_Margin_DePledge_Request {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Depledge.xlsx";
 	static String sheet = "TM De-Pledge Request";
-	static int dataRow = 1; //row of data
+	static int dataRow = 1; // row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
-	
-	
-	long TM_Client_Id_DePledge = excel.getTM_Client_Id_DePledge(dataRow); 
-	String TM_DePledge_Request_No = excel.getTM_DePledge_Request_No(dataRow);
+
+	long TM_Client_Id_DePledge = excel.getTM_Client_Id_DePledge(dataRow);
+	static String TM_DePledge_Request_No = excel.getTM_DePledge_Request_No(dataRow);
 	long ENWR_DePledge = excel.getTM_ENWR_DePledge(dataRow);
 
 	public TM_Margin_DePledge_Request(WebDriver driver, WebDriverWait Wait) {
@@ -33,8 +32,7 @@ public class TM_Margin_DePledge_Request {
 		this.Wait = Wait;
 		PageFactory.initElements(driver, this);
 	}
-	
-	
+
 	@FindBy(xpath = "//span[normalize-space()='Margin Pledge']")
 	WebElement Margin_Pledge_Btn;
 
@@ -46,13 +44,13 @@ public class TM_Margin_DePledge_Request {
 
 	@FindBy(xpath = "//input[@name='client_id']")
 	WebElement client_id_Txt;
-	
+
 	@FindBy(xpath = "//input[@name='Pledge_Sequence_No']")
 	WebElement Pledge_Sequence_No_txt;
-	
+
 	@FindBy(xpath = "//button[normalize-space()='Search']")
 	WebElement Search_Btn;
-	
+
 	@FindBy(xpath = "(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[1]")
 	WebElement Select_Btn;
 
@@ -67,13 +65,12 @@ public class TM_Margin_DePledge_Request {
 
 	@FindBy(xpath = "//button[@ng-click='vm.GetDetails()']")
 	WebElement Search_ENW_Btn;
-	
+
 	@FindBy(xpath = "(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[1]")
 	WebElement Select_ENW_Btn;
 
 	@FindBy(xpath = "//span[normalize-space()='Save']")
 	WebElement Save_Btn;
-	
 
 	public void TM_Margin_DePledge_Request_Maker() throws InterruptedException {
 		try {
@@ -86,9 +83,17 @@ public class TM_Margin_DePledge_Request {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Margin_Pledge_Btn: " + e.getMessage());
 		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(TM_DePledge_Request_Btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed,TM_DePledge_Request_Btn trying JavaScript  click...");
+			js.executeScript("arguments[0].click();", TM_DePledge_Request_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("TM_DePledge_Request_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for TM_DePledge_Request_Btn: " + e.getMessage());
+		}
 
-		Wait.until(ExpectedConditions.elementToBeClickable(TM_DePledge_Request_Btn)).click();
-		
 		New_Btn.click();
 
 		try {
@@ -99,14 +104,14 @@ public class TM_Margin_DePledge_Request {
 				System.out.println("Invalid TM_Client_Id_DePledge. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
+			System.out.println("Normal click failed,TM_Client_Id_DePledge trying JavaScript  click...");
 			js.executeScript("arguments[0].value='" + TM_Client_Id_DePledge + "';", client_id_Txt);
 		} catch (NoSuchElementException e) {
-			System.out.println("client_id_Txt not found: " + e.getMessage());
+			System.out.println("TM_Client_Id_DePledge not found: " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Unexpected error for client_id_Txt: " + e.getMessage());
+			System.out.println("Unexpected error for TM_Client_Id_DePledge: " + e.getMessage());
 		}
-		
+
 		try {
 			if (String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No).matches("^[0-9]{0,4}$")) {
 				Pledge_Sequence_No_txt.sendKeys(String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No));
@@ -122,7 +127,7 @@ public class TM_Margin_DePledge_Request {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for client_id_Txt: " + e.getMessage());
 		}
-		
+
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Select_Btn)).click();
@@ -140,7 +145,7 @@ public class TM_Margin_DePledge_Request {
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Search_Txt click...");
-			js.executeScript("arguments[0].value='" +ENWR_DePledge + "';", Search_Txt);
+			js.executeScript("arguments[0].value='" + ENWR_DePledge + "';", Search_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_Txt not found: " + e.getMessage());
 		} catch (Exception e) {
@@ -150,7 +155,7 @@ public class TM_Margin_DePledge_Request {
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_ENW_Btn)).click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Select_ENW_Btn)).click();
-		
+
 		Thread.sleep(2000);
 
 		try {
@@ -168,8 +173,11 @@ public class TM_Margin_DePledge_Request {
 			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
 		}
 
+	}
+
+	public void Pledgor_TM_Margin_DePledge_Request_Maker() {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	
+
 }

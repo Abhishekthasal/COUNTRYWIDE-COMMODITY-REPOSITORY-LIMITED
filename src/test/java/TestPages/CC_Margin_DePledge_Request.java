@@ -162,4 +162,9 @@ public class CC_Margin_DePledge_Request {
 
 	}
 
+	public void Pledgor_CC_Margin_DePledge_Request_Maker() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

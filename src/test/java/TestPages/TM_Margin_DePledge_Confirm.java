@@ -23,5 +23,10 @@ public class TM_Margin_DePledge_Confirm {
 		this.Wait = Wait;
 		PageFactory.initElements(driver, this);
 	}
+
+	public void Pledgor_TM_Margin_DePledge_Request_Confirm_Maker() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

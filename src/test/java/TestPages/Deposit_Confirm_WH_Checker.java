@@ -472,7 +472,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=3;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(2000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite+i));
@@ -510,7 +510,7 @@ public class Deposit_Confirm_WH_Checker {
 		 * if (Action_bttn.isDisplayed() && Action_bttn.isEnabled()) { return
 		 * Action_bttn; } return null; });
 		 */
-		
+		Thread.sleep(2000);
 			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 			
 			//implicitlyWait(Duration.ofSeconds(90));
@@ -613,7 +613,7 @@ public class Deposit_Confirm_WH_Checker {
 			 */
 		Thread.sleep(2000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_txt)).clear();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		}
 	}
 
