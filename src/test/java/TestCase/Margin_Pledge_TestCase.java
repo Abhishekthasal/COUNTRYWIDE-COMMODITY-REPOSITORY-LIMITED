@@ -16,7 +16,7 @@ public class Margin_Pledge_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Margin_Pledge_TestCase Report");
 /*******************************************Margin_Pledge_Request*******************************************************/
-	@Test
+	//@Test
 	void Margin_Pledge() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Margin_Pledge start");
@@ -198,7 +198,8 @@ public class Margin_Pledge_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Login for TM_RePledge_Request_Checker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			Login.PortalLogin("rp-xyz", "user1", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "TM_RePledge_Request_Checker creation  start");
 			TestPages.Margin_Pledge_Checker Margin = new TestPages.Margin_Pledge_Checker(driver, Wait);
@@ -293,12 +294,13 @@ public class Margin_Pledge_TestCase extends BaseClass {
 					Report.flush();
 				}
 		
-			//	@Test
+				//@Test
 				void CM_RePledge_Request_Checker() throws IOException {
 					try {
 						test.log(LogStatus.INFO, "Login for CM_RePledge_Request_Checker start");
 						LoginPages Login = new LoginPages(driver, Wait);
-						Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+						//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+						Login.PortalLogin("rp-KML", "user2", "121@test");
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 						test.log(LogStatus.INFO, "CM_RePledge_Request_Checker creation  start");
 						TestPages.Margin_Pledge_Checker Margin = new TestPages.Margin_Pledge_Checker(driver, Wait);
@@ -348,12 +350,12 @@ public class Margin_Pledge_TestCase extends BaseClass {
 					Report.flush();
 				}
 		
-				//@Test
+				@Test
 				void CM_RePledge_Request_Confirm_Checker() throws IOException {
 					try {
 						test.log(LogStatus.INFO, "Login for CM_RePledge_Request_Confirm_Checker start");
 						LoginPages Login = new LoginPages(driver, Wait);
-						Login.PortalLogin("CC8880013", "user2", "121@test");
+						Login.PortalLogin("CC8880013", "user2", "test@121");
 						test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 						test.log(LogStatus.INFO, "CM_RePledge_Request_Confirm_Checker creation  start");
 						TestPages.Margin_Pledge_Checker Margin = new TestPages.Margin_Pledge_Checker(driver, Wait);

@@ -19,7 +19,7 @@ public class CC_Margin_DePledge_Request {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Depledge.xlsx";
 	static String sheet = "CC Depledge Request";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 2; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	long CC_Client_Id_DePledge = excel.getCC_Client_Id_DePledge(dataRow); // 180000110000033L;

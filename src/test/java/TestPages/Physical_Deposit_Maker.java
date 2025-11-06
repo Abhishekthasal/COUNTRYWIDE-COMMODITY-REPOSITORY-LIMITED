@@ -30,7 +30,7 @@ public class Physical_Deposit_Maker {
 	static String sheet = "Physical_Deposit_Maker";
 	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
-	static ExcelUtils excel = new ExcelUtils(path, sheet); 
+	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
 	 * String Internal_Ref = "53406"; // 53267; String OTP_Auth = "674841"; //
 	 * 557332; int Tare_Weight_value = 200; String assaying_type = "Self Verified";
@@ -75,7 +75,7 @@ public class Physical_Deposit_Maker {
 	int shelflife = excel.getshelflife_py(dataRow);
 	public static String Bag_Total = excel.getBag_Total_py(dataRow);
 	static int Bags = excel.getBags_py(dataRow);
-	String Variety_Code ="999 - Cotton Bales";
+	String Variety_Code = "999 - Cotton Bales";
 	int j = 3;
 	int i;
 //	int k = j * i;
@@ -447,7 +447,7 @@ public class Physical_Deposit_Maker {
 			} else {
 				System.out.println("Invalid OTP_Auth. Please enter exactly 6 digits (numbers only):");
 			}
-		} catch (ElementClickInterceptedException e) { 
+		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Auth_Code click...");
 			js.executeScript("arguments[0].value='" + OTP_Auth + "';", Auth_Code);
 			js.executeScript("arguments[0].click();", Auth_Code);
@@ -1118,24 +1118,24 @@ public class Physical_Deposit_Maker {
 				NO_Bag.clear();
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 				NO_Bag.sendKeys(String.valueOf(Bags));
-				
+
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
 						.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
-				  // Wait for Quantity field to auto-fill by backend
-	            WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
+				// Wait for Quantity field to auto-fill by backend
+				WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
 
-	            // Wait until quantity field has a non-empty value
-	            Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
+				// Wait until quantity field has a non-empty value
+				Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
 
-	            // Fetch the auto-filled value
-	            String autoFilledQuantity = quantityField.getAttribute("value");
-	            System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
-				
-	            try {
+				// Fetch the auto-filled value
+				String autoFilledQuantity = quantityField.getAttribute("value");
+				System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
+
+				try {
 					if (Number_Of_Bags_PopUp.isDisplayed()) {
 						Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
 					}
@@ -1145,7 +1145,7 @@ public class Physical_Deposit_Maker {
 				} catch (Exception e) {
 					System.out.println(" Number_Of_Bags_PopUp Element not found");
 				}
-				
+
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 				if (i < remainingBags) {
 					try {
@@ -1434,14 +1434,13 @@ public class Physical_Deposit_Maker {
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 		Thread.sleep(2000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-		
+
 		Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
 		Thread.sleep(2000);
-	//	Assert.assertTrue(Variety_Code_Text.isDisplayed(), "Variety_Code_Text Box not visible");
+		// Assert.assertTrue(Variety_Code_Text.isDisplayed(), "Variety_Code_Text Box not
+		// visible");
 		Variety_Code_Text.sendKeys(Keys.ENTER);
-		
-		
-		
+
 		assaying_type_Text.sendKeys(assaying_type);
 
 		if (Weight_bridge.matches("^[a-zA-Z0-9]{0,100}$")) {
@@ -1766,33 +1765,36 @@ public class Physical_Deposit_Maker {
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		
-		  try {
-		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-		 /* Assert.assertTrue(Variety_Code.isDisplayed(),
-		  "Variety_Code button not visible");*/
-			//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)). sendKeys(Variety_Code);
-		  Variety_Code_Text.clear();
-		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)). sendKeys(Variety_Code);
-		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);	
-		  //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-	//	  Variety_Code_Text.click();
-		  //Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
-			/* Assert.assertTrue(Variety_Code_Text.isDisplayed(),
+
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+			/*
+			 * Assert.assertTrue(Variety_Code.isDisplayed(),
+			 * "Variety_Code button not visible");
+			 */
+			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+			Variety_Code_Text.clear();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			// Variety_Code_Text.click();
+			// Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+			/*
+			 * Assert.assertTrue(Variety_Code_Text.isDisplayed(),
 			 * "Variety_Code_Text Box not visible");
 			 */
-		  } catch (ElementClickInterceptedException e) {
-			  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-			  Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)). sendKeys(Variety_Code);
-			} catch (NoSuchElementException e) {
-				System.out.println("Variety_Code_Text not found: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
-			}
-		 
+		} catch (ElementClickInterceptedException e) {
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+		} catch (NoSuchElementException e) {
+			System.out.println("Variety_Code_Text not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
+		}
+
 		// assaying_type_Text.sendKeys(assaying_type);
 		try {
 			Select Sa = new Select(assaying_type_Text);
@@ -1845,8 +1847,8 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for web_bridge: " + e.getMessage());
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-
+		// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(2000);
 		try {
 			if (EstimatedValueAtDeposit.matches("^[0-9]{0,15}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Estimated)).sendKeys(EstimatedValueAtDeposit);
@@ -1911,12 +1913,11 @@ public class Physical_Deposit_Maker {
 		}
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView()", Add_Button);
-		WebElement remainingBagsElement = driver
-				.findElement(By.xpath("(//div[@class='col-sm-2'])[7]")); // Adjust ID
+		WebElement remainingBagsElement = driver.findElement(By.xpath("(//div[@class='col-sm-2'])[7]")); // Adjust ID
 		int remainingBags = Integer.parseInt(remainingBagsElement.getText());
-		System.out.println("remainingBags is: "+remainingBags);
+		System.out.println("remainingBags is: " + remainingBags);
 		int noOfBags = Integer.parseInt(Bag_Total);
-		System.out.println("noOfBags is :"+noOfBags);
+		System.out.println("noOfBags is :" + noOfBags);
 		if (remainingBags != noOfBags) {
 			for (int i = 1; i <= remainingBags; i++) {
 				System.out.println("remainingBags is for:" + remainingBags);
@@ -1945,28 +1946,27 @@ public class Physical_Deposit_Maker {
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(Bags));
-			      Thread.sleep(2000); 
-			      NO_Bag.clear(); 
-			      NO_Bag.sendKeys(String.valueOf(Bags));
-				 
-				
+				Thread.sleep(2000);
+				NO_Bag.clear();
+				NO_Bag.sendKeys(String.valueOf(Bags));
+
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
 						.sendKeys(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i);
-				  // Wait for Quantity field to auto-fill by backend
-	            WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
+				// Wait for Quantity field to auto-fill by backend
+				WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
 
-	            // Wait until quantity field has a non-empty value
-	            Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
+				// Wait until quantity field has a non-empty value
+				Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
 
-	            // Fetch the auto-filled value
-	            String autoFilledQuantity = quantityField.getAttribute("value");
-	            System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
-				
-	            try {
+				// Fetch the auto-filled value
+				String autoFilledQuantity = quantityField.getAttribute("value");
+				System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
+
+				try {
 					if (Number_Of_Bags_PopUp.isDisplayed()) {
 						Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
 					}
@@ -1976,7 +1976,7 @@ public class Physical_Deposit_Maker {
 				} catch (Exception e) {
 					System.out.println(" Number_Of_Bags_PopUp Element not found");
 				}
-				
+
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 
 				if (i < remainingBags) {
@@ -1986,9 +1986,10 @@ public class Physical_Deposit_Maker {
 								if (Add_Button.isDisplayed()) {
 									Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
 									try {
-									Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
+										Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
 									} catch (ElementClickInterceptedException e) {
-										System.out.println("Normal click failed, trying JavaScript Lots_Confirmation click...");
+										System.out.println(
+												"Normal click failed, trying JavaScript Lots_Confirmation click...");
 										js.executeScript("arguments[0].click();", Lots_Confirmation);
 									} catch (NoSuchElementException e) {
 										System.out.println("Lots_Confirmation not found: " + e.getMessage());
@@ -2007,15 +2008,15 @@ public class Physical_Deposit_Maker {
 							}
 							try {
 								if (Number_Of_Bags_PopUp.isDisplayed()) {
-								 
-									Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).  click(); 
-								  }
+
+									Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
+								}
 							} catch (NoSuchElementException e) {
-								  System.out.println(" Number_Of_Bags_PopUp Element is not visible");
-								  
-								  } catch (Exception e) {
-								  System.out.println(" Number_Of_Bags_PopUp Element not found"); 
-								  }
+								System.out.println(" Number_Of_Bags_PopUp Element is not visible");
+
+							} catch (Exception e) {
+								System.out.println(" Number_Of_Bags_PopUp Element not found");
+							}
 							try {
 								if (Lots_Confirmation.isDisplayed()) {
 									Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
@@ -2229,25 +2230,25 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Physical_New_Req: " + e.getMessage());
 		}
-		//try {
-			if (Internal_Ref.matches("^[0-9]{5}$")) {
-				//Internal_Ref_No.click();
-				Wait.until(ExpectedConditions.elementToBeClickable(Internal_Ref_No)).sendKeys(String.valueOf(Internal_Ref));
-				System.out.println("Internal_Ref no is:"+Internal_Ref);
-				Internal_Ref_No.sendKeys(Keys.ENTER);
-			} else {
-				System.out.println("Invalid Internal_Ref. Please enter exactly 5 digits (numbers only):");
-			}
-			/*
-			 * } catch (ElementClickInterceptedException e) { System.out.
-			 * println("Normal click failed, trying JavaScript Internal_Ref_No click...");
-			 * js.executeScript("arguments[0].value='" + Internal_Ref + "';",
-			 * Internal_Ref_No); js.executeScript("arguments[0].click();", Internal_Ref_No);
-			 * } catch (NoSuchElementException e) {
-			 * System.out.println("Internal_Ref_No not found: " + e.getMessage()); } catch
-			 * (Exception e) { System.out.println("Unexpected error for Internal_Ref_No: " +
-			 * e.getMessage()); }
-			 */
+		// try {
+		if (Internal_Ref.matches("^[0-9]{5}$")) {
+			// Internal_Ref_No.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Internal_Ref_No)).sendKeys(String.valueOf(Internal_Ref));
+			System.out.println("Internal_Ref no is:" + Internal_Ref);
+			Internal_Ref_No.sendKeys(Keys.ENTER);
+		} else {
+			System.out.println("Invalid Internal_Ref. Please enter exactly 5 digits (numbers only):");
+		}
+		/*
+		 * } catch (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript Internal_Ref_No click...");
+		 * js.executeScript("arguments[0].value='" + Internal_Ref + "';",
+		 * Internal_Ref_No); js.executeScript("arguments[0].click();", Internal_Ref_No);
+		 * } catch (NoSuchElementException e) {
+		 * System.out.println("Internal_Ref_No not found: " + e.getMessage()); } catch
+		 * (Exception e) { System.out.println("Unexpected error for Internal_Ref_No: " +
+		 * e.getMessage()); }
+		 */
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
@@ -2343,7 +2344,7 @@ public class Physical_Deposit_Maker {
 		}
 		// String.valueOf(Bridge)
 
-		//String Bridge = Government_Agency_Deposite_Request_Maker.bags;// 2;
+		// String Bridge = Government_Agency_Deposite_Request_Maker.bags;// 2;
 		try {
 			if (WeighbridgeNetWeight.matches("^[0-9]{0,19}$")) {
 				web_bridge.sendKeys(WeighbridgeNetWeight);

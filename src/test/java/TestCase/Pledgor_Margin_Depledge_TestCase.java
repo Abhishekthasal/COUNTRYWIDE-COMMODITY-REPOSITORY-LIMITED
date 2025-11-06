@@ -18,12 +18,13 @@ public class Pledgor_Margin_Depledge_TestCase extends BaseClass {
 	/**********************************************
 	 * Pledgor_CM_Margin_DePledge_Request_Maker
 	 *****************************************************/
-	 @Test
+	 //@Test
 	void Pledgor_CM_Margin_DePledge_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Pledgor_CM_Margin_DePledge_Request_Maker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-abhishek", "user51", "121@test");
+			Login.PortalLogin("rp-kml", "user1", "121@test");
+			//Login.PortalLogin("rp-abhishek", "user51", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledgor_CM_Margin_DePledge_Request_Maker creation  start");
 			TestPages.CM_Margin_DePledge_Request DePledge = new TestPages.CM_Margin_DePledge_Request(driver, Wait);
@@ -48,7 +49,8 @@ public class Pledgor_Margin_Depledge_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Login for Pledgor_CM_Margin_DePledge_Request_Checker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-abhishek", "user52", "121@test");
+			//Login.PortalLogin("rp-abhishek", "user52", "121@test");
+			Login.PortalLogin("rp-kml", "user2", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledgor_CM_Margin_DePledge_Request_Checker creation  start");
 			TestPages.Margin_Pledge_Checker DePledge = new TestPages.Margin_Pledge_Checker(driver, Wait);
@@ -72,7 +74,7 @@ public class Pledgor_Margin_Depledge_TestCase extends BaseClass {
 	 * Pledgor_CM_Margin_DePledge_Request_Confirm_Maker
 	 *****************************************************/
 
-	// @Test
+	 @Test
 	void Pledgor_CM_Margin_DePledge_Request_Confirm_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Pledgor_CM_Margin_DePledge_Request_Confirm_Maker start");

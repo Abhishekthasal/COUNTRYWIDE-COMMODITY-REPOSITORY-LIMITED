@@ -106,6 +106,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase  extends BaseCl
 		Report.flush();
 
 	}
+	//@Test
 //@Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {

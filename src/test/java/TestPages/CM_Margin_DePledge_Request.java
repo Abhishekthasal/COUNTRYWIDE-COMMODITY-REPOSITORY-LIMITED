@@ -38,7 +38,10 @@ public class CM_Margin_DePledge_Request {
 
 	@FindBy(xpath = "//span[normalize-space()='CM De-Pledge Request']")
 	WebElement CM_DePledge_Request_Btn;
-
+	
+	@FindBy(xpath="//span[normalize-space()='CC De-Pledge Request']")
+	WebElement CC_DePledge_Request_Btn;
+	
 	@FindBy(xpath = "//input[@name='Pledge_Sequence_No']")
 	WebElement Pledge_Sequence_No_txt;
 
@@ -176,7 +179,7 @@ public class CM_Margin_DePledge_Request {
 			System.out.println("Unexpected error for Margin_Pledge_Btn: " + e.getMessage());
 		}
 
-		Wait.until(ExpectedConditions.elementToBeClickable(CM_DePledge_Request_Btn)).click();
+		Wait.until(ExpectedConditions.elementToBeClickable(CC_DePledge_Request_Btn)).click();
 
 		New_Btn.click();
 
