@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-07T17:37:48 IST" name="Default suite" finished-at="2025-11-07T17:38:09 IST" duration-ms="20327">
+  <suite started-at="2025-11-10T17:57:06 IST" name="Default suite" finished-at="2025-11-10T17:59:02 IST" duration-ms="116189">
     <groups>
     </groups>
-    <test started-at="2025-11-07T17:37:48 IST" name="Default test" finished-at="2025-11-07T17:38:09 IST" duration-ms="20327">
-      <class name="TestCase.Pledgor_Margin_Depledge_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Pledgor_Margin_Depledge_TestCase@29d89d5d]" started-at="2025-11-07T17:37:49 IST" name="setup" finished-at="2025-11-07T17:37:52 IST" duration-ms="3872" status="PASS">
+    <test started-at="2025-11-10T17:57:06 IST" name="Default test" finished-at="2025-11-10T17:59:02 IST" duration-ms="116189">
+      <class name="TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2025-11-10T17:57:06 IST" name="setup" finished-at="2025-11-10T17:57:10 IST" duration-ms="3760" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Pledgor_TM_Margin_DePledge_Request_Confirm_Checker()[pri:0, instance:TestCase.Pledgor_Margin_Depledge_TestCase@29d89d5d]" started-at="2025-11-07T17:37:52 IST" name="Pledgor_TM_Margin_DePledge_Request_Confirm_Checker" finished-at="2025-11-07T17:38:09 IST" duration-ms="16401" status="PASS">
+        <test-method signature="RP_Exchange_Deposite_Request_Maker()[pri:0, instance:TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2025-11-10T17:57:10 IST" name="RP_Exchange_Deposite_Request_Maker" finished-at="2025-11-10T17:59:02 IST" duration-ms="112392" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Pledgor_TM_Margin_DePledge_Request_Confirm_Checker -->
-      </class> <!-- TestCase.Pledgor_Margin_Depledge_TestCase -->
+        </test-method> <!-- RP_Exchange_Deposite_Request_Maker -->
+      </class> <!-- TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

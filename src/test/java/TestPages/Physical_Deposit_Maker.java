@@ -1006,10 +1006,10 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Weight_bridge_Receipt_text: " + e.getMessage());
 		}
-
+		Thread.sleep(3000);
 		try {
 			if (WeighbridgeNetWeight.matches("^[0-9]{0,15}$")) {
-				web_bridge.sendKeys(WeighbridgeNetWeight);
+				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
 			} else {
 				System.out.println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):");
 			}
@@ -1087,6 +1087,7 @@ public class Physical_Deposit_Maker {
 		WebElement remainingBagsElement = driver
 				.findElement(By.xpath("//div[@class='row ng-scope']//div[@class='col-sm-2']")); // Adjust ID
 		int remainingBags = Integer.parseInt(remainingBagsElement.getText());
+		System.out.println("remainingBags is :"+remainingBags);
 		int noOfBags = Integer.parseInt(Bag_Total);
 		if (remainingBags != noOfBags) {
 			for (int i = 1; i <= remainingBags; i++) {
@@ -1126,15 +1127,17 @@ public class Physical_Deposit_Maker {
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
 						.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
-				// Wait for Quantity field to auto-fill by backend
-				WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
-
-				// Wait until quantity field has a non-empty value
-				Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
-
-				// Fetch the auto-filled value
-				String autoFilledQuantity = quantityField.getAttribute("value");
-				System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
+				/*
+				 * // Wait for Quantity field to auto-fill by backend WebElement quantityField =
+				 * driver.findElement(By.xpath("//input[@name='QTY']"));
+				 * 
+				 * // Wait until quantity field has a non-empty value
+				 * Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
+				 * 
+				 * // Fetch the auto-filled value String autoFilledQuantity =
+				 * quantityField.getAttribute("value");
+				 * System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
+				 */
 
 				try {
 					if (Number_Of_Bags_PopUp.isDisplayed()) {
@@ -1908,9 +1911,6 @@ public class Physical_Deposit_Maker {
 		if (remainingBags != noOfBags) {
 			for (int i = 1; i <= remainingBags; i++) {
 				System.out.println("remainingBags is for:" + remainingBags);
-				// WebElement godown = driver.findElement(By.xpath("(//input[@name='godown'])["
-				// + i + "]"));
-				// godown.sendKeys("Godown " + i);
 
 				driver.findElement(By.xpath("(//input[@name='godown'])[" + i + "]")).sendKeys("Godown " + i);
 
@@ -1943,16 +1943,17 @@ public class Physical_Deposit_Maker {
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
 						.sendKeys(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i);
-				// Wait for Quantity field to auto-fill by backend
-				WebElement quantityField = driver.findElement(By.xpath("//input[@name='QTY']"));
-
-				// Wait until quantity field has a non-empty value
-				Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
-
-				// Fetch the auto-filled value
-				String autoFilledQuantity = quantityField.getAttribute("value");
-				System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
-
+				/*
+				 * // Wait for Quantity field to auto-fill by backend WebElement quantityField =
+				 * driver.findElement(By.xpath("//input[@name='QTY']"));
+				 * 
+				 * // Wait until quantity field has a non-empty value
+				 * Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
+				 * 
+				 * // Fetch the auto-filled value String autoFilledQuantity =
+				 * quantityField.getAttribute("value");
+				 * System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
+				 */
 				try {
 					if (Number_Of_Bags_PopUp.isDisplayed()) {
 						Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();

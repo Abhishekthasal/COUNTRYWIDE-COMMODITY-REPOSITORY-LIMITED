@@ -23,7 +23,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "RP_Exchange_Deposite_Agricultur";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 3; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -126,25 +126,25 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	@FindBy(xpath = "//button[@data-id='baguom']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Bag_UOM_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[25]")
+	@FindBy(xpath = "(//input[@type='text'])[23]")
 	WebElement Bag_UOM_txt;
 
 	@FindBy(xpath = "(//button[@data-id='bagSize'])[1]")
 	WebElement Bag_Size_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[26]")
+	@FindBy(xpath = "(//input[@type='text'])[24]")
 	WebElement Bag_Size_Text;
 
 	@FindBy(xpath = "(//button[@data-id='qtyuom']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]")
 	WebElement Qty_UOM_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[27]")
+	@FindBy(xpath = "(//input[@type='text'])[25]")
 	WebElement Qty_UOM_Text;
 
 	@FindBy(xpath = "(//button[@data-id='BagTypeSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]")
 	WebElement Bag_Type_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[29]")
+	@FindBy(xpath = "(//input[@type='text'])[27]")
 	WebElement Bag_Type_Text;
 
 	@FindBy(xpath = "//button[@class='btn btn-primary blue']")
@@ -424,7 +424,8 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 			if (Bag_Type.matches("^[a-zA-Z0-9]{0,8}$")) {
 				Bag_Type_btn.click();
 				Bag_Type_Text.sendKeys(Bag_Type);
-				Bag_Type_Text.sendKeys(Keys.ENTER);
+				//Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Bag_Type_Text)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Bag_Type. Please enter exactly 3 alphanumeric characters:");
 			}

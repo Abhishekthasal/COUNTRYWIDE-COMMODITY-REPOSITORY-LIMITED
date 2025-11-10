@@ -25,7 +25,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 	 String projectPath = System.getProperty("user.dir");
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "RP_Deposite_Request_Agriculture";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 3; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -140,25 +140,25 @@ public class RP_Deposite_Request_Agriculture_Maker {
 	@FindBy(xpath = "//button[@data-id='baguom']")
 	WebElement Bag_UOM_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[26]")
+	@FindBy(xpath = "(//input[@type='text'])[24]")
 	WebElement Bag_UOM_txt;
 
 	@FindBy(css = "button[data-id='bagSize'] span[class='filter-option pull-left']")
 	WebElement Bag_Size_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[27]")
+	@FindBy(xpath = "(//input[@type='text'])[25]")
 	WebElement Bag_Size_Text;
 
 	@FindBy(xpath = "//button[@data-id='qtyuom']")
 	WebElement Qty_UOM_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[28]")
+	@FindBy(xpath = "(//input[@type='text'])[26]")
 	WebElement Qty_UOM_Text;
 
 	@FindBy(xpath = "//button[@data-id='BagTypeSelectionCombobox']")
 	WebElement Bag_Type_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[30]")
+	@FindBy(xpath = "(//input[@type='text'])[28]")
 	WebElement Bag_Type_Text;
 
 	@FindBy(xpath = "//button[@class='btn btn-primary blue']")
