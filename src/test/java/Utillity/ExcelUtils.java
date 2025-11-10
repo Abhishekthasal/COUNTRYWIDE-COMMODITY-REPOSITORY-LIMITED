@@ -1202,12 +1202,20 @@ public class ExcelUtils {
 		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
 	
+	public int getPledge_Sequence_NoinCM(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
 	public String getCM_DePledge_Request_No(int rowNum) {
-		return getCellData(rowNum, 1);
+		return getCellData(rowNum, 2);
 	}
 	
 	public long getENWR_DePledge(int rowNum) {
-		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	public long getCC_Client_Id_DePledgeinCM(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
 	
 	/*****************************CC_Margin_DePledge_Request*******************/
@@ -1239,5 +1247,32 @@ public class ExcelUtils {
 	public long getTM_ENWR_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
+	
+	public long CM_Client_Id_DePledgeinTM(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	/*****************************************RP_Margin_DePledge_Request********************/
+	
+	public long getTM_Client_Id_DePledgeinRP(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+	}
+	
+	public int getRP_Pledge_Sequence_No(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public String getRP_DePledge_Request_No(int rowNum) {
+		return getCellData(rowNum, 2);
+	}
+	
+	public long getRP_ENWR_DePledge(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	public long getRP_Client_Id_DePledge(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
+	}
+	
+	
 	
 }

@@ -5,7 +5,7 @@
     <classes>
       <class name="TestCase.Pledgor_Margin_Depledge_TestCase">
         <methods>
-          <include name="Pledgor_CM_Margin_DePledge_Request_Checker"/>
+          <include name="Pledgor_TM_Margin_DePledge_Request_Confirm_Checker"/>
           <include name="setup"/>
         </methods>
       </class> <!-- TestCase.Pledgor_Margin_Depledge_TestCase -->

@@ -22,10 +22,12 @@ public class CM_Margin_DePledge_Request {
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	long CM_Client_Id_DePledge = excel.getCM_Client_Id_DePledge(dataRow);
+	static long CM_Client_Id_DePledge = excel.getCM_Client_Id_DePledge(dataRow);
+	static int Pledge_Sequence_NoinCM= excel.getPledge_Sequence_NoinCM(dataRow);
 	static String CM_DePledge_Request_No = excel.getCM_DePledge_Request_No(dataRow);
 	long CM_ENWR_DePledge = excel.getENWR_DePledge(dataRow);
-
+	long CC_Client_Id_DePledgeinCM = excel.getCC_Client_Id_DePledgeinCM(dataRow);
+	
 	public CM_Margin_DePledge_Request(WebDriver driver, WebDriverWait Wait) {
 
 		this.driver = driver;
@@ -105,19 +107,19 @@ public class CM_Margin_DePledge_Request {
 		}
 
 		try {
-			if (String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No).matches("^[0-9]{0,4}$")) {
-				Pledge_Sequence_No_txt.sendKeys(String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No));
+			if (String.valueOf(Pledge_Sequence_NoinCM).matches("^[0-9]{0,4}$")) {
+				Pledge_Sequence_No_txt.sendKeys(String.valueOf(Pledge_Sequence_NoinCM));
 			} else {
 				System.out.println("Invalid Pledge_Sequence_No. Please enter 3 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
-			js.executeScript("arguments[0].value='" + CC_Margin_DePledge_Request.Pledge_Sequence_No + "';",
+			System.out.println("Normal click failed, Pledge_Sequence_NoinCM JavaScript  click...");
+			js.executeScript("arguments[0].value='" + Pledge_Sequence_NoinCM + "';",
 					client_id_Txt);
 		} catch (NoSuchElementException e) {
-			System.out.println("client_id_Txt not found: " + e.getMessage());
+			System.out.println("Pledge_Sequence_NoinCM not found: " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Unexpected error for client_id_Txt: " + e.getMessage());
+			System.out.println("Unexpected error for Pledge_Sequence_NoinCM: " + e.getMessage());
 		}
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
@@ -184,15 +186,15 @@ public class CM_Margin_DePledge_Request {
 		New_Btn.click();
 
 		try {
-			if (String.valueOf(CM_Client_Id_DePledge).matches("^[0-9]{0,15}$")) {
+			if (String.valueOf(CC_Client_Id_DePledgeinCM).matches("^[0-9]{0,15}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt))
-						.sendKeys(String.valueOf(CM_Client_Id_DePledge));
+						.sendKeys(String.valueOf(CC_Client_Id_DePledgeinCM));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
-			js.executeScript("arguments[0].value='" + CM_Client_Id_DePledge + "';", client_id_Txt);
+			js.executeScript("arguments[0].value='" + CC_Client_Id_DePledgeinCM + "';", client_id_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("client_id_Txt not found: " + e.getMessage());
 		} catch (Exception e) {
@@ -200,14 +202,14 @@ public class CM_Margin_DePledge_Request {
 		}
 
 		try {
-			if (String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No).matches("^[0-9]{0,4}$")) {
-				Pledge_Sequence_No_txt.sendKeys(String.valueOf(CC_Margin_DePledge_Request.Pledge_Sequence_No));
+			if (String.valueOf(Pledge_Sequence_NoinCM).matches("^[0-9]{0,4}$")) {
+				Pledge_Sequence_No_txt.sendKeys(String.valueOf(Pledge_Sequence_NoinCM));
 			} else {
 				System.out.println("Invalid Pledge_Sequence_No. Please enter 3 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
-			js.executeScript("arguments[0].value='" + CC_Margin_DePledge_Request.Pledge_Sequence_No + "';",
+			js.executeScript("arguments[0].value='" + Pledge_Sequence_NoinCM + "';",
 					client_id_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("client_id_Txt not found: " + e.getMessage());

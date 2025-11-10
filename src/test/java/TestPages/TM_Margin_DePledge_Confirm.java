@@ -1,8 +1,13 @@
 package TestPages;
 
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utillity.ExcelUtils;
@@ -24,9 +29,97 @@ public class TM_Margin_DePledge_Confirm {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void Pledgor_TM_Margin_DePledge_Request_Confirm_Maker() {
-		// TODO Auto-generated method stub
+	@FindBy(xpath = "//span[normalize-space()='Margin Pledge']")
+	WebElement Margin_Pledge_Btn;
+
+	@FindBy(xpath = "//span[normalize-space()='CM De-Pledge Confirm']")
+	WebElement CM_DePledge_Confirm_Btn;
+
+	@FindBy(xpath="//span[normalize-space()='TM De-Pledge Confirm']")
+	WebElement TM_DePledge_Confirm_Btn;
+	
+	@FindBy(xpath = "//button[normalize-space()='New']")
+	WebElement New_Btn;
+
+	@FindBy(xpath = "//input[@name='client_id']")
+	WebElement client_id_Txt;
+
+	@FindBy(xpath = "//input[@name='Pledge_Sequence_No']")
+	WebElement Pledge_Sequence_No_Txt;
+
+	@FindBy(xpath = "//button[normalize-space()='Search']")
+	WebElement Search_Btn;
+
+	@FindBy(xpath = "(//button[normalize-space()='Select'])[1]")
+	WebElement Select_Btn;
+
+	@FindBy(xpath = "//span[normalize-space()='Save']")
+	WebElement Save_Btn;
+
+	public void Pledgor_TM_Margin_DePledge_Request_Confirm_Maker() throws InterruptedException {
+		Margin_Pledge_Btn.click();
+
+		CM_DePledge_Confirm_Btn.click();
+
+		New_Btn.click();
+
+		client_id_Txt.sendKeys(String.valueOf(TM_Margin_DePledge_Request.TM_Client_Id_DePledge));
+
+		Pledge_Sequence_No_Txt.sendKeys(String.valueOf(CM_Margin_DePledge_Request.Pledge_Sequence_NoinCM));
+
+		Search_Btn.click();
+
+		Select_Btn.click();
+
+		Thread.sleep(2000);
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
+
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Save_Btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
+		}
+
+	}
+
+	public void Pledgor_RP_Margin_DePledge_Request_Confirm_Maker() throws InterruptedException {
+		
+		Margin_Pledge_Btn.click();
+
+		TM_DePledge_Confirm_Btn.click();
+
+		New_Btn.click();
+
+		client_id_Txt.sendKeys(String.valueOf(RP_Margin_DePledge_Request.RP_Client_Id_DePledge));
+
+		Pledge_Sequence_No_Txt.sendKeys(String.valueOf(RP_Margin_DePledge_Request.RP_Pledge_Sequence_No));
+
+		Search_Btn.click();
+
+		Select_Btn.click();
+
+		Thread.sleep(2000);
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
+
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Save_Btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
+		}
+
 		
 	}
-	
+
 }

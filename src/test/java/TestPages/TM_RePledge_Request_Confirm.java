@@ -62,14 +62,14 @@ public class TM_RePledge_Request_Confirm {
 		New_Btn.click();
 
 		try {
-			if (String.valueOf(CM_Client_Id).matches("^[0-9]{0,15}$")) {
-		Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(CM_Client_Id));
+			if (String.valueOf(TM_Margin_DePledge_Request.TM_Client_Id_DePledge).matches("^[0-9]{0,15}$")) {
+		Wait.until(ExpectedConditions.elementToBeClickable(client_id_Txt)).sendKeys(String.valueOf(TM_Margin_DePledge_Request.TM_Client_Id_DePledge));
 			} else {
 				System.out.println("Invalid Deposite. Please enter 15 numeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript client_id_Txt click...");
-			js.executeScript("arguments[0].value='" + CM_Client_Id + "';", client_id_Txt);
+			js.executeScript("arguments[0].value='" + TM_Margin_DePledge_Request.TM_Client_Id_DePledge + "';", client_id_Txt);
 		} catch (NoSuchElementException e) {
 			System.out.println("client_id_Txt not found: " + e.getMessage());
 		} catch (Exception e) {

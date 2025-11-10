@@ -3,7 +3,6 @@ package TestPages;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -66,10 +65,19 @@ public class Margin_Pledge_Checker {
 
 	@FindBy(xpath = "//span[normalize-space()='TM De-Pledge Request']")
 	WebElement TM_DePledge_Request_Btn;
-	
-	@FindBy(xpath="//span[normalize-space()='CC De-Pledge Request']")
+
+	@FindBy(xpath = "//span[normalize-space()='CC De-Pledge Request']")
 	WebElement CC_DePledge_Request_Btn_1;
 
+	@FindBy(xpath = "(//span[@class='title ng-binding'][normalize-space()='CC De-Pledge Confirm'])[1]")
+	WebElement CC_DePledge_Confirm_Btn;
+
+	@FindBy(xpath = "//span[normalize-space()='CM De-Pledge Confirm']")
+	WebElement CM_DePledge_Confirm_Btn;
+
+	@FindBy(xpath="//span[normalize-space()='TM De-Pledge Confirm']")
+	WebElement TM_DePledge_Confirm_Btn;
+	
 	@FindBy(xpath = "//div[@role='dialog']")
 	WebElement scroll;
 
@@ -627,15 +635,9 @@ public class Margin_Pledge_Checker {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
 
-		/*
-		 * scroll.sendKeys(Keys.PAGE_DOWN); scroll.sendKeys(Keys.PAGE_DOWN);
-		 */
 		Thread.sleep(1000);
 		TM_DePledge_Request_Btn.click();
-		/*
-		 * Thread.sleep(1000); js.executeScript("arguments[0].scrollIntoView(true);",
-		 * TM_DePledge_Request_Btn); js.executeScript("window.scrollBy(0,1000)");
-		 */
+
 		/*
 		 * try { if (TM_DePledge_Request_Btn.isDisplayed()) {
 		 * Wait.until(ExpectedConditions.elementToBeClickable(TM_DePledge_Request_Btn)).
@@ -695,19 +697,66 @@ public class Margin_Pledge_Checker {
 		}
 
 	}
-	
+
 	public void Pledgor_CC_Margin_DePledge_Request_Checker() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void Pledgor_CC_Margin_DePledge_Request_Confirm_Checker() {
-		// TODO Auto-generated method stub
-		
+	public void Pledgor_CC_Margin_DePledge_Request_Confirm_Checker() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(CC_DePledge_Confirm_Btn)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt))
+				.sendKeys(CM_Margin_DePledge_Request.CM_DePledge_Request_No);
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
+
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_Btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Actions_Btn JavaScript click...");
+			js.executeScript("arguments[0].click();", Actions_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions_Btn: " + e.getMessage());
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
+
+		Thread.sleep(2000);
+		try {
+			if (Authorize_Chek.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chek)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Authorize_Chek JavaScript Authorize_Chek click...");
+			js.executeScript("arguments[0].click();", Authorize_Chek);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_Chek not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_Chek: " + e.getMessage());
+		}
+
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Save_Btn JavaScript Save_Btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
+		}
+
 	}
 
 	public void Pledgor_CM_Margin_DePledge_Request_Checker() throws InterruptedException {
-		
+
 		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(CC_DePledge_Request_Btn_1)).click();
@@ -757,21 +806,258 @@ public class Margin_Pledge_Checker {
 			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
 		}
 
-		
 	}
 
-	public void Pledgor_CM_Margin_DePledge_Request_Confirm_Checker() {
-		// TODO Auto-generated method stub
+	public void Pledgor_CM_Margin_DePledge_Request_Confirm_Checker() throws InterruptedException {
 		
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(CM_DePledge_Confirm_Btn)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt))
+				.sendKeys(TM_Margin_DePledge_Request.TM_DePledge_Request_No);
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
+
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_Btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Actions_Btn JavaScript click...");
+			js.executeScript("arguments[0].click();", Actions_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions_Btn: " + e.getMessage());
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
+
+		Thread.sleep(2000);
+		try {
+			if (Authorize_Chek.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chek)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Authorize_Chek JavaScript Authorize_Chek click...");
+			js.executeScript("arguments[0].click();", Authorize_Chek);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_Chek not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_Chek: " + e.getMessage());
+		}
+
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Save_Btn JavaScript Save_Btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
+		}
+
 	}
 
-	public void Pledgor_TM_Margin_DePledge_Request_Checker() {
-		// TODO Auto-generated method stub
-		
+	public void Pledgor_TM_Margin_DePledge_Request_Checker() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
+
+		 CM_DePledge_Request_Btn.click();
+
+		/*try {
+			if (CM_DePledge_Request_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_DePledge_Request_Btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed,CM_DePledge_Request_Btn trying JavaScript  click...");
+			js.executeScript("arguments[0].click();", CM_DePledge_Request_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_DePledge_Request_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for CM_DePledge_Request_Btn: " + e.getMessage());
+		}*/
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt))
+				.sendKeys(TM_Margin_DePledge_Request.TM_DePledge_Request_No);
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
+
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_Btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Actions_Btn JavaScript click...");
+			js.executeScript("arguments[0].click();", Actions_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions_Btn: " + e.getMessage());
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
+
+		Thread.sleep(2000);
+		try {
+			if (Authorize_Chek.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chek)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Authorize_Chek JavaScript Authorize_Chek click...");
+			js.executeScript("arguments[0].click();", Authorize_Chek);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_Chek not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_Chek: " + e.getMessage());
+		}
+
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Save_Btn JavaScript Save_Btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
+		}
+
 	}
 
-	public void Pledgor_TM_Margin_DePledge_Request_Confirm_Checker() {
-		// TODO Auto-generated method stub
+	public void Pledgor_TM_Margin_DePledge_Request_Confirm_Checker() throws InterruptedException {
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
+
+		TM_DePledge_Confirm_Btn.click();
+
+		/*try {
+			if (CM_DePledge_Request_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_DePledge_Request_Btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed,CM_DePledge_Request_Btn trying JavaScript  click...");
+			js.executeScript("arguments[0].click();", CM_DePledge_Request_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_DePledge_Request_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for CM_DePledge_Request_Btn: " + e.getMessage());
+		}*/
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt))
+				.sendKeys(RP_Margin_DePledge_Request.RP_DePledge_Request_No);
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
+
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_Btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Actions_Btn JavaScript click...");
+			js.executeScript("arguments[0].click();", Actions_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions_Btn: " + e.getMessage());
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
+
+		Thread.sleep(2000);
+		try {
+			if (Authorize_Chek.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chek)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Authorize_Chek JavaScript Authorize_Chek click...");
+			js.executeScript("arguments[0].click();", Authorize_Chek);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_Chek not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_Chek: " + e.getMessage());
+		}
+
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Save_Btn JavaScript Save_Btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
+		}
+
+
+	}
+
+	public void Pledgor_RP_Margin_DePledge_Request_() throws InterruptedException {
+		
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Margin_Pledge_Btn)).click();
+
+		TM_DePledge_Request_Btn.click();
+
+		/*try {
+			if (CM_DePledge_Request_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_DePledge_Request_Btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed,CM_DePledge_Request_Btn trying JavaScript  click...");
+			js.executeScript("arguments[0].click();", CM_DePledge_Request_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_DePledge_Request_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for CM_DePledge_Request_Btn: " + e.getMessage());
+		}*/
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Txt))
+				.sendKeys(RP_Margin_DePledge_Request.RP_DePledge_Request_No);
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_Btn)).click();
+
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_Btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Actions_Btn JavaScript click...");
+			js.executeScript("arguments[0].click();", Actions_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Actions_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Actions_Btn: " + e.getMessage());
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Btn)).click();
+
+		Thread.sleep(2000);
+		try {
+			if (Authorize_Chek.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chek)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Authorize_Chek JavaScript Authorize_Chek click...");
+			js.executeScript("arguments[0].click();", Authorize_Chek);
+		} catch (NoSuchElementException e) {
+			System.out.println("Authorize_Chek not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authorize_Chek: " + e.getMessage());
+		}
+
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Save_Btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Save_Btn JavaScript Save_Btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Btn: " + e.getMessage());
+		}
 		
 	}
 

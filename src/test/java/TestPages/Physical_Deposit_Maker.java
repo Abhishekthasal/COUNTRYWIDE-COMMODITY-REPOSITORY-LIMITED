@@ -850,7 +850,7 @@ public class Physical_Deposit_Maker {
 
 	}
 
-	public void General_Physical_Deposit_Maker_Multiple_GSL() {
+	public void General_Physical_Deposit_Maker_Multiple_GSL() throws InterruptedException {
 		try {
 			Connection conn = DataBaseUtility.getConnection();
 
@@ -1020,6 +1020,7 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for web_bridge: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			if (EstimatedValueAtDeposit.matches("^[0-9]{0,15}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Estimated)).sendKeys(EstimatedValueAtDeposit);
@@ -1764,31 +1765,17 @@ public class Physical_Deposit_Maker {
 		 * Wait.until(ExpectedConditions.elementToBeClickable(Bag)).sendKeys("10");
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-
+		
+		Thread.sleep(3000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-			/*
-			 * Assert.assertTrue(Variety_Code.isDisplayed(),
-			 * "Variety_Code button not visible");
-			 */
-			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-			Variety_Code_Text.clear();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
-			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-			// Variety_Code_Text.click();
-			// Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
-			/*
-			 * Assert.assertTrue(Variety_Code_Text.isDisplayed(),
-			 * "Variety_Code_Text Box not visible");
-			 */
+			//Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+			Variety_Code_Text.sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+			Variety_Code_Text.click();
 		} catch (NoSuchElementException e) {
 			System.out.println("Variety_Code_Text not found: " + e.getMessage());
 		} catch (Exception e) {
