@@ -1006,9 +1006,13 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Weight_bridge_Receipt_text: " + e.getMessage());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		try {
 			if (WeighbridgeNetWeight.matches("^[0-9]{0,15}$")) {
+				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
+				Thread.sleep(2000);
+				web_bridge.clear();
+				Thread.sleep(3000);
 				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
 			} else {
 				System.out.println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):");
@@ -1083,19 +1087,17 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Lot : " + e.getMessage());
 		}
-		js.executeScript("arguments[0].scrollIntoView()", Add_Button);
+		//js.executeScript("arguments[0].scrollIntoView()", Add_Button);
 		WebElement remainingBagsElement = driver
 				.findElement(By.xpath("//div[@class='row ng-scope']//div[@class='col-sm-2']")); // Adjust ID
 		int remainingBags = Integer.parseInt(remainingBagsElement.getText());
 		System.out.println("remainingBags is :"+remainingBags);
 		int noOfBags = Integer.parseInt(Bag_Total);
+		System.out.println("noOfBags is :"+noOfBags);
+		try {
 		if (remainingBags != noOfBags) {
 			for (int i = 1; i <= remainingBags; i++) {
 				System.out.println("remainingBags is for:" + remainingBags);
-				// WebElement godown = driver.findElement(By.xpath("(//input[@name='godown'])["
-				// + i + "]"));
-				// godown.sendKeys("Godown " + i);
-
 				driver.findElement(By.xpath("(//input[@name='godown'])[" + i + "]")).sendKeys("Godown " + i);
 
 				WebElement stack_no = driver.findElement(By.xpath("(//input[@name='stack_no'])[" + i + "]"));
@@ -1104,16 +1106,15 @@ public class Physical_Deposit_Maker {
 				WebElement lot_no = driver.findElement(By.xpath("(//input[@name='lot_no'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(lot_no)).sendKeys("Lot " + i);
 
-				try {
-					if (Number_Of_Bags_PopUp.isDisplayed()) {
-						Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
-					}
-				} catch (NoSuchElementException e) {
-					System.out.println(" Number_Of_Bags_PopUp Element is not visible");
-
-				} catch (Exception e) {
-					System.out.println(" Number_Of_Bags_PopUp Element not found");
-				}
+				/*
+				 * try { if (Number_Of_Bags_PopUp.isDisplayed()) {
+				 * Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).
+				 * click(); } } catch (NoSuchElementException e) {
+				 * System.out.println(" Number_Of_Bags_PopUp Element is not visible");
+				 * 
+				 * } catch (Exception e) {
+				 * System.out.println(" Number_Of_Bags_PopUp Element not found"); }
+				 */
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				NO_Bag.sendKeys(String.valueOf(Bags));
@@ -1124,6 +1125,7 @@ public class Physical_Deposit_Maker {
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+				
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
 						.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
@@ -1205,7 +1207,11 @@ public class Physical_Deposit_Maker {
 		} else {
 			System.out.println("loop is not working");
 		}
+		} catch (Exception e) {
+			System.out.println("Unexpected error for loop: " + e.getMessage());
+		}
 
+		
 		try {
 			if (Verification_page.isDisplayed()) {
 				js.executeScript("arguments[0].scrollIntoView()", Verification_page);
@@ -1751,6 +1757,7 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Accept_check: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -1769,15 +1776,19 @@ public class Physical_Deposit_Maker {
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 		
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+			Variety_Code_bttn.click();
+			Thread.sleep(1000);
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
 			//Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
 			Variety_Code_Text.sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+			Thread.sleep(1000);
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+			Thread.sleep(2000);
 			Variety_Code_Text.click();
 		} catch (NoSuchElementException e) {
 			System.out.println("Variety_Code_Text not found: " + e.getMessage());
@@ -1824,8 +1835,13 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Weight_bridge_Receipt_text: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			if (WeighbridgeNetWeight.matches("^[0-9]{0,19}$")) {
+				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
+				
+				web_bridge.clear();
+				Thread.sleep(3000);
 				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
 			} else {
 				System.out.println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):");

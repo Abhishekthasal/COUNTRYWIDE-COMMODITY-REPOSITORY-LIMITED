@@ -53,6 +53,12 @@ public class Deposite_Assayer_Checker {
 
 	@FindBy(xpath = "//button[@class='btn btn-default']")
 	WebElement Cancel_bttn;
+	
+	@FindBy(xpath="//div[@id='1762861625020-uiGrid-0008-menu-button']//i[@class='ui-grid-icon-angle-down']")
+	WebElement Asscending_Btn;
+	
+	@FindBy(xpath="(//button[@type='button'])[1]")
+	WebElement Assc_Sort_Btn;
 
 	@FindBy(xpath = "//label[normalize-space()='Authorized']")
 	WebElement Authorized_checkbox;
@@ -439,8 +445,8 @@ public class Deposite_Assayer_Checker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 		
-		for (int i = 2; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+			Thread.sleep(3000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_txt))
 						.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
@@ -453,7 +459,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_txt: " + e.getMessage());
 			}
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Thread.sleep(1000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -461,6 +467,14 @@ public class Deposite_Assayer_Checker {
 				js.executeScript("arguments[0].click();", Search_btn);
 			} catch (NoSuchElementException e) {
 				System.out.println("Search_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+			}
+			Thread.sleep(1000);
+			try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Asscending_Btn)).sendKeys(Keys.ENTER);
+			//Asscending_Btn.click();
+			Assc_Sort_Btn.sendKeys(Keys.ENTER);
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}

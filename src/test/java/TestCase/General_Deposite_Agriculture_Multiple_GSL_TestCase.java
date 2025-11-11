@@ -67,7 +67,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	 @Test
+	// @Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is start");
@@ -159,7 +159,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		}
 	}
 
-	//@Test
+	@Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker is start");

@@ -472,8 +472,8 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=5;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
-			Thread.sleep(2000);
+		for(int i=2;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite+i));
 		} catch (ElementClickInterceptedException e) {
@@ -485,7 +485,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_txt: " + e.getMessage());
 		}
-		//driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		Thread.sleep(2000);
 		try {
 			Search_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -510,15 +510,11 @@ public class Deposit_Confirm_WH_Checker {
 		 * if (Action_bttn.isDisplayed() && Action_bttn.isEnabled()) { return
 		 * Action_bttn; } return null; });
 		 */
-		Thread.sleep(2000);
-			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-			
-			//implicitlyWait(Duration.ofSeconds(90));
-		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		Thread.sleep(3000);
 		    try {
-		    // Click the element after wait
-		    Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
-		    System.out.println("Element clicked successfully.");
+		    	Action_btn.click();
+		   // Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
+		    //System.out.println("Element clicked successfully.");
 		}catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Action_btn click...");
 			js.executeScript("arguments[0].click();", Action_btn);
@@ -526,8 +522,6 @@ public class Deposit_Confirm_WH_Checker {
 			System.out.println("Action_btn not found: " + e.getMessage());
 		} catch (TimeoutException e) {
 		    System.out.println("Action_btn not clickable within timeout: " + e.getMessage());
-		}finally {
-			
 		}
 		
 		//driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
@@ -638,7 +632,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=5;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));
@@ -651,6 +645,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_txt: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			Search_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -661,7 +656,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
 		} catch (ElementClickInterceptedException e) {

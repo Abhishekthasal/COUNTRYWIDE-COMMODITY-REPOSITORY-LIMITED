@@ -387,8 +387,10 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 		try {
 			if (String.valueOf(Bag_Size).matches("^[0-9].{0,4}$")) {
 				Bag_Size_btn.click();
-				Bag_Size_Text.sendKeys(String.valueOf(Bag_Size));
-				Bag_Size_Text.sendKeys(Keys.ENTER);
+				Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Bag_Size_Text)).sendKeys(String.valueOf(Bag_Size));
+				Thread.sleep(2000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Bag_Size_Text)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Bag_Size. Please enter exactly 4 alphanumeric characters:");
 			}

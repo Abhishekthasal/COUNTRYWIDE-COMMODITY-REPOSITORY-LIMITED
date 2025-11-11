@@ -169,11 +169,6 @@ public class Deposite_Assayer_Maker {
 	@FindBy(xpath = "(//input[@id='Address'])[6]")
 	WebElement FOREIGN_MATTER_chan;
 	
-	
-	
-	
-	
-	
 	@FindBy(xpath = "(//input[@id='Address'])[2]")
 	WebElement OTHER_FOOD_GRAINS_CHANA;
 
@@ -1407,8 +1402,7 @@ public class Deposite_Assayer_Maker {
 		}
 
 		for (int i =1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
-			// System.out.println("value of total
-			// bags:"+DashBoard_WareHouse_Checker.totalBags);
+			Thread.sleep(3000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -1420,7 +1414,7 @@ public class Deposite_Assayer_Maker {
 				System.out.println("Unexpected error for New_btn: " + e.getMessage());
 			}
 			// driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Thread.sleep(2000);
 			try {
 				if (RP_Deposite_Request_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{0,7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WareHouse_Id_btn)).click();
