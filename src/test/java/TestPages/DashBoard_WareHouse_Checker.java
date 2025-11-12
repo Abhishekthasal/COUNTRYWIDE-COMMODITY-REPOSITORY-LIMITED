@@ -1065,7 +1065,7 @@ public class DashBoard_WareHouse_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for save_btn: " + e.getMessage());
 		}
-		System.out.println("--------------------Exchange_Deposite_WareHouse Checker is Done-------------------------");
+		System.out.println("--------------------Government_Agency_Deposite_Transaction Checker is Done-------------------------");
 
 	}
 
@@ -1227,7 +1227,7 @@ public class DashBoard_WareHouse_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 		}
-		System.out.println("--------------------Exchange_Deposite_WareHouse Checker is Done-------------------------");
+		System.out.println("--------------------Exchange_Non_Agriculture_Physical_Deposit_Request Checker is Done-------------------------");
 
 	}
 
