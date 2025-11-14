@@ -21,7 +21,7 @@ public class Withdrawal_Function {
 
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Withdrawal.xlsx";
 	static String sheet = "Withdrawal_Request";
-	static int dataRow = 10; // second row of data
+	static int dataRow = 2; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet); 
 
@@ -131,11 +131,12 @@ public class Withdrawal_Function {
 		if (String.valueOf(WH_ID).matches("^[a-zA-Z0-9]{0,7}$")) {
 			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys((String.valueOf(WH_ID)));
-			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 			 //WH_ID_With_Txt.sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
 			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
 			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+		//	Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
 			//WH_ID_With_Txt.click();
 		} else {
 			System.out.println("Invalid WH_ID ");

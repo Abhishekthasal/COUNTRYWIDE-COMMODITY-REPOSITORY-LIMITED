@@ -637,7 +637,7 @@ public class Exchange_Non_Agri_WareHouse {
 
 	}
 
-	public void Exchange_Non_Agriculture_Physical_Multiple_GSL() {
+	public void Exchange_Non_Agriculture_Physical_Multiple_GSL() throws InterruptedException {
 
 		try {
 			Connection conn = DataBaseUtility.getConnection();
@@ -786,6 +786,7 @@ public class Exchange_Non_Agri_WareHouse {
 		 * } catch (Exception e) { System.out.println("Unexpected error: " +
 		 * e.getMessage()); }
 		 */
+		Thread.sleep(1000);
 		try {
 			Select Sa = new Select(assaying_type_Text);
 			Sa.selectByContainsVisibleText(assaying_type);
@@ -915,26 +916,27 @@ public class Exchange_Non_Agri_WareHouse {
 				}
 
 				// Fill no_of_bag at every 3rd index
-				if (i % 3 == 1) {
-					try {
+				//if (i % 3 == 1) {
+				int k=i*3;
+					//try {
 						WebElement NO_Bag = Wait.until(ExpectedConditions
-								.elementToBeClickable(By.xpath("(//input[@name='no_of_bag'])[" + i + "]")));
-						NO_Bag.sendKeys(String.valueOf(No_Of_Bundles));
-					} catch (Exception e) {
-						System.out.println("No_of_bag error at " + i + ": " + e.getMessage());
-					}
-				}
+								.elementToBeClickable(By.xpath("(//input[@name='no_of_bag'])[" + k + "]")));
+						System.out.println("no of bags:"+NO_Bag);
+						Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(No_Of_Bundles));
+						/*
+						 * } catch (Exception e) { System.out.println("No_of_bag error at " + k + ": " +
+						 * e.getMessage()); }
+						 */
+				//}
 
 				// Fill pieces_per_bundles at every 3rd+1 index
-				if (i % 3 == 2) {
-					try {
-						WebElement Pieces = Wait.until(ExpectedConditions
-								.elementToBeClickable(By.xpath("(//input[@name='no_of_bag'])[" + i + "]")));
-						Pieces.sendKeys(String.valueOf(pieces_per_bundles));
-					} catch (Exception e) {
-						System.out.println("Pieces_Per_Bundle error at " + i + ": " + e.getMessage());
-					}
-				}
+				/*
+				 * if (i % 3 == 2) { try { WebElement Pieces = Wait.until(ExpectedConditions
+				 * .elementToBeClickable(By.xpath("(//input[@name='no_of_bag'])[" + i + "]")));
+				 * Pieces.sendKeys(String.valueOf(pieces_per_bundles)); } catch (Exception e) {
+				 * System.out.println("Pieces_Per_Bundle error at " + i + ": " +
+				 * e.getMessage()); } }
+				 */
 
 				/*
 				 * try { WebElement Sample =

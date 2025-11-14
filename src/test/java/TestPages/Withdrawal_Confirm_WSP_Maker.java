@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utillity.DataBaseUtility;
@@ -80,7 +81,7 @@ public class Withdrawal_Confirm_WSP_Maker {
 
 	
 	
-	public void Withdrawal_Confirm_WSP() {
+	public void Withdrawal_Confirm_WSP() throws InterruptedException {
 		
 		Transaction_Btn.click();		
 		
@@ -137,7 +138,8 @@ public class Withdrawal_Confirm_WSP_Maker {
 		
 		Select_bttn.click();
 		
-		no_of_bags_txt.sendKeys(String.valueOf(Withdrawal_Function.noOfBag));
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(no_of_bags_txt)).sendKeys(String.valueOf(Withdrawal_Function.noOfBag));
 		
 		try {
 			if (verify_bttn.isDisplayed() && verify_bttn.isEnabled()) {

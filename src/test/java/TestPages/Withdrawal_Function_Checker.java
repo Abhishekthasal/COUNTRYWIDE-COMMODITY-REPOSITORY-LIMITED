@@ -135,7 +135,7 @@ public class Withdrawal_Function_Checker {
 
 	}
 
-	public void Withdrawal_Confirm() {
+	public void Withdrawal_Confirm() throws InterruptedException {
 
 		Transaction_Btn.click();
 
@@ -147,8 +147,8 @@ public class Withdrawal_Function_Checker {
 			System.out.println("Invalid Withdrawal_Request_No ");
 		}
 		submit_bttn.click();
-
-		Actions_Bttn.click();
+		Thread.sleep(1000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Actions_Bttn)).click();
 
 		Authorize_Bttn.click();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
@@ -169,7 +169,7 @@ public class Withdrawal_Function_Checker {
 			System.out.println("Authorize_chek not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Authorize_chek: " + e.getMessage());
-		} 
+		}
 //		finally {
 //			Wait.until(ExpectedConditions.elementToBeClickable(Authorize_chek_Conf)).click();
 //		}
