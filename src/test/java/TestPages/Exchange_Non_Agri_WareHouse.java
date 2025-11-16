@@ -55,7 +55,7 @@ public class Exchange_Non_Agri_WareHouse {
 	String Lot_Heat_Cast_Batch_number = excel.getLot_Heat_Cast_Batch_number_ex_py(dataRow);
 	String Per_Month = excel.getPer_Month_ex_py(dataRow);
 	String per_uom = excel.getper_uom_ex_py(dataRow);
-	int No_Of_Bundles = excel.getNo_Of_Bundles_ex_py(dataRow);
+	static int No_Of_Bundles = excel.getNo_Of_Bundles_ex_py(dataRow);
 	int pieces_per_bundles = excel.getpieces_per_bundle_ex_py(dataRow);
 	public static String place_of_origin = excel.getSample_ex_py(dataRow);
 	public static int lot_No = excel.getlot_No_ex_py(dataRow);
@@ -73,6 +73,7 @@ public class Exchange_Non_Agri_WareHouse {
 	String PinCode = excel.getPinCode_ex_py(dataRow);
 	int shelflife = excel.getshelflife_ex_py(dataRow);
 	String Bag_Total = excel.getBag_Total_ex_py(dataRow);
+	int j = 3;
 
 	public Exchange_Non_Agri_WareHouse(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -770,22 +771,20 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
-		/*
-		 * try { // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		 * driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click(); //
-		 * Assert.assertTrue(Variety_Code.isDisplayed(), "Variety_Code button not //
-		 * visible");
-		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).
-		 * sendKeys(Variety_Code_Value); //
-		 * Assert.assertTrue(Variety_Code_Text.isDisplayed(), "Variety_Code_Text Box not
-		 * // visible"); Variety_Code_Text.sendKeys(Keys.ENTER); } catch
-		 * (NoSuchElementException e) { System.out.println("Element not found: " +
-		 * e.getMessage()); } catch (ElementClickInterceptedException e) {
-		 * System.out.println("Element not clickable at the moment: " + e.getMessage());
-		 * } catch (Exception e) { System.out.println("Unexpected error: " +
-		 * e.getMessage()); }
-		 */
+
+		try { 
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click(); 
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code_Value);
+			Thread.sleep(1000);
+			Variety_Code_Text.sendKeys(Keys.ENTER);
+		} catch (NoSuchElementException e) {
+			System.out.println("Element not found: " + e.getMessage());
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Element not clickable at the moment: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error: " + e.getMessage());
+		}
+
 		Thread.sleep(1000);
 		try {
 			Select Sa = new Select(assaying_type_Text);
@@ -846,7 +845,11 @@ public class Exchange_Non_Agri_WareHouse {
 			System.out.println("EstimatedValue_text not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for EstimatedValue_text: " + e.getMessage());
+			
 		}
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(place_of_origin_txt)).sendKeys(place_of_origin);
+		
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(500));
 		try {
 			Lot_Heat_Cast_Batch_number_text.sendKeys(Lot_Heat_Cast_Batch_number);
@@ -916,18 +919,17 @@ public class Exchange_Non_Agri_WareHouse {
 				}
 
 				// Fill no_of_bag at every 3rd index
-				//if (i % 3 == 1) {
-				int k=i*3;
-					//try {
-						WebElement NO_Bag = Wait.until(ExpectedConditions
-								.elementToBeClickable(By.xpath("(//input[@name='no_of_bag'])[" + k + "]")));
-						System.out.println("no of bags:"+NO_Bag);
-						Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(No_Of_Bundles));
-						/*
-						 * } catch (Exception e) { System.out.println("No_of_bag error at " + k + ": " +
-						 * e.getMessage()); }
-						 */
-				//}
+				// if (i % 3 == 1) {
+				int k = i * j;
+				// try {
+				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
+				System.out.println("no of bags:" + NO_Bag);
+				Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(No_Of_Bundles));
+				/*
+				 * } catch (Exception e) { System.out.println("No_of_bag error at " + k + ": " +
+				 * e.getMessage()); }
+				 */
+				// }
 
 				// Fill pieces_per_bundles at every 3rd+1 index
 				/*

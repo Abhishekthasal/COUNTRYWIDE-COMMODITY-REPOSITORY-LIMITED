@@ -1327,15 +1327,15 @@ public class DashBoard_WareHouse_Checker {
 		}
 
 		for (int i = 1; i <= totalBags; i++) {
-			for (int j = 5; j <= totalBags; j += 3) {
+			/*for (int j = 3; j <= totalBags; j += 3) {*/
 
-				// int k = j * i;
-				WebElement bagField = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + j + "]"));
+				 int k = j * i;
+				WebElement bagField = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				System.out.println("value of J:" + j);
 				try {
 
 					Wait.until(ExpectedConditions.elementToBeClickable(bagField))
-							.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.No_of_Bundle)); // Incremented input value
+							.sendKeys(String.valueOf(Exchange_Non_Agri_WareHouse.No_Of_Bundles)); // Incremented input value
 					// Wait.until(ExpectedConditions.elementToBeClickable(bagField)).sendKeys(Keys.TAB);
 				} catch (NoSuchElementException e) {
 					System.out.println("bagField not found: " + e.getMessage());
@@ -1365,7 +1365,7 @@ public class DashBoard_WareHouse_Checker {
 					System.out.println("Unexpected error for bagField: " + e.getMessage());
 				}
 			}
-		}
+		//}
 		try {
 			Verification_manu.click();
 		} catch (ElementClickInterceptedException e) {
