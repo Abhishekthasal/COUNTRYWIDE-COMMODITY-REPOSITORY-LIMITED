@@ -29,7 +29,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase  extends BaseCl
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Deposite");
 
-@Test
+//@Test
 	void RP_Exchange_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Request_Agriculture_Multiple_GSL_Maker start");
@@ -107,7 +107,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase  extends BaseCl
 
 	}
 
-//@Test
+@Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Assayer_Agriculture_Multiple_GSL_Maker is start");

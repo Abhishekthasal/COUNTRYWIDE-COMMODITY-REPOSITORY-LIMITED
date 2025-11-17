@@ -2,19 +2,19 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-16T17:38:58 IST" name="Default suite" finished-at="2025-11-16T17:41:11 IST" duration-ms="133167">
+  <suite started-at="2025-11-17T17:21:24 IST" name="Default suite" finished-at="2025-11-17T17:24:46 IST" duration-ms="202629">
     <groups>
     </groups>
-    <test started-at="2025-11-16T17:38:58 IST" name="Default test" finished-at="2025-11-16T17:41:11 IST" duration-ms="133167">
+    <test started-at="2025-11-17T17:21:24 IST" name="Default test" finished-at="2025-11-17T17:24:46 IST" duration-ms="202629">
       <class name="TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2025-11-16T17:38:58 IST" name="setup" finished-at="2025-11-16T17:39:02 IST" duration-ms="3449" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2025-11-17T17:21:24 IST" name="setup" finished-at="2025-11-17T17:21:27 IST" duration-ms="3463" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="DashBoard_WareHouse_Checker()[pri:0, instance:TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2025-11-16T17:39:02 IST" name="DashBoard_WareHouse_Checker" finished-at="2025-11-16T17:41:11 IST" duration-ms="129685" status="PASS">
+        <test-method signature="Deposite_Assayer_Maker()[pri:0, instance:TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2025-11-17T17:21:27 IST" name="Deposite_Assayer_Maker" finished-at="2025-11-17T17:24:46 IST" duration-ms="199121" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DashBoard_WareHouse_Checker -->
+        </test-method> <!-- Deposite_Assayer_Maker -->
       </class> <!-- TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

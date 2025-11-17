@@ -88,7 +88,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	 @Test
+	// @Test
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is start");
@@ -107,13 +107,14 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	 //@Test
+	 @Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is start");
 			Deposite_Assayer_Maker Assayer = new Deposite_Assayer_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("Assayer01", "user1", "121@test");
+			Login.PortalLogin("Asyr-3338084", "user1", "121@test");
+			//Login.PortalLogin("Assayer01", "user1", "test@121");
 			Assayer.Exchange_Deposit_Assayer_Non_Agriculture_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is successfull");
 		} catch (Exception e) {

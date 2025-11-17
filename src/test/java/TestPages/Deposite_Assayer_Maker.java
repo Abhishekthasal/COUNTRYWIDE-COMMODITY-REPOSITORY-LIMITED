@@ -3,6 +3,9 @@ package TestPages;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -32,6 +35,7 @@ public class Deposite_Assayer_Maker {
 	String Remark_Value = excel.getRemark_Value(dataRow);
 	String NABLCertificateRefNum = excel.getNABLCertificateRefNum(dataRow);
 	String Address_Value = excel.getAddress_Value(dataRow);
+	boolean found = false;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	public Deposite_Assayer_Maker(WebDriver driver, WebDriverWait Wait) {
@@ -2099,12 +2103,12 @@ public class Deposite_Assayer_Maker {
 
 	}
 
-	public void Exchange_Deposit_Assayer_Non_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposit_Assayer_Non_Agriculture_Multiple_GSL() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Transaction_Btn trying JavaScript click...");
 			js.executeScript("arguments[0].click();", Transaction_Btn);
 		} catch (NoSuchElementException e) {
 			System.out.println(" Transaction_Btn not found: " + e.getMessage());
@@ -2115,7 +2119,7 @@ public class Deposite_Assayer_Maker {
 			Wait.until(ExpectedConditions.elementToBeClickable(Deposit_Assayer)).click();
 
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Deposit_Assayer trying JavaScript click...");
 			js.executeScript("arguments[0].click();", Deposit_Assayer);
 		} catch (NoSuchElementException e) {
 			System.out.println("Deposit_Assayer not found: " + e.getMessage());
@@ -2133,6 +2137,7 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for New_btn : " + e.getMessage());
 			}
+			Thread.sleep(1000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(WareHouse_Id_btn)).click();
 				WareHouse_Id_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.WH_ID));
@@ -2170,6 +2175,56 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
+			
+			while (true) {
+				// Wait until table rows or data are loaded
+				// (//div[@role='rowgroup'])[2]
+				// div[@class='ui-grid-cell-contents ng-binding ng-scope']
+				// Wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@role='rowgroup'])[2]")));
+				// Find all text elements that may contain the target value
+				List<WebElement> valueElements = driver
+						.findElements(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
+				System.out.println("valueElements of Deposite:"+valueElements);
+				//if (valueElements.contains(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite)) {
+					if (valueElements.size() > 0) {
+						// Value found, click the button in the same row/div
+
+						WebElement button = driver
+								.findElement(By.xpath("//div[contains(text(),'" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
+										+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
+
+						button.click();
+						System.out.println("✅ Clicked on Select button for value: " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
+						found = true;
+						break;
+					
+				} else {
+					// If value not found, check if 'Next' button is enabled
+					List<WebElement> nextButtons = driver
+							.findElements(By.xpath("(//div[@class='last-triangle next-triangle'])[1]"));
+
+					if (nextButtons.size() > 0 && nextButtons.get(0).isEnabled()) {
+						nextButtons.get(0).click();
+						System.out.println("➡️ Moved to next page...");
+						Thread.sleep(2000); // Wait for next page data to load
+					} else {
+						System.out.println("❌ Value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + " not found in any page.");
+						break;
+					}
+				}
+			}
+
+			if (!found) {
+				System.out.println("⚠️ Target value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + " was not found in the table.");
+			}
+
+			
+			
+			
+			
+			
+			
+			
 			try {
 				Select_btn.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -2324,7 +2379,9 @@ public class Deposite_Assayer_Maker {
 					System.out.println("Address not found: " + e.getMessage());
 				} catch (Exception e) {
 					System.out.println("Unexpected error for Address: " + e.getMessage());
+					
 				}
+				
 				break;
 			case 1001:
 				System.out.println("You selected: ALUMINUM");
