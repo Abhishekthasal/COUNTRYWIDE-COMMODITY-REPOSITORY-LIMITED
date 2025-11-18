@@ -2184,8 +2184,9 @@ public class Deposite_Assayer_Maker {
 				// Find all text elements that may contain the target value
 				List<WebElement> valueElements = driver
 						.findElements(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
-				System.out.println("valueElements of Deposite:"+valueElements);
-				//if (valueElements.contains(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite)) {
+				//System.out.println("valueElements of Deposite:"+valueElements);
+				if (valueElements.contains(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite)) {
+		
 					if (valueElements.size() > 0) {
 						// Value found, click the button in the same row/div
 
@@ -2197,12 +2198,12 @@ public class Deposite_Assayer_Maker {
 						System.out.println("✅ Clicked on Select button for value: " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
 						found = true;
 						break;
-					
+					}
 				} else {
 					// If value not found, check if 'Next' button is enabled
 					List<WebElement> nextButtons = driver
 							.findElements(By.xpath("(//div[@class='last-triangle next-triangle'])[1]"));
-
+					js.executeScript("arguments[0].scrollIntoView(true);", nextButtons);
 					if (nextButtons.size() > 0 && nextButtons.get(0).isEnabled()) {
 						nextButtons.get(0).click();
 						System.out.println("➡️ Moved to next page...");
@@ -2218,13 +2219,6 @@ public class Deposite_Assayer_Maker {
 				System.out.println("⚠️ Target value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + " was not found in the table.");
 			}
 
-			
-			
-			
-			
-			
-			
-			
 			try {
 				Select_btn.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
