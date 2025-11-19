@@ -34,7 +34,7 @@ public class ClientAccountOpening_TestCase extends BaseClass {
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed"+e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();

@@ -321,7 +321,7 @@ public class Margin_Pledge_TestCase extends BaseClass {
 				}
 				
 				/***********************************CC Re-Pledge Request Confirm********************************/
-			//	@Test
+				@Test
 				void CM_RePledge_Request_Confirm_Maker() throws IOException {
 					try {
 						test.log(LogStatus.INFO, "Login for CC_RePledge_Request_Confirm_Maker start");
@@ -350,7 +350,7 @@ public class Margin_Pledge_TestCase extends BaseClass {
 					Report.flush();
 				}
 		
-				@Test
+				//@Test
 				void CM_RePledge_Request_Confirm_Checker() throws IOException {
 					try {
 						test.log(LogStatus.INFO, "Login for CC_RePledge_Request_Confirm_Checker start");

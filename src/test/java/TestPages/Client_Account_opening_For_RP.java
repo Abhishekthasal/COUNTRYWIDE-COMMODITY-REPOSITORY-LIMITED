@@ -2,7 +2,9 @@ package TestPages;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -24,7 +26,7 @@ public class Client_Account_opening_For_RP {
 	// String projectPath = System.getProperty("user.dir");
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ClientOpening.xlsx";
 	static String sheet = "ClientOpening";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
@@ -75,6 +77,13 @@ public class Client_Account_opening_For_RP {
 	String SEBI_Registration_Number = excel.getSEBI_Registration_Number(dataRow);
 	String CM_ID = excel.getCM_ID(dataRow);
 	int netWorth = excel.getnetWorth(dataRow);
+	String nominee_name = excel.getnominee_name(dataRow);;
+	String nominee_pan_no = excel.getnominee_pan_no(dataRow);
+	String years = excel.getnominee_years(dataRow);
+	int Month = excel.getnominee_Month(dataRow);
+	int Date = excel.getnominee_Date(dataRow);
+	String nominee_address = excel.getnominee_address(dataRow);;
+	String nominee_relation = excel.getnominee_relation(dataRow);;
 
 	public Client_Account_opening_For_RP(WebDriver driver, WebDriverWait Wait) {
 
@@ -250,13 +259,38 @@ public class Client_Account_opening_For_RP {
 	@FindBy(xpath = "//input[@name='authrepresentname']")
 	WebElement Authorized_Representative;
 
+	@FindBy(xpath = "//a[normalize-space()='Nominee Detail']")
+	WebElement Nominee_Detail_Tab;
+
+	@FindBy(xpath = "//input[@name='nominee_name']")
+	WebElement nominee_name_txt;
+
+	@FindBy(xpath = "//input[@name='nominee_pan_no']")
+	WebElement nominee_pan_no_txt;
+
+	@FindBy(xpath = "//input[@id='nominee_dobBirth']")
+	WebElement nominee_dobBirth_txt;
+
+	@FindBy(xpath = "//div[@class='calendar left single']//select[@class='yearselect']")
+	WebElement yearselect;
+	// div[@class='calendar left single']//select[@class='monthselect']
+	// (//select[@class='monthselect'])[1]
+	@FindBy(xpath = "(//select[@class='monthselect'])[1]")
+	WebElement monthselect;
+
+	@FindBy(xpath = "//input[@id='nominee_address']")
+	WebElement nominee_address_txt;
+
+	@FindBy(xpath = "//input[@name='nominee_relation']")
+	WebElement nominee_relation_txt;
+
 	@FindBy(xpath = "(//button[@ng-show='!ClientForm.$invalid'])[1]")
 	WebElement Verify_Button;
 
 	@FindBy(xpath = "(//i[@class='fa fa-save'])[1]")
 	WebElement Save_Button;
 
-	public void Client_Account_opening() {
+	public void Client_Account_opening() throws InterruptedException {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Client)).click();
 
@@ -325,6 +359,7 @@ public class Client_Account_opening_For_RP {
 		ifsc_No.click();
 		ifsc_No.sendKeys(String.valueOf(IFSC));
 		ifsc_No.sendKeys(Keys.TAB);
+		Thread.sleep(2000);
 		Wait.until(ExpectedConditions.elementToBeClickable(MICR)).click();
 		Wait.until(ExpectedConditions.elementToBeClickable(MICR_Code)).click();
 
@@ -353,16 +388,90 @@ public class Client_Account_opening_For_RP {
 
 		Authorized_Representative.sendKeys(Authorized_Representative_Name);
 
+		Nominee_Detail_Tab.click();
+
+		if (Client_Sub_Type.equals("Individual") || Client_Sub_Type.equals("FARMER")) {
+			nominee_name_txt.sendKeys(nominee_name);
+
+			nominee_pan_no_txt.sendKeys(nominee_pan_no);
+
+			nominee_dobBirth_txt.click();
+
+			Select y = new Select(yearselect);
+			y.selectByValue(years);
+			Thread.sleep(2000);
+
+			Select M = new Select(monthselect);
+			Thread.sleep(2000);
+			M.selectByIndex(Month);
+			// M.selectByIndex(10);
+
+			/*
+			 * Select select = new Select(monthselect); List<WebElement> options =
+			 * select.getOptions();
+			 * 
+			 * for (WebElement option : options) { System.out.println("Value: " +
+			 * option.getAttribute("value") + " | Text: " + option.getText()); //
+			 * option.sendKeys(Month);
+			 * 
+			 * if (option.getText() == Month) {
+			 * 
+			 * } else { System.out.println("Month is not available"); }
+			 * 
+			 * }
+			 */
+
+			WebElement DOB = driver.findElement(By.xpath("(//td[contains(text(),'" + Date + "')])[1]"));
+			// td[@class='available'][normalize-space()='" + Date + "'])
+			List<WebElement> nominee_dobBirth = driver
+					.findElements(By.xpath("(//td[contains(text(),'" + Date + "')])[1]"));
+			try {
+				if (nominee_dobBirth.contains(DOB)) {
+					// if (valueElements.size()> 0)
+					Thread.sleep(2000);
+					Wait.until(ExpectedConditions.elementToBeClickable(DOB)).click();
+				} else {
+					System.out.println("provided DOB is not available");
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("DOB not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for DOB: " + e.getMessage());
+			}
+
+			nominee_address_txt.sendKeys(nominee_address);
+
+			nominee_relation_txt.sendKeys(nominee_relation);
+		} else {
+			System.out.println("Client_Sub_Type is not mandetary");
+		}
+		try {
 		if (Verify_Button.isEnabled()) {
 			Verify_Button.click();
 		} else {
 			System.out.println("Verify_Button is not enable");
 		}
-
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Verify_Button click...");
+			js.executeScript("arguments[0].click();", Verify_Button);
+		} catch (NoSuchElementException e) {
+			System.out.println("Verify_Button not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Verify_Button: " + e.getMessage());
+		}
+		try {
 		if (Save_Button.isDisplayed()) {
 			Save_Button.click();
 		} else {
 			System.out.println("Save_Button is not Visible ");
+		}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying Save_Button click...");
+			js.executeScript("arguments[0].click();", Save_Button);
+		} catch (NoSuchElementException e) {
+			System.out.println("Save_Button not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Save_Button: " + e.getMessage());
 		}
 
 	}

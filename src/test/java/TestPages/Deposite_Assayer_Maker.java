@@ -28,7 +28,9 @@ public class Deposite_Assayer_Maker {
 	static String sheet = "Deposite_Assayer_Maker";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
-
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	
+	
 	String Assayring_Referance = excel.getAssayring_Referance(dataRow);
 	String shelflife = excel.getshelflife(dataRow);
 	String Grade_Desig_type = excel.getGrade_Desig_type(dataRow);
@@ -36,7 +38,7 @@ public class Deposite_Assayer_Maker {
 	String NABLCertificateRefNum = excel.getNABLCertificateRefNum(dataRow);
 	String Address_Value = excel.getAddress_Value(dataRow);
 	boolean found = false;
-	JavascriptExecutor js = (JavascriptExecutor) driver;
+	
 
 	public Deposite_Assayer_Maker(WebDriver driver, WebDriverWait Wait) {
 
@@ -363,6 +365,9 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "//input[@name='NABLCertificateRefNo']")
 	WebElement NABLCertificateRefNo;
+	
+	@FindBy(xpath = "//div[@role='dialog']")
+	WebElement scroll;
 
 	@FindBy(xpath = "(//input[@id='Address'])[1]")
 	WebElement Address;
@@ -2175,18 +2180,23 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
+			scroll.sendKeys(Keys.PAGE_DOWN);
+			scroll.sendKeys(Keys.PAGE_DOWN);
 			
+			Thread.sleep(3000);
 			while (true) {
 				// Wait until table rows or data are loaded
 				// (//div[@role='rowgroup'])[2]
 				// div[@class='ui-grid-cell-contents ng-binding ng-scope']
 				// Wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@role='rowgroup'])[2]")));
 				// Find all text elements that may contain the target value
+				WebElement DRN=driver
+						.findElement(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
+
 				List<WebElement> valueElements = driver
-						.findElements(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
-				//System.out.println("valueElements of Deposite:"+valueElements);
-				if (valueElements.contains(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite)) {
-		
+						.findElements(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite+ "')]"));
+				if (valueElements.contains(valueElements)) {
+					System.out.println("Step One");
 					if (valueElements.size() > 0) {
 						// Value found, click the button in the same row/div
 
@@ -2203,8 +2213,9 @@ public class Deposite_Assayer_Maker {
 					// If value not found, check if 'Next' button is enabled
 					List<WebElement> nextButtons = driver
 							.findElements(By.xpath("(//div[@class='last-triangle next-triangle'])[1]"));
-					js.executeScript("arguments[0].scrollIntoView(true);", nextButtons);
+
 					if (nextButtons.size() > 0 && nextButtons.get(0).isEnabled()) {
+						System.out.println("Step two");
 						nextButtons.get(0).click();
 						System.out.println("➡️ Moved to next page...");
 						Thread.sleep(2000); // Wait for next page data to load
@@ -2219,17 +2230,16 @@ public class Deposite_Assayer_Maker {
 				System.out.println("⚠️ Target value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + " was not found in the table.");
 			}
 
-			try {
-				Select_btn.sendKeys(Keys.ENTER);
-			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript click...");
-				js.executeScript("arguments[0].scrollIntoView(true);", Select_btn);
-				js.executeScript("arguments[0].click();", Select_btn);
-			} catch (NoSuchElementException e) {
-				System.out.println("Select_btn not found: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Unexpected error for Select_btn: " + e.getMessage());
-			}
+			/*
+			 * try { Select_btn.sendKeys(Keys.ENTER); } catch
+			 * (ElementClickInterceptedException e) {
+			 * System.out.println("Normal click failed, trying JavaScript click...");
+			 * js.executeScript("arguments[0].scrollIntoView(true);", Select_btn);
+			 * js.executeScript("arguments[0].click();", Select_btn); } catch
+			 * (NoSuchElementException e) { System.out.println("Select_btn not found: " +
+			 * e.getMessage()); } catch (Exception e) {
+			 * System.out.println("Unexpected error for Select_btn: " + e.getMessage()); }
+			 */
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(COA_No)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(COA_No))
@@ -2498,5 +2508,5 @@ public class Deposite_Assayer_Maker {
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 	}
-
-}
+	
+	}

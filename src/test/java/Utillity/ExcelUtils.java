@@ -910,6 +910,36 @@ public class ExcelUtils {
 		return (int) Sheet.getRow(rowNum).getCell(29).getNumericCellValue();
 	}
 	
+	public String getnominee_name(int rowNum) {
+		return getCellData(rowNum, 30);
+	}
+	
+	public String getnominee_pan_no(int rowNum) {
+		return getCellData(rowNum, 31);
+	}
+	public String getnominee_years(int rowNum) {
+		return getCellData(rowNum, 32);
+	}
+	
+	/*
+	 * public String getnominee_Month(int rowNum) { return getCellData(rowNum, 33);
+	 * }
+	 */
+	public int getnominee_Month(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(33).getNumericCellValue();
+	}
+	
+	public int getnominee_Date(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(34).getNumericCellValue();
+	}
+	
+	public String getnominee_address(int rowNum) {
+		return getCellData(rowNum, 35);
+	}
+	
+	public String getnominee_relation(int rowNum) {
+		return getCellData(rowNum, 36);
+	}
 	
 	/************************************* * TM_CM_Linking_RP ***************************************/
 	

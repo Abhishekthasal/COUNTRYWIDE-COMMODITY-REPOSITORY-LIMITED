@@ -149,7 +149,7 @@ public class CM_RePledge_Request_Confirm {
 		}
 
 		// Select_Btn.click();
-		// Thread.sleep(2000);
+		Thread.sleep(2000);
 
 		try {
 			if (Save_Btn.isDisplayed()) {
