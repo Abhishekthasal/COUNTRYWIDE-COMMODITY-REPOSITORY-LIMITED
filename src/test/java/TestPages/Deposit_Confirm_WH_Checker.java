@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Utillity.DataBaseUtility;*/
 import java.time.Duration;
+
+import org.openqa.selenium.By;
 //import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -632,7 +634,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=5;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));
@@ -742,7 +744,7 @@ public class Deposit_Confirm_WH_Checker {
 		}
 	}
 
-	public void Exchange_Deposit_Confirm_WH_Non_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposit_Confirm_WH_Non_Agriculture_Multiple_GSL() throws InterruptedException {
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_btn)).click();
@@ -754,6 +756,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_btn: " + e.getMessage());
 		}
+		
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Deposit_Confirm_WH_btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -764,6 +767,8 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
+		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
 		} catch (ElementClickInterceptedException e) {
@@ -785,11 +790,12 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
+		WebElement Actions_btn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])["+i+"]"));
 		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Action_btn);
+			js.executeScript("arguments[0].click();", Actions_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Action_btn not found: " + e.getMessage());
 		} catch (Exception e) {
@@ -862,6 +868,11 @@ public class Deposit_Confirm_WH_Checker {
 			System.out.println("Save_btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
+		}
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Search_txt)).clear();
+		Thread.sleep(2000);
+		
 		}
 
 	}

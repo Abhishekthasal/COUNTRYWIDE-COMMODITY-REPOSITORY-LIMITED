@@ -2217,6 +2217,22 @@ public class Deposite_Assayer_Maker {
 					if (nextButtons.size() > 0 && nextButtons.get(0).isEnabled()) {
 						System.out.println("Step two");
 						nextButtons.get(0).click();
+						try {
+						if (valueElements.size() > 0) {
+							// Value found, click the button in the same row/div
+
+							WebElement button = driver
+									.findElement(By.xpath("//div[contains(text(),'" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
+											+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
+
+							button.click();
+							System.out.println("✅ Clicked on Select button for value: " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
+							found = true;
+							break;
+						}
+						} catch (Exception e) {
+							System.out.println("Unexpected error for valueElements: " + e.getMessage());
+						}
 						System.out.println("➡️ Moved to next page...");
 						Thread.sleep(2000); // Wait for next page data to load
 					} else {
@@ -2243,14 +2259,14 @@ public class Deposite_Assayer_Maker {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(COA_No)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(COA_No))
-						.sendKeys(String.valueOf(Assayring_Referance));
+						.sendKeys(String.valueOf(Assayring_Referance+i));
 				Assayring_Referance_No.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
 				// js.executeScript("arguments[0].scrollIntoView(true);",
 				// Assayring_Referance_No);
 				js.executeScript("arguments[0].click();", COA_No);
-				js.executeScript("arguments[0].value='" + Assayring_Referance + "';", COA_No);
+				js.executeScript("arguments[0].value='" + Assayring_Referance+i + "';", COA_No);
 				js.executeScript("arguments[0].click();", COA_No);
 
 			} catch (NoSuchElementException e) {

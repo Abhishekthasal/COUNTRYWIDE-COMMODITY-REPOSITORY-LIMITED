@@ -1,6 +1,8 @@
 package TestPages;
 
 import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -885,6 +887,7 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
+		WebElement Select_btn = driver.findElement(By.xpath("(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])["+i+"]"));
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).click();
 		} catch (ElementClickInterceptedException e) {

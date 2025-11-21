@@ -1,6 +1,8 @@
 package TestPages;
 
 import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -814,10 +816,10 @@ public class Deposite_Assayer_Checker {
 		}
 		for (int i = 1; i < DashBoard_WareHouse_Checker.totalBags; i++) {
 			try {
-				Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + i));
+				Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript Search_txt click...");
-				js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + i + "';",
+				js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "';",
 						Search_txt);
 			} catch (NoSuchElementException e) {
 				System.out.println("Search_txt not found: " + e.getMessage());
@@ -835,6 +837,8 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
+			
+			WebElement Actions_btn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])["+i+"]"));
 			try {
 				Actions_btn.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
