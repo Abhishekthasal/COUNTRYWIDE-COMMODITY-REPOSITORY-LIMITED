@@ -30,7 +30,7 @@ public class Margin_Pledge_Request_Approval {
 		PageFactory.initElements(driver, this);
 	}
 
-	// --------------for Request for Margin_Pledge_Request_Approval creation process-------------
+//	 --------------for Request for Margin_Pledge_Request_Approval creation process-------------
 	
 	@FindBy(xpath = "//span[normalize-space()='Margin Pledge']")
 	WebElement Margin_Pledge_Btn;
@@ -66,7 +66,7 @@ public class Margin_Pledge_Request_Approval {
 		
 		New_Btn.click();
 		
-		client_id_Txt.sendKeys(String.valueOf(Margin_Pledge_Request.Client_Id));
+		 client_id_Txt.sendKeys(String.valueOf(Margin_Pledge_Request.Client_Id)); 
 		
 		//commodity_Txt.sendKeys(String.valueOf(commodity));
 		

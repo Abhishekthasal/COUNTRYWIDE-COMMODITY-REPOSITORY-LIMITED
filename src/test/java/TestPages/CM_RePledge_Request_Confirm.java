@@ -108,11 +108,7 @@ public class CM_RePledge_Request_Confirm {
 		// Value.click();
 
 		while (true) {
-			// Wait until table rows or data are loaded
-			// (//div[@role='rowgroup'])[2]
-			// div[@class='ui-grid-cell-contents ng-binding ng-scope']
-			// Wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@role='rowgroup'])[2]")));
-			// Find all text elements that may contain the target value
+			
 			List<WebElement> valueElements = driver
 					.findElements(By.xpath("//div[contains(text(),'" + Margin_Pledge_Sequence_No + "')]"));
 			if (valueElements.contains(valueElements)) {
@@ -135,6 +131,22 @@ public class CM_RePledge_Request_Confirm {
 
 				if (nextButtons.size() > 0 && nextButtons.get(0).isEnabled()) {
 					nextButtons.get(0).click();
+					try {
+						if (valueElements.size() > 0) {
+							// Value found, click the button in the same row/div
+
+							WebElement button = driver
+									.findElement(By.xpath("//div[contains(text(),'" +Margin_Pledge_Sequence_No
+											+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
+
+							button.click();
+							System.out.println("✅ Clicked on Select button for value: " +Margin_Pledge_Sequence_No);
+							found = true;
+							break;
+						}
+						} catch (Exception e) {
+							System.out.println("Unexpected error for valueElements: " + e.getMessage());
+						}
 					System.out.println("➡️ Moved to next page...");
 					Thread.sleep(2000); // Wait for next page data to load
 				} else {

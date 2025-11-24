@@ -3,12 +3,16 @@ package Utillity;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 //import freemarker.template.utility.DateUtil;
 import org.apache.poi.ss.usermodel.Cell;
 //import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.DateUtil;
 //import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 //import java.text.SimpleDateFormat;
@@ -78,18 +82,18 @@ public class ExcelUtils {
 					case STRING:
 						cellData = cell.getStringCellValue(); // Direct string value
 						break;
-					
-					  case NUMERIC: 
-						  cellData = String.valueOf((long) cell.getNumericCellValue());
-					  // Convert to String
-					 					
-					/*
-					 * case NUMERIC: if (DateUtil.isCellDateFormatted(cell)) {
-					 * 
-					 * java.util.Date date = cell.getDateCellValue(); java.text.SimpleDateFormat sdf
-					 * = new java.text.SimpleDateFormat("dd-MMM-yyyy"); cellData = sdf.format(date);
-					 * } else { cellData = String.valueOf((long) cell.getNumericCellValue()); }
-					 */
+
+					case NUMERIC:
+						cellData = String.valueOf((long) cell.getNumericCellValue());
+						// Convert to String
+
+						/*
+						 * case NUMERIC: if (DateUtil.isCellDateFormatted(cell)) {
+						 * 
+						 * java.util.Date date = cell.getDateCellValue(); java.text.SimpleDateFormat sdf
+						 * = new java.text.SimpleDateFormat("dd-MMM-yyyy"); cellData = sdf.format(date);
+						 * } else { cellData = String.valueOf((long) cell.getNumericCellValue()); }
+						 */
 						break;
 					case BOOLEAN:
 						cellData = String.valueOf(cell.getBooleanCellValue()); // Convert Boolean to String
@@ -900,27 +904,27 @@ public class ExcelUtils {
 	public String getSEBI_Registration_Number(int rowNum) {
 		return getCellData(rowNum, 27);
 	}
-	
+
 	public String getCM_ID(int rowNum) {
 		return getCellData(rowNum, 28);
 	}
-	
-	
+
 	public int getnetWorth(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(29).getNumericCellValue();
 	}
-	
+
 	public String getnominee_name(int rowNum) {
 		return getCellData(rowNum, 30);
 	}
-	
+
 	public String getnominee_pan_no(int rowNum) {
 		return getCellData(rowNum, 31);
 	}
+
 	public String getnominee_years(int rowNum) {
 		return getCellData(rowNum, 32);
 	}
-	
+
 	/*
 	 * public String getnominee_Month(int rowNum) { return getCellData(rowNum, 33);
 	 * }
@@ -928,381 +932,485 @@ public class ExcelUtils {
 	public int getnominee_Month(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(33).getNumericCellValue();
 	}
-	
+
 	public int getnominee_Date(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(34).getNumericCellValue();
 	}
-	
+
 	public String getnominee_address(int rowNum) {
 		return getCellData(rowNum, 35);
 	}
-	
+
 	public String getnominee_relation(int rowNum) {
 		return getCellData(rowNum, 36);
 	}
-	
-	/************************************* * TM_CM_Linking_RP ***************************************/
-	
-	
+
+	/*************************************
+	 * * TM_CM_Linking_RP
+	 ***************************************/
+
 	public String getRequestNo(int rowNum) {
 		return getCellData(rowNum, 0);
 	}
-	
-	
+
 	public int getCE_CC_Id(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public int getTM_ID(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
-	
+
 	public long getTM_client_ID(int rowNum) {
 
 		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
-	
-	
-	/**************************ClientCmLinking_RP*********************************/
-	
+
+	/**************************
+	 * ClientCmLinking_RP
+	 *********************************/
+
 	public int getRequestNo_ClientCmLinking(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
-	
+
 	public int getUCC_ID(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public long getClient_Id_ClientCmLinking(int rowNum) {
 
 		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
-	
+
 	public String getTMID_ClientCmLinking(int rowNum) {
 		return getCellData(rowNum, 3);
-		
+
 	}
-	
+
 	public int getCeCcID_ClientCmLinking(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
-	
-	/************************Settlement_Master_CC_Login********************************/
+
+	/************************
+	 * Settlement_Master_CC_Login
+	 ********************************/
 	public String getExchangeMaster(int rowNum) {
 		return getCellData(rowNum, 0);
 	}
-	
+
 	public int getSettlement_Type(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public int getsettlement_No(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
-	
+
 	public int getsettlement_Year(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
-	
+
 	public String getcommodity(int rowNum) {
 		return getCellData(rowNum, 4);
 	}
+
 	public String getexpectedDay(int rowNum) {
-		return getCellData(rowNum, 5);
+
+		Cell cell = Sheet.getRow(rowNum).getCell(5);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
-	
+
 	public String gettrade_Day(int rowNum) {
-		return getCellData(rowNum, 6);
+		Cell cell = Sheet.getRow(rowNum).getCell(6);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
+
 	public String getPostExpiry_Validity_Date(int rowNum) {
-		return getCellData(rowNum, 7);
+		Cell cell = Sheet.getRow(rowNum).getCell(7);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
+
 	public String getDelivery_Marking(int rowNum) {
-		return getCellData(rowNum, 8);
+		Cell cell = Sheet.getRow(rowNum).getCell(8);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
+
 	public String getpay_In_date(int rowNum) {
-		return getCellData(rowNum, 9);
+		Cell cell = Sheet.getRow(rowNum).getCell(9);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
+
 	public int getpay_In_Date_hr(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
 	}
+
 	public int getpay_In_Date_mn(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(11).getNumericCellValue();
 	}
+
 	public String getpay_out_date(int rowNum) {
-		return getCellData(rowNum, 12);
+		Cell cell = Sheet.getRow(rowNum).getCell(12);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
+
 	public int getpay_out_Date_hr(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(13).getNumericCellValue();
 	}
+
 	public int getpay_out_Date_mn(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(14).getNumericCellValue();
 	}
+
 	public String getearly_pay_In_date(int rowNum) {
-		return getCellData(rowNum, 15);
+		Cell cell = Sheet.getRow(rowNum).getCell(15);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
+
 	public int getearly_pay_In_Date_hr(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(16).getNumericCellValue();
 	}
+
 	public int getearly_pay_In_Date_mn(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(17).getNumericCellValue();
 	}
+
 	public String getearly_Payin_End_date(int rowNum) {
-		return getCellData(rowNum, 18);
+		Cell cell = Sheet.getRow(rowNum).getCell(18);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
+
 	public int getearly_Payin_End_Date_hr(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(19).getNumericCellValue();
 	}
+
 	public int getearly_Payin_End_Date_mn(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(20).getNumericCellValue();
 	}
-	
-	/*************************************On_Market_RP_Login**********************************/
-	
+
+	/*************************************
+	 * On_Market_RP_Login
+	 **********************************/
+
 	public String getPayinType(int rowNum) {
 		return getCellData(rowNum, 0);
 	}
+
 	public int getInstr_Slip_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
+
 	public int getWSP_Id_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
+
 	public int getWH_Id_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
+
 	public int getCommodity_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
+
 	public long getClient_Id_On_Market(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
 	}
+
 	public int getUCC_Id_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
 	}
+
 	public long getTM_Id(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(7).getNumericCellValue();
 	}
+
 	public String getCM_Id(int rowNum) {
 		return getCellData(rowNum, 8);
 	}
+
 	public long getSettlement_No(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
 	}
+
 	public long getENWR_No(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
 	}
+
 	public int getno_of_bags_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(11).getNumericCellValue();
 	}
+
 	public int getdeliveryunit_On_Market(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(12).getNumericCellValue();
 	}
-	/*******************************************Pay_In_Request_Maker*********************************************/
+
+	/*******************************************
+	 * Pay_In_Request_Maker
+	 *********************************************/
 	public String getfileFormat_Pay_In(int rowNum) {
 		return getCellData(rowNum, 0);
 	}
-	
+
 	public int getce_cc_id_Pay_In(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public long getSettelment_No_Pay_In(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
-	
+
 	public String getdeleveryStatus_Pay_In(int rowNum) {
 		return getCellData(rowNum, 3);
 	}
-	
+
 	public String getCommodity_Pay_In(int rowNum) {
 		return getCellData(rowNum, 4);
 	}
-	
-	
-	/*******************************************Pay_Out_Request_Maker*********************************************/
+
+	/*******************************************
+	 * Pay_Out_Request_Maker
+	 *********************************************/
 	public int getce_cc_id_Pay_Out(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+
 	public long getSettelment_No_Pay_Out(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public String getcommodity_Master_Id_Pay_Out(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
-	
-	
-	
-	/*******************************************************Pay_In_Release*****************************************************/
+
+	/*******************************************************
+	 * Pay_In_Release
+	 *****************************************************/
 	public int getce_cc_id_Pay_Out_Release(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+
 	public long getSettelment_No_Pay_Out_Release(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public String getcommodity_Master_Id_Pay_Out_Release(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
-	
-	/*******************************Margin_Pledge_Request****************/
-	
+
+	/******************************* Margin_Pledge_Request ****************/
+
 	public String getMargin_pledge_Req_No(int rowNum) {
 		return getCellData(rowNum, 0);
 	}
-	
+
 	public long getClient_Id_Margin_Pledge_Request(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public String getucc_Id_Margin_Pledge_Request(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
-	
+
 	public String gettm_Id_Margin_Pledge_Request(int rowNum) {
 		return getCellData(rowNum, 3);
 	}
-	
+
 	public String getcm_Id_Margin_Pledge_Request(int rowNum) {
 		return getCellData(rowNum, 4);
 	}
-	
+
 	public String getceccId_Margin_Pledge_Request(int rowNum) {
 		return getCellData(rowNum, 5);
 	}
-	
+
 	public int getWHID_Margin_Pledge_Request(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
 	}
-	
+
 	public String getCommoditySeg_Margin_Pledge_Request(int rowNum) {
 		return getCellData(rowNum, 7);
 	}
-	
+
 	public int getCommodity_Margin_Pledge_Request(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(8).getNumericCellValue();
 	}
-	
+
 	public long get_ENWR_Margin_Pledge_Request(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
 	}
-	
+
 	public int getno_of_bags_Margin_Pledge_Request(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
 	}
-	
-	/********************************TM_RePledge_Request**************************/
-	
+
+	/********************************
+	 * TM_RePledge_Request
+	 **************************/
+
 	public long getTM_Client_Id(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+
 	public String getTM_pledge_Req_No(int rowNum) {
 		return getCellData(rowNum, 1);
 	}
-	
+
 	public long getCM_Client_Id(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
-	
-	/*****************************CM_RePledge_Request*******************/
+
+	/***************************** CM_RePledge_Request *******************/
 	public long getCM_Client_Id_CM_RePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+
 	public String getCM_pledge_Req_No(int rowNum) {
 		return getCellData(rowNum, 1);
 	}
-	
+
 	public long getCC_Client_Id(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
-	
+
 	public String getMargin_Pledge_Sequence_No(int rowNum) {
 		return getCellData(rowNum, 3);
 	}
-	
-	/*****************************CM_Margin_DePledge_Request*******************/
-	
+
+	/***************************** CM_Margin_DePledge_Request *******************/
+
 	public long getCM_Client_Id_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+
 	public int getPledge_Sequence_NoinCM(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public String getCM_DePledge_Request_No(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
-	
+
 	public long getENWR_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
-	
+
 	public long getCC_Client_Id_DePledgeinCM(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
-	
-	/*****************************CC_Margin_DePledge_Request*******************/
-	
+
+	/***************************** CC_Margin_DePledge_Request *******************/
+
 	public long getCC_Client_Id_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
+
 	public int getPledge_Sequence_No_DePledge(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public String getCC_DePledge_Request_No(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
-	
+
 	public long getCC_ENWR_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
-	
-	/*****************************TM_Margin_DePledge_Request*******************/
+
+	/***************************** TM_Margin_DePledge_Request *******************/
 	public long getTM_Client_Id_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+
 	public String getTM_DePledge_Request_No(int rowNum) {
 		return getCellData(rowNum, 1);
 	}
-	
+
 	public long getTM_ENWR_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
 	}
-	
+
 	public long CM_Client_Id_DePledgeinTM(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
-	/*****************************************RP_Margin_DePledge_Request********************/
-	
+
+	/*****************************************
+	 * RP_Margin_DePledge_Request
+	 ********************/
+
 	public long getTM_Client_Id_DePledgeinRP(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
 	}
-	
+
 	public int getRP_Pledge_Sequence_No(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
 	}
-	
+
 	public String getRP_DePledge_Request_No(int rowNum) {
 		return getCellData(rowNum, 2);
 	}
-	
+
 	public long getRP_ENWR_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
-	
+
 	public long getRP_Client_Id_DePledge(int rowNum) {
 		return (long) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
-	
-	
-	
+
 }
