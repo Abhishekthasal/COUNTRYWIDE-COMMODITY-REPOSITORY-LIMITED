@@ -396,7 +396,7 @@ public class RP_Deposite_Request_Checker {
 
 	}
 
-	public void Government_Agency_Deposite_Request() {
+	public void Government_Agency_Deposite_Request() throws InterruptedException {
 		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 		// Transaction Button to be Click
 		try {
@@ -466,7 +466,8 @@ public class RP_Deposite_Request_Checker {
 		// WebElement scroll = driver.findElement(By.xpath("//div[@role='dialog']"));
 		scroll.sendKeys(Keys.PAGE_DOWN);
 		scroll.sendKeys(Keys.PAGE_DOWN);
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		Thread.sleep(2000);
+		//driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		try {
 			if (Authorizee_pag_GA.isDisplayed()) {
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -481,12 +482,12 @@ public class RP_Deposite_Request_Checker {
 			System.out.println("Element not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error: " + e.getMessage());
-		} finally {
-			System.out.println("Finally Run ");
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-			Wait.until(ExpectedConditions.elementToBeClickable(Authorizee_pag_GA)).click();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		}
+		} /*
+			 * finally { System.out.println("Finally Run ");
+			 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Authorizee_pag_GA)).click(
+			 * ); driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60)); }
+			 */
 		try {
 			if (Verify_btn.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();

@@ -21,7 +21,7 @@ public class Government_Agency_Deposite_Request_Maker {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "Government_Agency_Deposite";
-	static int dataRow = 5; // second row of data
+	static int dataRow = 15; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	/*
@@ -186,22 +186,18 @@ public class Government_Agency_Deposite_Request_Maker {
 	WebElement WH;
 
 	public void Government_Agency_Deposite() throws IOException {
-		
+
 		try {
-		if (Transaction_Btn.isDisplayed()) {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
-			
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Transaction_Btn click...");
+			js.executeScript("arguments[0].click();", Transaction_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Transaction_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 		}
-	} catch (ElementClickInterceptedException e) {
-		System.out.println("Normal click failed, trying JavaScript Transaction_Btn click...");
-		js.executeScript("arguments[0].click();", Transaction_Btn);
-	} catch (NoSuchElementException e) {
-		System.out.println("Transaction_Btn not found: " + e.getMessage());
-	} catch (Exception e) {
-		System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
-	}
-		
-		
+
 		// Deposit function to be Click
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Deposit_btn)).click();
@@ -317,13 +313,14 @@ public class Government_Agency_Deposite_Request_Maker {
 		}
 		try {
 			if (WH_ID_Btn.isDisplayed()) {
-				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+				if (WH_ID.matches("^[a-zA-Z0-9]{0,7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
-					System.out.println("WH_ID is :" + WH_ID);
-					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+					/* System.out.println("WH_ID is :" + WH_ID); */
+					Thread.sleep(1000);
+					/* driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); */
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
+					// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
 				} else {
 					System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
 				}
@@ -338,17 +335,17 @@ public class Government_Agency_Deposite_Request_Maker {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 			e.printStackTrace();
 		}
-	//	js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		// js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 
 		if (Client_Id_Btn.isDisplayed()) {
-			if (Client_ID.matches("^[a-zA-Z0-9]{15}$")) {
+			if (Client_ID.matches("^[a-zA-Z0-9]{0,15}$")) {
 				Client_Id_Btn.click();
 				Wait.until(ExpectedConditions.elementToBeClickable(Client_ID_txt)).sendKeys(String.valueOf(Client_ID));
 				Client_ID_txt.sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Client_ID. Please enter exactly 15 alphanumeric characters:");
 			}
-		} 
+		}
 
 		if (Commodity_Code.matches("^[a-zA-Z0-9]{0,3}$")) {
 			Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Code_btn)).click();

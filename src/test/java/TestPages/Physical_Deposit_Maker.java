@@ -2285,10 +2285,11 @@ public class Physical_Deposit_Maker {
 			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 			if (dispatch_id_GA.isDisplayed()) {
 				// Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
-				dispatch_id_GA.click();
-				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
+			Thread.sleep(1000);
 				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA))
 						.sendKeys(String.valueOf(dispatch_Number));
+				Thread.sleep(1000);
 				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
 				// Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id)).sendKeys(String.valueOf(dispatch_Number));
 				System.out.println(dispatch_Number);
