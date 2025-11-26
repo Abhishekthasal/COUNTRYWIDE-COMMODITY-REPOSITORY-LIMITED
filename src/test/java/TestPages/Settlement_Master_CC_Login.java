@@ -284,44 +284,30 @@ public class Settlement_Master_CC_Login {
 		Select SD = new Select(pay_Out_Date_mn);
 		SD.selectByContainsVisibleText(String.valueOf(String.valueOf(pay_out_Date_mn)));
 
-		// Select the calendar early_Payin_Start_Date  //input[@id='early_Payin_Start_Date'] (//input[@id='early_Payin_Start_Date'])[1]
+		// Select the calendar early_Payin_Start_Date 
 		WebElement early_Payin_Start_Date = driver.findElement(By.xpath("(//input[@id='early_Payin_Start_Date'])[1]"));
 		early_Payin_Start_Date.click();
 		early_Payin_Start_Date.sendKeys(early_pay_In_date);
 		early_Payin_Start_Date.sendKeys(Keys.ENTER);
 
-		WebElement early_pay_In_Date_hr = driver.findElement(By.xpath("//select[@name='early_Payin_End_Date_hr']"));
-		Select SE = new Select(early_pay_In_Date_hr);
-		try {
+		WebElement early_pay_In_Date_hr_V = driver.findElement(By.xpath("//select[@name='early_pay_In_Date_hr']"));
+		Select SE = new Select(early_pay_In_Date_hr_V);
 		SE.selectByContainsVisibleText(String.valueOf(early_pay_In_Date_hr));
-		} catch (NoSuchElementException e) {
-			System.out.println("early_pay_In_Date_hr not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for early_pay_In_Date_hr: " + e.getMessage());
-		}
+		//System.out.print("ssf is :"+early_pay_In_Date_hr);
 		
 		WebElement early_pay_In_Date = driver.findElement(By.xpath("//select[@name='early_pay_In_Date_mn']"));
 		Select SF = new Select(early_pay_In_Date);
-		try {
 		SF.selectByContainsVisibleText(String.valueOf(String.valueOf(early_pay_In_Date_mn)));
-		/*
-		 * } catch (ElementClickInterceptedException e) {
-		 * System.out.println("Normal click failed, trying Save_btn click...");
-		 * js.executeScript("arguments[0].click();", Save_btn);
-		 */
-		} catch (NoSuchElementException e) {
-			System.out.println("Save_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Save_btn: " + e.getMessage());
-		}
+		
 		// Select early_Payin_End_Date
 		WebElement early_Payin_End_Date = driver.findElement(By.xpath("(//input[@id='early_Payin_End_Date'])[1]"));
 		early_Payin_End_Date.click();
 		early_Payin_End_Date.sendKeys(early_Payin_End_date);
 		Thread.sleep(1000);
 		early_Payin_End_Date.sendKeys(Keys.ENTER);
-		WebElement early_Payin_End_Date_hr = driver.findElement(By.xpath("//select[@name='early_Payin_End_Date_hr']"));
-		Select SI = new Select(early_Payin_End_Date_hr);
+		
+		WebElement early_Payin_End_Date_hr_V = driver.findElement(By.xpath("//select[@name='early_Payin_End_Date_hr']"));
+		Select SI = new Select(early_Payin_End_Date_hr_V);
 		SI.selectByContainsVisibleText(String.valueOf(early_Payin_End_Date_hr));
 
 		WebElement early_Payin_End_Date1 = driver.findElement(By.xpath("//select[@name='early_Payin_End_Date_mn']"));
