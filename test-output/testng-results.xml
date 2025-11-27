@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-26T18:13:31 IST" name="Default suite" finished-at="2025-11-26T18:14:53 IST" duration-ms="81695">
+  <suite started-at="2025-11-27T11:41:27 IST" name="Default suite" finished-at="2025-11-27T11:43:07 IST" duration-ms="99916">
     <groups>
     </groups>
-    <test started-at="2025-11-26T18:13:31 IST" name="Default test" finished-at="2025-11-26T18:14:53 IST" duration-ms="81695">
-      <class name="TestCase.ON_Market_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-11-26T18:13:31 IST" name="setup" finished-at="2025-11-26T18:13:36 IST" duration-ms="4374" status="PASS">
+    <test started-at="2025-11-27T11:41:27 IST" name="Default test" finished-at="2025-11-27T11:43:07 IST" duration-ms="99916">
+      <class name="TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2025-11-27T11:41:27 IST" name="setup" finished-at="2025-11-27T11:41:32 IST" duration-ms="4615" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Settlement_Master_CC_Login()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-11-26T18:13:36 IST" name="Settlement_Master_CC_Login" finished-at="2025-11-26T18:14:53 IST" duration-ms="77285" status="PASS">
+        <test-method signature="Deposit_Confirm_WH_Checker()[pri:0, instance:TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2025-11-27T11:41:32 IST" name="Deposit_Confirm_WH_Checker" finished-at="2025-11-27T11:43:07 IST" duration-ms="95242" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Settlement_Master_CC_Login -->
-      </class> <!-- TestCase.ON_Market_TestCase -->
+        </test-method> <!-- Deposit_Confirm_WH_Checker -->
+      </class> <!-- TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

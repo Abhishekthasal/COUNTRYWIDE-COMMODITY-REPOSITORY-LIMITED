@@ -1009,14 +1009,22 @@ public class Physical_Deposit_Maker {
 		Thread.sleep(2000);
 		try {
 			if (WeighbridgeNetWeight.matches("^[0-9]{0,15}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
+				
+				String numStr = String.valueOf(WeighbridgeNetWeight);
+
+				for (char ch : numStr.toCharArray()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(String.valueOf(ch));
+				    Thread.sleep(200);  // optional delay to mimic human typig
+				}
+			}
+			/*	Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
 				Thread.sleep(2000);
 				web_bridge.clear();
 				Thread.sleep(3000);
 				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
 			} else {
 				System.out.println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):");
-			}
+			}*/
 		} catch (ElementClickInterceptedException e) {
 			js.executeScript("arguments[0].value='" + WeighbridgeNetWeight + "';", web_bridge);
 		} catch (NoSuchElementException e) {
@@ -1838,14 +1846,23 @@ public class Physical_Deposit_Maker {
 		Thread.sleep(2000);
 		try {
 			if (WeighbridgeNetWeight.matches("^[0-9]{0,19}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
+			
+				String numStr = String.valueOf(WeighbridgeNetWeight);
+
+				for (char ch : numStr.toCharArray()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(String.valueOf(ch));
+				    Thread.sleep(200);  // optional delay to mimic human typig
+				}
+				
+			}
+				/*Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
 				
 				web_bridge.clear();
 				Thread.sleep(3000);
 				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
 			} else {
 				System.out.println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):");
-			}
+			}*/
 		} catch (ElementClickInterceptedException e) {
 			js.executeScript("arguments[0].value='" + WeighbridgeNetWeight + "';", web_bridge);
 		} catch (NoSuchElementException e) {
@@ -1949,11 +1966,11 @@ public class Physical_Deposit_Maker {
 				int k = j * i;
 				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
 				Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(Bags));
-				Thread.sleep(2000);
-				NO_Bag.clear();
-				NO_Bag.sendKeys(String.valueOf(Bags));
-
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+				/*
+				 * Thread.sleep(2000); NO_Bag.clear(); NO_Bag.sendKeys(String.valueOf(Bags));
+				 * 
+				 * driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+				 */
 				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
@@ -1981,7 +1998,7 @@ public class Physical_Deposit_Maker {
 					System.out.println(" Number_Of_Bags_PopUp Element not found");
 				}
 
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 
 				if (i < remainingBags) {
 					try {
@@ -1989,18 +2006,18 @@ public class Physical_Deposit_Maker {
 							try {
 								if (Add_Button.isDisplayed()) {
 									Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
-									try {
-										Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
-									} catch (ElementClickInterceptedException e) {
-										System.out.println(
-												"Normal click failed, trying JavaScript Lots_Confirmation click...");
-										js.executeScript("arguments[0].click();", Lots_Confirmation);
-									} catch (NoSuchElementException e) {
-										System.out.println("Lots_Confirmation not found: " + e.getMessage());
-									} catch (Exception e) {
-										System.out.println("Unexpected error for Lots_Confirmation: " + e.getMessage());
-									}
-									Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
+									/*
+									 * try {
+									 * Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click(
+									 * ); } catch (ElementClickInterceptedException e) { System.out.println(
+									 * "Normal click failed, trying JavaScript Lots_Confirmation click...");
+									 * js.executeScript("arguments[0].click();", Lots_Confirmation); } catch
+									 * (NoSuchElementException e) {
+									 * System.out.println("Lots_Confirmation not found: " + e.getMessage()); } catch
+									 * (Exception e) { System.out.println("Unexpected error for Lots_Confirmation: "
+									 * + e.getMessage()); }
+									 * Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
+									 */
 								}
 							} catch (ElementClickInterceptedException e) {
 								System.out.println("Normal click failed, trying JavaScript Add_Button click...");
