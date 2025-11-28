@@ -85,7 +85,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-//@Test(retryAnalyzer= Utillity.RetryTest.class)
+	//@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBoard_WareHouse_Checker is start");

@@ -523,7 +523,7 @@ public class DashBoard_WareHouse_Checker {
 		}
 	}
 
-	public void Exchange_Deposite_Transaction() {
+	public void Exchange_Deposite_Transaction() throws InterruptedException {
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_btn)).click();
@@ -597,6 +597,7 @@ public class DashBoard_WareHouse_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for no_of_bags: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			Weighbridge_Net_Weight.sendKeys(Physical_Deposit_Maker.WeighbridgeNetWeight);
 		} catch (ElementClickInterceptedException e) {

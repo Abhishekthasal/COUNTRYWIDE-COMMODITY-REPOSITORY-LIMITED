@@ -74,7 +74,7 @@ public class Deposite_Assayer_Checker {
 	@FindBy(xpath = "//button[@class='btn btn-primary blue ng-isolate-scope']")
 	WebElement Save_btn;
 
-	public void Deposit_Assayer() {
+	public void Deposit_Assayer() throws InterruptedException {
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
@@ -120,7 +120,7 @@ public class Deposite_Assayer_Checker {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
 			try {
-				Actions_btn.sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript Actions_btn click...");
 				js.executeScript("arguments[0].click();", Actions_btn);
@@ -151,8 +151,10 @@ public class Deposite_Assayer_Checker {
 			}
 
 			Assaying_Report_Menu.sendKeys(Keys.ENTER);
+			
+			Thread.sleep(2000);
 			try {
-				Authorized_checkbox.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_checkbox)).click();
 
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
@@ -472,17 +474,16 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
-			Thread.sleep(1000);
+			/*
+			 * Thread.sleep(1000); try {
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Asscending_Btn)).sendKeys(
+			 * Keys.ENTER); //Asscending_Btn.click(); Assc_Sort_Btn.sendKeys(Keys.ENTER); }
+			 * catch (Exception e) { System.out.println("Unexpected error for Search_btn: "
+			 * + e.getMessage()); }
+			 */
+			Thread.sleep(2000);
 			try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Asscending_Btn)).sendKeys(Keys.ENTER);
-			//Asscending_Btn.click();
-			Assc_Sort_Btn.sendKeys(Keys.ENTER);
-			} catch (Exception e) {
-				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-			}
-			Thread.sleep(3000);
-			try {
-				Actions_btn.sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript Actions_btn click...");
 				js.executeScript("arguments[0].click();", Actions_btn);
@@ -491,7 +492,7 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Actions_btn: " + e.getMessage());
 			}
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			Thread.sleep(1000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
 			} catch (ElementClickInterceptedException e) {

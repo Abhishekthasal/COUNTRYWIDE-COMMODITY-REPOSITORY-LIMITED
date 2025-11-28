@@ -133,7 +133,7 @@ public class RP_Deposite_Request_Checker {
 	@FindBy(xpath = "//div[@role='dialog']")
 	WebElement scroll;
 
-	public void Deposite_Request() {
+	public void Deposite_Request() throws InterruptedException {
 		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 		// Transaction Button to be Click
 		try {
@@ -178,6 +178,7 @@ public class RP_Deposite_Request_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(caret)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -229,13 +230,7 @@ public class RP_Deposite_Request_Checker {
 			 * System.out.println("Element not clickable within timeout: " +
 			 * e.getMessage()); }
 			 */
-		
-		try {
 			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 			try {
 			if (Authorize_page.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_page)).click();

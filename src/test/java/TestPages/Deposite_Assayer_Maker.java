@@ -820,7 +820,7 @@ public class Deposite_Assayer_Maker {
 		}
 		try {
 			//if (String.valueOf(Physical_Deposit_Maker.Sample).matches("^[a-zA-Z0-9]{50}$")) {
-				SampleId_txt.sendKeys(String.valueOf(46202560));
+				SampleId_txt.sendKeys(String.valueOf(Physical_Deposit_Maker.Sample));
 			//}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript SampleId_txt click...");

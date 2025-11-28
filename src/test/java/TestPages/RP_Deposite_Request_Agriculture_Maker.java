@@ -167,7 +167,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 	@FindBy(css = ".btn.btn-primary.blue.ng-isolate-scope")
 	WebElement save_btn;
 
-	public void General_Deposite_Request() {
+	public void General_Deposite_Request() throws InterruptedException {
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
@@ -241,15 +241,12 @@ public class RP_Deposite_Request_Agriculture_Maker {
 			System.out.println("Unexpected error for Deposite_No: " + e.getMessage());
 		}
 		// Deposit_Type DropDown
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		// if (Deposit_Type.matches("^[a-zA-Z0-9]{20}$")) {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(1000);
 		Select SB = new Select(Deposit_Type_option);
 		SB.selectByContainsVisibleText(Deposit_Type);
 		General_Deposit_Type.click();
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(1000);
 		try {
 			Quality_Stand_btn.click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Quality_Stand_txt)).sendKeys(Quality_Stand);
@@ -292,9 +289,9 @@ public class RP_Deposite_Request_Agriculture_Maker {
 				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
-					 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+					Thread.sleep(1000);
 					 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-					 Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+					// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
 				}
 			}
 		} catch (ElementClickInterceptedException e) {
@@ -341,7 +338,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Client_Id_Btn: " + e.getMessage());
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(1000);
 		try {
 			if (Commodity_Code.matches("^[a-zA-Z0-9]{0,4}$")) {
 				Commodity_Code_btn.click();
@@ -362,7 +359,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Commodity_Code_btn: " + e.getMessage());
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(1000);
 		try {
 			if (bags.matches("^[0-9]{0,5}$")) {
 				no_of_bags.sendKeys(bags);
@@ -378,7 +375,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 			System.out.println("Unexpected error for no_of_bags: " + e.getMessage());
 		}
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(1000);
 		try {
 			if (Bag_UOM.length() <= 50) {
 				Bag_UOM_btn.click();
@@ -398,7 +395,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for BagType: " + e.getMessage());
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(1000);
 		try {
 			if (String.valueOf(Bag_Size).matches("^[0-9].{0,5}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Bag_Size_btn)).click();
@@ -418,7 +415,7 @@ public class RP_Deposite_Request_Agriculture_Maker {
 			System.out.println("Unexpected error for Bag_Size_btn: " + e.getMessage());
 		}
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(1000);
 		try {
 			if (Qty_UOM.matches("^[a-zA-Z0-9]{0,8}$")) {
 				Qty_UOM_btn.sendKeys(Keys.ENTER);

@@ -360,7 +360,7 @@ public class Physical_Deposit_Maker {
 	@FindBy(xpath = "//button[normalize-space()='Yes']")
 	WebElement Altert;
 
-	public void General_Physical_Deposit_Maker() {
+	public void General_Physical_Deposit_Maker() throws InterruptedException {
 
 		try {
 			Connection conn = DataBaseUtility.getConnection();
@@ -456,9 +456,9 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Auth_Code: " + e.getMessage());
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(2000);
 		try {
-			Submit_btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Submit_btn)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Submit_btn click...");
 			js.executeScript("arguments[0].click();", Submit_btn);
@@ -1451,15 +1451,36 @@ public class Physical_Deposit_Maker {
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 		Thread.sleep(2000);
-		Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+		try {
+			Variety_Code_bttn.click();
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+			//Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
+			Variety_Code_Text.sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+			Thread.sleep(2000);
+			Variety_Code_Text.click();
+		} catch (NoSuchElementException e) {
+			System.out.println("Variety_Code_Text not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
+		}
 
-		Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-		Thread.sleep(2000);
-		// Assert.assertTrue(Variety_Code_Text.isDisplayed(), "Variety_Code_Text Box not
-		// visible");
-		Variety_Code_Text.sendKeys(Keys.ENTER);
-
-		assaying_type_Text.sendKeys(assaying_type);
+		//assaying_type_Text.sendKeys(assaying_type); 
+		try {
+			Select Sa = new Select(assaying_type_Text);
+			Sa.selectByContainsVisibleText(assaying_type);
+		} catch (ElementClickInterceptedException e) {
+			Wait.until(ExpectedConditions.elementToBeClickable(assaying_type_Text)).sendKeys(assaying_type);
+		} catch (NoSuchElementException e) {
+			System.out.println("assaying_type_Text not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for assaying_type_Text: " + e.getMessage());
+		}
 
 		if (Weight_bridge.matches("^[a-zA-Z0-9]{0,100}$")) {
 			Weight_bridge_text.sendKeys(Weight_bridge);
@@ -1476,11 +1497,14 @@ public class Physical_Deposit_Maker {
 		}
 
 		if (WeighbridgeNetWeight.matches("^[0-9]{0,19}$")) {
-			web_bridge.sendKeys(WeighbridgeNetWeight);
-		} else {
-			System.out.println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):");
+			String numStr = String.valueOf(WeighbridgeNetWeight);
 
+			for (char ch : numStr.toCharArray()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(String.valueOf(ch));
+			    Thread.sleep(200);  // optional delay to mimic human typig
+			}
 		}
+		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
 		if (EstimatedValueAtDeposit.matches("^[0-9]{0,15}$")) {
