@@ -123,6 +123,9 @@ public class RP_Deposite_Request_Checker {
 
 	@FindBy(xpath = "//input[@name='contact_No']")
 	WebElement contact_No;
+	
+	@FindBy(xpath = "//a[normalize-space()='Nominee Detail']")
+	WebElement Nominee_Detail_Tab;
 
 	@FindBy(xpath = "//button[@id='Authperson14001']")
 	WebElement upload_Auth;
@@ -230,6 +233,7 @@ public class RP_Deposite_Request_Checker {
 			 * System.out.println("Element not clickable within timeout: " +
 			 * e.getMessage()); }
 			 */
+		
 			Thread.sleep(3000);
 			try {
 			if (Authorize_page.isDisplayed()) {
@@ -673,6 +677,8 @@ public class RP_Deposite_Request_Checker {
 
 		Submit_CA.click();
 
+		Nominee_Detail_Tab.click();
+		
 		try {
 			if (Authorizee_CA.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Authorizee_CA)).click();

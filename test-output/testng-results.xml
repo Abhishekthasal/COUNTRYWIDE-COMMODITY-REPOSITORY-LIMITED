@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-28T17:28:54 IST" name="Default suite" finished-at="2025-11-28T17:30:03 IST" duration-ms="68250">
+  <suite started-at="2025-12-01T18:31:56 IST" name="Default suite" finished-at="2025-12-01T18:32:38 IST" duration-ms="42374">
     <groups>
     </groups>
-    <test started-at="2025-11-28T17:28:54 IST" name="Default test" finished-at="2025-11-28T17:30:03 IST" duration-ms="68250">
-      <class name="TestCase.Exchange_Deposite_Agriculture_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Exchange_Deposite_Agriculture_TestCase@29d89d5d]" started-at="2025-11-28T17:28:54 IST" name="setup" finished-at="2025-11-28T17:28:58 IST" duration-ms="3978" status="PASS">
+    <test started-at="2025-12-01T18:31:56 IST" name="Default test" finished-at="2025-12-01T18:32:38 IST" duration-ms="42374">
+      <class name="TestCase.ON_Market_TestCase">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-12-01T18:31:56 IST" name="setup" finished-at="2025-12-01T18:31:59 IST" duration-ms="3831" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Deposite_Assayer_Maker()[pri:0, instance:TestCase.Exchange_Deposite_Agriculture_TestCase@29d89d5d]" started-at="2025-11-28T17:28:58 IST" name="Deposite_Assayer_Maker" finished-at="2025-11-28T17:30:03 IST" duration-ms="64233" status="PASS">
+        <test-method signature="Settlement_Master_Checker()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2025-12-01T18:31:59 IST" name="Settlement_Master_Checker" finished-at="2025-12-01T18:32:38 IST" duration-ms="38505" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Deposite_Assayer_Maker -->
-      </class> <!-- TestCase.Exchange_Deposite_Agriculture_TestCase -->
+        </test-method> <!-- Settlement_Master_Checker -->
+      </class> <!-- TestCase.ON_Market_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -27,6 +27,9 @@ public class Pledge_Creation_WareHouse {
 		@FindBy(xpath = "//span[normalize-space()='Pledge Creation Approval']")
 		WebElement Pledge_Creation_Approval;
 
+		@FindBy(xpath="//a[normalize-space()='Pending for Pledge Creation Approval']")
+		WebElement PendingforPledgeCreation_link;
+		
 		@FindBy(xpath="(//button[normalize-space()='New'])[1]")
 		WebElement New_Button;
 
@@ -103,6 +106,25 @@ public class Pledge_Creation_WareHouse {
 
 			Wait.until(ExpectedConditions.elementToBeClickable(save_button)).click();
 }
+		public void Pledge_Creation_WareHouse_Approval_C118() throws InterruptedException {
+			
+			Transaction_Btn.click();
+			Assert.assertTrue(Transaction_Btn.isDisplayed(), "Transaction button not visible");
+
+			Pledge_Creation_Approval.click();
+			Assert.assertTrue(Pledge_Creation_Approval.isDisplayed(), "Pledge_Creation_Approval button not visible");
+			
+			//PendingforPledgeCreation_link.getAttribute(null);
+			Thread.sleep(1000);
+			
+			if(PendingforPledgeCreation_link.isDisplayed()) {
+				
+			PendingforPledgeCreation_link.click();
+			}else {
+				System.out.println("Pending for Pledge Creation Approval is not visible");
+			}
+		
+		}
 }
 
 

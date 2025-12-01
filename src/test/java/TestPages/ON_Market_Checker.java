@@ -43,7 +43,7 @@ public class ON_Market_Checker {
 	@FindBy(xpath = "(//button[@class='btn btn-xs btn-primary blue dropdown-toggle'][normalize-space()='Actions'])[1]")
 	WebElement Actions_btn;
 
-	@FindBy(xpath = "(//a[@class='ng-scope'][normalize-space()='Authorize'])[4]")
+	@FindBy(xpath = "//body/ul[@class='dropdown-menu']/li[2]/a[1]")
 	WebElement Authorize_btn;
 
 	@FindBy(xpath = "//label[normalize-space()='Authorized']")
@@ -56,7 +56,7 @@ public class ON_Market_Checker {
 
 		try {
 			//if (Masters_Btn.isDisplayed()) {
-				Masters_Btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Masters_Btn)).click();
 				/*
 				 * } else { System.out.println("Masters_Btn is not visible"); }
 				 */
@@ -96,6 +96,7 @@ public class ON_Market_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
+		Thread.sleep(1000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -106,6 +107,7 @@ public class ON_Market_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Actions_btn: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Authorize_btn)).click();
 		} catch (ElementClickInterceptedException e) {

@@ -19,7 +19,7 @@ public class ClientAccountOpening_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Client Account Opening for REPOSITORY");
 	
-	@Test
+	//@Test
 	  void Clientclientid_Account_opening_For_REPOSITORY_Maker () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
@@ -39,7 +39,7 @@ public class ClientAccountOpening_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	//@Test
+	@Test
 	void Clientclientid_Account_opening_For_REPOSITORY_Checker () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
