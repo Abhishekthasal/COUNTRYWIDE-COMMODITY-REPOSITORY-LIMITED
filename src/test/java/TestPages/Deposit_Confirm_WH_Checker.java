@@ -58,6 +58,10 @@ public class Deposit_Confirm_WH_Checker {
 	// a[normalize-space()='Authorize']
 	@FindBy(xpath = "//a[normalize-space()='Authorize']")
 	WebElement Authorized_btn;
+	
+	@FindBy(xpath = "//body/ul[@class='dropdown-menu']/li[2]/a[1]")
+			WebElement Authorized_Non_btn;
+	
 
 	@FindBy(xpath = "//a[normalize-space()='Lot Details']")
 	WebElement Lot_Details;
@@ -801,6 +805,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Action_btn: " + e.getMessage());
 		}
+		//body/ul[@class='dropdown-menu']/li[2]/a[1]
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
 		} catch (ElementClickInterceptedException e) {

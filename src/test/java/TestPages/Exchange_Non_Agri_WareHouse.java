@@ -50,7 +50,7 @@ public class Exchange_Non_Agri_WareHouse {
 	String Variety_Code_Value = excel.getVariety_Code_Value_ex_py(dataRow);
 	String assaying_type = excel.getassaying_type_ex_py(dataRow);
 	String Weight_bridge = excel.getWeight_bridge_ex_py(dataRow);
-	String Weight_bridge_Receipt = excel.getWeight_bridge_Receipt_ex_py(dataRow);
+	static String Weight_bridge_Receipt = excel.getWeight_bridge_Receipt_ex_py(dataRow);
 	String EstimatedValue = excel.getEstimatedValue_ex_py(dataRow);
 	String Lot_Heat_Cast_Batch_number = excel.getLot_Heat_Cast_Batch_number_ex_py(dataRow);
 	String Per_Month = excel.getPer_Month_ex_py(dataRow);
@@ -760,6 +760,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Accept_check: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -771,9 +772,10 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
-
+		Thread.sleep(2000);
 		try { 
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click(); 
+			Thread.sleep(1000);
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code_Value);
 			Thread.sleep(1000);
 			Variety_Code_Text.sendKeys(Keys.ENTER);
@@ -850,7 +852,7 @@ public class Exchange_Non_Agri_WareHouse {
 		
 		Wait.until(ExpectedConditions.elementToBeClickable(place_of_origin_txt)).sendKeys(place_of_origin);
 		
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(500));
+		Thread.sleep(1000);
 		try {
 			Lot_Heat_Cast_Batch_number_text.sendKeys(Lot_Heat_Cast_Batch_number);
 		} catch (ElementClickInterceptedException e) {

@@ -1297,20 +1297,20 @@ public class DashBoard_WareHouse_Checker {
 		}
 
 		try {
-			no_of_bags.sendKeys(RP_Exchange_Deposite_Agriculture_Maker.bags);
+			no_of_bags.sendKeys(Exchange_Deposite_Request_Non_Agriculture_Maker.No_of_Bundle);
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript no_of_bags click...");
-			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.bags + "';", no_of_bags);
+			js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.No_of_Bundle + "';", no_of_bags);
 		} catch (NoSuchElementException e) {
 			System.out.println("no_of_bags not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for no_of_bags: " + e.getMessage());
 		}
 		try {
-			Weighbridge_Net_Weight.sendKeys(Physical_Deposit_Maker.WeighbridgeNetWeight);
+			Weighbridge_Net_Weight.sendKeys(Exchange_Non_Agri_WareHouse.Weight_bridge_Receipt);
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Weighbridge_Net_Weight click...");
-			js.executeScript("arguments[0].value='" + Physical_Deposit_Maker.WeighbridgeNetWeight + "';", no_of_bags);
+			js.executeScript("arguments[0].value='" + Exchange_Non_Agri_WareHouse.Weight_bridge_Receipt + "';", no_of_bags);
 		} catch (NoSuchElementException e) {
 			System.out.println("Weighbridge_Net_Weight not found: " + e.getMessage());
 		} catch (Exception e) {

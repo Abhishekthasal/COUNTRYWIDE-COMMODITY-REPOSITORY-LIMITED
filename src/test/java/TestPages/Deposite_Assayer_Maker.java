@@ -53,6 +53,9 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "//span[normalize-space()='Deposit Assayer']")
 	WebElement Deposit_Assayer;
+	
+	@FindBy(xpath = "//a[normalize-space()='Pending for Deposit Assayer']")
+	WebElement PendingforDepositAssayer;
 
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement New_btn;
@@ -2190,8 +2193,8 @@ public class Deposite_Assayer_Maker {
 				// div[@class='ui-grid-cell-contents ng-binding ng-scope']
 				// Wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@role='rowgroup'])[2]")));
 				// Find all text elements that may contain the target value
-				WebElement DRN=driver
-						.findElement(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
+				//WebElement DRN=driver
+					//	.findElement(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
 
 				List<WebElement> valueElements = driver
 						.findElements(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite+ "')]"));
@@ -2523,6 +2526,43 @@ public class Deposite_Assayer_Maker {
 			}
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+	}
+
+	public void Deposit_Assayer_Pending_CR318() throws InterruptedException {
+		
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Transaction_Btn trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Transaction_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println(" Transaction_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Btn : " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Deposit_Assayer)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Deposit_Assayer trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Deposit_Assayer);
+		} catch (NoSuchElementException e) {
+			System.out.println("Deposit_Assayer not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Deposit_Assayer : " + e.getMessage());
+		}
+		
+		Thread.sleep(1000);
+
+		if (PendingforDepositAssayer.isDisplayed()) {
+
+			PendingforDepositAssayer.click();
+		} else {
+			System.out.println("Pending for Deposit Confirm is not visible");
+		}
+		Thread.sleep(1000);
+		
 	}
 	
 	}

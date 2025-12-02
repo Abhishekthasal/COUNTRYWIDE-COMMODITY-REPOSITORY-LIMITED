@@ -33,6 +33,9 @@ public class Deposit_Confirm_WH_Maker {
 	@FindBy(xpath = "//span[normalize-space()='Deposit Confirm WH']")
 	WebElement Deposit_Confirm_WH_btn;
 
+	@FindBy(xpath = "//a[normalize-space()='Pending for Deposit Confirm']")
+	WebElement PendingforDeposit;
+
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement New_btn;
 
@@ -511,137 +514,137 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		
-		for(int i=1; i<=DashBoard_WareHouse_Checker.totalBags; i++) {
+
+		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(2000);
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", New_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("New_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for New_btn: " + e.getMessage());
-		}
-		Thread.sleep(1000);
-		try {
-			if (RP_Deposite_Request_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id)).click();
-				Warehouse_id_Txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.WH_ID));
-				Thread.sleep(1000);
-				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
-			} else {
-				System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", New_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("New_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for New_btn: " + e.getMessage());
 			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Warehouse_id click...");
-			js.executeScript("arguments[0].click();", Warehouse_id);
-			js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.WH_ID + "';",
-					Warehouse_id_Txt);
-			js.executeScript("arguments[0].click();", Warehouse_id_Txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("Warehouse_id not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Warehouse_id: " + e.getMessage());
-		}
-		try {
-			if (RP_Deposite_Request_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{7}$")) {
-				Deposite_ID.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite));
-			} else {
-				System.out.println("Invalid Deposit_Type. Please enter exactly 20 alphanumeric characters:");
+			Thread.sleep(1000);
+			try {
+				if (RP_Deposite_Request_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id)).click();
+					Warehouse_id_Txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.WH_ID));
+					Thread.sleep(1000);
+					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
+				} else {
+					System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript Warehouse_id click...");
+				js.executeScript("arguments[0].click();", Warehouse_id);
+				js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.WH_ID + "';",
+						Warehouse_id_Txt);
+				js.executeScript("arguments[0].click();", Warehouse_id_Txt);
+			} catch (NoSuchElementException e) {
+				System.out.println("Warehouse_id not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Warehouse_id: " + e.getMessage());
 			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Deposite_ID click...");
-			js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite + "';",
-					Warehouse_id_Txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("Deposite_ID not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Deposite_ID: " + e.getMessage());
-		}
-		try {
-			Sample_id_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Sample_id_txt click...");
-			js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite + i + "';",
-					Sample_id_txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("Sample_id_txt not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Sample_id_txt: " + e.getMessage());
-		}
-		try {
-			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-			Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Search_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Search_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-		}
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Select_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Select_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Select_btn: " + e.getMessage());
-		}
+			try {
+				if (RP_Deposite_Request_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{7}$")) {
+					Deposite_ID.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite));
+				} else {
+					System.out.println("Invalid Deposit_Type. Please enter exactly 20 alphanumeric characters:");
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript Deposite_ID click...");
+				js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite + "';",
+						Warehouse_id_Txt);
+			} catch (NoSuchElementException e) {
+				System.out.println("Deposite_ID not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Deposite_ID: " + e.getMessage());
+			}
+			try {
+				Sample_id_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript Sample_id_txt click...");
+				js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.Deposite + i + "';",
+						Sample_id_txt);
+			} catch (NoSuchElementException e) {
+				System.out.println("Sample_id_txt not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Sample_id_txt: " + e.getMessage());
+			}
+			try {
+				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+				Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Search_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Search_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+			}
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Select_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Select_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Select_btn: " + e.getMessage());
+			}
 
-		// shelflife_txt.sendKeys("300");
+			// shelflife_txt.sendKeys("300");
 
-		try {
-			Lot_Details.click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Lot_Details);
-		} catch (NoSuchElementException e) {
-			System.out.println("Lot_Details not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
-		}
-		try {
-			View_Report.click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", View_Report);
-		} catch (NoSuchElementException e) {
-			System.out.println("View_Report not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for View_Report: " + e.getMessage());
-		}
-		try {
-			if (Verify_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
+			try {
+				Lot_Details.click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Lot_Details);
+			} catch (NoSuchElementException e) {
+				System.out.println("Lot_Details not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
 			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Verify_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for : " + e.getMessage());
-		}
+			try {
+				View_Report.click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", View_Report);
+			} catch (NoSuchElementException e) {
+				System.out.println("View_Report not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for View_Report: " + e.getMessage());
+			}
+			try {
+				if (Verify_btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Verify_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for : " + e.getMessage());
+			}
 
-		try {
-			if (save_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(save_btn)).click();
-				Thread.sleep(1000);
+			try {
+				if (save_btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(save_btn)).click();
+					Thread.sleep(1000);
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", save_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("save_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for save_btn: " + e.getMessage());
 			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", save_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("save_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for save_btn: " + e.getMessage());
-		}
-		Thread.sleep(3000);
+			Thread.sleep(3000);
 		}
 
 	}
@@ -667,146 +670,147 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1; i<=DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(3000);
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", New_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("New_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for New_btn: " + e.getMessage());
-		}
-		try {
-			if (RP_Exchange_Deposite_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt))
-						.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.WH_ID));
-				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
-			} else {
-				System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", New_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("New_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for New_btn: " + e.getMessage());
 			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Warehouse_id click...");
-			js.executeScript("arguments[0].click();", Warehouse_id);
-			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.WH_ID + "';",
-					Warehouse_id_Txt);
-			js.executeScript("arguments[0].click();", Warehouse_id_Txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("Warehouse_id not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Warehouse_id: " + e.getMessage());
-		}
-		try {
-			if (RP_Exchange_Deposite_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{7}$")) {
-				Deposite_ID.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite));
-			} else {
-				System.out.println("Invalid Deposite. Please enter exactly 7 alphanumeric characters:");
+			Thread.sleep(2000);
+			try {
+				if (RP_Exchange_Deposite_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id)).click();
+					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt))
+							.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.WH_ID));
+					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
+				} else {
+					System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript Warehouse_id click...");
+				js.executeScript("arguments[0].click();", Warehouse_id);
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.WH_ID + "';",
+						Warehouse_id_Txt);
+				js.executeScript("arguments[0].click();", Warehouse_id_Txt);
+			} catch (NoSuchElementException e) {
+				System.out.println("Warehouse_id not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Warehouse_id: " + e.getMessage());
 			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + "';",
-					Warehouse_id_Txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("Search_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-		}
-		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS)
-		
-		try {
-		
-		Sample_id_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite +i));
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite+i  + "';",
-					Warehouse_id_Txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("Search_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-		}
-		
-		Thread.sleep(2000);
-		try {
-			
-			Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Search_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Search_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-		}
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Select_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Select_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Select_btn: " + e.getMessage());
-		}
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Lot_Details)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Lot_Details);
-		} catch (NoSuchElementException e) {
-			System.out.println("Lot_Details not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
-		}
-		
-		//js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+			try {
+				if (RP_Exchange_Deposite_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{7}$")) {
+					Deposite_ID.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite));
+				} else {
+					System.out.println("Invalid Deposite. Please enter exactly 7 alphanumeric characters:");
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + "';",
+						Warehouse_id_Txt);
+			} catch (NoSuchElementException e) {
+				System.out.println("Search_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+			}
+			// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS)
 
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(View_Report)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", View_Report);
-		} catch (NoSuchElementException e) {
-			System.out.println("View_Report not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for View_Report: " + e.getMessage());
-		}
-		try {
-			if (Verify_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Verify_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for : " + e.getMessage());
-		}
+			try {
 
-		try {
-			if (save_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(save_btn)).click();
-				Thread.sleep(3000);
+				Sample_id_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + i + "';",
+						Warehouse_id_Txt);
+			} catch (NoSuchElementException e) {
+				System.out.println("Search_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", save_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("save_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for save_btn: " + e.getMessage());
-		}
-		Thread.sleep(3000);
+
+			Thread.sleep(2000);
+			try {
+
+				Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Search_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Search_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+			}
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Select_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Select_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Select_btn: " + e.getMessage());
+			}
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(Lot_Details)).click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Lot_Details);
+			} catch (NoSuchElementException e) {
+				System.out.println("Lot_Details not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
+			}
+
+			// js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(View_Report)).click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", View_Report);
+			} catch (NoSuchElementException e) {
+				System.out.println("View_Report not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for View_Report: " + e.getMessage());
+			}
+			try {
+				if (Verify_btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Verify_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for : " + e.getMessage());
+			}
+
+			try {
+				if (save_btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(save_btn)).click();
+					Thread.sleep(3000);
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", save_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("save_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for save_btn: " + e.getMessage());
+			}
+			Thread.sleep(3000);
 		}
 
 	}
 
 	public void Exchange_Deposit_Confirm_WH_Non_Agriculture_Multiple_GSL() {
-		
+
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -827,127 +831,161 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1; i<=DashBoard_WareHouse_Checker.totalBags; i++) {
-		try {
-			New_btn.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", New_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("New_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for New_btn: " + e.getMessage());
+		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+			try {
+				New_btn.sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", New_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("New_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for New_btn: " + e.getMessage());
+			}
+
+			try {
+				if (RP_Exchange_Deposite_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+					Warehouse_id.click();
+					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt))
+							.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.WH_ID));
+					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
+				} else {
+					System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript Warehouse_id click...");
+				js.executeScript("arguments[0].click();", Warehouse_id);
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.WH_ID + "';",
+						Warehouse_id_Txt);
+				js.executeScript("arguments[0].click();", Warehouse_id_Txt);
+			} catch (NoSuchElementException e) {
+				System.out.println("Warehouse_id not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Warehouse_id: " + e.getMessage());
+			}
+			try {
+				if (RP_Exchange_Deposite_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{7}$")) {
+					Deposite_ID.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite));
+				} else {
+					System.out.println("Invalid Deposite. Please enter exactly 7 alphanumeric characters:");
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + "';",
+						Warehouse_id_Txt);
+			} catch (NoSuchElementException e) {
+				System.out.println("Search_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+			}
+			// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			try {
+				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+				Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Search_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Search_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+			}
+			WebElement Select_btn = driver.findElement(
+					By.xpath("(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[" + i + "]"));
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Select_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Select_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Select_btn: " + e.getMessage());
+			}
+			try {
+				Lot_Details.click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Lot_Details);
+			} catch (NoSuchElementException e) {
+				System.out.println("Lot_Details not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
+			}
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+			try {
+				View_Report.click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", View_Report);
+			} catch (NoSuchElementException e) {
+				System.out.println("View_Report not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for View_Report: " + e.getMessage());
+			}
+			try {
+				if (Verify_btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Verify_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for : " + e.getMessage());
+			}
+
+			try {
+				if (save_btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(save_btn)).click();
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", save_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("save_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for save_btn: " + e.getMessage());
+			}
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
 		}
+	}
+
+	public void Deposit_Confirm_Pending_CR118() throws InterruptedException {
 
 		try {
-			if (RP_Exchange_Deposite_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				Warehouse_id.click();
-				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt))
-						.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.WH_ID));
-				Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
-			} else {
-				System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Warehouse_id click...");
-			js.executeScript("arguments[0].click();", Warehouse_id);
-			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.WH_ID + "';",
-					Warehouse_id_Txt);
-			js.executeScript("arguments[0].click();", Warehouse_id_Txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("Warehouse_id not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Warehouse_id: " + e.getMessage());
-		}
-		try {
-			if (RP_Exchange_Deposite_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{7}$")) {
-				Deposite_ID.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite));
-			} else {
-				System.out.println("Invalid Deposite. Please enter exactly 7 alphanumeric characters:");
-			}
+			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + "';",
-					Warehouse_id_Txt);
+			js.executeScript("arguments[0].click();", Transaction_Btn);
 		} catch (NoSuchElementException e) {
-			System.out.println("Search_btn not found: " + e.getMessage());
+			System.out.println("Transaction_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-		}
-		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		try {
-			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-			Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Search_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Search_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-		}
-		WebElement Select_btn = driver.findElement(By.xpath("(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])["+i+"]"));
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Select_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Select_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Select_btn: " + e.getMessage());
+			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 		}
 		try {
-			Lot_Details.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Deposit_Confirm_WH_btn)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Lot_Details);
+			js.executeScript("arguments[0].click();", Deposit_Confirm_WH_btn);
 		} catch (NoSuchElementException e) {
-			System.out.println("Lot_Details not found: " + e.getMessage());
+			System.out.println("Deposit_Confirm_WH_btn not found: " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
+			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		Thread.sleep(1000);
 
-		try {
-			View_Report.click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", View_Report);
-		} catch (NoSuchElementException e) {
-			System.out.println("View_Report not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for View_Report: " + e.getMessage());
-		}
-		try {
-			if (Verify_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).click();
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Verify_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for : " + e.getMessage());
-		}
+		if (PendingforDeposit.isDisplayed()) {
 
-		try {
-			if (save_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(save_btn)).click();
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", save_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("save_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for save_btn: " + e.getMessage());
+			PendingforDeposit.click();
+		} else {
+			System.out.println("Pending for Deposit Confirm is not visible");
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
-		}
+		Thread.sleep(1000);
 	}
 
 }

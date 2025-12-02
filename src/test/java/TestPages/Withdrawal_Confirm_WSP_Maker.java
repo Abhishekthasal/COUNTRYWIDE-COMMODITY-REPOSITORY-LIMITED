@@ -55,6 +55,9 @@ public class Withdrawal_Confirm_WSP_Maker {
 	@FindBy(xpath = "//span[normalize-space()='Withdrawal Confirm']")
 	WebElement Withdrawal_Confirm_bttn;
 	
+	@FindBy(xpath="//a[normalize-space()='Pending for Withdrawal Confirm']")
+	WebElement PendingforWithdrawal;
+	
 	@FindBy(xpath="//button[normalize-space()='New']")
 	WebElement New_bttn;
 	
@@ -172,4 +175,46 @@ public class Withdrawal_Confirm_WSP_Maker {
 		
 	}
 
-}
+
+
+	public void Withdrawal_Confirm_Pending_CR118() throws InterruptedException {		
+		
+
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Transaction_btn click...");
+			js.executeScript("arguments[0].click();", Transaction_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Transaction_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Withdrawal_Confirm_bttn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Withdrawal_Confirm_bttn click...");
+			js.executeScript("arguments[0].click();", Withdrawal_Confirm_bttn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Physical_Deposite not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Withdrawal_Confirm_bttn: " + e.getMessage());
+		}
+		
+		
+		Thread.sleep(1000);
+		
+		if(PendingforWithdrawal.isDisplayed()) {
+			
+			PendingforWithdrawal.click();
+		}else {
+			System.out.println("Pending for Withdrawal Confirm is not visible");
+		}
+		Thread.sleep(1000);
+	}
+		
+		
+	}
+	
+
+

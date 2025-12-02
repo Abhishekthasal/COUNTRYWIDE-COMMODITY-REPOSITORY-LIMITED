@@ -93,6 +93,10 @@ public class Physical_Deposit_Maker {
 	WebElement Physical_Deposite;
 	@FindBy(xpath = "(//a[@ui-sref='Transactions.Depositgoverment'])[1]")
 	WebElement Depositgoverment;
+	
+	@FindBy(xpath="//a[normalize-space()='Pending for Physical Deposit']")
+	WebElement PendingforPhysical;
+	
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement Physical_New_Req;
 	@FindBy(xpath = "(//input[@name='drn1'])[1]")
@@ -1789,7 +1793,7 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Accept_check: " + e.getMessage());
 		}
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -1808,7 +1812,7 @@ public class Physical_Deposit_Maker {
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 		
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		try {
 			Variety_Code_bttn.click();
 			Thread.sleep(1000);
@@ -2879,5 +2883,40 @@ public class Physical_Deposit_Maker {
 		System.out.println(
 				"-------------------- Government_Agency_Deposite_Transaction WareHouse Maker is Done-------------------------");
 
+	}
+
+	public void Physical_Deposit_Pending_CR118() throws InterruptedException {
+		
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Transaction_btn click...");
+			js.executeScript("arguments[0].click();", Transaction_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Transaction_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Physical_Deposite)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Physical_Deposite click...");
+			js.executeScript("arguments[0].click();", Physical_Deposite);
+		} catch (NoSuchElementException e) {
+			System.out.println("Physical_Deposite not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Physical_Deposite: " + e.getMessage());
+		}
+		
+		//PendingforPledgeCreation_link.getAttribute(null);
+		Thread.sleep(1000);
+		
+		if(PendingforPhysical.isDisplayed()) {
+			
+			PendingforPhysical.click();
+		}else {
+			System.out.println("Pending for Physical Deposit is not visible");
+		}
+		Thread.sleep(1000);
 	}
 }

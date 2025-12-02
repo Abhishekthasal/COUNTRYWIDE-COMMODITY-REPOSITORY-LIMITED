@@ -564,6 +564,7 @@ public class RP_Deposite_Request_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(caret)).click();
 		} catch (ElementClickInterceptedException e) {
