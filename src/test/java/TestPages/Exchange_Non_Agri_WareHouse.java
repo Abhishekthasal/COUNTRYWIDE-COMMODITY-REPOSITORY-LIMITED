@@ -24,7 +24,7 @@ public class Exchange_Non_Agri_WareHouse {
 	WebDriver driver;
 	WebDriverWait Wait;
 
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "Exchange_Non_Agriculture_Physic";
 	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -42,8 +42,7 @@ public class Exchange_Non_Agri_WareHouse {
 	 * String PanCard_No = "BPTPT5612N"; String DepositerName = "Abhishek Thasal";
 	 * String L1 = "Room No 102"; String L2 = "Jarimari Mandir Road"; String L3 =
 	 * "Umelman"; String City_Name = "Vasai"; String PinCode = "401202"; int
-	 * shelflife = 179; String Bag_Total =
-	 * RP_Deposite_Request_Agriculture_Maker.bags;
+	 * shelflife = 179;
 	 */
 
 	String Internal_Ref;// = "698798";// = excel.getInternal_Ref_ex_py(dataRow);
@@ -51,15 +50,14 @@ public class Exchange_Non_Agri_WareHouse {
 	String Variety_Code_Value = excel.getVariety_Code_Value_ex_py(dataRow);
 	String assaying_type = excel.getassaying_type_ex_py(dataRow);
 	String Weight_bridge = excel.getWeight_bridge_ex_py(dataRow);
-	String Weight_bridge_Receipt = excel.getWeight_bridge_Receipt_ex_py(dataRow);
-
+	static String Weight_bridge_Receipt = excel.getWeight_bridge_Receipt_ex_py(dataRow);
 	String EstimatedValue = excel.getEstimatedValue_ex_py(dataRow);
 	String Lot_Heat_Cast_Batch_number = excel.getLot_Heat_Cast_Batch_number_ex_py(dataRow);
 	String Per_Month = excel.getPer_Month_ex_py(dataRow);
 	String per_uom = excel.getper_uom_ex_py(dataRow);
-	int No_Of_Bundles = excel.getNo_Of_Bundles_ex_py(dataRow);
+	static int No_Of_Bundles = excel.getNo_Of_Bundles_ex_py(dataRow);
 	int pieces_per_bundles = excel.getpieces_per_bundle_ex_py(dataRow);
-	public static String Sample = excel.getSample_ex_py(dataRow);
+	public static String place_of_origin = excel.getSample_ex_py(dataRow);
 	public static int lot_No = excel.getlot_No_ex_py(dataRow);
 	static String Quantity = excel.getQuantity_ex_py(dataRow);
 	String NetWeightPerPackList = excel.getNetWeightPerPackList_ex_py(dataRow);
@@ -75,6 +73,7 @@ public class Exchange_Non_Agri_WareHouse {
 	String PinCode = excel.getPinCode_ex_py(dataRow);
 	int shelflife = excel.getshelflife_ex_py(dataRow);
 	String Bag_Total = excel.getBag_Total_ex_py(dataRow);
+	int j = 3;
 
 	public Exchange_Non_Agri_WareHouse(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -125,6 +124,10 @@ public class Exchange_Non_Agri_WareHouse {
 	WebElement web_bridge_Value;
 	@FindBy(xpath = "//input[@name='EstimatedValue' and @ng-model='vm.CreateDepositWspWh.est_value_deposit']")
 	WebElement EstimatedValue_text;
+	@FindBy(xpath = "//button[@type='button' and @class='btn btn-info' and @ng-click='vm.addLotDetails()']")
+	WebElement Add_Button;
+	@FindBy(xpath = "//input[@name='place_of_origin']")
+	WebElement place_of_origin_txt;
 	@FindBy(xpath = "//input[@name='Lot_Heat_Cast_Batch_number']")
 	WebElement Lot_Heat_Cast_Batch_number_text;
 	@FindBy(xpath = "//input[@placeholder='Per Month']")
@@ -139,7 +142,7 @@ public class Exchange_Non_Agri_WareHouse {
 	WebElement Stack_No_Text;
 	@FindBy(xpath = "//input[@name='lot_no']")
 	WebElement lot_no_Text;
-	@FindBy(xpath = "//input[@ng-model='LotDetails.NoOfBundles']")
+	@FindBy(xpath = "(//input[@name='no_of_bag'])[3]")
 	WebElement no_of_bag;
 	@FindBy(xpath = "//input[@ng-class=\"{'edited':LotDetails.NoOfPiecesPerBundle}\"]")
 	WebElement NoOfPiecesPerBundle;
@@ -151,6 +154,8 @@ public class Exchange_Non_Agri_WareHouse {
 	WebElement NetWeightPerPackList_text;
 	@FindBy(xpath = "(//a[normalize-space()='Verification'])[1]")
 	WebElement Verification_page;
+	@FindBy(xpath = "//button[normalize-space()='Ok']")
+	WebElement Lots_Confirmation;
 	@FindBy(xpath = "//a[normalize-space()='Depositor Detail']")
 	WebElement Depositor_Detail;
 	@FindBy(xpath = "//input[@name='depositordtl']")
@@ -178,7 +183,7 @@ public class Exchange_Non_Agri_WareHouse {
 	@FindBy(xpath = "//button[@class='btn btn-primary blue ng-isolate-scope']")
 	WebElement Save_btn;
 
-	public void Exchange_Non_Agriculture_Physical() {
+	public void Exchange_Non_Agriculture_Physical() throws InterruptedException {
 
 		try {
 			Connection conn = DataBaseUtility.getConnection();
@@ -246,11 +251,9 @@ public class Exchange_Non_Agri_WareHouse {
 		}
 
 		try {
-			if (Internal_Ref.matches("^[0-9]{5}$")) {
+			if (Internal_Ref.matches("^[0-9]{0,5}$")) {
 				Internal_Ref_No.sendKeys(String.valueOf(Internal_Ref));
-
 				System.out.println("id is getting from DB:" + Internal_Ref);
-
 				Internal_Ref_No.sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Internal_Ref. Please enter exactly 5 digits (numbers only):");
@@ -315,22 +318,21 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
-		/*
-		 * try { // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		 * driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click(); //
-		 * Assert.assertTrue(Variety_Code.isDisplayed(), "Variety_Code button not //
-		 * visible");
-		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).
-		 * sendKeys(Variety_Code_Value); //
-		 * Assert.assertTrue(Variety_Code_Text.isDisplayed(), "Variety_Code_Text Box not
-		 * // visible"); Variety_Code_Text.sendKeys(Keys.ENTER); } catch
-		 * (NoSuchElementException e) { System.out.println("Element not found: " +
-		 * e.getMessage()); } catch (ElementClickInterceptedException e) {
-		 * System.out.println("Element not clickable at the moment: " + e.getMessage());
-		 * } catch (Exception e) { System.out.println("Unexpected error: " +
-		 * e.getMessage()); }
-		 */
+		Thread.sleep(3000);
+		try {
+			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click();
+			Thread.sleep(2000);
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code_Value);
+			Variety_Code_Text.sendKeys(Keys.ENTER);
+		} catch (NoSuchElementException e) {
+			System.out.println("Element not found: " + e.getMessage());
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Element not clickable at the moment: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error: " + e.getMessage());
+		}
+
 		try {
 			Select Sa = new Select(assaying_type_Text);
 			Sa.selectByContainsVisibleText(assaying_type);
@@ -400,6 +402,8 @@ public class Exchange_Non_Agri_WareHouse {
 			System.out.println("Unexpected error for EstimatedValue_text: " + e.getMessage());
 		}
 
+		place_of_origin_txt.sendKeys(place_of_origin);
+
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(500));
 
 		try {
@@ -436,36 +440,41 @@ public class Exchange_Non_Agri_WareHouse {
 			System.out.println("Unexpected error for peruom: " + e.getMessage());
 		}
 		Lot.click();
+
 		try {
 			if (Godown_No.matches("^[a-zA-Z0-9]{0,15}$")) {
-				Godown.sendKeys(Godown_No);
+				Wait.until(ExpectedConditions.elementToBeClickable(Godown)).sendKeys(Godown_No);
 			} else {
 				System.out.println("Invalid Godown_No. Please enter exactly 15 digits (numbers only):");
 			}
 		} catch (ElementClickInterceptedException e) {
-			Wait.until(ExpectedConditions.elementToBeClickable(peruom)).sendKeys(per_uom);
+			js.executeScript("arguments[0].value='" + Godown_No + "';", Godown);
+			// Wait.until(ExpectedConditions.elementToBeClickable(Godown)).sendKeys(Godown_No);
 
 		} catch (NoSuchElementException e) {
 			System.out.println("Godown not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Godown: " + e.getMessage());
 		}
+
 		try {
 			if (Stack_No.matches("^[a-zA-Z0-9]{0,15}$")) {
-				Stack_No_Text.sendKeys(Stack_No);
+				Wait.until(ExpectedConditions.elementToBeClickable(Stack_No_Text)).sendKeys(Stack_No);
 			} else {
 				System.out.println("Invalid Stack_No. Please enter exactly 15 digits (numbers only):");
 			}
 		} catch (ElementClickInterceptedException e) {
-			Wait.until(ExpectedConditions.elementToBeClickable(peruom)).sendKeys(per_uom);
+			js.executeScript("arguments[0].value='" + Stack_No + "';", Stack_No_Text);
+			// Wait.until(ExpectedConditions.elementToBeClickable(Stack_No_Text)).sendKeys(Stack_No);
 		} catch (NoSuchElementException e) {
 			System.out.println("Stack_No_Text not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Stack_No_Text: " + e.getMessage());
 		}
+
 		try {
 			if (Lot_No.matches("^[a-zA-Z0-9]{0,15}$")) {
-				lot_no_Text.sendKeys(Lot_No);
+				Wait.until(ExpectedConditions.elementToBeClickable(lot_no_Text)).sendKeys(Lot_No);
 			} else {
 				System.out.println("Invalid Lot_No. Please enter exactly 15 digits (numbers only):");
 			}
@@ -477,6 +486,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for lot_no_Text: " + e.getMessage());
 		}
+
 		try {
 			// Exchange_Deposite_Request_Non_Agriculture_Maker.No_of_Bundle
 			if (String.valueOf(No_Of_Bundles).matches("^[0-9]{0,5}$")) {
@@ -493,33 +503,32 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for no_of_bag: " + e.getMessage());
 		}
-		try {
-			// Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundles
-			if (String.valueOf(pieces_per_bundles).matches("^[0-9]{0,5}$")) {
-				NoOfPiecesPerBundle.sendKeys(String.valueOf(pieces_per_bundles));
-			}
-		} catch (ElementClickInterceptedException e) {
-			js.executeScript(
-					"arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundle + "';",
-					NoOfPiecesPerBundle);
-		} catch (NoSuchElementException e) {
-			System.out.println("NoOfPiecesPerBundle not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for NoOfPiecesPerBundle: " + e.getMessage());
-		}
-		try {
-			if (Sample.matches("^[a-zA-Z0-9]{0,50}$")) {
-				sample_Id.sendKeys(String.valueOf(Sample));
-			} else {
-				System.out.println("Invalid Sample. Please enter exactly 50 digits (numbers only):");
-			}
-		} catch (ElementClickInterceptedException e) {
-			js.executeScript("arguments[0].value='" + Sample + "';", sample_Id);
-		} catch (NoSuchElementException e) {
-			System.out.println("sample_Id not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for sample_Id: " + e.getMessage());
-		}
+
+		/*
+		 * try { // Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundles
+		 * if (String.valueOf(pieces_per_bundles).matches("^[0-9]{0,5}$")) {
+		 * NoOfPiecesPerBundle.sendKeys(String.valueOf(pieces_per_bundles)); } } catch
+		 * (ElementClickInterceptedException e) { js.executeScript(
+		 * "arguments[0].value='" +
+		 * Exchange_Deposite_Request_Non_Agriculture_Maker.Pieces_Per_Bundle + "';",
+		 * NoOfPiecesPerBundle); } catch (NoSuchElementException e) {
+		 * System.out.println("NoOfPiecesPerBundle not found: " + e.getMessage()); }
+		 * catch (Exception e) {
+		 * System.out.println("Unexpected error for NoOfPiecesPerBundle: " +
+		 * e.getMessage()); }
+		 */
+
+		/*
+		 * try { if (Sample.matches("^[a-zA-Z0-9]{0,50}$")) {
+		 * sample_Id.sendKeys(String.valueOf(Sample)); } else { System.out.
+		 * println("Invalid Sample. Please enter exactly 50 digits (numbers only):"); }
+		 * } catch (ElementClickInterceptedException e) {
+		 * js.executeScript("arguments[0].value='" + Sample + "';", sample_Id); } catch
+		 * (NoSuchElementException e) { System.out.println("sample_Id not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for sample_Id: " + e.getMessage()); }
+		 */
+
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		try {
 			if (Quantity.matches("^[a-zA-Z0-9]{0,50}$")) {
@@ -536,6 +545,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Quantity_text: " + e.getMessage());
 		}
+
 		try {
 
 			if (NetWeightPerPackList.matches("^[a-zA-Z0-9]{0,50}$")) {
@@ -551,6 +561,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for NetWeightPerPackList_text: " + e.getMessage());
 		}
+
 		try {
 			Depositor_Detail.sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
@@ -627,9 +638,7 @@ public class Exchange_Non_Agri_WareHouse {
 
 	}
 
-	public void Exchange_Non_Agriculture_Physical_Multiple_GSL() {
-		// System.out.println("we are Star Exchange_Non_Agriculture_Physical_Multiple
-		// ");
+	public void Exchange_Non_Agriculture_Physical_Multiple_GSL() throws InterruptedException {
 
 		try {
 			Connection conn = DataBaseUtility.getConnection();
@@ -751,6 +760,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Accept_check: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -762,22 +772,22 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
-		/*
-		 * try { // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		 * driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click(); //
-		 * Assert.assertTrue(Variety_Code.isDisplayed(), "Variety_Code button not //
-		 * visible");
-		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).
-		 * sendKeys(Variety_Code_Value); //
-		 * Assert.assertTrue(Variety_Code_Text.isDisplayed(), "Variety_Code_Text Box not
-		 * // visible"); Variety_Code_Text.sendKeys(Keys.ENTER); } catch
-		 * (NoSuchElementException e) { System.out.println("Element not found: " +
-		 * e.getMessage()); } catch (ElementClickInterceptedException e) {
-		 * System.out.println("Element not clickable at the moment: " + e.getMessage());
-		 * } catch (Exception e) { System.out.println("Unexpected error: " +
-		 * e.getMessage()); }
-		 */
+		Thread.sleep(2000);
+		try { 
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click(); 
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code_Value);
+			Thread.sleep(1000);
+			Variety_Code_Text.sendKeys(Keys.ENTER);
+		} catch (NoSuchElementException e) {
+			System.out.println("Element not found: " + e.getMessage());
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Element not clickable at the moment: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
 		try {
 			Select Sa = new Select(assaying_type_Text);
 			Sa.selectByContainsVisibleText(assaying_type);
@@ -837,8 +847,12 @@ public class Exchange_Non_Agri_WareHouse {
 			System.out.println("EstimatedValue_text not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for EstimatedValue_text: " + e.getMessage());
+			
 		}
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(500));
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(place_of_origin_txt)).sendKeys(place_of_origin);
+		
+		Thread.sleep(1000);
 		try {
 			Lot_Heat_Cast_Batch_number_text.sendKeys(Lot_Heat_Cast_Batch_number);
 		} catch (ElementClickInterceptedException e) {
@@ -870,102 +884,117 @@ public class Exchange_Non_Agri_WareHouse {
 		}
 		Lot.click();
 		WebElement remainingBagsElement = driver.findElement(By.xpath("(//div[@class='col-sm-2'])[7]"));
+//		//int remainingBags = Integer.parseInt(remainingBagsElement.getText());
+//		WebElement Add_Button = driver.findElement(By.xpath("//button[normalize-space()='Add']"));
+//
+//		//int maxLoops = Math.min(50, remainingBags);
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		// Scroll Add button into view
+		js.executeScript("arguments[0].scrollIntoView()", Add_Button);
+
+		// Read remaining bags
 		int remainingBags = Integer.parseInt(remainingBagsElement.getText());
-		WebElement Add_Button = driver.findElement(By.xpath("//button[normalize-space()='Add']"));
+		int noOfBags = Integer.parseInt(Bag_Total);
 
-		int maxLoops = Math.min(50, remainingBags);
+		if (remainingBags != noOfBags) {
+			for (int i = 1; i <= remainingBags; i++) {
+				System.out.println("Filling data for Row: " + i);
 
-		for (int i = 1; i <= maxLoops; i++) {
-			System.out.println(" value of remainingBags in I:"+remainingBags);
-		    try {
-		        driver.findElement(By.xpath("(//input[@name='godown'])[" + i + "]")).sendKeys("Godown " + i);
-		    } catch (Exception e) {
-		        System.out.println("Godown error at " + i + ": " + e.getMessage());
-		    }
+				try {
+					driver.findElement(By.xpath("(//input[@name='godown'])[" + i + "]")).sendKeys("Godown " + i);
+				} catch (Exception e) {
+					System.out.println("Godown error at " + i + ": " + e.getMessage());
+				}
 
-		    try {
-		        driver.findElement(By.xpath("(//input[@name='stack_no'])[" + i + "]")).sendKeys("Stack_No" + i);
-		    } catch (Exception e) {
-		        System.out.println("Stack_No error at " + i + ": " + e.getMessage());
-		    }
+				try {
+					driver.findElement(By.xpath("(//input[@name='stack_no'])[" + i + "]")).sendKeys("Stack_No" + i);
+				} catch (Exception e) {
+					System.out.println("Stack_No error at " + i + ": " + e.getMessage());
+				}
 
-		    try {
-		        WebElement lot_no = driver.findElement(By.xpath("(//input[@name='lot_no'])[" + i + "]"));
-		        Wait.until(ExpectedConditions.elementToBeClickable(lot_no)).sendKeys("Lot " + i);
-		    } catch (Exception e) {
-		        System.out.println("Lot_No error at " + i + ": " + e.getMessage());
-		    }
+				try {
+					WebElement lot_no = driver.findElement(By.xpath("(//input[@name='lot_no'])[" + i + "]"));
+					Wait.until(ExpectedConditions.elementToBeClickable(lot_no)).sendKeys("Lot " + i);
+				} catch (Exception e) {
+					System.out.println("Lot_No error at " + i + ": " + e.getMessage());
+				}
 
-		    // Try to fill no_of_bag at positions 1,4,7,... first
-		    for (int j = 1; j <= remainingBags; j += 3) {
-		    	System.out.println(" value of remainingBags in J:"+remainingBags);
-		        try {
-		        	WebElement NO_Bag = Wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@name='no_of_bag'])[" + j + "]")));
-		           // WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + j + "]"));
-		            NO_Bag.sendKeys(String.valueOf(No_Of_Bundles));
-		            break;
-		        } catch (Exception e) {
-		            System.out.println("No_of_bag error at " + j + ": " + e.getMessage());
-		        }
-		    }
+				// Fill no_of_bag at every 3rd index
+				// if (i % 3 == 1) {
+				int k = i * j;
+				// try {
+				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
+				System.out.println("no of bags:" + NO_Bag);
+				Wait.until(ExpectedConditions.elementToBeClickable(NO_Bag)).sendKeys(String.valueOf(No_Of_Bundles));
+				/*
+				 * } catch (Exception e) { System.out.println("No_of_bag error at " + k + ": " +
+				 * e.getMessage()); }
+				 */
+				// }
 
-		    // Then try to fill pieces_per_bundles at 2,5,8,...
-		    for (int k = 2; k <= remainingBags; k += 3) {
-		    	System.out.println(" value of remainingBags in k:"+remainingBags);
-		        try {
-		        	
-		        	WebElement Pieces = Wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@name='no_of_bag'])[" + k + "]")));
-		            //WebElement Pieces = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
-		            Wait.until(ExpectedConditions.elementToBeClickable(Pieces)).sendKeys(String.valueOf(pieces_per_bundles));
-		            break;
-		        } catch (Exception e) {
-		            System.out.println("Pieces_Per_Bundle error at " + k + ": " + e.getMessage());
-		        }
-		    }
+				// Fill pieces_per_bundles at every 3rd+1 index
+				/*
+				 * if (i % 3 == 2) { try { WebElement Pieces = Wait.until(ExpectedConditions
+				 * .elementToBeClickable(By.xpath("(//input[@name='no_of_bag'])[" + i + "]")));
+				 * Pieces.sendKeys(String.valueOf(pieces_per_bundles)); } catch (Exception e) {
+				 * System.out.println("Pieces_Per_Bundle error at " + i + ": " +
+				 * e.getMessage()); } }
+				 */
 
-		    try {
-		        if (InvalidNoofBundles.isDisplayed()) {
-		            InvalidNoofBundles.click();
-		        }
-		    } catch (Exception e) {
-		        System.out.println("InvalidNoofBundles popup not handled: " + e.getMessage());
-		    }
+				/*
+				 * try { WebElement Sample =
+				 * driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
+				 * Sample.sendKeys("sample_ID" + i); } catch (Exception e) {
+				 * System.out.println("Sample ID error at " + i + ": " + e.getMessage()); }
+				 */
 
-		    try {
-		        driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]")).sendKeys("sample_ID" + i);
-		    } catch (Exception e) {
-		        System.out.println("Sample ID error at " + i + ": " + e.getMessage());
-		    }
+				try {
+					WebElement Quantity_txt = driver.findElement(By.xpath("(//input[@name='QTY'])[" + i + "]"));
+					Wait.until(ExpectedConditions.elementToBeClickable(Quantity_txt)).sendKeys(Quantity);
+				} catch (Exception e) {
+					System.out.println("Quantity error at " + i + ": " + e.getMessage());
+				}
 
-		    try {
-		        WebElement Quantity_txt = driver.findElement(By.xpath("(//input[@name='QTY'])[" + i + "]"));
-		        Wait.until(ExpectedConditions.elementToBeClickable(Quantity_txt)).sendKeys(Quantity);
-		    } catch (Exception e) {
-		        System.out.println("Quantity error at " + i + ": " + e.getMessage());
-		    }
+				try {
+					driver.findElement(By.xpath("(//input[@name='NetWeightPerPackList'])[" + i + "]"))
+							.sendKeys(NetWeightPerPackList);
+				} catch (Exception e) {
+					System.out.println("NetWeightPerPackList error at " + i + ": " + e.getMessage());
+				}
 
-		    try {
-		        driver.findElement(By.xpath("(//input[@name='NetWeightPerPackList'])[" + i + "]")).sendKeys(NetWeightPerPackList);
-		    } catch (Exception e) {
-		        System.out.println("NetWeightPerPackList error at " + i + ": " + e.getMessage());
-		    }
+				// ✅ Click Add after each row is filled
+				try {
+					if (Add_Button.isDisplayed() && Add_Button.isEnabled()) {
+						js.executeScript("arguments[0].click();", Add_Button); // JS click is safer
+						System.out.println("✅ Row " + i + " added successfully");
 
-		    try {
-		        if (Add_Button.isDisplayed() && Add_Button.isEnabled()) {
-		            Add_Button.click();
-		            System.out.println("Add button clicked.");
-		        }
-		    } catch (Exception e) {
-		        System.out.println("Error clicking Add button: " + e.getMessage());
-		    }
-
-		    // Update remainingBags if dynamically changing
-		    try {
-		        remainingBags = Integer.parseInt(remainingBagsElement.getText());
-		    } catch (Exception e) {
-		        System.out.println("Error updating remainingBags: " + e.getMessage());
-		    }
+						// Handle confirmation if appears
+						try {
+							Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
+							System.out.println("✅ Confirmation clicked for row " + i);
+						} catch (Exception e) {
+							System.out.println("⚠️ Confirmation not found for row " + i);
+						}
+					}
+				} catch (Exception e) {
+					System.out.println("Add button click failed at row " + i + ": " + e.getMessage());
+				}
+			}
+		} else {
+			System.out.println("No rows to process.");
 		}
+
+		/*
+		 * try { if (Add_Button.isDisplayed() && Add_Button.isEnabled()) {
+		 * Add_Button.click(); System.out.println("Add button clicked."); } } catch
+		 * (Exception e) { System.out.println("Error clicking Add button: " +
+		 * e.getMessage()); }
+		 * 
+		 * // Update remainingBags if dynamically changing try { remainingBags =
+		 * Integer.parseInt(remainingBag.getText()); } catch (Exception e) {
+		 * System.out.println("Error updating remainingBags: " + e.getMessage()); } } }
+		 */
 		try {
 			Depositor_Detail.sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {

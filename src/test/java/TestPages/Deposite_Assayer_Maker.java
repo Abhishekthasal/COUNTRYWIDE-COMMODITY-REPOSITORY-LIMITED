@@ -3,6 +3,9 @@ package TestPages;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -19,21 +22,23 @@ import Utillity.ExcelUtils;
 
 public class Deposite_Assayer_Maker {
 
-	
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "Deposite_Assayer_Maker";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	
 	
 	String Assayring_Referance = excel.getAssayring_Referance(dataRow);
 	String shelflife = excel.getshelflife(dataRow);
 	String Grade_Desig_type = excel.getGrade_Desig_type(dataRow);
 	String Remark_Value = excel.getRemark_Value(dataRow);
-	String NABLCertificateRefNum =excel.getNABLCertificateRefNum(dataRow);
+	String NABLCertificateRefNum = excel.getNABLCertificateRefNum(dataRow);
 	String Address_Value = excel.getAddress_Value(dataRow);
-	JavascriptExecutor js = (JavascriptExecutor) driver;
+	boolean found = false;
+	
 
 	public Deposite_Assayer_Maker(WebDriver driver, WebDriverWait Wait) {
 
@@ -48,6 +53,9 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "//span[normalize-space()='Deposit Assayer']")
 	WebElement Deposit_Assayer;
+	
+	@FindBy(xpath = "//a[normalize-space()='Pending for Deposit Assayer']")
+	WebElement PendingforDepositAssayer;
 
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement New_btn;
@@ -84,8 +92,8 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "//td[@class='today active start-date active end-date available']")
 	WebElement Today_dates;
-	//(//td[@class='today weekend active start-date active end-date available'])[1]
-	//td[@class='today weekend active start-date active end-date available']
+	// (//td[@class='today weekend active start-date active end-date available'])[1]
+	// td[@class='today weekend active start-date active end-date available']
 	@FindBy(xpath = "//td[@class='today weekend active start-date active end-date available']")
 	WebElement WeekEnd_Date;
 
@@ -152,6 +160,24 @@ public class Deposite_Assayer_Maker {
 	@FindBy(xpath = "(//select[@name='qual_conducted_view'])[1]")
 	WebElement Pre_Qualification;
 
+	@FindBy(xpath = "(//input[@id='Address'])[1]")
+	WebElement OTHER_FOOD_GRAINS_CHAN;
+
+	@FindBy(xpath = "(//input[@id='Address'])[2]")
+	WebElement DAMAGED_GRAINS_CHAN;
+
+	@FindBy(xpath = "(//input[@id='Address'])[3]")
+	WebElement IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chan;
+
+	@FindBy(xpath = "(//input[@id='Address'])[4]")
+	WebElement WEEVILED_GRAINS_Chan;
+
+	@FindBy(xpath = "(//input[@id='Address'])[5]")
+	WebElement ADMIXTURE_Chan;
+
+	@FindBy(xpath = "(//input[@id='Address'])[6]")
+	WebElement FOREIGN_MATTER_chan;
+	
 	@FindBy(xpath = "(//input[@id='Address'])[2]")
 	WebElement OTHER_FOOD_GRAINS_CHANA;
 
@@ -226,34 +252,69 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "(//input[@id='Address'])[6]")
 	WebElement MECHANICALLY_DAMAGED_BEANS;
-	
-	/***********************Assayer QP for WHEAT************************/
-	  @FindBy(xpath = "//select[@name='qual_conducted_view']") WebElement
-	  Pre_Qualification_WHEAT;
-	 
-	  @FindBy(xpath = "//input[@id='Address']") WebElement
-	  FOREIGN_MATTER_Percentage;
-	 
-	  @FindBy(xpath = "(//input[@id='Address'])[1]") WebElement FOREIGN_MATTER_BY_WEIGHT;
-	 
-	  @FindBy(xpath = "(//input[@id='Address'])[2]") WebElement OTHER_FOOD_GRAINS;
-	 
-	  @FindBy(xpath = "(//input[@id='Address'])[3]") WebElement  OTHER_WHEATS;
-	  
-	  @FindBy(xpath = "(//input[@id='Address'])[4]") WebElement DAMAGED_GRAINS;
-	 
-	  @FindBy(xpath = "(//input[@id='Address'])[5]") WebElement SLIGHTLY_DAMAGED_GRAINS;
-	 
-	  @FindBy(xpath = "(//input[@id='Address'])[6]") WebElement IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_WHEAT;
-	 
-	  @FindBy(xpath = "(//input[@id='Address'])[7]") WebElement
-	  WEEVILED_GRAINS_WHEAT;
-	
-	  @FindBy(xpath = "(//input[@id='Address'])[8]") WebElement MOISTURE_WHEAT;
-	  
-	  @FindBy(xpath="//button[@class='confirm']") WebElement Confirm_Ok;
-	  
-	  
+
+	/*********************** Assayer QP for WHEAT ************************/
+	@FindBy(xpath = "//select[@name='qual_conducted_view']")
+	WebElement Pre_Qualification_WHEAT;
+
+	@FindBy(xpath = "//input[@id='Address']")
+	WebElement FOREIGN_MATTER_Percentage;
+
+	@FindBy(xpath = "(//input[@id='Address'])[1]")
+	WebElement FOREIGN_MATTER_BY_WEIGHT;
+
+	@FindBy(xpath = "(//input[@id='Address'])[2]")
+	WebElement OTHER_FOOD_GRAINS;
+
+	@FindBy(xpath = "(//input[@id='Address'])[3]")
+	WebElement OTHER_WHEATS;
+
+	@FindBy(xpath = "(//input[@id='Address'])[4]")
+	WebElement DAMAGED_GRAINS;
+
+	@FindBy(xpath = "(//input[@id='Address'])[5]")
+	WebElement SLIGHTLY_DAMAGED_GRAINS;
+
+	@FindBy(xpath = "(//input[@id='Address'])[6]")
+	WebElement IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_WHEAT;
+
+	@FindBy(xpath = "(//input[@id='Address'])[7]")
+	WebElement WEEVILED_GRAINS_WHEAT;
+
+	@FindBy(xpath = "(//input[@id='Address'])[8]")
+	WebElement MOISTURE_WHEAT;
+
+	@FindBy(xpath = "//button[@class='confirm']")
+	WebElement Confirm_Ok;
+
+	@FindBy(xpath = "(//input[@id='Address'])[1]")
+	WebElement STAPLE_SPAN_LENGTH_Ex;
+
+	@FindBy(xpath = "(//input[@id='Address'])[2]")
+	WebElement MICRONAIRE_EX;
+
+	@FindBy(xpath = "(//input[@id='Address'])[3]")
+	WebElement TRASH_ex;
+
+	@FindBy(xpath = "(//input[@id='Address'])[4]")
+	WebElement TENSILE_STRENGTH_EX;
+
+	/*
+	 * @FindBy(xpath="(//input[@id='Address'])[5]") WebElement
+	 */
+
+	@FindBy(xpath = "//select[@ng-model='Commodity.qp_Value']")
+	WebElement GINNING_PATTERN_ROLLER_GINNED_COTTON;
+
+	@FindBy(xpath = "(//input[@id='Address'])[5]")
+	WebElement MOISTURE_BY_MASS_EX;
+
+	@FindBy(xpath = "(//input[@id='Address'])[6]")
+	WebElement REFLECTANCE_RD_VALUE_EX;
+
+	@FindBy(xpath = "(//input[@id='Address'])[7]")
+	WebElement YELLOWNESS_B_VALUE_EX;
+
 	/*
 	 * @FindBy(xpath = "(//input[@id='Address'])[9]") WebElement YELLOWNESS_B_VALUE;
 	 *
@@ -297,8 +358,6 @@ public class Deposite_Assayer_Maker {
 	 *
 	 * @FindBy(xpath = "//select[@name='qp_Value']") WebElement QUALITY_PARAMETER;
 	 */
-
-	// -------------------------------------------
 	@FindBy(xpath = "//input[@name='ARef_No' and @ng-model='vm.DepositAssayer.arn' and @maxlength='150'][2]")
 	WebElement COA_No;
 	@FindBy(xpath = "//input[@name='remark']")
@@ -309,6 +368,9 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "//input[@name='NABLCertificateRefNo']")
 	WebElement NABLCertificateRefNo;
+	
+	@FindBy(xpath = "//div[@role='dialog']")
+	WebElement scroll;
 
 	@FindBy(xpath = "(//input[@id='Address'])[1]")
 	WebElement Address;
@@ -321,7 +383,7 @@ public class Deposite_Assayer_Maker {
 	@FindBy(xpath = "//button[@class='btn btn-primary blue ng-isolate-scope']")
 	WebElement Save_btn;
 
-	public void Deposit_Assayer() { 
+	public void Deposit_Assayer() {
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
@@ -509,7 +571,27 @@ public class Deposite_Assayer_Maker {
 			Grade_Desig.click();
 			Select Pre_Qualification = new Select(Pre_Qualification_Txt);
 			Pre_Qualification.selectByIndex(1);
+			/*
+			 * System.out.println("You selected: Cotton"); Select GradeCotton = new
+			 * Select(Grade_Desig); GradeCotton.selectByVisibleText("GENERAL");
+			 * Grade_Desig.click();
+			 */
 
+			
+			STAPLE_SPAN_LENGTH_Ex.sendKeys(String.valueOf(28));
+			MICRONAIRE_EX.sendKeys(String.valueOf(4));
+			TRASH_ex.sendKeys(String.valueOf(4));
+			TENSILE_STRENGTH_EX.sendKeys(String.valueOf(28));
+			Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+			S.selectByIndex(1);
+			
+			MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(7));
+			REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
+			YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
+			
+			
+			
+			/*
 			STAPLE_LENGTH.sendKeys("33");
 			TRASH_CONTENT.sendKeys("3");
 			MOISTURE_BY_MASS.sendKeys("5");
@@ -585,6 +667,23 @@ public class Deposite_Assayer_Maker {
 			DAMAGED_AND_WEEVILLED_BEANS.sendKeys("3");
 			MECHANICALLY_DAMAGED_BEANS.sendKeys("15");
 
+			break;
+		case 1:
+			System.out.println("You selected: WHEAT");
+			Select WHEAT_Grade = new Select(Grade_Desig);
+			WHEAT_Grade.selectByVisibleText("GRADE I");
+
+			Select Qualification_WHEAT = new Select(Pre_Qualification_WHEAT);
+			Qualification_WHEAT.selectByContainsVisibleText("Qualified");
+
+			FOREIGN_MATTER_BY_WEIGHT.sendKeys("4");
+			OTHER_FOOD_GRAINS.sendKeys("8");
+			OTHER_WHEATS.sendKeys("20");
+			DAMAGED_GRAINS.sendKeys("5");
+			SLIGHTLY_DAMAGED_GRAINS.sendKeys("10");
+			IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_WHEAT.sendKeys("10");
+			WEEVILED_GRAINS_WHEAT.sendKeys("5");
+			MOISTURE_WHEAT.sendKeys("12");
 			break;
 		default:
 			System.out.println("Invalid selection!");
@@ -682,7 +781,7 @@ public class Deposite_Assayer_Maker {
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Transaction_Btn click...");
 			js.executeScript("arguments[0].click();", Transaction_Btn);
-		} catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) { 
 			System.out.println("Transaction_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
@@ -723,9 +822,9 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for WareHouse_Id_btn: " + e.getMessage());
 		}
 		try {
-			if (String.valueOf(Physical_Deposit_Maker.Sample).matches("^[a-zA-Z0-9]{50}$")) {
+			//if (String.valueOf(Physical_Deposit_Maker.Sample).matches("^[a-zA-Z0-9]{50}$")) {
 				SampleId_txt.sendKeys(String.valueOf(Physical_Deposit_Maker.Sample));
-			}
+			//}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript SampleId_txt click...");
 			js.executeScript("arguments[0].value='" + Physical_Deposit_Maker.Sample + "';", SampleId_txt);
@@ -781,7 +880,7 @@ public class Deposite_Assayer_Maker {
 			Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
-			
+
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
 			js.executeScript("arguments[0].click();", AssayingDate);
@@ -854,29 +953,37 @@ public class Deposite_Assayer_Maker {
 			GradeCotton.selectByVisibleText("GENERAL");
 			Grade_Desig.click();
 
-			Select Pre_Qualification = new Select(Pre_Qualification_Txt);
-			Pre_Qualification.selectByIndex(1);
+			
+			STAPLE_SPAN_LENGTH_Ex.sendKeys(String.valueOf(28));
+			MICRONAIRE_EX.sendKeys(String.valueOf(4));
+			TRASH_ex.sendKeys(String.valueOf(4));
+			TENSILE_STRENGTH_EX.sendKeys(String.valueOf(28));
+			Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+			S.selectByIndex(1);
+			
+			MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(7));
+			REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
+			YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
+			
 			/*
+			 * Select Pre_Qualification = new Select(Pre_Qualification_Txt);
+			 * Pre_Qualification.selectByIndex(1);
+			 * 
 			 * STAPLE_LENGTH.sendKeys("33"); MOISTURE_BY_MASS.sendKeys("3");
 			 * MOISTURE_BY_MASS.sendKeys("5");
+			 * 
+			 * IMMATURE_SHRIVELED_AND_BROKEN_GRAINS.sendKeys("12");
+			 * WEEVILED_GRAINS.sendKeys("3"); ADMIXTURE.sendKeys("2");
+			 * DAMAGED_IMMATURE_WEEVILLED.sendKeys("4");
+			 * FOREIGN_MATTER_ORGANIC.sendKeys("0.6");
+			 * FOREIGN_MATTER_INORGANIC.sendKeys("0.2"); OTHER_EDIBLE_GRAINS.sendKeys("3");
+			 * PERCENTAGE_OF_BULBS_BY_WEIGHT.sendKeys("5"); MOISTURE.sendKeys("8");
+			 * FOREIGN_MATTER.sendKeys("1"); MOISTURE_CONTENT.sendKeys("10");
+			 * SLIGHTLY_DAMAGED_TOUCHED_GRAINS.sendKeys("4");
+			 * FOREIGN_MATTER_BY_WT.sendKeys("3"); MOISTURE_BY_WT_Max.sendKeys("14");
+			 * ADMIXTURE_OTHER_EDIBLE_GRAINS.sendKeys("4"); WEEVILLED_GRAINS.sendKeys("9");
+			 * DAMAGED_IMMATURE_SHRIVELED_GRAINS.sendKeys("8");
 			 */
-			IMMATURE_SHRIVELED_AND_BROKEN_GRAINS.sendKeys("12");
-			WEEVILED_GRAINS.sendKeys("3");
-			ADMIXTURE.sendKeys("2");
-			DAMAGED_IMMATURE_WEEVILLED.sendKeys("4");
-			FOREIGN_MATTER_ORGANIC.sendKeys("0.6");
-			FOREIGN_MATTER_INORGANIC.sendKeys("0.2");
-			OTHER_EDIBLE_GRAINS.sendKeys("3");
-			PERCENTAGE_OF_BULBS_BY_WEIGHT.sendKeys("5");
-			MOISTURE.sendKeys("8");
-			FOREIGN_MATTER.sendKeys("1");
-			MOISTURE_CONTENT.sendKeys("10");
-			SLIGHTLY_DAMAGED_TOUCHED_GRAINS.sendKeys("4");
-			FOREIGN_MATTER_BY_WT.sendKeys("3");
-			MOISTURE_BY_WT_Max.sendKeys("14");
-			ADMIXTURE_OTHER_EDIBLE_GRAINS.sendKeys("4");
-			WEEVILLED_GRAINS.sendKeys("9");
-			DAMAGED_IMMATURE_SHRIVELED_GRAINS.sendKeys("8");
 
 			break;
 		case 49:
@@ -1064,17 +1171,17 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WareHouse_Id_btn: " + e.getMessage());
 		}
-		try {
-			SampleId_txt.sendKeys(String.valueOf(Exchange_Non_Agri_WareHouse.Sample));
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].value='" + Exchange_Non_Agri_WareHouse.Sample + "';",
-					SampleId_txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("SampleId_txt not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for SampleId_txt : " + e.getMessage());
-		}
+		/*
+		 * try {
+		 * SampleId_txt.sendKeys(String.valueOf(Exchange_Non_Agri_WareHouse.Sample)); }
+		 * catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying JavaScript click...");
+		 * js.executeScript("arguments[0].value='" + Exchange_Non_Agri_WareHouse.Sample
+		 * + "';", SampleId_txt); } catch (NoSuchElementException e) {
+		 * System.out.println("SampleId_txt not found: " + e.getMessage()); } catch
+		 * (Exception e) { System.out.println("Unexpected error for SampleId_txt : " +
+		 * e.getMessage()); }
+		 */
 		try {
 			Search_btn.sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
@@ -1160,7 +1267,7 @@ public class Deposite_Assayer_Maker {
 		}
 
 		int choice = Integer.parseInt(Exchange_Deposite_Request_Non_Agriculture_Maker.Commodity_Code);
-          // Step 4: Use switch to process selection
+		// Step 4: Use switch to process selection
 		switch (choice) {
 		case 1003:
 			System.out.println("You selected: ZINC");
@@ -1283,7 +1390,7 @@ public class Deposite_Assayer_Maker {
 
 	}
 
-	public void Deposit_Assayer_Agriculture_Multiple_GSL_Maker() {
+	public void Deposit_Assayer_Agriculture_Multiple_GSL_Maker() throws InterruptedException {
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
@@ -1306,8 +1413,8 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
-			//System.out.println("value of total bags:"+DashBoard_WareHouse_Checker.totalBags);
+		for (int i =1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+			Thread.sleep(3000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -1318,12 +1425,13 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for New_btn: " + e.getMessage());
 			}
-			//driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			// driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+			Thread.sleep(2000);
 			try {
 				if (RP_Deposite_Request_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{0,7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WareHouse_Id_btn)).click();
 					WareHouse_Id_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.WH_ID));
+					Thread.sleep(1000);
 					WareHouse_Id_txt.sendKeys(Keys.ENTER);
 				} else {
 					System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
@@ -1344,8 +1452,9 @@ public class Deposite_Assayer_Maker {
 			// SA.selectByContainsVisibleText("5750013");
 
 			try {
-				if (Physical_Deposit_Maker.Sample.matches("^[a-zA-Z0-9]{0,50}$")) {
-					Wait.until(ExpectedConditions.elementToBeClickable(SampleId_txt)).sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
+				if (RP_Deposite_Request_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{0,50}$")) {
+					Wait.until(ExpectedConditions.elementToBeClickable(SampleId_txt))
+							.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite + i));
 				} else {
 					System.out.println("Invalid Sample. Please enter exactly 50 digits (numbers only):");
 
@@ -1359,17 +1468,12 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for SampleId_txt: " + e.getMessage());
 			}
-			try {
-				if(Confirm_Ok.isDisplayed()) {
-					Confirm_Ok.click();
-				}
-				else {
-					System.out.println("Confirm_Ok is not visible");
-				}
-				} catch (Exception e) {
-					System.out.println("Unexpected error for Confirm_Ok: " + e.getMessage());
-				}
-			
+			/*
+			 * try { if(Confirm_Ok.isDisplayed()) { Confirm_Ok.click(); } else {
+			 * System.out.println("Confirm_Ok is not visible"); } } catch (Exception e) {
+			 * System.out.println("Unexpected error for Confirm_Ok: " + e.getMessage()); }
+			 */
+
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -1379,11 +1483,11 @@ public class Deposite_Assayer_Maker {
 				System.out.println("Search_btn not found: " + e.getMessage());
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-			}finally {
-				System.out.println("Search_btn is click" );
+			} finally {
+				System.out.println("Search_btn is click");
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).sendKeys(Keys.ENTER);
 			}
-			
+
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -1401,7 +1505,7 @@ public class Deposite_Assayer_Maker {
 					Wait.until(ExpectedConditions.elementToBeClickable(Assayring_Referance_No))
 							.sendKeys(String.valueOf(Assayring_Referance + i));
 					Assayring_Referance_No.sendKeys(Keys.ENTER);
-					System.out.println("Assayring_Referance no:"+Assayring_Referance+i);
+					System.out.println("Assayring_Referance no:" + Assayring_Referance + i);
 				} else {
 					System.out.println("Invalid Assayring_Referance. Please enter exactly 20 alphanumeric characters:");
 				}
@@ -1419,20 +1523,20 @@ public class Deposite_Assayer_Maker {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-				//Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
-				//Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
 				DayOfWeek today = LocalDateTime.now().getDayOfWeek();
 
 				if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
-				    // Click on Weekend date button
-				    WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
-				    weekendButton.click();
-				    System.out.println("Weekend button clicked");
+					// Click on Weekend date button
+					WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+					weekendButton.click();
+					System.out.println("Weekend button clicked");
 				} else {
-				    // Click on Today date button
-				    WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
-				    todayButton.click();
-				    System.out.println("Today date button clicked");
+					// Click on Today date button
+					WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+					todayButton.click();
+					System.out.println("Today date button clicked");
 				}
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
@@ -1531,26 +1635,28 @@ public class Deposite_Assayer_Maker {
 			case 6:
 				System.out.println("You selected: CHANA ");
 				Select Grade_CHANA = new Select(Grade_CHANA_WHOLE);
-				Grade_CHANA.selectByVisibleText("NAFED FAQ"); // Grade_CHANA_WHOLE.click();
+				Grade_CHANA.selectByVisibleText("SPECIAL"); // Grade_CHANA_WHOLE.click();
 
 				Select Qualification = new Select(Pre_Qualification_Txt);
 				Qualification.selectByContainsVisibleText("Qualified");
 
-				OTHER_FOOD_GRAINS_CHANA.sendKeys("3");
+				OTHER_FOOD_GRAINS_CHAN.sendKeys("3");
 
-				DAMAGED_GRAINS_CHANA.sendKeys("4");
+				DAMAGED_GRAINS_CHAN.sendKeys("4");
 
-				IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chana.sendKeys("6");
+				IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chan.sendKeys("0.75");
 
-				WEEVILED_GRAINS_Chana.sendKeys("4");
+				WEEVILED_GRAINS_Chan.sendKeys("0.25");
 
-				ADMIXTURE_Chana.sendKeys("2");
+				ADMIXTURE_Chan.sendKeys("2");
 
-				FOREIGN_MATTER_chana.sendKeys("1");
+				FOREIGN_MATTER_chan.sendKeys("5");
 
-				MOISTURE_CONTENT_Chana.sendKeys("14");
-
-				SLIGHTLY_DAMAGED_TOUCHED_GRAINS_Chana.sendKeys("4");
+				/*
+				 * MOISTURE_CONTENT_Chana.sendKeys("14");
+				 * 
+				 * SLIGHTLY_DAMAGED_TOUCHED_GRAINS_Chana.sendKeys("4");
+				 */
 
 				break;
 			case 13:
@@ -1588,7 +1694,7 @@ public class Deposite_Assayer_Maker {
 			default:
 				System.out.println("Invalid selection!");
 			}
-			
+
 			try {
 				if (Upload_Assaying_Report.isDisplayed()) {
 					Upload_Assaying_Report.click();
@@ -1626,13 +1732,14 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 			}
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		//	driver.manage().timeouts().pageLoadTimeout(60,TimeUnit.SECONDS);
+			Thread.sleep(3000);
+			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+			// driver.manage().timeouts().pageLoadTimeout(60,TimeUnit.SECONDS);
 		}
 
 	}
 
-	public void Exchange_Deposit_Assayer_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposit_Assayer_Agriculture_Multiple_GSL() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -1664,6 +1771,7 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for New_btn: " + e.getMessage());
 			}
+			Thread.sleep(2000);
 			try {
 				if (RP_Exchange_Deposite_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WareHouse_Id_btn)).click();
@@ -1676,7 +1784,7 @@ public class Deposite_Assayer_Maker {
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript WareHouse_Id_btn click...");
 				js.executeScript("arguments[0].click();", WareHouse_Id_btn);
-				js.executeScript("arguments[0].value='" + RP_Deposite_Request_Agriculture_Maker.WH_ID + "';",
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.WH_ID + "';",
 						WareHouse_Id_txt);
 				js.executeScript("arguments[0].click();", WareHouse_Id_txt);
 			} catch (NoSuchElementException e) {
@@ -1697,7 +1805,8 @@ public class Deposite_Assayer_Maker {
 				}
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript SampleId_txt click...");
-				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + i + "';", SampleId_txt);
+				js.executeScript("arguments[0].value='" + RP_Exchange_Deposite_Agriculture_Maker.Deposite + i + "';",
+						SampleId_txt);
 
 			} catch (NoSuchElementException e) {
 				System.out.println("SampleId_txt not found: " + e.getMessage());
@@ -1810,7 +1919,7 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Grade_Desig: " + e.getMessage());
 			}
-			int choice = Integer.parseInt(RP_Deposite_Request_Agriculture_Maker.Commodity_Code);
+			int choice = Integer.parseInt(RP_Exchange_Deposite_Agriculture_Maker.Commodity_Code);
 
 			// Step 4: Use switch to process selection
 
@@ -1820,13 +1929,25 @@ public class Deposite_Assayer_Maker {
 				Select Grade = new Select(Grade_Desig);
 				Grade.selectByVisibleText("GENERAL");
 				Grade_Desig.click();
-				Select Pre_Qualification = new Select(Pre_Qualification_Txt);
-				Pre_Qualification.selectByIndex(1);
-
-				STAPLE_LENGTH.sendKeys("33");
-				TRASH_CONTENT.sendKeys("3");
-				MOISTURE_BY_MASS.sendKeys("5");
 				/*
+				 * Select Pre_Qualification = new Select(Pre_Qualification_Txt);
+				 * Pre_Qualification.selectByIndex(1);
+				 */
+				STAPLE_SPAN_LENGTH_Ex.sendKeys(String.valueOf(28));
+				MICRONAIRE_EX.sendKeys(String.valueOf(4));
+				TRASH_ex.sendKeys(String.valueOf(4));
+				TENSILE_STRENGTH_EX.sendKeys(String.valueOf(28));
+				Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+				S.selectByIndex(1);
+
+				MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(7));
+				REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
+				YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
+
+				/*
+				 * STAPLE_LENGTH.sendKeys("33"); TRASH_CONTENT.sendKeys("3");
+				 * MOISTURE_BY_MASS.sendKeys("5");
+				 * 
 				 * OTHER_FOOD_GRAINS.sendKeys("3"); DAMAGED_GRAINS.sendKeys("2");
 				 * SLIGHTLY_DAMAGED_GRAINS.sendKeys("3");
 				 * IMMATURE_SHRIVELED_AND_BROKEN_GRAINS.sendKeys("12");
@@ -1990,12 +2111,12 @@ public class Deposite_Assayer_Maker {
 
 	}
 
-	public void Exchange_Deposit_Assayer_Non_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposit_Assayer_Non_Agriculture_Multiple_GSL() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Transaction_Btn trying JavaScript click...");
 			js.executeScript("arguments[0].click();", Transaction_Btn);
 		} catch (NoSuchElementException e) {
 			System.out.println(" Transaction_Btn not found: " + e.getMessage());
@@ -2006,7 +2127,7 @@ public class Deposite_Assayer_Maker {
 			Wait.until(ExpectedConditions.elementToBeClickable(Deposit_Assayer)).click();
 
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, Deposit_Assayer trying JavaScript click...");
 			js.executeScript("arguments[0].click();", Deposit_Assayer);
 		} catch (NoSuchElementException e) {
 			System.out.println("Deposit_Assayer not found: " + e.getMessage());
@@ -2014,250 +2135,434 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for Deposit_Assayer : " + e.getMessage());
 		}
 		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", New_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("New_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for New_btn : " + e.getMessage());
-		}
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(WareHouse_Id_btn)).click();
-			WareHouse_Id_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.WH_ID));
-			WareHouse_Id_txt.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			// js.executeScript("arguments[0].scrollIntoView(true);", WareHouse_Id_btn);
-			js.executeScript("arguments[0].click();", WareHouse_Id_btn);
-			js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.WH_ID + "';",
-					WareHouse_Id_txt);
-			js.executeScript("arguments[0].click();", WareHouse_Id_txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("WareHouse_Id_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for WareHouse_Id_btn: " + e.getMessage());
-		}
-		try {
-			SampleId_txt.sendKeys(String.valueOf(Exchange_Non_Agri_WareHouse.Sample));
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].value='" + Exchange_Non_Agri_WareHouse.Sample + "';",
-					SampleId_txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("SampleId_txt not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for SampleId_txt : " + e.getMessage());
-		}
-		try {
-			Search_btn.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].scrollIntoView(true);", Search_btn);
-			js.executeScript("arguments[0].click();", Search_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Search_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
-		}
-		try {
-			Select_btn.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].scrollIntoView(true);", Select_btn);
-			js.executeScript("arguments[0].click();", Select_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Select_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Select_btn: " + e.getMessage());
-		}
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(COA_No)).click();
-			Wait.until(ExpectedConditions.elementToBeClickable(COA_No)).sendKeys(String.valueOf(Assayring_Referance));
-			Assayring_Referance_No.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			// js.executeScript("arguments[0].scrollIntoView(true);",
-			// Assayring_Referance_No);
-			js.executeScript("arguments[0].click();", COA_No);
-			js.executeScript("arguments[0].value='" + Assayring_Referance + "';", COA_No);
-			js.executeScript("arguments[0].click();", COA_No);
-
-		} catch (NoSuchElementException e) {
-			System.out.println("Assayring_Referance_No not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Assayring_Referance_No: " + e.getMessage());
-		}
-		try {
-			AssayingDate.click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
-			js.executeScript("arguments[0].click();", AssayingDate);
-		} catch (NoSuchElementException e) {
-			System.out.println("AssayingDate not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for AssayingDate: " + e.getMessage());
-		}
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-			Today_dates.click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].scrollIntoView(true);", Calander);
-			js.executeScript("arguments[0].click();", Calander);
-			js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
-			js.executeScript("arguments[0].click();", Today_dates);
-		} catch (NoSuchElementException e) {
-			System.out.println("Calander not found:" + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Calander: " + e.getMessage());
-		}
-		try {
-			shelflife_count.sendKeys(shelflife);
-		} catch (ElementClickInterceptedException e) {
-			js.executeScript("arguments[0].value='" + shelflife + "';", Assayring_Referance_No);
-		} catch (NoSuchElementException e) {
-			System.out.println("shelflife_count not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for shelflife_count: " + e.getMessage());
-		}
-		try {
-			Goods_Quality_Manu.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			js.executeScript("arguments[0].scrollIntoView(true);", Goods_Quality_Manu);
-			js.executeScript("arguments[0].click();", Goods_Quality_Manu);
-		} catch (NoSuchElementException e) {
-			System.out.println("Goods_Quality_Manu not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Goods_Quality_Manu: " + e.getMessage());
-		}
-
-		int choice = Integer.parseInt(Exchange_Deposite_Request_Non_Agriculture_Maker.Commodity_Code);
-             // Step 4: Use switch to process selection
-		switch (choice) {
-		case 1003:
-			System.out.println("You selected: ZINC");
 			try {
-				Wait.until(ExpectedConditions.elementToBeClickable(Grade_Desig)).click();
-				Select Grade = new Select(Grade_Desig);
-				Grade.selectByVisibleText(Grade_Desig_type);
-				Grade_Desig.click();
-			} catch (ElementClickInterceptedException e) {
-				// js.executeScript("arguments[0].scrollIntoView(true);", Grade_Desig);
-				js.executeScript("arguments[0].click();", Grade_Desig);
-				Select Grade = new Select(Grade_Desig);
-				Grade.selectByVisibleText("GENERAL");
-				// js.executeScript("arguments[0].scrollIntoView(true);", Grade_Desig);
-				js.executeScript("arguments[0].click();", Grade_Desig);
-			} catch (NoSuchElementException e) {
-				System.out.println("Grade_Desig not found: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Unexpected error for Grade_Desig: " + e.getMessage());
-			}
-			try {
-				remark.sendKeys(Remark_Value);
+				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
-				js.executeScript("arguments[0].scrollIntoView(true);", remark);
-				js.executeScript("arguments[0].click();", remark);
-				js.executeScript("arguments[0].value='" + Assayring_Referance + "';", remark);
-				// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				js.executeScript("arguments[0].click();", New_btn);
 			} catch (NoSuchElementException e) {
-				System.out.println("remark not found: " + e.getMessage());
+				System.out.println("New_btn not found: " + e.getMessage());
 			} catch (Exception e) {
-				System.out.println("Unexpected error for remark: " + e.getMessage());
+				System.out.println("Unexpected error for New_btn : " + e.getMessage());
 			}
+			Thread.sleep(1000);
 			try {
-				NABLCertificateDate.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(WareHouse_Id_btn)).click();
+				WareHouse_Id_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.WH_ID));
+				WareHouse_Id_txt.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
-				js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateDate);
-				js.executeScript("arguments[0].click();", NABLCertificateDate);
+				System.out.println("Normal click failed, trying JavaScript click...");
+				// js.executeScript("arguments[0].scrollIntoView(true);", WareHouse_Id_btn);
+				js.executeScript("arguments[0].click();", WareHouse_Id_btn);
+				js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.WH_ID + "';",
+						WareHouse_Id_txt);
+				js.executeScript("arguments[0].click();", WareHouse_Id_txt);
 			} catch (NoSuchElementException e) {
-				System.out.println("NABLCertificateDate not found: " + e.getMessage());
+				System.out.println("WareHouse_Id_btn not found: " + e.getMessage());
 			} catch (Exception e) {
-				System.out.println("Unexpected error for NABLCertificateDate: " + e.getMessage());
+				System.out.println("Unexpected error for WareHouse_Id_btn: " + e.getMessage());
+			}
+			/*
+			 * try { SampleId_txt.sendKeys(String.valueOf(Exchange_Non_Agri_WareHouse.Sample
+			 * +i)); } catch (ElementClickInterceptedException e) {
+			 * System.out.println("Normal click failed, trying JavaScript click...");
+			 * js.executeScript("arguments[0].value='" + Exchange_Non_Agri_WareHouse.Sample
+			 * + "';", SampleId_txt); } catch (NoSuchElementException e) {
+			 * System.out.println("SampleId_txt not found: " + e.getMessage()); } catch
+			 * (Exception e) { System.out.println("Unexpected error for SampleId_txt : " +
+			 * e.getMessage()); }
+			 */
+			try {
+				Search_btn.sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].scrollIntoView(true);", Search_btn);
+				js.executeScript("arguments[0].click();", Search_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Search_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
+			}
+			scroll.sendKeys(Keys.PAGE_DOWN);
+			scroll.sendKeys(Keys.PAGE_DOWN);
+			
+			Thread.sleep(3000);
+			while (true) {
+				// Wait until table rows or data are loaded
+				// (//div[@role='rowgroup'])[2]
+				// div[@class='ui-grid-cell-contents ng-binding ng-scope']
+				// Wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@role='rowgroup'])[2]")));
+				// Find all text elements that may contain the target value
+				//WebElement DRN=driver
+					//	.findElement(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
+
+				List<WebElement> valueElements = driver
+						.findElements(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite+ "')]"));
+				if (valueElements.contains(valueElements)) {
+					System.out.println("Step One");
+					if (valueElements.size() > 0) {
+						// Value found, click the button in the same row/div
+
+						WebElement button = driver
+								.findElement(By.xpath("//div[contains(text(),'" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
+										+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
+
+						button.click();
+						System.out.println("✅ Clicked on Select button for value: " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
+						found = true;
+						break;
+					}
+				} else {
+					// If value not found, check if 'Next' button is enabled
+					List<WebElement> nextButtons = driver
+							.findElements(By.xpath("(//div[@class='last-triangle next-triangle'])[1]"));
+
+					if (nextButtons.size() > 0 && nextButtons.get(0).isEnabled()) {
+						System.out.println("Step two");
+						nextButtons.get(0).click();
+						try {
+						if (valueElements.size() > 0) {
+							// Value found, click the button in the same row/div
+
+							WebElement button = driver
+									.findElement(By.xpath("//div[contains(text(),'" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
+											+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
+
+							button.click();
+							System.out.println("✅ Clicked on Select button for value: " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
+							found = true;
+							break;
+						}
+						} catch (Exception e) {
+							System.out.println("Unexpected error for valueElements: " + e.getMessage());
+						}
+						System.out.println("➡️ Moved to next page...");
+						Thread.sleep(2000); // Wait for next page data to load
+					} else {
+						System.out.println("❌ Value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + " not found in any page.");
+						break;
+					}
+				}
+			}
+
+			if (!found) {
+				System.out.println("⚠️ Target value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + " was not found in the table.");
+			}
+
+			/*
+			 * try { Select_btn.sendKeys(Keys.ENTER); } catch
+			 * (ElementClickInterceptedException e) {
+			 * System.out.println("Normal click failed, trying JavaScript click...");
+			 * js.executeScript("arguments[0].scrollIntoView(true);", Select_btn);
+			 * js.executeScript("arguments[0].click();", Select_btn); } catch
+			 * (NoSuchElementException e) { System.out.println("Select_btn not found: " +
+			 * e.getMessage()); } catch (Exception e) {
+			 * System.out.println("Unexpected error for Select_btn: " + e.getMessage()); }
+			 */
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(COA_No)).click();
+				Wait.until(ExpectedConditions.elementToBeClickable(COA_No))
+						.sendKeys(String.valueOf(Assayring_Referance+i));
+				Assayring_Referance_No.sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				// js.executeScript("arguments[0].scrollIntoView(true);",
+				// Assayring_Referance_No);
+				js.executeScript("arguments[0].click();", COA_No);
+				js.executeScript("arguments[0].value='" + Assayring_Referance+i + "';", COA_No);
+				js.executeScript("arguments[0].click();", COA_No);
+
+			} catch (NoSuchElementException e) {
+				System.out.println("Assayring_Referance_No not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Assayring_Referance_No: " + e.getMessage());
 			}
 			try {
+				AssayingDate.click();
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
+				js.executeScript("arguments[0].click();", AssayingDate);
+			} catch (NoSuchElementException e) {
+				System.out.println("AssayingDate not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for AssayingDate: " + e.getMessage());
+			}
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
 				Today_dates.click();
 			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].scrollIntoView(true);", Calander);
+				js.executeScript("arguments[0].click();", Calander);
 				js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
 				js.executeScript("arguments[0].click();", Today_dates);
 			} catch (NoSuchElementException e) {
-				System.out.println("Today_dates not found: " + e.getMessage());
+				System.out.println("Calander not found:" + e.getMessage());
 			} catch (Exception e) {
-				System.out.println("Unexpected error for Today_dates: " + e.getMessage());
+				System.out.println("Unexpected error for Calander: " + e.getMessage());
 			}
 			try {
-				NABLCertificateRefNo.sendKeys(NABLCertificateRefNum);
+				shelflife_count.sendKeys(shelflife);
 			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript click...");
-				js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateRefNo);
-				js.executeScript("arguments[0].click();", NABLCertificateRefNo);
-				js.executeScript("arguments[0].value='" + NABLCertificateRefNum + "';", NABLCertificateRefNo);
-				// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				js.executeScript("arguments[0].value='" + shelflife + "';", Assayring_Referance_No);
 			} catch (NoSuchElementException e) {
-				System.out.println("NABLCertificateRefNo not found: " + e.getMessage());
+				System.out.println("shelflife_count not found: " + e.getMessage());
 			} catch (Exception e) {
-				System.out.println("Unexpected error for NABLCertificateRefNo: " + e.getMessage());
+				System.out.println("Unexpected error for shelflife_count: " + e.getMessage());
 			}
 			try {
-				Address.sendKeys(Address_Value);
+				Goods_Quality_Manu.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript click...");
-				js.executeScript("arguments[0].scrollIntoView(true);", Address);
-				js.executeScript("arguments[0].click();", Address);
-				js.executeScript("arguments[0].value='" + Address_Value + "';", Address);
-				// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				js.executeScript("arguments[0].scrollIntoView(true);", Goods_Quality_Manu);
+				js.executeScript("arguments[0].click();", Goods_Quality_Manu);
 			} catch (NoSuchElementException e) {
-				System.out.println("Address not found: " + e.getMessage());
+				System.out.println("Goods_Quality_Manu not found: " + e.getMessage());
 			} catch (Exception e) {
-				System.out.println("Unexpected error for Address: " + e.getMessage());
+				System.out.println("Unexpected error for Goods_Quality_Manu: " + e.getMessage());
 			}
-			break;
-		default:
-			System.out.println("Invalid selection!");
-		}
-		try {
-			Upload_Assaying_Report.click();
-		} catch (ElementClickInterceptedException e) {
-			js.executeScript("arguments[0].scrollIntoView(true);", Upload_Assaying_Report);
-			js.executeScript("arguments[0].click();", Upload_Assaying_Report);
-		} catch (NoSuchElementException e) {
-			System.out.println("Upload_Assaying_Report not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Upload_Assaying_Report: " + e.getMessage());
-		}
 
-		try {
-			if (Verify_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).sendKeys(Keys.ENTER);
+			int choice = Integer.parseInt(Exchange_Deposite_Request_Non_Agriculture_Maker.Commodity_Code);
+			// Step 4: Use switch to process selection
+			switch (choice) {
+			case 1003:
+				System.out.println("You selected: ZINC");
+				try {
+					Wait.until(ExpectedConditions.elementToBeClickable(Grade_Desig)).click();
+					Select Grade = new Select(Grade_Desig);
+					Grade.selectByVisibleText(Grade_Desig_type);
+					Grade_Desig.click();
+				} catch (ElementClickInterceptedException e) {
+					// js.executeScript("arguments[0].scrollIntoView(true);", Grade_Desig);
+					js.executeScript("arguments[0].click();", Grade_Desig);
+					Select Grade = new Select(Grade_Desig);
+					Grade.selectByVisibleText("GENERAL");
+					// js.executeScript("arguments[0].scrollIntoView(true);", Grade_Desig);
+					js.executeScript("arguments[0].click();", Grade_Desig);
+				} catch (NoSuchElementException e) {
+					System.out.println("Grade_Desig not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Grade_Desig: " + e.getMessage());
+				}
+				try {
+					remark.sendKeys(Remark_Value);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", remark);
+					js.executeScript("arguments[0].click();", remark);
+					js.executeScript("arguments[0].value='" + Assayring_Referance + "';", remark);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("remark not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for remark: " + e.getMessage());
+				}
+				try {
+					NABLCertificateDate.click();
+				} catch (ElementClickInterceptedException e) {
+					js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateDate);
+					js.executeScript("arguments[0].click();", NABLCertificateDate);
+				} catch (NoSuchElementException e) {
+					System.out.println("NABLCertificateDate not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for NABLCertificateDate: " + e.getMessage());
+				}
+				try {
+					Today_dates.click();
+				} catch (ElementClickInterceptedException e) {
+					js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
+					js.executeScript("arguments[0].click();", Today_dates);
+				} catch (NoSuchElementException e) {
+					System.out.println("Today_dates not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Today_dates: " + e.getMessage());
+				}
+				try {
+					NABLCertificateRefNo.sendKeys(NABLCertificateRefNum);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateRefNo);
+					js.executeScript("arguments[0].click();", NABLCertificateRefNo);
+					js.executeScript("arguments[0].value='" + NABLCertificateRefNum + "';", NABLCertificateRefNo);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("NABLCertificateRefNo not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for NABLCertificateRefNo: " + e.getMessage());
+				}
+				try {
+					Address.sendKeys(Address_Value);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", Address);
+					js.executeScript("arguments[0].click();", Address);
+					js.executeScript("arguments[0].value='" + Address_Value + "';", Address);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("Address not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Address: " + e.getMessage());
+					
+				}
+				
+				break;
+			case 1001:
+				System.out.println("You selected: ALUMINUM");
+				try {
+					Wait.until(ExpectedConditions.elementToBeClickable(Grade_Desig)).click();
+					Select Grade = new Select(Grade_Desig);
+					Grade.selectByVisibleText(Grade_Desig_type);
+					Grade_Desig.click();
+				} catch (ElementClickInterceptedException e) {
+					// js.executeScript("arguments[0].scrollIntoView(true);", Grade_Desig);
+					js.executeScript("arguments[0].click();", Grade_Desig);
+					Select Grade = new Select(Grade_Desig);
+					Grade.selectByVisibleText("GENERAL");
+					// js.executeScript("arguments[0].scrollIntoView(true);", Grade_Desig);
+					js.executeScript("arguments[0].click();", Grade_Desig);
+				} catch (NoSuchElementException e) {
+					System.out.println("Grade_Desig not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Grade_Desig: " + e.getMessage());
+				}
+				try {
+					remark.sendKeys(Remark_Value);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", remark);
+					js.executeScript("arguments[0].click();", remark);
+					js.executeScript("arguments[0].value='" + Assayring_Referance + "';", remark);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("remark not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for remark: " + e.getMessage());
+				}
+				try {
+					NABLCertificateDate.click();
+				} catch (ElementClickInterceptedException e) {
+					js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateDate);
+					js.executeScript("arguments[0].click();", NABLCertificateDate);
+				} catch (NoSuchElementException e) {
+					System.out.println("NABLCertificateDate not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for NABLCertificateDate: " + e.getMessage());
+				}
+				try {
+					Today_dates.click();
+				} catch (ElementClickInterceptedException e) {
+					js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
+					js.executeScript("arguments[0].click();", Today_dates);
+				} catch (NoSuchElementException e) {
+					System.out.println("Today_dates not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Today_dates: " + e.getMessage());
+				}
+				try {
+					NABLCertificateRefNo.sendKeys(NABLCertificateRefNum);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateRefNo);
+					js.executeScript("arguments[0].click();", NABLCertificateRefNo);
+					js.executeScript("arguments[0].value='" + NABLCertificateRefNum + "';", NABLCertificateRefNo);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("NABLCertificateRefNo not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for NABLCertificateRefNo: " + e.getMessage());
+				}
+				try {
+					Address.sendKeys(Address_Value);
+				} catch (ElementClickInterceptedException e) {
+					System.out.println("Normal click failed, trying JavaScript click...");
+					js.executeScript("arguments[0].scrollIntoView(true);", Address);
+					js.executeScript("arguments[0].click();", Address);
+					js.executeScript("arguments[0].value='" + Address_Value + "';", Address);
+					// js.executeScript("arguments[0].click();", Assayring_Referance_No);
+				} catch (NoSuchElementException e) {
+					System.out.println("Address not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Unexpected error for Address: " + e.getMessage());
+				}
+				break;
+			default:
+				System.out.println("Invalid selection!");
 			}
-		} catch (ElementClickInterceptedException e) {
-			js.executeScript("arguments[0].scrollIntoView(true);", Verify_btn);
-			js.executeScript("arguments[0].click();", Verify_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Verify_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Verify_btn : " + e.getMessage());
-		}
+			try {
+				Upload_Assaying_Report.click();
+			} catch (ElementClickInterceptedException e) {
+				js.executeScript("arguments[0].scrollIntoView(true);", Upload_Assaying_Report);
+				js.executeScript("arguments[0].click();", Upload_Assaying_Report);
+			} catch (NoSuchElementException e) {
+				System.out.println("Upload_Assaying_Report not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Upload_Assaying_Report: " + e.getMessage());
+			}
 
-		try {
-			if (Save_btn.isDisplayed()) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).sendKeys(Keys.ENTER);
+			try {
+				if (Verify_btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Verify_btn)).sendKeys(Keys.ENTER);
+				}
+			} catch (ElementClickInterceptedException e) {
+				js.executeScript("arguments[0].scrollIntoView(true);", Verify_btn);
+				js.executeScript("arguments[0].click();", Verify_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Verify_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Verify_btn : " + e.getMessage());
 			}
-		} catch (ElementClickInterceptedException e) {
-			js.executeScript("arguments[0].scrollIntoView(true);", Save_btn);
-			js.executeScript("arguments[0].click();", Save_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Save_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Save_btn : " + e.getMessage());
-		}
+
+			try {
+				if (Save_btn.isDisplayed()) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Save_btn)).sendKeys(Keys.ENTER);
+				}
+			} catch (ElementClickInterceptedException e) {
+				js.executeScript("arguments[0].scrollIntoView(true);", Save_btn);
+				js.executeScript("arguments[0].click();", Save_btn);
+			} catch (NoSuchElementException e) {
+				System.out.println("Save_btn not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Save_btn : " + e.getMessage());
+			}
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		}
+	}
 
-}
+	public void Deposit_Assayer_Pending_CR318() throws InterruptedException {
+		
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Transaction_Btn trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Transaction_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println(" Transaction_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Btn : " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Deposit_Assayer)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, Deposit_Assayer trying JavaScript click...");
+			js.executeScript("arguments[0].click();", Deposit_Assayer);
+		} catch (NoSuchElementException e) {
+			System.out.println("Deposit_Assayer not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Deposit_Assayer : " + e.getMessage());
+		}
+		
+		Thread.sleep(1000);
+
+		if (PendingforDepositAssayer.isDisplayed()) {
+
+			PendingforDepositAssayer.click();
+		} else {
+			System.out.println("Pending for Deposit Confirm is not visible");
+		}
+		Thread.sleep(1000);
+		
+	}
+	
+	}

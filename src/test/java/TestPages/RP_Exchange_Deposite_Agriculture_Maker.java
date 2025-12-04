@@ -21,9 +21,9 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "RP_Exchange_Deposite_Agricultur";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -44,7 +44,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	public String Deposit_Type = excel.getDepositType_ex(dataRow);
 	public static String Commodity_Code = excel.getCommodityCode_ex(dataRow);
 	public static String bags = excel.getBags_ex(dataRow);
-	public float Bag_Size = excel.getBagSize_ex(dataRow);
+	public static float Bag_Size = excel.getBagSize_ex(dataRow);
 	public String Bag_Type = excel.getBagType_ex(dataRow);
 	public String Qty_UOM = excel.getQtyUOM_ex(dataRow);
 	public String Bag_UOM = excel.getBagUOM_ex(dataRow);
@@ -96,7 +96,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	WebElement WSP_ID_txt;
 	// label[text()='WH Id']/following-sibling::div//button//span[text()='NOTHING
 	// SELECTED']
-	@FindBy(xpath = "(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]")
+	@FindBy(xpath = "//label[text()='WH Id']/following-sibling::div//button//span[text()='NOTHING SELECTED']")
 	WebElement WH_ID_Btn;
 
 	@FindBy(xpath = "(//input[@type='text'])[8]")
@@ -126,25 +126,25 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 	@FindBy(xpath = "//button[@data-id='baguom']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Bag_UOM_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[25]")
+	@FindBy(xpath = "(//input[@type='text'])[23]")
 	WebElement Bag_UOM_txt;
 
 	@FindBy(xpath = "(//button[@data-id='bagSize'])[1]")
 	WebElement Bag_Size_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[26]")
+	@FindBy(xpath = "(//input[@type='text'])[24]")
 	WebElement Bag_Size_Text;
 
 	@FindBy(xpath = "(//button[@data-id='qtyuom']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]")
 	WebElement Qty_UOM_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[27]")
+	@FindBy(xpath = "(//input[@type='text'])[25]")
 	WebElement Qty_UOM_Text;
 
 	@FindBy(xpath = "(//button[@data-id='BagTypeSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]")
 	WebElement Bag_Type_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[29]")
+	@FindBy(xpath = "(//input[@type='text'])[27]")
 	WebElement Bag_Type_Text;
 
 	@FindBy(xpath = "//button[@class='btn btn-primary blue']")
@@ -254,60 +254,56 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for exchangeMaster: " + e.getMessage());
 		}
-		// String.valueOf() for Int to String
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		try {
 			if (WSP_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				// WSP_ID_btn.click();
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
-				WSP_ID_txt.sendKeys(Keys.ENTER);
-				WSP_ID_txt.sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(String.valueOf(WSP_ID));
+				Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid WSP_ID. Please enter exactly 7 alphanumeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			WebElement WSP_ID_btn_J = driver.findElement(
-					By.xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]"));
-			js.executeScript("arguments[0].click();", WSP_ID_btn_J);
-			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
-			WSP_ID_txt.click();
-			// WSP_ID_txt.sendKeys(Keys.ENTER);
+			js.executeScript("arguments[0].click();", WSP_ID_btn);
+			js.executeScript("arguments[0].value='" + WSP_ID + "';", WSP_ID_txt);
+			js.executeScript("arguments[0].click();", WSP_ID_txt);
+			// WSP_ID_txt.click();
 		} catch (NoSuchElementException e) {
 			System.out.println("WSP_ID_btn not found: " + e.getMessage());
+
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WSP_ID_btn: " + e.getMessage());
-		} finally {
-
-			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_btn)).click();
-			Wait.until(ExpectedConditions.elementToBeClickable(WSP_ID_txt)).sendKeys(WSP_ID);
-			WSP_ID_txt.sendKeys(Keys.ENTER);
-			WSP_ID_txt.sendKeys(Keys.ENTER);
-			WSP_ID_txt.sendKeys(Keys.ENTER);
 		}
-
+		// WebElement AC =
+		// driver.findElement(By.xpath("(//li[@class='active']//a)[2]"));
 		try {
-			if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				WH_ID_Btn.click();
-				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-				WH_ID_txt.sendKeys(Keys.ENTER);
-				WH_ID_txt.sendKeys(Keys.ENTER);
-				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-			}
+				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
+					Thread.sleep(1000);
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+					//Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+				}else {
+					System.out.println("Invalid WH_ID. Please enter  7 alphanumeric characters.");
+				}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, trying JavaScript WH_ID_Btn click...");
+			WebElement WH_ID_JAVA = driver.findElement(
+					By.xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[3]"));
+			js.executeScript("arguments[0].scrollIntoView(true)", WH_ID_JAVA);
 			js.executeScript("arguments[0].click();", WH_ID_Btn);
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-			WH_ID_txt.click();
-			System.out.println("Element not clickable at the moment: " + e.getMessage());
+			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_txt);
+			js.executeScript("arguments[0].click();", WH_ID_txt);
+			// AC.click();
 		} catch (NoSuchElementException e) {
 			System.out.println("WH_ID_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 		}
-
+	
 		if (Negotiable_eceipt_Required.isDisplayed()) {
 			Negotiable_eceipt_Required.click();
 			Assaying_Required.isSelected();
@@ -391,8 +387,10 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 		try {
 			if (String.valueOf(Bag_Size).matches("^[0-9].{0,4}$")) {
 				Bag_Size_btn.click();
-				Bag_Size_Text.sendKeys(String.valueOf(Bag_Size));
-				Bag_Size_Text.sendKeys(Keys.ENTER);
+				Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Bag_Size_Text)).sendKeys(String.valueOf(Bag_Size));
+				Thread.sleep(2000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Bag_Size_Text)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Bag_Size. Please enter exactly 4 alphanumeric characters:");
 			}
@@ -428,7 +426,8 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 			if (Bag_Type.matches("^[a-zA-Z0-9]{0,8}$")) {
 				Bag_Type_btn.click();
 				Bag_Type_Text.sendKeys(Bag_Type);
-				Bag_Type_Text.sendKeys(Keys.ENTER);
+				//Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Bag_Type_Text)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Bag_Type. Please enter exactly 3 alphanumeric characters:");
 			}

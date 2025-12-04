@@ -14,12 +14,12 @@ import TestPages.RP_Deposite_Request_Checker;
 public class ClientAccountOpening_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Reports\\ExtentReport"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"
 					+ System.currentTimeMillis() + ".html",
 			true);
 	ExtentTest test = Report.startTest("Client Account Opening for REPOSITORY");
 	
-	@Test
+	//@Test
 	  void Clientclientid_Account_opening_For_REPOSITORY_Maker () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
@@ -34,12 +34,12 @@ public class ClientAccountOpening_TestCase extends BaseClass {
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed"+e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
 	}
-	//@Test
+	@Test
 	void Clientclientid_Account_opening_For_REPOSITORY_Checker () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");

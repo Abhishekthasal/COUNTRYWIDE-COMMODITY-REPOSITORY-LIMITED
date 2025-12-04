@@ -1,7 +1,6 @@
 package TestPages;
 
 import java.time.Duration;
-
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -13,8 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-
 import Utillity.ExcelUtils;
 
 public class Withdrawal_Function {
@@ -22,7 +19,7 @@ public class Withdrawal_Function {
 	WebDriver driver;
 	WebDriverWait Wait;
 
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\Withdrawal.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Withdrawal.xlsx";
 	static String sheet = "Withdrawal_Request";
 	static int dataRow = 2; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -39,13 +36,12 @@ public class Withdrawal_Function {
 	int Commodity_Code = excel.getCommodity_Code_Withdrawal(dataRow);
 	public long Client_ID = excel.getClient_ID_Withdrawal(dataRow);
 	public static long ENWR = excel.getENWR_Withdrawal(dataRow);
-	int noOfBag = excel.getnoOfBag_Withdrawal(dataRow);
+	static int noOfBag = excel.getnoOfBag_Withdrawal(dataRow);
 
 	public Withdrawal_Function(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
 		this.Wait = Wait;
 		PageFactory.initElements(driver, this);
-
 	}
 
 	@FindBy(xpath = "(//span[normalize-space()='Transactions'])[1]")
@@ -112,8 +108,6 @@ public class Withdrawal_Function {
 
 	@FindBy(xpath = "//span[normalize-space()='Save']")
 	WebElement Save_Bttn;
-
-	
 	
 	public void Withdrawal_Request_RP() {
 		
@@ -131,15 +125,40 @@ public class Withdrawal_Function {
 		Date_Selecter.click();
 
 		Date.click();
+		
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
+		try {
 		if (String.valueOf(WH_ID).matches("^[a-zA-Z0-9]{0,7}$")) {
-			WH_ID_With.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys((String.valueOf(WH_ID)));
+			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			 //WH_ID_With_Txt.sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
 			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+		//	Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
 			//WH_ID_With_Txt.click();
 		} else {
 			System.out.println("Invalid WH_ID ");
 		}
+		}catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript WH_ID_Btn click...");
+			js.executeScript("arguments[0].click();", WH_ID_With);
+			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_With_Txt);
+			js.executeScript("arguments[0].click();", WH_ID_With_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("WH_ID_With_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for WH_ID_With_Txt: " + e.getMessage());
+		}
+//		finally {
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With)).click();
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys((String.valueOf(WH_ID)));
+//			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+//			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).click();
+//		}
+		//driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		Select Se = new Select(Commodity_Segment_txt);
 		Se.selectByContainsVisibleText(Commodity_Segment);
 

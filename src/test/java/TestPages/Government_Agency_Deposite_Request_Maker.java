@@ -19,11 +19,11 @@ public class Government_Agency_Deposite_Request_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "Government_Agency_Deposite";
-	static int dataRow = 3; // second row of data
+	static int dataRow = 15; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
-
+	JavascriptExecutor js = (JavascriptExecutor) driver;
 	/*
 	 * public static String Deposite = "3244049"; // 382444017; public String
 	 * Quality_Stand = "NAFED"; public String Commodity_Segment =
@@ -63,7 +63,7 @@ public class Government_Agency_Deposite_Request_Maker {
 	}
 
 	// @FindBy(xpath = "//span[normalize-space()='Transactions']")
-	@FindBy(xpath = "(//a[@class='auto ng-scope'])[2]")
+	@FindBy(xpath = "(//a[@class='auto ng-scope'])[3]")
 	WebElement Transaction_Btn;
 
 	@FindBy(xpath = "//span[normalize-space()='Deposit Request']")
@@ -155,25 +155,25 @@ public class Government_Agency_Deposite_Request_Maker {
 	@FindBy(xpath = "//button[@data-id='baguom']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Bag_UOM_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[29]")
+	@FindBy(xpath = "(//input[@type='text'])[27]")
 	WebElement Bag_UOM_txt;
 
 	@FindBy(xpath = "//button[@data-id='bagSize']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Bag_Size_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[30]")
+	@FindBy(xpath = "(//input[@type='text'])[28]")
 	WebElement Bag_Size_Text;
 
 	@FindBy(xpath = "(//button[@data-id='qtyuom'])[1]")
 	WebElement Qty_UOM_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[31]")
+	@FindBy(xpath = "(//input[@type='text'])[29]")
 	WebElement Qty_UOM_Text;
 
 	@FindBy(xpath = "(//button[@data-id='BagTypeSelectionCombobox'])[1]")
 	WebElement Bag_Type_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[33]")
+	@FindBy(xpath = "(//input[@type='text'])[31]")
 	WebElement Bag_Type_Text;
 
 	@FindBy(xpath = "//button[@class='btn btn-primary blue']")
@@ -186,13 +186,18 @@ public class Government_Agency_Deposite_Request_Maker {
 	WebElement WH;
 
 	public void Government_Agency_Deposite() throws IOException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		if (Transaction_Btn.isDisplayed()) {
+
+		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
-			// Transaction_Btn.click();
-		} else {
-			System.out.println("Transaction_Btn not visible");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Transaction_Btn click...");
+			js.executeScript("arguments[0].click();", Transaction_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Transaction_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 		}
+
 		// Deposit function to be Click
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Deposit_btn)).click();
@@ -308,13 +313,14 @@ public class Government_Agency_Deposite_Request_Maker {
 		}
 		try {
 			if (WH_ID_Btn.isDisplayed()) {
-				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+				if (WH_ID.matches("^[a-zA-Z0-9]{0,7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
-					System.out.println("WH_ID is :" + WH_ID);
-					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+					/* System.out.println("WH_ID is :" + WH_ID); */
+					Thread.sleep(1000);
+					/* driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); */
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
+					// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
 				} else {
 					System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
 				}
@@ -328,34 +334,17 @@ public class Government_Agency_Deposite_Request_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 			e.printStackTrace();
-		} finally {
-			System.out.println("Final Block is Print");
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-			/*
-			 * WebElement WH_ID_JAVA = driver.findElement( By.
-			 * xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[2]"
-			 * )); js.executeScript("arguments[0].scrollIntoView(true)", WH_ID_JAVA);
-			 * js.executeScript("arguments[0].click();", WH_ID_JAVA);
-			 * js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_txt);
-			 * js.executeScript("arguments[0].click();", WH_ID_txt);
-			 */
 		}
-		JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
-		javascriptExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		// js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 
 		if (Client_Id_Btn.isDisplayed()) {
-			if (Client_ID.matches("^[a-zA-Z0-9]{15}$")) {
+			if (Client_ID.matches("^[a-zA-Z0-9]{0,15}$")) {
 				Client_Id_Btn.click();
 				Wait.until(ExpectedConditions.elementToBeClickable(Client_ID_txt)).sendKeys(String.valueOf(Client_ID));
 				Client_ID_txt.sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Client_ID. Please enter exactly 15 alphanumeric characters:");
 			}
-		} else {
-			System.out.println("Client_Id_Btn Button not  is visible");
 		}
 
 		if (Commodity_Code.matches("^[a-zA-Z0-9]{0,3}$")) {

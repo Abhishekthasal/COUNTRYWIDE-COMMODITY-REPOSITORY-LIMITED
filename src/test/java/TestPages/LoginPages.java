@@ -41,13 +41,19 @@ public class LoginPages {
 		Password.sendKeys(passWord);
 
 		LoginButton.sendKeys(Keys.ENTER);
-		//LoginButton.sendKeys(Keys.ENTER);
+		// LoginButton.sendKeys(Keys.ENTER);
 
-		Wait.until(ExpectedConditions.elementToBeClickable(Authentication_POPUP_Xpath)).sendKeys(Keys.ENTER);
-		LoginButton.click();
-		//Wait.until(ExpectedConditions.elementToBeClickable(Authentication_POPUP_Xpath)).sendKeys(Keys.ENTER);
+		try {
+			if (Authentication_POPUP_Xpath.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Authentication_POPUP_Xpath)).sendKeys(Keys.ENTER);
+				LoginButton.click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(Authentication_POPUP_Xpath)).sendKeys(Keys.ENTER);
 
-		Wait.until(ExpectedConditions.elementToBeClickable(Authentication_POPUP_Xpath)).sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(Authentication_POPUP_Xpath)).sendKeys(Keys.ENTER);
+			}
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Authentication_POPUP_Xpath: " + e.getMessage());
+		}
 
 	}
 

@@ -2,6 +2,7 @@ package TestPages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -20,9 +21,9 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	static String path = "C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Data\\TestData.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ENWR_Creation.xlsx";
 	static String sheet = "Exchange_Deposite_Non_Agricult";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	/*
@@ -92,8 +93,10 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 
 	@FindBy(xpath = "(//input[@type='text'])[6]")
 	WebElement WSP_ID_txt;
-	//(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[1]
-	// label[text()='WH Id']/following-sibling::div//button//span[text()='NOTHING SELECTED']
+	// (//span[@class='filter-option pull-left'][normalize-space()='NOTHING
+	// SELECTED'])[1]
+	// label[text()='WH Id']/following-sibling::div//button//span[text()='NOTHING
+	// SELECTED']
 	@FindBy(xpath = "// label[text()='WH Id']/following-sibling::div//button//span[text()='NOTHING SELECTED']")
 	WebElement WH_ID_Btn;
 
@@ -117,13 +120,13 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 	// pull-left'][normalize-space()='NOTHING SELECTED']
 	// (//span[@class='filter-option pull-left'][normalize-space()='NOTHING
 	// SELECTED'])[2]
-	@FindBy(xpath = "(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[2]")
+	@FindBy(xpath = "(//button[@data-id='symbolSelectionCombobox'])[1]")
 	WebElement symbol_btn;
 
 	@FindBy(xpath = "(//input[@type='text'])[19]")
 	WebElement symbol_text;
 
-	@FindBy(xpath = "(//input[@name='no_of_bundles'])[1]")
+	@FindBy(xpath = "//input[@name='no_of_bags']")
 	WebElement No_of_Bundles;
 
 	@FindBy(xpath = "(//input[@name='no_of_pieces'])[1]")
@@ -132,7 +135,7 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 	@FindBy(xpath = "//button[@data-id='qtyuom']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement qtyuom;
 
-	@FindBy(xpath = "(//input[@type='text'])[27]")
+	@FindBy(xpath = "(//input[@type='text'])[25]")
 	WebElement qtyuom_text;
 
 	@FindBy(xpath = "(//input[@id='Quant'])[1]")
@@ -144,7 +147,7 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 	@FindBy(xpath = "//button[@data-id='BagTypeSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement BagType;
 
-	@FindBy(xpath = "(//input[@type='text'])[29]")
+	@FindBy(xpath = "(//input[@type='text'])[27]")
 	WebElement BagType_text;
 
 	@FindBy(xpath = "//button[@class='btn btn-primary blue']")
@@ -156,11 +159,8 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 	@FindBy(css = ".btn.btn-primary.blue.ng-isolate-scope")
 	WebElement save_btn;
 
-	public void Non_Agriculture_Exchange_Deposite_Request() {
-		// Actions actions = new Actions(driver);
+	public void Non_Agriculture_Exchange_Deposite_Request() throws InterruptedException {
 
-		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-		// Transaction Button to be Click
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -231,6 +231,7 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 		Deposit_Type_option.click();
 		Select SB = new Select(Deposit_Type_option);
 		SB.selectByContainsVisibleText(Deposit_Type);
+		
 		try {
 			if (exchangeMaster.isDisplayed()) {
 				if (exchange_Code.matches("^[0-9]{0,11}$")) {
@@ -273,28 +274,31 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 			System.out.println("Unexpected error for WSP_ID_btn: " + e.getMessage());
 		}
 		try {
-			if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
-				WH_ID_Btn.click();
-				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(WH_ID);
-				// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
-				 //Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Option)).sendKeys(Keys.ENTER);
-				WH_ID_Option.sendKeys(Keys.RETURN);
-				WH_ID_txt.sendKeys(Keys.ENTER);
-				//Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+			if (WH_ID_Btn.isDisplayed()) {
+				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_Btn)).click();
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(String.valueOf(WH_ID));
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_txt)).sendKeys(Keys.ENTER);
+				}
 			}
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, trying JavaScript WH_ID_Btn click...");
+			WebElement WH_ID_JAVA = driver.findElement(
+					By.xpath("(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[3]"));
+			js.executeScript("arguments[0].scrollIntoView(true)", WH_ID_JAVA);
 			js.executeScript("arguments[0].click();", WH_ID_Btn);
 			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_txt);
-			js.executeScript("arguments[0].click();", WH_ID_Option);
+			js.executeScript("arguments[0].click();", WH_ID_txt);
+			// AC.click();
 		} catch (NoSuchElementException e) {
 			System.out.println("WH_ID_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for WH_ID_Btn: " + e.getMessage());
 		}
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		//js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		try {
 			if (Client_ID.matches("^[a-zA-Z0-9]{0,16}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Client_Id_Btn)).click();
@@ -314,13 +318,14 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 			System.out.println("Unexpected error: " + e.getMessage());
 		}
 		// 15-Catton Bales/111->Rabber
+		//Thread.sleep(4000);
 		try {
 			if (Commodity_Code.matches("^[a-zA-Z0-9]{0,4}$")) {
 				Commodity_Code_btn.click();
 				Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Code_txt)).sendKeys(Commodity_Code);
 				Commodity_Code_txt.sendKeys(Keys.ENTER);
 			} else {
-				System.out.println("Invalid Commodity_Code. Please enter exactly 3 alphanumeric characters:");
+				System.out.println("Invalid Commodity_Code. Please enter exactly 4 alphanumeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Commodity_Code_btn click...");
@@ -332,12 +337,21 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error: " + e.getMessage());
 		}
-
+		//js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		//Thread.sleep(3000);
 		try {
-			if (symbol.matches("^[a-zA-Z0-9]{0,10}$")) {
-				Wait.until(ExpectedConditions.elementToBeClickable(symbol_btn)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(symbol);
-				Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(Keys.ENTER);
+			if (symbol_btn.isDisplayed() && symbol_btn.isEnabled()) {
+				if (symbol.matches("^[a-zA-Z0-9]{0,10}$")) {
+					symbol_btn.click();
+					Thread.sleep(2000);
+					Wait.until(ExpectedConditions.elementToBeClickable(symbol_text)).sendKeys(symbol);
+					Thread.sleep(1000);
+					symbol_text.sendKeys(Keys.ENTER);
+				} else {
+					System.out.println("Invalid value of symbol");
+				}
+			} else {
+				System.out.println("Symbol_btn is not visible");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript symbol_btn click...");
@@ -363,18 +377,18 @@ public class Exchange_Deposite_Request_Non_Agriculture_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for  No_of_Bundles: " + e.getMessage());
 		}
-		try {
-			if (Pieces_Per_Bundle.matches("^[0-9]{0,5}$")) {
-				No_Of_Pieces_Per_Bundle.sendKeys(Pieces_Per_Bundle);
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript  No_Of_Pieces_Per_Bundle click...");
-			js.executeScript("arguments[0].value='" + Pieces_Per_Bundle + "';", No_Of_Pieces_Per_Bundle);
-		} catch (NoSuchElementException e) {
-			System.out.println("No_Of_Pieces_Per_Bundle not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for No_Of_Pieces_Per_Bundle: " + e.getMessage());
-		}
+		/*
+		 * try { if (Pieces_Per_Bundle.matches("^[0-9]{0,5}$")) {
+		 * No_Of_Pieces_Per_Bundle.sendKeys(Pieces_Per_Bundle); } } catch
+		 * (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript  No_Of_Pieces_Per_Bundle click..."
+		 * ); js.executeScript("arguments[0].value='" + Pieces_Per_Bundle + "';",
+		 * No_Of_Pieces_Per_Bundle); } catch (NoSuchElementException e) {
+		 * System.out.println("No_Of_Pieces_Per_Bundle not found: " + e.getMessage()); }
+		 * catch (Exception e) {
+		 * System.out.println("Unexpected error for No_Of_Pieces_Per_Bundle: " +
+		 * e.getMessage()); }
+		 */
 		try {
 			if (Qty_UOM.matches("^[a-zA-Z0-9]{0,5}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(qtyuom)).click();

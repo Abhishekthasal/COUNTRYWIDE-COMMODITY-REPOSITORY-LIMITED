@@ -26,12 +26,12 @@ public class Deposite_Request_Non_Agriculture_TestCase extends BaseClass {
 	// both deposit types are allow the we can used it.
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Reports\\ExtentReport"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"
 					+ System.currentTimeMillis() + ".html",
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-	//@Test
+	@Test
 	void Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Deposite_Request_Maker start");
@@ -90,7 +90,7 @@ public class Deposite_Request_Non_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-@Test(retryAnalyzer= Utillity.RetryTest.class)
+//@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBoard_WareHouse_Checker is start");

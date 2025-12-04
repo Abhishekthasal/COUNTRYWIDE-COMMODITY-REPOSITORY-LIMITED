@@ -17,11 +17,11 @@ import TestPages.LoginPages;
 public class Transfer_TestCase  extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Reports\\ExtentReport"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"
 					+ System.currentTimeMillis() + ".html",
 			true);
 	ExtentTest test = Report.startTest("Transfer Report");
-	@Test
+	//@Test
 	void Transfer_Request() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Transfer_Request is start");
@@ -41,7 +41,7 @@ public class Transfer_TestCase  extends BaseClass {
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + e.getMessage());
 		}
 
 		Report.endTest(test);
@@ -62,13 +62,13 @@ public class Transfer_TestCase  extends BaseClass {
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + e.getMessage());
 		}
 
 		Report.endTest(test);
 		Report.flush();
 	}
-	//@Test
+	@Test
 	void Transfer_Warehouse_Approval_Request() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Transfer_Warehouse_Approval_Maker is start");
@@ -83,7 +83,7 @@ public class Transfer_TestCase  extends BaseClass {
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + test.getDescription());
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + e.getMessage());
 		}
 
 		Report.endTest(test);
@@ -104,7 +104,7 @@ public class Transfer_TestCase  extends BaseClass {
 				Log.Logout();
 			} catch (Exception e) {
 				test.log(LogStatus.FAIL,
-						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + e.getMessage());
 			}
 
 			Report.endTest(test);

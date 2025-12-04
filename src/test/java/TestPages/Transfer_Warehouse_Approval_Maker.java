@@ -21,8 +21,7 @@ public class Transfer_Warehouse_Approval_Maker {
 
 	WebDriver driver;
 	WebDriverWait Wait;
-	JavascriptExecutor js = (JavascriptExecutor) driver;
-	String  DRN_Number;
+	String DRN_Number;
 
 	public Transfer_Warehouse_Approval_Maker(WebDriver driver, WebDriverWait Wait) {
 
@@ -35,10 +34,11 @@ public class Transfer_Warehouse_Approval_Maker {
 	@FindBy(xpath = "//span[normalize-space()='Transactions']")
 	WebElement Transaction_Bttn;
 
-	@FindBy(xpath="//html[@lang='en']")
+	@FindBy(xpath = "//html[@lang='en']")
 	WebElement Main_Scroll;
-	
-	@FindBy(xpath = "//span[@class='title ng-binding'][normalize-space()='Transfer Warehouse Approval']")
+	// (//span[normalize-space()='Transfer Warehouse Approval'])[1]
+	// a[ui-sref='Transactions.TransferWhApproval'] span[class='title ng-binding']
+	@FindBy(css = "//span[normalize-space()='Transfer Warehouse Approval']")
 	WebElement Transfer_Warehouse_Approval_Bttn;
 
 	@FindBy(xpath = "//button[normalize-space()='New']")
@@ -47,10 +47,9 @@ public class Transfer_Warehouse_Approval_Maker {
 	@FindBy(xpath = "//input[@name='drn1']")
 	WebElement DRN_No;
 
-	
 	@FindBy(xpath = "//button[normalize-space()='Submit']")
 	WebElement Submit_Bttn;
-	//label[@for='Charges_recovered']//span[@class='box']
+	// label[@for='Charges_recovered']//span[@class='box']
 	@FindBy(xpath = "(//span[@class='box'])[1]")
 	WebElement Charges_recovered;
 
@@ -60,17 +59,35 @@ public class Transfer_Warehouse_Approval_Maker {
 	public void Transfer_Warehouse_Approval_Request() {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Bttn)).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
+		js.executeScript("window.scrollBy(0, 800);");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		Main_Scroll.sendKeys(Keys.PAGE_DOWN);
-		//Main_Scroll.sendKeys(Keys.PAGE_DOWN);
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
-		
-		//js.executeScript("arguments[0].scrollIntoView()", Main_Scroll);
-		
-		Wait.until(ExpectedConditions.elementToBeClickable(Transfer_Warehouse_Approval_Bttn)).click();
-		//Transfer_Warehouse_Approval_Bttn.click();
-		New_Bttn.click();
+		/*
+		 * Main_Scroll.sendKeys(Keys.PAGE_DOWN); Main_Scroll.sendKeys(Keys.PAGE_DOWN);
+		 * driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
+		 * 
+		 * //js.executeScript("arguments[0].scrollIntoView()", Main_Scroll);
+		 */ js.executeScript("arguments[0].scrollIntoView(true);", Transfer_Warehouse_Approval_Bttn);
+		try {
+			if (Transfer_Warehouse_Approval_Bttn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Transfer_Warehouse_Approval_Bttn))
+						.sendKeys(Keys.ENTER);
+				// Transfer_Warehouse_Approval_Bttn.click();
+			} else {
+				System.out.println("Transfer_Warehouse_Approval_Bttn is not visible");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Transfer_Warehouse_Approval_Bttn click...");
+			js.executeScript("arguments[0].click();", Transfer_Warehouse_Approval_Bttn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Transfer_Warehouse_Approval_Bttn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Transfer_Warehouse_Approval_Bttn: " + e.getMessage());
+		}
+
+		Wait.until(ExpectedConditions.elementToBeClickable(New_Bttn)).click();
+
 		try {
 			Connection conn = DataBaseUtility.getConnection();
 
@@ -81,7 +98,7 @@ public class Transfer_Warehouse_Approval_Maker {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				 DRN_Number = rs.getString("ID"); 
+				DRN_Number = rs.getString("ID");
 				System.out.println("DRN_NO is : " + DRN_Number);
 
 				rs.close();
@@ -92,10 +109,10 @@ public class Transfer_Warehouse_Approval_Maker {
 			e.printStackTrace();
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		//DRN_No.click();
-		if(DRN_Number.matches("^[a-zA-Z0-9]{0,7}$")) {
-		Wait.until(ExpectedConditions.elementToBeClickable(DRN_No)).sendKeys(DRN_Number);
-		}else {
+		// DRN_No.click();
+		if (DRN_Number.matches("^[a-zA-Z0-9]{0,7}$")) {
+			Wait.until(ExpectedConditions.elementToBeClickable(DRN_No)).sendKeys(DRN_Number);
+		} else {
 			System.out.println("DRN_Number is Invalid");
 		}
 		Submit_Bttn.click();
@@ -104,7 +121,7 @@ public class Transfer_Warehouse_Approval_Maker {
 		try {
 			if (Charges_recovered.isDisplayed() && Charges_recovered.isEnabled()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Charges_recovered)).click();
-				//Charges_recovered.click();
+				// Charges_recovered.click();
 			} else {
 				System.out.println("Charges_recovered is not Visible");
 			}
@@ -115,10 +132,10 @@ public class Transfer_Warehouse_Approval_Maker {
 			System.out.println("Charges_recovered not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Charges_recovered: " + e.getMessage());
-		}finally {
+		} finally {
 			Wait.until(ExpectedConditions.elementToBeClickable(Charges_recovered)).click();
 		}
-		
+
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 		try {
 			if (Save_Bttn.isDisplayed() && Save_Bttn.isEnabled()) {

@@ -21,12 +21,12 @@ import TestPages.ScreenShort;
 public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\eclipse\\Desktop\\Automation-Testing-2025\\Eclipse\\Automation\\Reports\\ExtentReport"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"
 					+ System.currentTimeMillis() + ".html",
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Non_Agriculture");
 
-	@Test
+	//@Test
 	void Exchange_Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculturet_Maker start");
@@ -43,7 +43,7 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed");
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Exchange_Deposite_Non_Agriculturet_Maker Test failed");
 		}
 		Report.endTest(test);
 		Report.flush();
@@ -57,10 +57,11 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 			Dash.Exchange_Deposite_Request_Non_Agriculture_Checker();
-			test.log(LogStatus.PASS, "Exchange_Deposite_Non_Agriculture_Checker is successfull");
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+"Exchange_Deposite_Non_Agriculture_Checker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Test failed: " + e.getMessage());
+					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Exchange_Deposite_Non_Agriculture_Checker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
@@ -76,14 +77,14 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			Exchange_Non_Agri_WareHouse WSP_CH = new Exchange_Non_Agri_WareHouse(driver, Wait);
 			WSP_CH.Exchange_Non_Agriculture_Physical();
-			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is successfull");
+			test.log(LogStatus.PASS,test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+ "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Test failed: " + e.getMessage());
+					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
-
 	}
 
 	// @Test
@@ -96,16 +97,15 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			WSP_CH.Exchange_Non_Agriculture_Physical_Deposit_Request_Checker();
-			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is successfull");
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+"Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Test failed: " + e.getMessage());
+					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
-
 	}
-
 	// @Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
@@ -114,15 +114,15 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("Assayer01", "user1", "121@test");
 			Assayer.Exchange_Non_Agriculture_Deposit_Assayer();
-			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is successfull");
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+"Exchange_Non_Agriculture_Deposite_Assayer_Maker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Test failed: " + e.getMessage());
+					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Exchange_Non_Agriculture_Deposite_Assayer_Maker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
 	}
-
 	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Deposite_Assayer_Checker() throws IOException {
 		try {
@@ -131,10 +131,11 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("Assayer01", "user2", "121@test");
 			Assayer.Exchange_Non_Agriculture_Deposit_Assayer();
-			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposite_Assayer_Checker is successfull");
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+"Exchange_Non_Agriculture_Deposite_Assayer_Checker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Test failed: " + e.getMessage());
+					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Exchange_Non_Agriculture_Deposite_Assayer_Checker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
@@ -150,10 +151,11 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			// Login.PortalLogin("wsp9997115", "bhanu", "121@test");
 			Login.PortalLogin("wsp9996059", "user102", "121@test");
 			Confirn_Maker.Exchange_Non_Agriculture_Deposit_Confirm_WH();
-			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposit_Confirm_WH_Maker is successfull");
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+"Exchange_Non_Agriculture_Deposit_Confirm_WH_Maker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Test failed: " + e.getMessage());
+					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Exchange_Non_Agriculture_Deposit_Confirm_WH_Maker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
@@ -169,10 +171,11 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			Login.PortalLogin("wsp9996059", "user101", "121@test");
 			Confirm.Exchange_Non_Agriculture_Deposit_Confirm_WH();
-			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposit_Confirm_WH_Checker is successfull");
+			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+					+"Exchange_Non_Agriculture_Deposit_Confirm_WH_Checker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Test failed: " + e.getMessage());
+					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + " Exchange_Non_Agriculture_Deposit_Confirm_WH_Checker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
