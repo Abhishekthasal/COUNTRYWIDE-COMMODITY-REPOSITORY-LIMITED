@@ -116,6 +116,13 @@ public class Deposite_Assayer_Maker {
 	WebElement TRASH_CONTENT;
 	@FindBy(xpath = "(//input[@name='name'])[3]")
 	WebElement MOISTURE_BY_MASS;
+	
+	@FindBy(xpath = "(//input[@name='name'])[4]")
+	WebElement Address4;
+	@FindBy(xpath = "(//input[@name='name'])[5]")
+	WebElement Address5;
+	@FindBy(xpath = "(//input[@name='name'])[6]")
+	WebElement Address6;
 	@FindBy(xpath = "(//input[@name='name'])[7]")
 	WebElement IMMATURE_SHRIVELED_AND_BROKEN_GRAINS;
 	@FindBy(xpath = "(//input[@name='name'])[8]")
@@ -1611,9 +1618,28 @@ public class Deposite_Assayer_Maker {
 				Select Pre_Qualification = new Select(Pre_Qualification_Txt);
 				Pre_Qualification.selectByIndex(1);
 
-				STAPLE_LENGTH.sendKeys("33");
-				TRASH_CONTENT.sendKeys("3");
-				MOISTURE_BY_MASS.sendKeys("5");
+				STAPLE_LENGTH.sendKeys("5");
+				TRASH_CONTENT.sendKeys("7");
+				MOISTURE_BY_MASS.sendKeys("12");
+				Address4.sendKeys("17");
+				Address5.sendKeys("22");
+				Address6.sendKeys("27");
+				IMMATURE_SHRIVELED_AND_BROKEN_GRAINS.sendKeys("32");
+				Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+				S.selectByIndex(2);
+				WEEVILED_GRAINS.sendKeys("42");
+				
+				/*Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+				S.selectByIndex(1);*/
+				
+				/*MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(22));
+				
+				REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(28));
+				
+				YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));*/
+				
+				
+				
 				break;
 			case 49:
 				System.out.println("You selected: Arhar");

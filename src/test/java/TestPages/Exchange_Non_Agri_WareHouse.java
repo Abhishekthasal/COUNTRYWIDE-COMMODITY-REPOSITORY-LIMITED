@@ -21,6 +21,8 @@ import Utillity.ExcelUtils;
 
 public class Exchange_Non_Agri_WareHouse {
 
+	//public static final String remainingBags = null;
+	//public static final String noOfBags = null;
 	WebDriver driver;
 	WebDriverWait Wait;
 
@@ -72,7 +74,8 @@ public class Exchange_Non_Agri_WareHouse {
 	String City_Name = excel.getCity_Name_ex_py(dataRow);
 	String PinCode = excel.getPinCode_ex_py(dataRow);
 	int shelflife = excel.getshelflife_ex_py(dataRow);
-	String Bag_Total = excel.getBag_Total_ex_py(dataRow);
+	int Bag_Total = excel.getBag_Total_ex_py(dataRow);
+	static int totalBags = excel.gettotalBags(dataRow);
 	int j = 3;
 
 	public Exchange_Non_Agri_WareHouse(WebDriver driver, WebDriverWait Wait) {
@@ -306,6 +309,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Accept_check: " + e.getMessage());
 		}
+		Thread.sleep(2000);
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -318,7 +322,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		try {
 			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click();
@@ -739,7 +743,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Auth_Code_Text: " + e.getMessage());
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		Thread.sleep(1000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Submit_btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -760,7 +764,7 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Accept_check: " + e.getMessage());
 		}
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -772,10 +776,10 @@ public class Exchange_Non_Agri_WareHouse {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		try { 
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click(); 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code_Value);
 			Thread.sleep(1000);
 			Variety_Code_Text.sendKeys(Keys.ENTER);
@@ -894,10 +898,10 @@ public class Exchange_Non_Agri_WareHouse {
 		js.executeScript("arguments[0].scrollIntoView()", Add_Button);
 
 		// Read remaining bags
-		int remainingBags = Integer.parseInt(remainingBagsElement.getText());
-		int noOfBags = Integer.parseInt(Bag_Total);
+		 int remainingBags = Integer.parseInt(remainingBagsElement.getText());
+		// int noOfBags = Integer.parseInt(Bag_Total);
 
-		if (remainingBags != noOfBags) {
+		if (remainingBags != Bag_Total) {
 			for (int i = 1; i <= remainingBags; i++) {
 				System.out.println("Filling data for Row: " + i);
 

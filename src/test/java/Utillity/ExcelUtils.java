@@ -513,8 +513,12 @@ public class ExcelUtils {
 		return (int) Sheet.getRow(rowNum).getCell(26).getNumericCellValue();
 	}
 
-	public String getBag_Total_ex_py(int rowNum) {
-		return getCellData(rowNum, 27);
+	public int getBag_Total_ex_py(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(27).getNumericCellValue();
+		
+	}
+	public int gettotalBags_ex_py(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(28).getNumericCellValue();
 	}
 
 	/***********************************

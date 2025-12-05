@@ -43,7 +43,10 @@ public class Deposite_Assayer_Checker {
 
 	@FindBy(xpath = "//a[normalize-space()='Authorized']")
 	WebElement Authorized_btn;
-
+	
+	@FindBy(xpath ="//body/ul[@class='dropdown-menu']/li[2]/a[1]")
+	WebElement Authorized_GSLbtn;
+	
 	@FindBy(xpath = "(//a[normalize-space()='Goods Quality'])[1]")
 	WebElement Goods_Quality_menu;
 
@@ -851,10 +854,10 @@ public class Deposite_Assayer_Checker {
 				System.out.println("Unexpected error for Actions_btn: " + e.getMessage());
 			}
 			try {
-				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_GSLbtn)).click();
 			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript Authorized_btn click...");
-				js.executeScript("arguments[0].click();", Authorized_btn);
+				System.out.println("Normal click failed, trying JavaScript Authorized_GSLbtn click...");
+				js.executeScript("arguments[0].click();", Authorized_GSLbtn);
 			} catch (NoSuchElementException e) {
 				System.out.println("Authorized_btn not found: " + e.getMessage());
 			} catch (Exception e) {

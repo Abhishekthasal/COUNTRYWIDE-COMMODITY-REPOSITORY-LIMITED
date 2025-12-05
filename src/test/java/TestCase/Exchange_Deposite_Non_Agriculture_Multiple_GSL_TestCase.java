@@ -25,7 +25,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Non_Agriculture");
 
-	 //@Test
+//	 @Test
 	void Exchange_Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculturet_Maker start");
@@ -99,7 +99,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is start");
 			DashBoard_WareHouse_Checker WSP_CH = new DashBoard_WareHouse_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user1", "121@test");
+			Login.PortalLogin("wsp9999996", "user2", "121@test");
 			//Login.PortalLogin("wsp9999996", "user72", "121@test");
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			 //Login.PortalLogin("wsp9996059", "user101", "121@test");
@@ -113,7 +113,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	 //@Test
+	// @Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is start");
@@ -131,7 +131,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	 @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 //@Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Deposite_Assayer_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Checker is start");
@@ -150,7 +150,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.flush();
 	}
 	// @Test
-	void Deposit_Confirm_WH_Maker() throws IOException {
+		void Deposit_Confirm_WH_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposit_Confirm_WH_Maker is start");
 			Deposit_Confirm_WH_Maker Confirn_Maker = new Deposit_Confirm_WH_Maker(driver, Wait);
@@ -160,7 +160,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			// Login.PortalLogin("wsp9997115", "bhanu", "121@test");
 			//Login.PortalLogin("wsp9996059", "user102", "121@test");
 			//Login.PortalLogin("WSP9996059", "user111", "121@test");
-			Confirn_Maker.Exchange_Non_Agriculture_Deposit_Confirm_WH();
+			Confirn_Maker.Exchange_Deposit_Confirm_WH_Non_Agriculture_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposit_Confirm_WH_Maker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
@@ -169,7 +169,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	 //@Test
+	 @Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposit_Confirm_WH_Checker is start");
@@ -180,7 +180,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			//Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			//Login.PortalLogin("wsp9996059", "user101", "121@test");
 			//Login.PortalLogin("WSP9996059", "user112", "121@test");
-			Confirm.Exchange_Non_Agriculture_Deposit_Confirm_WH();
+			Confirm.Exchange_Deposit_Confirm_WH_Non_Agriculture_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposit_Confirm_WH_Checker is successfull");
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,

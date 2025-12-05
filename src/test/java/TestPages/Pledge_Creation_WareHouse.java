@@ -1,5 +1,12 @@
 package TestPages;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +15,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import Utillity.DataBaseUtility;
+
 public class Pledge_Creation_WareHouse {
 
 
 	WebDriver driver;
 	WebDriverWait Wait;
+	boolean found = false;
+	 String Pledge_Seq_No;
 
 	public Pledge_Creation_WareHouse(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -54,9 +65,26 @@ public class Pledge_Creation_WareHouse {
 		@FindBy(xpath="//span[normalize-space()='Save']")
 		WebElement save_button;
 		
+		@FindBy(xpath = "//div[@role='dialog']")
+		WebElement scroll;
 
 
-		public void Pledge_Creation_WareHouse_Approval() {
+		public void Pledge_Creation_WareHouse_Approval() throws InterruptedException {
+			
+			try {
+				Connection conn = DataBaseUtility.getConnection();
+
+				String Internal_Reference = "select Pledge_Seq_No from pledge_req where Pledge_Req_No like  ?";
+				PreparedStatement Internal_Reference_Id = conn.prepareStatement(Internal_Reference);
+				Internal_Reference_Id.setString(1, "%" + Pledge_Creation.pledge_Req_Number + "%");
+				ResultSet rs1 = Internal_Reference_Id.executeQuery();
+				if (rs1.next()) {
+					Pledge_Seq_No = rs1.getString("Pledge_Seq_No");
+					System.out.println("Pledge_Seq_No print: " + Pledge_Seq_No);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 
 			Transaction_Btn.click();
@@ -99,7 +127,79 @@ public class Pledge_Creation_WareHouse {
 			}*/
 			Search_Button.click();
 			//Wait.until(ExpectedConditions.elementToBeClickable(Search_Button)).click();
-			Select.click();
+			
+			scroll.sendKeys(Keys.PAGE_DOWN);
+			scroll.sendKeys(Keys.PAGE_DOWN);
+			
+			Thread.sleep(3000);
+			while (true) {
+				// Wait until table rows or data are loaded
+				// (//div[@role='rowgroup'])[2]
+				// div[@class='ui-grid-cell-contents ng-binding ng-scope']
+				// Wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@role='rowgroup'])[2]")));
+				// Find all text elements that may contain the target value
+				//WebElement DRN=driver
+					//	.findElement(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
+
+				List<WebElement> valueElements = driver
+						.findElements(By.xpath("//div[contains(text(),'" +Pledge_Seq_No+ "')]"));
+				if (valueElements.contains(valueElements)) {
+					System.out.println("Step One");
+					if (valueElements.size() > 0) {
+						// Value found, click the button in the same row/div
+
+						WebElement button = driver
+								.findElement(By.xpath("//div[contains(text(),'" + Pledge_Seq_No
+										+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
+
+						button.click();
+						System.out.println("✅ Clicked on Select button for value: " + Pledge_Seq_No);
+						found = true;
+						break;
+					}
+				} else {
+					// If value not found, check if 'Next' button is enabled
+					List<WebElement> nextButtons = driver
+							.findElements(By.xpath("(//div[@class='last-triangle next-triangle'])[1]"));
+
+					if (nextButtons.size() > 0 && nextButtons.get(0).isEnabled()) {
+						System.out.println("Step two");
+						nextButtons.get(0).click();
+						try {
+						if (valueElements.size() > 0) {
+							// Value found, click the button in the same row/div
+
+							WebElement button = driver
+									.findElement(By.xpath("//div[contains(text(),'" + Pledge_Seq_No
+											+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
+
+							button.click();
+							System.out.println("✅ Clicked on Select button for value: " + Pledge_Seq_No);
+							found = true;
+							break;
+						}
+						} catch (Exception e) {
+							System.out.println("Unexpected error for valueElements: " + e.getMessage());
+						}
+						System.out.println("➡️ Moved to next page...");
+						Thread.sleep(2000); // Wait for next page data to load
+					} else {
+						System.out.println("❌ Value " + Pledge_Seq_No + " not found in any page.");
+						break;
+					}
+				}
+			}
+
+			if (!found) {
+				System.out.println("⚠️ Target value " + Pledge_Seq_No + " was not found in the table.");
+			}
+
+			
+			
+			
+			
+			
+			//Select.click();
 			//Wait.until(ExpectedConditions.elementToBeClickable(Select)).click();
 
 			Wait.until(ExpectedConditions.elementToBeClickable(verify_button)).click();		

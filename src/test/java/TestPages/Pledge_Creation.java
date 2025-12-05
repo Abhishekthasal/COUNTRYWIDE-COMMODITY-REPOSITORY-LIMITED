@@ -24,7 +24,7 @@ public class Pledge_Creation {
 	static String sheet = "PladgeRequest";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
-	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
 	
 	
 	public static int pledge_Req_Number = excel.getpledge_Req_Number(dataRow);
@@ -127,12 +127,12 @@ public class Pledge_Creation {
 	WebElement Save_Button;
 
 	public void Pledge_Creation_Request() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Transaction_Btn.click();
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		// Assert.assertTrue(Transaction_Btn.isDisplayed(), "Transaction button not
 		// visible");
 
-		Pledge_Creation.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Pledge_Creation)).click();
 		// Assert.assertTrue(Pledge_Creation.isDisplayed(), "Pledge_Creation button not
 		// visible");
 
