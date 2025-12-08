@@ -58,9 +58,9 @@ public class Pledge_Creation_Request_Authorized {
 
 	public void Pledge_Creation_Authorized() {
 
-		Transaction_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 
-		Pledge_Creation_tab.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Pledge_Creation_tab)).click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_Button))
 				.sendKeys(String.valueOf(Pledge_Creation.pledge_Req_Number));

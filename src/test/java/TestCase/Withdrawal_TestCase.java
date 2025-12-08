@@ -30,7 +30,7 @@ public class Withdrawal_TestCase extends BaseClass {
 			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			Login.PortalLogin("RP-KML", "user_A", "121@test");
 			try {
-			TestPages.Withdrawal_Function WF = new TestPages.Withdrawal_Function(driver, Wait);
+				TestPages.Withdrawal_Function WF = new TestPages.Withdrawal_Function(driver, Wait);
 			WF.Withdrawal_Request_RP();
 			  // Assert.assertTrue(false, "Something went wrong");
 		} catch (Exception e) {
@@ -72,7 +72,7 @@ public class Withdrawal_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-//	@Test
+	//@Test
 		void Withdrawal_Confirm() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Withdrawal_Confirm start");

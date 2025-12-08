@@ -22,7 +22,7 @@ public class pledgee_Creation {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\PlageData.xlsx";
 	static String sheet = "PladgeRequest";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 5; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	String Pledge_Seq_No;
 	public static int Pledge_Confirm_code = excel.getPledge_Confirm_code(dataRow);

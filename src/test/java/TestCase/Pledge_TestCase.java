@@ -20,13 +20,13 @@ public class Pledge_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Pledge_Creation Report");
 
-	@Test
+	//@Test
 	void Pledge_Creation() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Pledge_Creation start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("RP-KML", "user_A", "121@test");
-			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			//Login.PortalLogin("RP-KML", "user_A", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledge_Creation creation  start");
 			TestPages.Pledge_Creation Pledge = new TestPages.Pledge_Creation(driver, Wait);
@@ -46,13 +46,13 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	 //@Test
+	// @Test
 	void Pledge_Creation_Request_Authorized() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for Pledge_Creation Authorized start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("RP-KML", "user_B", "121@test");
-			//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("RP-KML", "user_B", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledge_Creation Authorized start");
 			TestPages.Pledge_Creation_Request_Authorized Exch = new TestPages.Pledge_Creation_Request_Authorized(driver,
@@ -73,9 +73,10 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	// @Test
+	//@Test
 	void Pledge_Creation_WareHouse() throws IOException {
 		try {
+			//Data Base Connection  Requred
 			test.log(LogStatus.INFO, "Logion for Pledge_Creation WareHouse start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("wsp9996059", "user101", "121@test");
@@ -131,8 +132,8 @@ public class Pledge_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Logion for pledgee_Creation start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-UCOBANK", "panvel1", "121@test");
-			//Login.PortalLogin("rp-bhanu", "sarthak", "121@test");
+			//Login.PortalLogin("rp-UCOBANK", "panvel1", "121@test");
+			Login.PortalLogin("rp-bhanu", "sarthak", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "pledgee_Creation start");
 			TestPages.pledgee_Creation Exch = new TestPages.pledgee_Creation(driver, Wait);
@@ -152,13 +153,13 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	// @Test
+	 @Test
 	void pledgee_Creation_Authorized() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for pledgee_Creation_Authorized start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-UCOBANK", "panvel2", "121@test");
-			//Login.PortalLogin("rp-bhanu", "sarthakp", "121@test");
+			//Login.PortalLogin("rp-UCOBANK", "panvel2", "121@test");
+			Login.PortalLogin("rp-bhanu", "sarthakp", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "pledgee_Creation_Authorized start");
 			TestPages.Pledge_Creation_Request_Authorized Exch = new TestPages.Pledge_Creation_Request_Authorized(driver,

@@ -22,7 +22,7 @@ public class Pledge_Creation {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\PlageData.xlsx";
 	static String sheet = "PladgeRequest";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 5; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	
@@ -126,7 +126,7 @@ public class Pledge_Creation {
 	@FindBy(xpath = "//button[@button-busy='vm.saving']")
 	WebElement Save_Button;
 
-	public void Pledge_Creation_Request() {
+	public void Pledge_Creation_Request() throws InterruptedException {
 		
 		Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		// Assert.assertTrue(Transaction_Btn.isDisplayed(), "Transaction button not
@@ -282,8 +282,7 @@ public class Pledge_Creation {
 
 		Search_Button.click();
 		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-
+	Thread.sleep(4000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Select_Button)).click();
 		try {
 			if (String.valueOf(Bags).matches("^[0-9]{0,4}$")) {
