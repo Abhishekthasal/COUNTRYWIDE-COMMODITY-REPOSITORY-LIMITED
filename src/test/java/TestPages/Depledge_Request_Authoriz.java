@@ -55,7 +55,7 @@ public class Depledge_Request_Authoriz {
 	@FindBy(xpath = "//span[normalize-space()='Save']")
 	WebElement save_Button;
 
-	public void Depledge_Request_Checker() {
+	public void Depledge_Request_Checker() throws InterruptedException {
 
 		Transaction_btn.click();
 
@@ -65,6 +65,7 @@ public class Depledge_Request_Authoriz {
 
 		submit_Button.click();
 
+		Thread.sleep(2000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Actions)).click();
 		} catch (ElementClickInterceptedException e) {

@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-08T18:38:50 IST" name="Default suite" finished-at="2025-12-08T18:39:07 IST" duration-ms="17508">
+  <suite started-at="2025-12-09T17:23:36 IST" name="Default suite" finished-at="2025-12-09T17:23:57 IST" duration-ms="20753">
     <groups>
     </groups>
-    <test started-at="2025-12-08T18:38:50 IST" name="Default test" finished-at="2025-12-08T18:39:07 IST" duration-ms="17508">
-      <class name="TestCase.Pledge_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Pledge_TestCase@29d89d5d]" started-at="2025-12-08T18:38:50 IST" name="setup" finished-at="2025-12-08T18:38:53 IST" duration-ms="3200" status="PASS">
+    <test started-at="2025-12-09T17:23:36 IST" name="Default test" finished-at="2025-12-09T17:23:57 IST" duration-ms="20753">
+      <class name="TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase@29d89d5d]" started-at="2025-12-09T17:23:36 IST" name="setup" finished-at="2025-12-09T17:23:40 IST" duration-ms="4067" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="pledgee_Creation_Authorized()[pri:0, instance:TestCase.Pledge_TestCase@29d89d5d]" started-at="2025-12-08T18:38:53 IST" name="pledgee_Creation_Authorized" finished-at="2025-12-08T18:39:07 IST" duration-ms="14279" status="PASS">
+        <test-method signature="Depledge_Confirm_by_Pledgee_CR319()[pri:0, instance:TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase@29d89d5d]" started-at="2025-12-09T17:23:40 IST" name="Depledge_Confirm_by_Pledgee_CR319" finished-at="2025-12-09T17:23:57 IST" duration-ms="16652" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- pledgee_Creation_Authorized -->
-      </class> <!-- TestCase.Pledge_TestCase -->
+        </test-method> <!-- Depledge_Confirm_by_Pledgee_CR319 -->
+      </class> <!-- TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

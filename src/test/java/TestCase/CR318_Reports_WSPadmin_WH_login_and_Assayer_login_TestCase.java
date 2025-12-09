@@ -17,12 +17,12 @@ import TestPages.Withdrawal_Confirm_WSP_Maker;
 public class CR318_Reports_WSPadmin_WH_login_and_Assayer_login_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\CR318_"
 					+ System.currentTimeMillis() + ".html",
 			true);
-	ExtentTest test = Report.startTest("Client Account Opening for REPOSITORY");
+	ExtentTest test = Report.startTest("CR318:Reports WSPadmin WH login and Assayer login");
 	
-	//@Test
+	@Test
 	  void Pledge_Creation_WareHouse_CR318 () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Pledge_Creation_WareHouse for REPOSITORY start");

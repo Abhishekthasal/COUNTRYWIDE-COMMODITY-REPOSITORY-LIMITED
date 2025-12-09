@@ -1,10 +1,15 @@
 package TestPages;
 
+import java.io.IOException;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utillity.ExcelUtils;
@@ -21,6 +26,13 @@ public class DePledge_Confirm_By_Pledgee {
 	
 	int pledge_Cls_Confrim_Req_No = excel.getpledge_Cls_Confrim_Req_No(dataRow);
 	int pledge_value = excel.getpledge_value_d(dataRow);
+	int yearselect_From = 2025;
+	String  monthselect_From= "Dec";
+	int formDate = 8;
+
+	int yearselect_To = 2025;
+	String  monthselect_To= "Dec";
+	int To_Date=12;
 	
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -53,6 +65,27 @@ public class DePledge_Confirm_By_Pledgee {
 	WebElement verify_button;
 	@FindBy(xpath="//span[normalize-space()='Save']")
 	WebElement save_button;
+	
+	@FindBy(xpath="//a[@ui-sref='Reports.DePledgeConfirmReports']")
+	WebElement DePledgeConfirmReports_txt;
+	
+	@FindBy(xpath="//input[@id='fromDate']")
+	WebElement From_txt;
+	
+	@FindBy(xpath="//div[@class='calendar left single']//select[@class='yearselect']")
+	WebElement yearselect_txt;
+	
+	@FindBy(xpath="//div[@class='calendar left single']//select[@class='monthselect']")
+	WebElement monthselect_txt;
+	
+	@FindBy(xpath="//input[@id='toDate']")
+	WebElement toDate_Txt;
+	
+	@FindBy(xpath="//span[normalize-space()='Export']")
+	WebElement Export_Btn;
+	
+	@FindBy(xpath="//span[normalize-space()='Reports']")
+	WebElement Reports_Btn;
 	
 	
 	
@@ -89,6 +122,54 @@ public class DePledge_Confirm_By_Pledgee {
 				System.out.println("save_button is not visible");
 			}
 		
+		
+	}
+
+
+
+
+	public void Depledge_Confirm_by_Pledgee_CR319() throws InterruptedException {
+		
+		Reports_Btn.click();
+		
+		DePledgeConfirmReports_txt.click();
+		
+		try {
+			ScreenShort.CaptureScreen(driver);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(New_Button)).click();
+		
+		From_txt.click();
+		
+		Select  A =new Select(yearselect_txt);
+		A.selectByVisibleText(String.valueOf(yearselect_From));
+		
+		Select  B = new Select(monthselect_txt);
+		B.selectByVisibleText(String.valueOf(monthselect_From));
+		
+		WebElement From_Date =driver.findElement(By.xpath("//td[@class='available'][normalize-space()='"+formDate+"']"));
+				
+		From_Date.click();
+		
+		toDate_Txt.click();
+		
+		Select  C =new Select(yearselect_txt);
+		C.selectByVisibleText(String.valueOf(yearselect_To));
+		
+		Select  D = new Select(monthselect_txt);
+		D.selectByVisibleText(String.valueOf(monthselect_To));
+		
+		WebElement ToDate =driver.findElement(By.xpath("//td[@class='available'][normalize-space()='"+To_Date+"']"));
+				
+		ToDate.click();
+		
+		Export_Btn.click();
+		
+		Thread.sleep(3000);
 		
 	}
 	

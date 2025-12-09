@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
-
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +24,13 @@ public class Pledge_Creation_WareHouse {
 	WebDriverWait Wait;
 	boolean found = false;
 	 String Pledge_Seq_No;
+int yearselect_From = 2025;
+String  monthselect_From= "Dec";
+int formDate = 8;
+
+int yearselect_To = 2025;
+String  monthselect_To= "Dec";
+int To_Date=12;
 
 	public Pledge_Creation_WareHouse(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -59,6 +66,7 @@ public class Pledge_Creation_WareHouse {
 		@FindBy(xpath="//button[normalize-space()='Select']")
 		WebElement Select;
 		
+		
 		@FindBy(xpath="//button[@class='btn btn-primary blue']//span[contains(text(),'Verify')]")
 		WebElement verify_button;
 		
@@ -68,6 +76,26 @@ public class Pledge_Creation_WareHouse {
 		@FindBy(xpath = "//div[@role='dialog']")
 		WebElement scroll;
 
+		@FindBy(xpath="//span[normalize-space()='Pledge Creation Confirmation Report']")
+		WebElement Pledge_Creation_Confirmation_Report_txt;
+		
+		@FindBy(xpath="//input[@id='fromDate']")
+		WebElement From_txt;
+		
+		@FindBy(xpath="//div[@class='calendar left single']//select[@class='yearselect']")
+		WebElement yearselect_txt;
+		
+		@FindBy(xpath="//div[@class='calendar left single']//select[@class='monthselect']")
+		WebElement monthselect_txt;
+		
+		@FindBy(xpath="//input[@id='toDate']")
+		WebElement toDate_Txt;
+		
+		@FindBy(xpath="//span[normalize-space()='Export']")
+		WebElement Export_Btn;
+		
+		@FindBy(xpath="//span[normalize-space()='Reports']")
+		WebElement Reports_Btn;
 
 		public void Pledge_Creation_WareHouse_Approval() throws InterruptedException {
 			
@@ -225,6 +253,48 @@ public class Pledge_Creation_WareHouse {
 			}
 		
 		}
+		
+		public void Pledge_Creation_Confirmation_CR319() throws InterruptedException {
+			
+			Reports_Btn.click();
+			
+			Pledge_Creation_Confirmation_Report_txt.click();
+			
+			Wait.until(ExpectedConditions.elementToBeClickable(New_Button)).click();
+			
+			From_txt.click();
+			
+			Select  A =new Select(yearselect_txt);
+			A.selectByVisibleText(String.valueOf(yearselect_From));
+			
+			Select  B = new Select(monthselect_txt);
+			B.selectByVisibleText(String.valueOf(monthselect_From));
+			
+			WebElement From_Date =driver.findElement(By.xpath("//td[@class='available'][normalize-space()='"+formDate+"']"));
+					
+			From_Date.click();
+			
+			toDate_Txt.click();
+			
+			Select  C =new Select(yearselect_txt);
+			C.selectByVisibleText(String.valueOf(yearselect_To));
+			
+			Select  D = new Select(monthselect_txt);
+			D.selectByVisibleText(String.valueOf(monthselect_To));
+			
+			WebElement ToDate =driver.findElement(By.xpath("//td[@class='available'][normalize-space()='"+To_Date+"']"));
+					
+			ToDate.click();
+			
+			Export_Btn.click();
+			
+			Thread.sleep(3000);
+			
+			
+			
+			
+			
+			
+		}
 }
-
 

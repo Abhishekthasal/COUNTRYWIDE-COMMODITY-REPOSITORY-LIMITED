@@ -25,15 +25,15 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void RP_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "General_Deposite_Agriculture_Multiple_GSL_Maker start");
 			RP_Deposite_Request_Agriculture_Maker Depo = new RP_Deposite_Request_Agriculture_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
-			//Login.PortalLogin("RP-XYZ", "user119", "121@test");
-			 Login.PortalLogin("RP-KML", "USER_A", "121@test");
+			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");  //Abhishek
+			Login.PortalLogin("RP-XYZ", "user119", "121@test");  //Adwait
+			 //Login.PortalLogin("RP-KML", "USER_A", "121@test");   //Akshay
 			
 			Depo.General_Deposite_Request();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -166,7 +166,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		}
 	}
 
-	@Test
+	//@Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker is start");
