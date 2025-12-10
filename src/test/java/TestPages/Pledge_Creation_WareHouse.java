@@ -26,11 +26,11 @@ public class Pledge_Creation_WareHouse {
 	 String Pledge_Seq_No;
 int yearselect_From = 2025;
 String  monthselect_From= "Dec";
-int formDate = 8;
+int formDate = 1;
 
 int yearselect_To = 2025;
 String  monthselect_To= "Dec";
-int To_Date=12;
+int To_Date=9;
 
 	public Pledge_Creation_WareHouse(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -85,14 +85,23 @@ int To_Date=12;
 		@FindBy(xpath="//div[@class='calendar left single']//select[@class='yearselect']")
 		WebElement yearselect_txt;
 		
+		@FindBy(xpath="(//div[@class='calendar left single']//select[@class='yearselect'])[2]")
+		WebElement yearselect_txt_To;
+		
 		@FindBy(xpath="//div[@class='calendar left single']//select[@class='monthselect']")
 		WebElement monthselect_txt;
+		
+		@FindBy(xpath="(//div[@class='calendar left single']//select[@class='monthselect'])[2]")
+		WebElement monthselect_txt_To;
 		
 		@FindBy(xpath="//input[@id='toDate']")
 		WebElement toDate_Txt;
 		
 		@FindBy(xpath="//span[normalize-space()='Export']")
 		WebElement Export_Btn;
+		
+		@FindBy(xpath="//button[normalize-space()='Ok']")
+		WebElement PopUp_Btn;
 		
 		@FindBy(xpath="//span[normalize-space()='Reports']")
 		WebElement Reports_Btn;
@@ -256,39 +265,49 @@ int To_Date=12;
 		
 		public void Pledge_Creation_Confirmation_CR319() throws InterruptedException {
 			
-			Reports_Btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Reports_Btn)).click();
 			
 			Pledge_Creation_Confirmation_Report_txt.click();
 			
+			Thread.sleep(2000);
+			
 			Wait.until(ExpectedConditions.elementToBeClickable(New_Button)).click();
 			
-			From_txt.click();
 			
-			Select  A =new Select(yearselect_txt);
-			A.selectByVisibleText(String.valueOf(yearselect_From));
+			  From_txt.click();
+			  
+			  Select A =new Select(yearselect_txt);
+			  A.selectByVisibleText(String.valueOf(yearselect_From));
+			  
+			  Select B = new Select(monthselect_txt);
+			  B.selectByVisibleText(String.valueOf(monthselect_From));
+			  
+			  WebElement From_Date
+			  =driver.findElement(By.xpath("//td[@class='available'][normalize-space()='"+
+			  formDate+"']"));
+			  
+			  From_Date.click();
+			  
+			  toDate_Txt.click();
+			  
+			  Select C =new Select(yearselect_txt_To);
+			  C.selectByVisibleText(String.valueOf(yearselect_To));
+			  
+			  Select D = new Select(monthselect_txt_To);
+			  D.selectByVisibleText(String.valueOf(monthselect_To));
+			  
+			  WebElement ToDate
+			  =driver.findElement(By.xpath("(//td[@class='available'][normalize-space()='"+
+			  To_Date+"'])[2]"));
+			  
+			  ToDate.click();
+			 
 			
-			Select  B = new Select(monthselect_txt);
-			B.selectByVisibleText(String.valueOf(monthselect_From));
-			
-			WebElement From_Date =driver.findElement(By.xpath("//td[@class='available'][normalize-space()='"+formDate+"']"));
-					
-			From_Date.click();
-			
-			toDate_Txt.click();
-			
-			Select  C =new Select(yearselect_txt);
-			C.selectByVisibleText(String.valueOf(yearselect_To));
-			
-			Select  D = new Select(monthselect_txt);
-			D.selectByVisibleText(String.valueOf(monthselect_To));
-			
-			WebElement ToDate =driver.findElement(By.xpath("//td[@class='available'][normalize-space()='"+To_Date+"']"));
-					
-			ToDate.click();
-			
-			Export_Btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
 			
 			Thread.sleep(3000);
+			
+			Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
 			
 			
 			

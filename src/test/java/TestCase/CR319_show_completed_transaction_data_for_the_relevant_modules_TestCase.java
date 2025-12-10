@@ -22,7 +22,7 @@ public class CR319_show_completed_transaction_data_for_the_relevant_modules_Test
 			true);
 	ExtentTest test = Report.startTest("CR319-show completed transaction data");
 	
-	//@Test
+	@Test
 	  void Pledge_Creation_Confirmation_CR319 () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Pledge_Creation_Confirmation_CR319 for REPOSITORY start");
@@ -44,8 +44,7 @@ public class CR319_show_completed_transaction_data_for_the_relevant_modules_Test
 		Report.flush();
 	} 
 	
-	
-	@Test
+	//@Test
 	  void Depledge_Confirm_by_Pledgee_CR319 () throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Depledge_Confirm_by_Pledgee_CR319 for REPOSITORY start");

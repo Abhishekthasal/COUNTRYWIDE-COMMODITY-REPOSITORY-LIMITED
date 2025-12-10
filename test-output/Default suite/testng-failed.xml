@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.Depledge_Request_Test_Case">
+      <class name="TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase">
         <methods>
           <include name="setup"/>
-          <include name="DePledge_Confirm_By_Pledgee_Authorized"/>
+          <include name="Depledge_Confirm_by_Pledgee_CR319"/>
         </methods>
-      </class> <!-- TestCase.Depledge_Request_Test_Case -->
+      </class> <!-- TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
