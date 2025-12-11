@@ -10,7 +10,7 @@ public class DBConnection {
         String url = "jdbc:mysql://192.168.19.147:3066/ccrl_uat?useSSL=false&connectTimeout=120000&allowPublicKeyRetrieval=true";
         String username = "ccrl1";
         String password = "ccrl@123";
-        //String Deposit_ID ="5244457";
+      
         try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {

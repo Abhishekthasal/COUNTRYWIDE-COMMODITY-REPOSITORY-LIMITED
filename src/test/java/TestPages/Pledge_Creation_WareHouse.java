@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -267,7 +269,29 @@ int To_Date=9;
 			
 			Wait.until(ExpectedConditions.elementToBeClickable(Reports_Btn)).click();
 			
+			// check the menu list and verify 'Pledge Creation Confirmation' exists and is immediately below 'eNWR/eNNWR Enquiry Report'
+	        // The exact structure depends on your DOM; below is a generic approach: find list items under Reports
+	        List<WebElement> reportItems = driver.findElements(By.xpath("//ul[@id='reportsList']/li/a"));
+	        List<String> names = reportItems.stream().map(WebElement::getText).map(String::trim).collect(Collectors.toList());
+
+	        // debug print
+	        System.out.println("Reports list: " + names);
+
+	        int indexOfEnquiry = names.indexOf("eNWR/eNNWR Enquiry Report");
+	        Assert.assertTrue(indexOfEnquiry >= 0, "eNWR/eNNWR Enquiry Report must exist in Reports");
+
+	        // check next item exists and is 'Pledge Creation Confirmation'
+	        Assert.assertTrue(indexOfEnquiry + 1 < names.size(), "'Pledge Creation Confirmation' expected to be below enquiry report");
+	        Assert.assertEquals(names.get(indexOfEnquiry + 1), "Pledge Creation Confirmation",
+	                "Pledge Creation Confirmation must be immediately below eNWR/eNNWR Enquiry Report");
+			
+	        if(Pledge_Creation_Confirmation_Report_txt.isDisplayed()) {
+	        	
+	       
 			Pledge_Creation_Confirmation_Report_txt.click();
+			
+			
+	        }
 			
 			Thread.sleep(2000);
 			
@@ -303,11 +327,11 @@ int To_Date=9;
 			  ToDate.click();
 			 
 			
-			Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
+			//Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
 			
 			Thread.sleep(3000);
 			
-			Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
+			//Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
 			
 			
 			

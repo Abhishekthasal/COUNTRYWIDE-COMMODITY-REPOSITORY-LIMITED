@@ -6,7 +6,7 @@
       <class name="TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase">
         <methods>
           <include name="setup"/>
-          <include name="Depledge_Confirm_by_Pledgee_CR319"/>
+          <include name="Pledge_Creation_Confirmation_CR319"/>
         </methods>
       </class> <!-- TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase -->
     </classes>
