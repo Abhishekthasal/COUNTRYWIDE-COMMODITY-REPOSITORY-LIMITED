@@ -25,20 +25,20 @@ public class CR319_show_completed_transaction_data_for_the_relevant_modules_Test
 	@Test
 	  void Pledge_Creation_Confirmation_CR319 () throws IOException {
 		try {
-			test.log(LogStatus.INFO, "Pledge_Creation_Confirmation_CR319 for REPOSITORY start");
+			test.log(LogStatus.INFO, "Pledge_Creation_Confirmation_CR319 is start");
 		  LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			Login.PortalLogin("WSP9999996", "user71", "121@test");
 			Pledge_Creation_WareHouse CR319 = new Pledge_Creation_WareHouse(driver,Wait);
 			CR319.Pledge_Creation_Confirmation_CR319();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-					+ "Pledge_Creation_Confirmation_CR319 is success full");
+					+ "Pledge_Creation_Confirmation_CR319 is successfull");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 			TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL,
-					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed for Pledge_Creation_Confirmation_CR319"+e.getMessage());
+					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed for Pledge_Creation_Confirmation_CR319: "+e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
@@ -47,7 +47,7 @@ public class CR319_show_completed_transaction_data_for_the_relevant_modules_Test
 	//@Test
 	  void Depledge_Confirm_by_Pledgee_CR319 () throws IOException {
 		try {
-			test.log(LogStatus.INFO, "Depledge_Confirm_by_Pledgee_CR319 for REPOSITORY start");
+			test.log(LogStatus.INFO, "Depledge_Confirm_by_Pledgee_CR319 is start");
 		  LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			Login.PortalLogin("WSP9999996", "user71", "121@test");
