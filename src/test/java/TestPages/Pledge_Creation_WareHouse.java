@@ -1,3 +1,4 @@
+
 package TestPages;
 
 import java.sql.Connection;
@@ -249,19 +250,22 @@ public class Pledge_Creation_WareHouse {
 	public void Pledge_Creation_Confirmation_CR319() throws InterruptedException {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Reports_Btn)).click();
+		Assert.assertTrue(Reports_Btn.isDisplayed());	
 
 		// check the menu list and verify 'Pledge Creation Confirmation' exists and is
 		// immediately below 'eNWR/eNNWR Enquiry Report'
 		// The exact structure depends on your DOM; below is a generic approach: find
 		// list items under Reports
-		List<WebElement> reportItems = driver.findElements(By.cssSelector("li[class='nav-item ng-scope open']"));
-		List<String> names = reportItems.stream().map(WebElement::getText).map(String::trim)
-				.collect(Collectors.toList());
-		Thread.sleep(2000);
-		// debug print
-		System.out.println("Reports list: " + names);
-
-		int indexOfEnquiry = names.indexOf("eNWR/eNNWR Enquiry Report");
+		/*
+		 * List<WebElement> reportItems =
+		 * driver.findElements(By.cssSelector("li[class='nav-item ng-scope open']"));
+		 * List<String> names =
+		 * reportItems.stream().map(WebElement::getText).map(String::trim)
+		 * .collect(Collectors.toList()); Thread.sleep(2000); // debug print
+		 * System.out.println("Reports list: " + names);
+		 * 
+		 * int indexOfEnquiry = names.indexOf("eNWR/eNNWR Enquiry Report");
+		 */
 		// Assert.assertTrue(indexOfEnquiry >= 0, "eNWR/eNNWR Enquiry Report must exist
 		// in Reports");
 
@@ -273,12 +277,17 @@ public class Pledge_Creation_WareHouse {
 		// "Pledge Creation Confirmation must be immediately below eNWR/eNNWR Enquiry
 		// Report");
 
+
+		String pledge =Pledge_Creation_Confirmation_Report_txt.getAttribute("textContent");
+		System.out.println("value of text:"+pledge);
+		Assert.assertEquals(pledge, "Pledge Creation Confirmation Report", "Pledge_Creation_Confirmation_Report_txt mismatch");
+		
 		if (Pledge_Creation_Confirmation_Report_txt.isDisplayed()) {
 
 			Pledge_Creation_Confirmation_Report_txt.click();
+			Assert.assertTrue(Pledge_Creation_Confirmation_Report_txt.isDisplayed());			
 
 		}
-
 		Thread.sleep(2000);
 
 		Wait.until(ExpectedConditions.elementToBeClickable(New_Button)).click();
@@ -309,11 +318,11 @@ public class Pledge_Creation_WareHouse {
 
 		ToDate.click();
 
-		// Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
+		 Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
 
 		Thread.sleep(3000);
 
-		// Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
+		 Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
 
 	}
 }
