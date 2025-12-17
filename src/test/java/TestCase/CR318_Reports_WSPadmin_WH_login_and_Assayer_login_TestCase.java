@@ -2,6 +2,7 @@ package TestCase;
 
 import java.io.IOException;
 import java.time.Duration;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -13,7 +14,7 @@ import TestPages.LoginPages;
 import TestPages.Physical_Deposit_Maker;
 import TestPages.Pledge_Creation_WareHouse;
 import TestPages.Withdrawal_Confirm_WSP_Maker;
-
+@Listeners(Utillity.TestNGListeners.class)
 public class CR318_Reports_WSPadmin_WH_login_and_Assayer_login_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(

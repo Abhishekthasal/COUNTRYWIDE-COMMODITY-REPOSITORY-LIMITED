@@ -24,4 +24,16 @@ public class ScreenShort extends BaseClass {
 
 		return absolutepath_Screen;
 	}
+
+	public static String CaptureScreen(WebDriver driver, String methodName) throws IOException {
+		File srcfile =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+		File Destinationfile =new File("C:\\Users\\abhishekyt\\git\\repository\\Automation\\ScreenShort\\image"+System.currentTimeMillis()+".png");
+
+		String absolutepath_Screen = Destinationfile.getAbsolutePath();
+
+		FileUtils.copyFile(srcfile, Destinationfile);
+
+		return absolutepath_Screen;
+	}
 }

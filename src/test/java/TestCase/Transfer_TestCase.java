@@ -2,7 +2,6 @@ package TestCase;
 
 import java.io.IOException;
 import java.time.Duration;
-
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.relevantcodes.extentreports.ExtentReports;

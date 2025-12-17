@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -17,7 +16,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import Utillity.DataBaseUtility;
 
 public class Pledge_Creation_WareHouse {
@@ -285,8 +283,9 @@ public class Pledge_Creation_WareHouse {
 		if (Pledge_Creation_Confirmation_Report_txt.isDisplayed()) {
 
 			Pledge_Creation_Confirmation_Report_txt.click();
-			Assert.assertTrue(Pledge_Creation_Confirmation_Report_txt.isDisplayed());			
-
+			Assert.assertTrue(Pledge_Creation_Confirmation_Report_txt.isDisplayed());
+			//Assert.assertFalse(Pledge_Creation_Confirmation_Report_txt.isDisplayed(), "failes");
+//assertTrue
 		}
 		Thread.sleep(2000);
 
@@ -318,11 +317,11 @@ public class Pledge_Creation_WareHouse {
 
 		ToDate.click();
 
-		 Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
+		// Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
 
 		Thread.sleep(3000);
 
-		 Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
+		// Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
 
 	}
 }

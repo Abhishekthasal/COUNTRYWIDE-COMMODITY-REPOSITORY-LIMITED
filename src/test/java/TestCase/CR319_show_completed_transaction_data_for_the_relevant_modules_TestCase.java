@@ -2,18 +2,19 @@ package TestCase;
 
 import java.io.IOException;
 import java.time.Duration;
-
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-
 import TestPages.BaseClass;
 import TestPages.DePledge_Confirm_By_Pledgee;
 import TestPages.LoginPages;
 import TestPages.Pledge_Creation_WareHouse;
 
+
+
+@Listeners(Utillity.TestNGListeners.class)
 public class CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase extends BaseClass{
 	
 	ExtentReports Report = new ExtentReports(
@@ -40,8 +41,10 @@ public class CR319_show_completed_transaction_data_for_the_relevant_modules_Test
 			test.log(LogStatus.FAIL,
 					test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed for Pledge_Creation_Confirmation_CR319: "+e.getMessage());
 		}
-		Report.endTest(test);
-		Report.flush();
+		
+		  Report.endTest(test); 
+		  Report.flush();
+		 
 	} 
 	
 	//@Test
