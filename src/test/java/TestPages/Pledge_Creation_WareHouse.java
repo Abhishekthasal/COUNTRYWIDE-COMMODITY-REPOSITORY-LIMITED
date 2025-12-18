@@ -278,7 +278,7 @@ public class Pledge_Creation_WareHouse {
 
 		String pledge =Pledge_Creation_Confirmation_Report_txt.getAttribute("textContent");
 		System.out.println("value of text:"+pledge);
-		Assert.assertEquals(pledge, "Pledge Creation Confirmation Report", "Pledge_Creation_Confirmation_Report_txt mismatch");
+		Assert.assertEquals(pledge, "Pledge Creation Conlklfirmation Report", "Pledge_Creation_Confirmation_Report_txt mismatch");
 		
 		if (Pledge_Creation_Confirmation_Report_txt.isDisplayed()) {
 

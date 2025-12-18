@@ -2,6 +2,9 @@ package Utillity;
 
 import java.io.IOException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.bidi.log.LogEntry;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogType;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
@@ -9,15 +12,23 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.IExtentTestClass;
+
 import TestPages.BaseClass;
 import com.relevantcodes.extentreports.LogStatus;
-import TestPages.ScreenShort;
+
 
 public class TestNGListeners extends BaseClass implements ITestListener, ISuiteListener {
 
-	private static ExtentReports Report = ExtentManager.getExtentReports();
-	private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+	//private static ExtentReports Report = ExtentManager.getExtentReports();
+	//private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
+	ExtentReports Report = new ExtentReports(
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\CR319_"
+					+ System.currentTimeMillis() + ".html",
+			true);
+	ExtentTest test = Report.startTest("CR319-show completed transaction data");
+	
 	// TestNG Listeners are used only in XMl files not for normal class
 
 	@Override
@@ -29,37 +40,21 @@ public class TestNGListeners extends BaseClass implements ITestListener, ISuiteL
 	public void onTestSuccess(ITestResult result) {
 		System.out.println("********* Test is sucessful : " + result.getName());
 	}
-
+	@Override 
+	public void onTestFailure(ITestResult result) { 
+	LogEntries logs=driver.manage().logs().get(LogType.BROWSER);
+	logs.getAll();
 	/*
-	 * @Override public void onTestFailure(ITestResult result) { String
-	 * screenshotPath = null; try { screenshotPath =
-	 * ScreenShort.CaptureScreen(driver, result.getMethod().getMethodName()); }
-	 * catch (IOException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } if (test.get() == null) { ExtentTest extentTest =
-	 * Report.startTest(result.getMethod().getMethodName()); test.set(extentTest); }
-	 * test.get().log(LogStatus.FAIL, result.getThrowable()); if (screenshotPath !=
-	 * null) { test.get().addScreenCapture(screenshotPath); } }
+	 * for(LogEntry entry :logs) { System.out.println(entry.getMessage());
 	 */
-	@Override public void onTestFailure(ITestResult result) { 
-		Object testClass =result.getInstance();
-		WebDriver driver = ((BaseClass) testClass).driver; //
+		
+		
 	
-	  
-	  String screenshotPath = null;
-	  
-	  try {
-		  screenshotPath = ScreenShort.CaptureScreen(driver,
-	  result.getMethod().getMethodName()); 
-	  } 
-	  catch (IOException e) { 
-		  e.printStackTrace(); 
-	  }
-	  test.get().log(LogStatus.FAIL, result.getThrowable());
-	  
-	  if (screenshotPath != null) {
-		  
-		  test.get().addScreenCapture(screenshotPath); 
-		  }
+	/*
+	 * test.log(LogStatus.FAIL, ((IExtentTestClass)
+	 * test).addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) +
+	 * "Test failed for Pledge_Creation_Confirmation_CR319: "+result.getName());
+	 */
 	  System.out.println("********* Test failed : " + result.getName());
 	  
 	}
