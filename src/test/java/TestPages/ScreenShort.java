@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 public class ScreenShort extends BaseClass {
 
 
-	public static String CaptureScreen(WebDriver driver) throws IOException {
+	public static  String CaptureScreen(WebDriver driver) throws IOException {
 
 
 		File srcfile =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

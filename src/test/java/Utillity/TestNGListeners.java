@@ -13,8 +13,9 @@ import org.testng.ITestResult;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.IExtentTestClass;
-
 import TestPages.BaseClass;
+import TestPages.ScreenShort;
+
 import com.relevantcodes.extentreports.LogStatus;
 
 
@@ -42,12 +43,31 @@ public class TestNGListeners extends BaseClass implements ITestListener, ISuiteL
 	}
 	@Override 
 	public void onTestFailure(ITestResult result) { 
-	LogEntries logs=driver.manage().logs().get(LogType.BROWSER);
-	logs.getAll();
-	/*
-	 * for(LogEntry entry :logs) { System.out.println(entry.getMessage());
-	 */
+		/// WebDriver driver = getDriver();
+	      //  String testName = result.getMethod().getMethodName();
 		
+		// Take screenshot
+        String screenshotPath = null;
+		
+	     
+			try {
+				screenshotPath = ScreenShort.CaptureScreen(driver);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      //  String screenshotPath = ScreenshotUtil.captureScreen(driver);
+	
+	//	test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)).;
+			 // Log to Extent Report
+	       // ExtentTest test = ExtentTestManager.getTest();
+	        test.log(LogStatus.FAIL, "Test Failed");
+	        test.log(LogStatus.FAIL, result.getThrowable());
+        //test.log(LogStatus.FAIL, test.addScreenCapture(screenshotPath));
+		test.log(LogStatus.FAIL, test.addScreenCapture(screenshotPath));
+		LogEntries logs=driver.manage().logs().get(LogType.BROWSER);
+	    logs.getAll();
+	
 		
 	
 	/*
