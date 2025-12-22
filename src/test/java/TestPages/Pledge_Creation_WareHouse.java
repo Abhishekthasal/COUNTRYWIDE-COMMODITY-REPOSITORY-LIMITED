@@ -26,7 +26,7 @@ public class Pledge_Creation_WareHouse {
 	String Pledge_Seq_No;
 	int yearselect_From = 2025;
 	String monthselect_From = "Dec";
-	int formDate = 1;
+	int formDate = 10;
 
 	int yearselect_To = 2025;
 	String monthselect_To = "Dec";
@@ -99,6 +99,9 @@ public class Pledge_Creation_WareHouse {
 	@FindBy(xpath = "//span[normalize-space()='Export']")
 	WebElement Export_Btn;
 
+	@FindBy(xpath="//input[@id='fromDate']")
+	WebElement from;
+	
 	@FindBy(xpath = "//button[normalize-space()='Ok']")
 	WebElement PopUp_Btn;
 
@@ -278,7 +281,7 @@ public class Pledge_Creation_WareHouse {
 
 		String pledge =Pledge_Creation_Confirmation_Report_txt.getAttribute("textContent");
 		System.out.println("value of text:"+pledge);
-		Assert.assertEquals(pledge, "Pledge Creation Conlklfirmation Report", "Pledge_Creation_Confirmation_Report_txt mismatch");
+		Assert.assertEquals(pledge, "Pledge Creation Confirmation Report", "Pledge_Creation_Confirmation_Report_txt mismatch");
 		
 		if (Pledge_Creation_Confirmation_Report_txt.isDisplayed()) {
 
@@ -303,6 +306,12 @@ public class Pledge_Creation_WareHouse {
 				.findElement(By.xpath("//td[@class='available'][normalize-space()='" + formDate + "']"));
 
 		From_Date.click();
+		
+		String F= From_txt.getText();
+		
+		System.out.println("Date of starrt :"+F);
+		
+		
 
 		toDate_Txt.click();
 
@@ -317,6 +326,8 @@ public class Pledge_Creation_WareHouse {
 
 		ToDate.click();
 
+		System.out.println("Date of End :"+toDate_Txt.getText());
+		
 		// Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
 
 		Thread.sleep(3000);

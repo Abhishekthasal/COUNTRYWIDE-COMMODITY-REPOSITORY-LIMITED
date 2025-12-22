@@ -2,8 +2,6 @@ package TestCase;
 
 import java.io.IOException;
 import java.time.Duration;
-
-import org.openqa.selenium.bidi.log.LogEntry;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.testng.annotations.Listeners;
@@ -16,7 +14,7 @@ import TestPages.DePledge_Confirm_By_Pledgee;
 import TestPages.LoginPages;
 import TestPages.Pledge_Creation_WareHouse;
 
-@Listeners(Utillity.TestNGListeners.class)
+//@Listeners(Utillity.TestNGListeners.class)
 public class CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports("C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\CR319_19_Dec"
@@ -29,7 +27,6 @@ public class CR319_show_completed_transaction_data_for_the_relevant_modules_Test
 		try {
 			test.log(LogStatus.INFO, "Pledge_Creation_Confirmation_CR319 is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			// Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			Login.PortalLogin("WSP9999996", "user71", "121@test");
 			Pledge_Creation_WareHouse CR319 = new Pledge_Creation_WareHouse(driver, Wait);
 			CR319.Pledge_Creation_Confirmation_CR319();
@@ -43,10 +40,8 @@ public class CR319_show_completed_transaction_data_for_the_relevant_modules_Test
 			test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "Test failed for Pledge_Creation_Confirmation_CR319: " + e.getMessage());
 			LogEntries logs = driver.manage().logs().get(LogType.BROWSER);
-			logs.getAll();
-			test.log(null, e);
+			logs.getAll();	
 		}
-
 		Report.endTest(test);
 		Report.flush();
 	}
@@ -56,7 +51,6 @@ public class CR319_show_completed_transaction_data_for_the_relevant_modules_Test
 		try {
 			test.log(LogStatus.INFO, "Depledge_Confirm_by_Pledgee_CR319 is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			// Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			Login.PortalLogin("WSP9999996", "user71", "121@test");
 			DePledge_Confirm_By_Pledgee CR319 = new DePledge_Confirm_By_Pledgee(driver, Wait);
 			CR319.Depledge_Confirm_by_Pledgee_CR319();

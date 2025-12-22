@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-19T17:18:35 IST" name="Default suite" finished-at="2025-12-19T17:19:02 IST" duration-ms="27060">
+  <suite started-at="2025-12-22T18:26:33 IST" name="Default suite" finished-at="2025-12-22T18:27:08 IST" duration-ms="34922">
     <groups>
     </groups>
-    <test started-at="2025-12-19T17:18:35 IST" name="Default test" finished-at="2025-12-19T17:19:02 IST" duration-ms="27060">
-      <class name="TestCase.General_Deposite_Agriculture_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.General_Deposite_Agriculture_TestCase@29d89d5d]" started-at="2025-12-19T17:18:35 IST" name="setup" finished-at="2025-12-19T17:18:42 IST" duration-ms="6911" status="PASS">
+    <test started-at="2025-12-22T18:26:33 IST" name="Default test" finished-at="2025-12-22T18:27:08 IST" duration-ms="34922">
+      <class name="TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase@29d89d5d]" started-at="2025-12-22T18:26:33 IST" name="setup" finished-at="2025-12-22T18:26:37 IST" duration-ms="3801" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Deposite_Assayer_Maker()[pri:0, instance:TestCase.General_Deposite_Agriculture_TestCase@29d89d5d]" started-at="2025-12-19T17:18:42 IST" name="Deposite_Assayer_Maker" finished-at="2025-12-19T17:19:02 IST" duration-ms="20116" status="PASS">
+        <test-method signature="Pledge_Creation_Confirmation_CR319()[pri:0, instance:TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase@29d89d5d]" started-at="2025-12-22T18:26:37 IST" name="Pledge_Creation_Confirmation_CR319" finished-at="2025-12-22T18:27:08 IST" duration-ms="31091" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Deposite_Assayer_Maker -->
-      </class> <!-- TestCase.General_Deposite_Agriculture_TestCase -->
+        </test-method> <!-- Pledge_Creation_Confirmation_CR319 -->
+      </class> <!-- TestCase.CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
