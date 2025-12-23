@@ -30,7 +30,7 @@ public class Pledge_Creation_WareHouse {
 
 	int yearselect_To = 2025;
 	String monthselect_To = "Dec";
-	int To_Date = 9;
+	int To_Date = 2;
 
 	public Pledge_Creation_WareHouse(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -285,7 +285,7 @@ public class Pledge_Creation_WareHouse {
 		
 		if (Pledge_Creation_Confirmation_Report_txt.isDisplayed()) {
 
-			Pledge_Creation_Confirmation_Report_txt.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Pledge_Creation_Confirmation_Report_txt)).click();
 			Assert.assertTrue(Pledge_Creation_Confirmation_Report_txt.isDisplayed());
 			//Assert.assertFalse(Pledge_Creation_Confirmation_Report_txt.isDisplayed(), "failes");
 //assertTrue
@@ -328,11 +328,11 @@ public class Pledge_Creation_WareHouse {
 
 		System.out.println("Date of End :"+toDate_Txt.getText());
 		
-		// Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
+		 Wait.until(ExpectedConditions.elementToBeClickable(Export_Btn)).click();
 
 		Thread.sleep(3000);
 
-		// Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
+		 Wait.until(ExpectedConditions.elementToBeClickable(PopUp_Btn)).click();
 
 	}
 }

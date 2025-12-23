@@ -25,7 +25,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-//@Test(retryAnalyzer= Utillity.RetryTest.class)
+@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void RP_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Deposite_Request_Maker start");
@@ -106,7 +106,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-@Test(retryAnalyzer= Utillity.RetryTest.class)
+//@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Maker is start");
