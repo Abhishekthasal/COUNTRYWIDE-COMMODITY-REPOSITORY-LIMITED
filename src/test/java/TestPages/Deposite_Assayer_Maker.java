@@ -29,8 +29,7 @@ public class Deposite_Assayer_Maker {
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
-	
-	
+
 	String Assayring_Referance = excel.getAssayring_Referance(dataRow);
 	String shelflife = excel.getshelflife(dataRow);
 	String Grade_Desig_type = excel.getGrade_Desig_type(dataRow);
@@ -38,7 +37,6 @@ public class Deposite_Assayer_Maker {
 	String NABLCertificateRefNum = excel.getNABLCertificateRefNum(dataRow);
 	String Address_Value = excel.getAddress_Value(dataRow);
 	boolean found = false;
-	
 
 	public Deposite_Assayer_Maker(WebDriver driver, WebDriverWait Wait) {
 
@@ -53,7 +51,7 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "//span[normalize-space()='Deposit Assayer']")
 	WebElement Deposit_Assayer;
-	
+
 	@FindBy(xpath = "//a[normalize-space()='Pending for Deposit Assayer']")
 	WebElement PendingforDepositAssayer;
 
@@ -116,13 +114,14 @@ public class Deposite_Assayer_Maker {
 	WebElement TRASH_CONTENT;
 	@FindBy(xpath = "(//input[@name='name'])[3]")
 	WebElement MOISTURE_BY_MASS;
-	
-	@FindBy(xpath = "(//input[@name='name'])[4]")
-	WebElement Address4;
-	@FindBy(xpath = "(//input[@name='name'])[5]")
-	WebElement Address5;
-	@FindBy(xpath = "(//input[@name='name'])[6]")
-	WebElement Address6;
+
+	/*
+	 * @FindBy(xpath = "(//input[@name='name'])[4]") WebElement Address4;
+	 * 
+	 * @FindBy(xpath = "(//input[@name='name'])[5]") WebElement Address5;
+	 * 
+	 * @FindBy(xpath = "(//input[@name='name'])[6]") WebElement Address6;
+	 */
 	@FindBy(xpath = "(//input[@name='name'])[7]")
 	WebElement IMMATURE_SHRIVELED_AND_BROKEN_GRAINS;
 	@FindBy(xpath = "(//input[@name='name'])[8]")
@@ -184,7 +183,7 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "(//input[@id='Address'])[6]")
 	WebElement FOREIGN_MATTER_chan;
-	
+
 	@FindBy(xpath = "(//input[@id='Address'])[2]")
 	WebElement OTHER_FOOD_GRAINS_CHANA;
 
@@ -310,6 +309,33 @@ public class Deposite_Assayer_Maker {
 	 * @FindBy(xpath="(//input[@id='Address'])[5]") WebElement
 	 */
 
+	@FindBy(xpath = "(//input[@id='Address'])[1]")
+	WebElement Address1;
+
+	@FindBy(xpath = "(//input[@id='Address'])[2]")
+	WebElement Address2;
+
+	@FindBy(xpath = "(//input[@id='Address'])[3]")
+	WebElement Address3;
+
+	@FindBy(xpath = "(//input[@id='Address'])[4]")
+	WebElement Address4;
+
+	@FindBy(xpath = "(//input[@id='Address'])[5]")
+	WebElement Address5;
+
+	@FindBy(xpath = "(//input[@id='Address'])[6]")
+	WebElement Address6;
+
+	@FindBy(xpath = "(//input[@id='Address'])[7]")
+	WebElement Address7;
+
+	@FindBy(xpath = "(//input[@id='Address'])[8]")
+	WebElement Address8;
+
+	@FindBy(xpath = "(//input[@id='Address'])[9]")
+	WebElement Address9;
+
 	@FindBy(xpath = "//select[@ng-model='Commodity.qp_Value']")
 	WebElement GINNING_PATTERN_ROLLER_GINNED_COTTON;
 
@@ -322,49 +348,6 @@ public class Deposite_Assayer_Maker {
 	@FindBy(xpath = "(//input[@id='Address'])[7]")
 	WebElement YELLOWNESS_B_VALUE_EX;
 
-	/*
-	 * @FindBy(xpath = "(//input[@id='Address'])[9]") WebElement YELLOWNESS_B_VALUE;
-	 *
-	 * @FindBy(xpath = "(//input[@id='Address'])[10]") WebElement MOISTURE_BY_MASS;
-	 * // select[@class='form-control ng-scope ng-dirty ng-valid-parse ng-touched //
-	 * ng-empty ng-invalid ng-invalid-required'] // (//select[@class='form-control
-	 * ng-pristine ng-scope ng-empty ng-invalid // ng-invalid-required
-	 * ng-touched'])[1] //
-	 * .form-control.ng-scope.ng-dirty.ng-valid-parse.ng-touched.ng-empty.ng-invalid
-	 * .ng-invalid-required
-	 *
-	 * @FindBy(xpath = "//select[@ng-model='Commodity.qp_Value']") WebElement
-	 * GINNING_PATTERN_ROLLER_GINNED_COTTON;
-	 *
-	 * @FindBy(xpath = "(//input[@id='Address'])[5]") WebElement
-	 * MOISTURE_BY_MASS_EX;
-	 *
-	 * @FindBy(xpath = "(//input[@id='Address'])[6]") WebElement
-	 * REFLECTANCE_RD_VALUE_EX;
-	 *
-	 * @FindBy(xpath = "(//input[@id='Address'])[7]") WebElement
-	 * YELLOWNESS_B_VALUE_EX;
-	 *
-	 * // select[@ng-model='Commodity.qp_Value'
-	 * and @ng-if="Commodity.attr_Type=='06'" //
-	 * and @ng-change='vm.checkQPDetailsvalues($index)' and @xpath='1']
-	 *
-	 * @FindBy(xpath =
-	 * "//select[@class='form-control ng-pristine ng-valid ng-scope ng-empty ng-valid-required ng-touched']"
-	 * ) WebElement GINNING_PATTERN_SAW_GINNED_COTTON_Gen;
-	 *
-	 * @FindBy(xpath =
-	 * "//select[@ng-model='Commodity.qp_Value' and @ng-if=\"Commodity.attr_Type=='06'\" and @ng-change='vm.checkQPDetailsvalues($index)' and @xpath='1']"
-	 * ) WebElement GINNING_PATTERN_ROLLER_GINNED_COTTON_Gen;
-	 *
-	 * @FindBy(xpath =
-	 * "//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']"
-	 * ) WebElement COLOUR_Quality;
-	 *
-	 * @FindBy(xpath = "(//input[@type='text'])[41]") WebElement COLOUR_Quality_txt;
-	 *
-	 * @FindBy(xpath = "//select[@name='qp_Value']") WebElement QUALITY_PARAMETER;
-	 */
 	@FindBy(xpath = "//input[@name='ARef_No' and @ng-model='vm.DepositAssayer.arn' and @maxlength='150'][2]")
 	WebElement COA_No;
 	@FindBy(xpath = "//input[@name='remark']")
@@ -375,7 +358,7 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "//input[@name='NABLCertificateRefNo']")
 	WebElement NABLCertificateRefNo;
-	
+
 	@FindBy(xpath = "//div[@role='dialog']")
 	WebElement scroll;
 
@@ -584,80 +567,56 @@ public class Deposite_Assayer_Maker {
 			 * Grade_Desig.click();
 			 */
 
-			
-			STAPLE_SPAN_LENGTH_Ex.sendKeys(String.valueOf(28));
-			MICRONAIRE_EX.sendKeys(String.valueOf(4));
-			TRASH_ex.sendKeys(String.valueOf(4));
-			TENSILE_STRENGTH_EX.sendKeys(String.valueOf(28));
+			Address1.sendKeys(String.valueOf(28));
+			Address2.sendKeys(String.valueOf(4));
+			Address3.sendKeys(String.valueOf(4));
+			Address4.sendKeys(String.valueOf(28));
 			Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
 			S.selectByIndex(1);
-			
-			MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(7));
-			REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
-			YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
-			
-			
-			
-			/*
-			STAPLE_LENGTH.sendKeys("33");
-			TRASH_CONTENT.sendKeys("3");
-			MOISTURE_BY_MASS.sendKeys("5");
-			/*
-			 * OTHER_FOOD_GRAINS.sendKeys("3"); DAMAGED_GRAINS.sendKeys("2");
-			 * SLIGHTLY_DAMAGED_GRAINS.sendKeys("3");
-			 * IMMATURE_SHRIVELED_AND_BROKEN_GRAINS.sendKeys("12");
-			 * WEEVILED_GRAINS.sendKeys("3"); ADMIXTURE.sendKeys("2");
-			 * DAMAGED_IMMATURE_WEEVILLED.sendKeys("4");
-			 * FOREIGN_MATTER_ORGANIC.sendKeys("0.6");
-			 * FOREIGN_MATTER_INORGANIC.sendKeys("0.2"); OTHER_EDIBLE_GRAINS.sendKeys("3");
-			 * PERCENTAGE_OF_BULBS_BY_WEIGHT.sendKeys("5"); MOISTURE.sendKeys("8");
-			 * FOREIGN_MATTER.sendKeys("1"); MOISTURE_CONTENT.sendKeys("10");
-			 * SLIGHTLY_DAMAGED_TOUCHED_GRAINS.sendKeys("4");
-			 * FOREIGN_MATTER_BY_WT.sendKeys("3"); MOISTURE_BY_WT_Max.sendKeys("14");
-			 * ADMIXTURE_OTHER_EDIBLE_GRAINS.sendKeys("4"); WEEVILLED_GRAINS.sendKeys("9");
-			 * DAMAGED_IMMATURE_SHRIVELED_GRAINS.sendKeys("8");
-			 */
+			Address5.sendKeys(String.valueOf(7));
+			Address6.sendKeys(String.valueOf(80));
+			Address7.sendKeys(String.valueOf(8));
 			break;
 		case 49:
 			System.out.println("You selected: Arhar");
 			Select Grade_DE = new Select(Grade_ARHAR);
-			Grade_DE.selectByVisibleText("NAFED FAQ"); // Grade_CHANA_WHOLE.click();
+			Grade_DE.selectByVisibleText("GENERAL"); // Grade_CHANA_WHOLE.click();
 
 			Select Qualification_AH = new Select(Pre_Qualification_ARHAR);
 			Qualification_AH.selectByContainsVisibleText("Qualified");
 
-			FOREIGN_MATTER_ARHAR.sendKeys("2");
-			ADMIXTURE_ARHAR.sendKeys("3");
-			DAMAGED_PULSES.sendKeys("3");
-			SLIGHTLY_DAMAGED_PULSES.sendKeys("4");
-			IMMATURE_AND_SHRIVELLED_PULSES.sendKeys("3");
-			WEEVILLED_PULSES.sendKeys("4");
-			MOISTURE_ARHAR.sendKeys("12");
+			Address1.sendKeys("2");
+			Address2.sendKeys("3");
+			Address3.sendKeys("3");
+			Address4.sendKeys("4");
+			Address5.sendKeys("3");
+			Address6.sendKeys("4");
+			Address7.sendKeys("12");
 
 			break;
 		case 6:
 			System.out.println("You selected: CHANA ");
 			Select Grade_CHANA = new Select(Grade_CHANA_WHOLE);
-			Grade_CHANA.selectByVisibleText("NAFED FAQ"); // Grade_CHANA_WHOLE.click();
+			Grade_CHANA.selectByVisibleText("GENERAL"); // Grade_CHANA_WHOLE.click();
 
 			Select Qualification = new Select(Pre_Qualification_Txt);
 			Qualification.selectByContainsVisibleText("Qualified");
 
-			OTHER_FOOD_GRAINS_CHANA.sendKeys("3");
+			Address1.sendKeys("3");
 
-			DAMAGED_GRAINS_CHANA.sendKeys("4");
+			Address2.sendKeys("4");
 
-			IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chana.sendKeys("6");
+			Address3.sendKeys("6");
 
-			WEEVILED_GRAINS_Chana.sendKeys("4");
+			Address4.sendKeys("4");
 
-			ADMIXTURE_Chana.sendKeys("2");
+			Address5.sendKeys("2");
 
-			FOREIGN_MATTER_chana.sendKeys("1");
+			Address6.sendKeys("1");
 
-			MOISTURE_CONTENT_Chana.sendKeys("14");
+			Address7.sendKeys("14");
 
-			SLIGHTLY_DAMAGED_TOUCHED_GRAINS_Chana.sendKeys("4");
+			Address8.sendKeys("4");
 
 			break;
 		case 13:
@@ -668,11 +627,11 @@ public class Deposite_Assayer_Maker {
 			Select Qualification_SOYABEAN = new Select(Pre_Qualification_SOYABEAN);
 			Qualification_SOYABEAN.selectByContainsVisibleText("Qualified");
 
-			MOISTURE_CONTENT_SOYABEAN.sendKeys("12");
-			FOREIGN_MATTER_IMPURITIES.sendKeys("2");
-			SHRIVELLED_IMMATURE_BEANS_DISCOLOURED.sendKeys("5");
-			DAMAGED_AND_WEEVILLED_BEANS.sendKeys("3");
-			MECHANICALLY_DAMAGED_BEANS.sendKeys("15");
+			Address1.sendKeys("12");
+			Address2.sendKeys("2");
+			Address3.sendKeys("5");
+			Address4.sendKeys("3");
+			Address5.sendKeys("15");
 
 			break;
 		case 1:
@@ -683,64 +642,18 @@ public class Deposite_Assayer_Maker {
 			Select Qualification_WHEAT = new Select(Pre_Qualification_WHEAT);
 			Qualification_WHEAT.selectByContainsVisibleText("Qualified");
 
-			FOREIGN_MATTER_BY_WEIGHT.sendKeys("4");
-			OTHER_FOOD_GRAINS.sendKeys("8");
-			OTHER_WHEATS.sendKeys("20");
-			DAMAGED_GRAINS.sendKeys("5");
-			SLIGHTLY_DAMAGED_GRAINS.sendKeys("10");
-			IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_WHEAT.sendKeys("10");
-			WEEVILED_GRAINS_WHEAT.sendKeys("5");
-			MOISTURE_WHEAT.sendKeys("12");
+			Address1.sendKeys("4");
+			Address2.sendKeys("8");
+			Address3.sendKeys("20");
+			Address4.sendKeys("5");
+			Address5.sendKeys("10");
+			Address6.sendKeys("10");
+			Address7.sendKeys("5");
+			Address8.sendKeys("12");
 			break;
 		default:
 			System.out.println("Invalid selection!");
 		}
-		/*
-		 * // Cotan b Select Grade = new Select(Grade_Desig);
-		 * Grade.selectByVisibleText("GENERAL"); Grade_Desig.click();
-		 *
-		 * Select Pre_Qualification = new Select(Pre_Qualification_Txt);
-		 * Pre_Qualification.selectByIndex(1);
-		 *
-		 * STAPLE_SPAN_LENGTH.sendKeys("30");
-		 *
-		 * MICRONAIRE.sendKeys("4.5");
-		 *
-		 * TENSILE_STRENGTH.sendKeys("30");
-		 *
-		 * TRASH.sendKeys("3.6");
-		 *
-		 * MOISTURE.sendKeys("5");
-		 *
-		 * STAPLE_LENGTH.sendKeys("35");
-		 *
-		 * REFLECTANCE_RD_VALUE.sendKeys("70");
-		 *
-		 * TRASH_CONTENT.sendKeys("3");
-		 *
-		 * YELLOWNESS_B_VALUE.sendKeys("8");
-		 *
-		 * MOISTURE_BY_MASS.sendKeys("4"); /* Select se = new
-		 * Select(GINNING_PATTERN_SAW_GINNED_COTTON_Gen);
-		 * se.selectByContainsVisibleText("Yes");
-		 *
-		 * Select SB = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON_Gen);
-		 * SB.selectByContainsVisibleText("Yes");
-		 *
-		 * /* For Rubber below parameters are used
-		 * FOREIGN_MATTER_Percentage.sendKeys("99");
-		 *
-		 * COLOUR_Quality.click();
-		 *
-		 * COLOUR_Quality_txt.sendKeys("ORANGE");
-		 * COLOUR_Quality_txt.sendKeys(Keys.ENTER);
-		 *
-		 * QUALITY_PARAMETER.sendKeys(Keys.ENTER); Select Quality = new Select
-		 * (QUALITY_PARAMETER); Quality.selectByContainsVisibleText("Present");
-		 * QUALITY_PARAMETER.click();
-		 *
-		 *
-		 */
 		try {
 			if (Upload_Assaying_Report.isDisplayed()) {
 				Upload_Assaying_Report.click();
@@ -788,7 +701,7 @@ public class Deposite_Assayer_Maker {
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Transaction_Btn click...");
 			js.executeScript("arguments[0].click();", Transaction_Btn);
-		} catch (NoSuchElementException e) { 
+		} catch (NoSuchElementException e) {
 			System.out.println("Transaction_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
@@ -829,9 +742,11 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for WareHouse_Id_btn: " + e.getMessage());
 		}
 		try {
-			//if (String.valueOf(Physical_Deposit_Maker.Sample).matches("^[a-zA-Z0-9]{50}$")) {
-				SampleId_txt.sendKeys(String.valueOf(Physical_Deposit_Maker.Sample));
-			//}
+			// if
+			// (String.valueOf(Physical_Deposit_Maker.Sample).matches("^[a-zA-Z0-9]{50}$"))
+			// {
+			SampleId_txt.sendKeys(String.valueOf(Physical_Deposit_Maker.Sample));
+			// }
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript SampleId_txt click...");
 			js.executeScript("arguments[0].value='" + Physical_Deposit_Maker.Sample + "';", SampleId_txt);
@@ -960,37 +875,16 @@ public class Deposite_Assayer_Maker {
 			GradeCotton.selectByVisibleText("GENERAL");
 			Grade_Desig.click();
 
-			
-			STAPLE_SPAN_LENGTH_Ex.sendKeys(String.valueOf(28));
-			MICRONAIRE_EX.sendKeys(String.valueOf(4));
-			TRASH_ex.sendKeys(String.valueOf(4));
-			TENSILE_STRENGTH_EX.sendKeys(String.valueOf(28));
+			Address1.sendKeys(String.valueOf(28));
+			Address2.sendKeys(String.valueOf(4));
+			Address3.sendKeys(String.valueOf(4));
+			Address4.sendKeys(String.valueOf(28));
 			Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
 			S.selectByIndex(1);
-			
-			MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(7));
-			REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
-			YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
-			
-			/*
-			 * Select Pre_Qualification = new Select(Pre_Qualification_Txt);
-			 * Pre_Qualification.selectByIndex(1);
-			 * 
-			 * STAPLE_LENGTH.sendKeys("33"); MOISTURE_BY_MASS.sendKeys("3");
-			 * MOISTURE_BY_MASS.sendKeys("5");
-			 * 
-			 * IMMATURE_SHRIVELED_AND_BROKEN_GRAINS.sendKeys("12");
-			 * WEEVILED_GRAINS.sendKeys("3"); ADMIXTURE.sendKeys("2");
-			 * DAMAGED_IMMATURE_WEEVILLED.sendKeys("4");
-			 * FOREIGN_MATTER_ORGANIC.sendKeys("0.6");
-			 * FOREIGN_MATTER_INORGANIC.sendKeys("0.2"); OTHER_EDIBLE_GRAINS.sendKeys("3");
-			 * PERCENTAGE_OF_BULBS_BY_WEIGHT.sendKeys("5"); MOISTURE.sendKeys("8");
-			 * FOREIGN_MATTER.sendKeys("1"); MOISTURE_CONTENT.sendKeys("10");
-			 * SLIGHTLY_DAMAGED_TOUCHED_GRAINS.sendKeys("4");
-			 * FOREIGN_MATTER_BY_WT.sendKeys("3"); MOISTURE_BY_WT_Max.sendKeys("14");
-			 * ADMIXTURE_OTHER_EDIBLE_GRAINS.sendKeys("4"); WEEVILLED_GRAINS.sendKeys("9");
-			 * DAMAGED_IMMATURE_SHRIVELED_GRAINS.sendKeys("8");
-			 */
+
+			Address5.sendKeys(String.valueOf(7));
+			Address6.sendKeys(String.valueOf(80));
+			Address7.sendKeys(String.valueOf(8));
 
 			break;
 		case 49:
@@ -1001,13 +895,13 @@ public class Deposite_Assayer_Maker {
 			Select Qualification_AH = new Select(Pre_Qualification_ARHAR);
 			Qualification_AH.selectByContainsVisibleText("Qualified");
 
-			FOREIGN_MATTER_ARHAR.sendKeys("2");
-			ADMIXTURE_ARHAR.sendKeys("3");
-			DAMAGED_PULSES.sendKeys("3");
-			SLIGHTLY_DAMAGED_PULSES.sendKeys("4");
-			IMMATURE_AND_SHRIVELLED_PULSES.sendKeys("3");
-			WEEVILLED_PULSES.sendKeys("4");
-			MOISTURE_ARHAR.sendKeys("12");
+			Address1.sendKeys("2");
+			Address2.sendKeys("3");
+			Address3.sendKeys("3");
+			Address4.sendKeys("4");
+			Address5.sendKeys("3");
+			Address6.sendKeys("4");
+			Address7.sendKeys("12");
 
 			break;
 		case 6:
@@ -1018,21 +912,21 @@ public class Deposite_Assayer_Maker {
 			Select Qualification = new Select(Pre_Qualification_Txt);
 			Qualification.selectByContainsVisibleText("Qualified");
 
-			OTHER_FOOD_GRAINS_CHANA.sendKeys("3");
+			Address1.sendKeys("3");
 
-			DAMAGED_GRAINS_CHANA.sendKeys("4");
+			Address2.sendKeys("4");
 
-			IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chana.sendKeys("6");
+			Address3.sendKeys("6");
 
-			WEEVILED_GRAINS_Chana.sendKeys("4");
+			Address4.sendKeys("4");
 
-			ADMIXTURE_Chana.sendKeys("2");
+			Address5.sendKeys("2");
 
-			FOREIGN_MATTER_chana.sendKeys("1");
+			Address6.sendKeys("1");
 
-			MOISTURE_CONTENT_Chana.sendKeys("14");
+			Address7.sendKeys("14");
 
-			SLIGHTLY_DAMAGED_TOUCHED_GRAINS_Chana.sendKeys("4");
+			Address8.sendKeys("4");
 
 			break;
 		case 13:
@@ -1043,52 +937,16 @@ public class Deposite_Assayer_Maker {
 			Select Qualification_SOYABEAN = new Select(Pre_Qualification_SOYABEAN);
 			Qualification_SOYABEAN.selectByContainsVisibleText("Qualified");
 
-			MOISTURE_CONTENT_SOYABEAN.sendKeys("12");
-			FOREIGN_MATTER_IMPURITIES.sendKeys("2");
-			SHRIVELLED_IMMATURE_BEANS_DISCOLOURED.sendKeys("5");
-			DAMAGED_AND_WEEVILLED_BEANS.sendKeys("3");
-			MECHANICALLY_DAMAGED_BEANS.sendKeys("15");
+			Address1.sendKeys("12");
+			Address2.sendKeys("2");
+			Address3.sendKeys("5");
+			Address4.sendKeys("3");
+			Address5.sendKeys("15");
 
 			break;
 		default:
 			System.out.println("Invalid selection!");
 		}
-
-		/*
-		 * Cotttan
-		 *
-		 * STAPLE_SPAN_LENGTH.sendKeys("28");
-		 *
-		 * MICRONAIRE.sendKeys("4");
-		 *
-		 * TRASH.sendKeys("4.5");
-		 *
-		 * TENSILE_STRENGTH.sendKeys("28");
-		 *
-		 * Select Option = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON); //
-		 * GINNING_PATTERN_ROLLER_GINNED_COTTON.click(); Option.selectByIndex(1);
-		 *
-		 * MOISTURE_BY_MASS_EX.sendKeys("8.5");
-		 *
-		 * REFLECTANCE_RD_VALUE_EX.sendKeys("73");
-		 *
-		 * YELLOWNESS_B_VALUE_EX.sendKeys("10.2");
-		 *
-		 *
-		 * For Rubber below parameters are used
-		 * FOREIGN_MATTER_Percentage.sendKeys("99");
-		 *
-		 * COLOUR_Quality.click();
-		 *
-		 * COLOUR_Quality_txt.sendKeys("ORANGE");
-		 * COLOUR_Quality_txt.sendKeys(Keys.ENTER);
-		 *
-		 * QUALITY_PARAMETER.sendKeys(Keys.ENTER); Select Quality = new Select
-		 * (QUALITY_PARAMETER); Quality.selectByContainsVisibleText("Present");
-		 * QUALITY_PARAMETER.click();
-		 *
-		 *
-		 */
 
 		try {
 			Upload_Assaying_Report.click();
@@ -1342,7 +1200,7 @@ public class Deposite_Assayer_Maker {
 				System.out.println("Unexpected error for NABLCertificateRefNo: " + e.getMessage());
 			}
 			try {
-				Address.sendKeys(Address_Value);
+				Address1.sendKeys(Address_Value);
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
 				js.executeScript("arguments[0].scrollIntoView(true);", Address);
@@ -1420,7 +1278,7 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 
-		for (int i =1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(3000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
@@ -1618,28 +1476,17 @@ public class Deposite_Assayer_Maker {
 				Select Pre_Qualification = new Select(Pre_Qualification_Txt);
 				Pre_Qualification.selectByIndex(1);
 
-				STAPLE_LENGTH.sendKeys("5");
-				TRASH_CONTENT.sendKeys("7");
-				MOISTURE_BY_MASS.sendKeys("12");
+				Address1.sendKeys("5");
+				Address2.sendKeys("7");
+				Address3.sendKeys("12");
 				Address4.sendKeys("17");
 				Address5.sendKeys("22");
 				Address6.sendKeys("27");
-				IMMATURE_SHRIVELED_AND_BROKEN_GRAINS.sendKeys("32");
+				Address7.sendKeys("32");
 				Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
 				S.selectByIndex(2);
-				WEEVILED_GRAINS.sendKeys("42");
-				
-				/*Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
-				S.selectByIndex(1);*/
-				
-				/*MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(22));
-				
-				REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(28));
-				
-				YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));*/
-				
-				
-				
+				Address8.sendKeys("42");
+
 				break;
 			case 49:
 				System.out.println("You selected: Arhar");
@@ -1649,13 +1496,13 @@ public class Deposite_Assayer_Maker {
 				Select Qualification_AH = new Select(Pre_Qualification_ARHAR);
 				Qualification_AH.selectByContainsVisibleText("Qualified");
 
-				FOREIGN_MATTER_ARHAR.sendKeys("2");
-				ADMIXTURE_ARHAR.sendKeys("3");
-				DAMAGED_PULSES.sendKeys("3");
-				SLIGHTLY_DAMAGED_PULSES.sendKeys("4");
-				IMMATURE_AND_SHRIVELLED_PULSES.sendKeys("3");
-				WEEVILLED_PULSES.sendKeys("4");
-				MOISTURE_ARHAR.sendKeys("12");
+				Address1.sendKeys("2");
+				Address2.sendKeys("3");
+				Address3.sendKeys("3");
+				Address4.sendKeys("4");
+				Address5.sendKeys("3");
+				Address6.sendKeys("4");
+				Address7.sendKeys("12");
 
 				break;
 			case 6:
@@ -1666,23 +1513,17 @@ public class Deposite_Assayer_Maker {
 				Select Qualification = new Select(Pre_Qualification_Txt);
 				Qualification.selectByContainsVisibleText("Qualified");
 
-				OTHER_FOOD_GRAINS_CHAN.sendKeys("3");
+				Address1.sendKeys("3");
 
-				DAMAGED_GRAINS_CHAN.sendKeys("4");
+				Address2.sendKeys("4");
 
-				IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_Chan.sendKeys("0.75");
+				Address3.sendKeys("0.75");
 
-				WEEVILED_GRAINS_Chan.sendKeys("0.25");
+				Address4.sendKeys("0.25");
 
-				ADMIXTURE_Chan.sendKeys("2");
+				Address5.sendKeys("2");
 
-				FOREIGN_MATTER_chan.sendKeys("5");
-
-				/*
-				 * MOISTURE_CONTENT_Chana.sendKeys("14");
-				 * 
-				 * SLIGHTLY_DAMAGED_TOUCHED_GRAINS_Chana.sendKeys("4");
-				 */
+				Address6.sendKeys("5");
 
 				break;
 			case 13:
@@ -1693,11 +1534,11 @@ public class Deposite_Assayer_Maker {
 				Select Qualification_SOYABEAN = new Select(Pre_Qualification_SOYABEAN);
 				Qualification_SOYABEAN.selectByContainsVisibleText("Qualified");
 
-				MOISTURE_CONTENT_SOYABEAN.sendKeys("12");
-				FOREIGN_MATTER_IMPURITIES.sendKeys("2");
-				SHRIVELLED_IMMATURE_BEANS_DISCOLOURED.sendKeys("5");
-				DAMAGED_AND_WEEVILLED_BEANS.sendKeys("3");
-				MECHANICALLY_DAMAGED_BEANS.sendKeys("15");
+				Address1.sendKeys("12");
+				Address2.sendKeys("2");
+				Address3.sendKeys("5");
+				Address4.sendKeys("3");
+				Address5.sendKeys("15");
 
 				break;
 			case 1:
@@ -1708,14 +1549,14 @@ public class Deposite_Assayer_Maker {
 				Select Qualification_WHEAT = new Select(Pre_Qualification_WHEAT);
 				Qualification_WHEAT.selectByContainsVisibleText("Qualified");
 
-				FOREIGN_MATTER_BY_WEIGHT.sendKeys("4");
-				OTHER_FOOD_GRAINS.sendKeys("8");
-				OTHER_WHEATS.sendKeys("20");
-				DAMAGED_GRAINS.sendKeys("5");
-				SLIGHTLY_DAMAGED_GRAINS.sendKeys("10");
-				IMMATURE_SHRIVELED_AND_BROKEN_GRAINS_WHEAT.sendKeys("10");
-				WEEVILED_GRAINS_WHEAT.sendKeys("5");
-				MOISTURE_WHEAT.sendKeys("12");
+				Address1.sendKeys("4");
+				Address2.sendKeys("8");
+				Address3.sendKeys("20");
+				Address4.sendKeys("5");
+				Address5.sendKeys("10");
+				Address6.sendKeys("10");
+				Address7.sendKeys("5");
+				Address8.sendKeys("12");
 				break;
 			default:
 				System.out.println("Invalid selection!");
@@ -1970,24 +1811,7 @@ public class Deposite_Assayer_Maker {
 				REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
 				YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
 
-				/*
-				 * STAPLE_LENGTH.sendKeys("33"); TRASH_CONTENT.sendKeys("3");
-				 * MOISTURE_BY_MASS.sendKeys("5");
-				 * 
-				 * OTHER_FOOD_GRAINS.sendKeys("3"); DAMAGED_GRAINS.sendKeys("2");
-				 * SLIGHTLY_DAMAGED_GRAINS.sendKeys("3");
-				 * IMMATURE_SHRIVELED_AND_BROKEN_GRAINS.sendKeys("12");
-				 * WEEVILED_GRAINS.sendKeys("3"); ADMIXTURE.sendKeys("2");
-				 * DAMAGED_IMMATURE_WEEVILLED.sendKeys("4");
-				 * FOREIGN_MATTER_ORGANIC.sendKeys("0.6");
-				 * FOREIGN_MATTER_INORGANIC.sendKeys("0.2"); OTHER_EDIBLE_GRAINS.sendKeys("3");
-				 * PERCENTAGE_OF_BULBS_BY_WEIGHT.sendKeys("5"); MOISTURE.sendKeys("8");
-				 * FOREIGN_MATTER.sendKeys("1"); MOISTURE_CONTENT.sendKeys("10");
-				 * SLIGHTLY_DAMAGED_TOUCHED_GRAINS.sendKeys("4");
-				 * FOREIGN_MATTER_BY_WT.sendKeys("3"); MOISTURE_BY_WT_Max.sendKeys("14");
-				 * ADMIXTURE_OTHER_EDIBLE_GRAINS.sendKeys("4"); WEEVILLED_GRAINS.sendKeys("9");
-				 * DAMAGED_IMMATURE_SHRIVELED_GRAINS.sendKeys("8");
-				 */
+			
 				break;
 			case 49:
 				System.out.println("You selected: Arhar");
@@ -2049,52 +1873,7 @@ public class Deposite_Assayer_Maker {
 			default:
 				System.out.println("Invalid selection!");
 			}
-			/*
-			 * // Cotan b Select Grade = new Select(Grade_Desig);
-			 * Grade.selectByVisibleText("GENERAL"); Grade_Desig.click();
-			 *
-			 * Select Pre_Qualification = new Select(Pre_Qualification_Txt);
-			 * Pre_Qualification.selectByIndex(1);
-			 *
-			 * STAPLE_SPAN_LENGTH.sendKeys("30");
-			 *
-			 * MICRONAIRE.sendKeys("4.5");
-			 *
-			 * TENSILE_STRENGTH.sendKeys("30");
-			 *
-			 * TRASH.sendKeys("3.6");
-			 *
-			 * MOISTURE.sendKeys("5");
-			 *
-			 * STAPLE_LENGTH.sendKeys("35");
-			 *
-			 * REFLECTANCE_RD_VALUE.sendKeys("70");
-			 *
-			 * TRASH_CONTENT.sendKeys("3");
-			 *
-			 * YELLOWNESS_B_VALUE.sendKeys("8");
-			 *
-			 * MOISTURE_BY_MASS.sendKeys("4"); /* Select se = new
-			 * Select(GINNING_PATTERN_SAW_GINNED_COTTON_Gen);
-			 * se.selectByContainsVisibleText("Yes");
-			 *
-			 * Select SB = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON_Gen);
-			 * SB.selectByContainsVisibleText("Yes");
-			 *
-			 * /* For Rubber below parameters are used
-			 * FOREIGN_MATTER_Percentage.sendKeys("99");
-			 *
-			 * COLOUR_Quality.click();
-			 *
-			 * COLOUR_Quality_txt.sendKeys("ORANGE");
-			 * COLOUR_Quality_txt.sendKeys(Keys.ENTER);
-			 *
-			 * QUALITY_PARAMETER.sendKeys(Keys.ENTER); Select Quality = new Select
-			 * (QUALITY_PARAMETER); Quality.selectByContainsVisibleText("Present");
-			 * QUALITY_PARAMETER.click();
-			 *
-			 *
-			 */
+			
 			try {
 				if (Upload_Assaying_Report.isDisplayed()) {
 					Upload_Assaying_Report.click();
@@ -2211,7 +1990,7 @@ public class Deposite_Assayer_Maker {
 			}
 			scroll.sendKeys(Keys.PAGE_DOWN);
 			scroll.sendKeys(Keys.PAGE_DOWN);
-			
+
 			Thread.sleep(3000);
 			while (true) {
 				// Wait until table rows or data are loaded
@@ -2219,22 +1998,24 @@ public class Deposite_Assayer_Maker {
 				// div[@class='ui-grid-cell-contents ng-binding ng-scope']
 				// Wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@role='rowgroup'])[2]")));
 				// Find all text elements that may contain the target value
-				//WebElement DRN=driver
-					//	.findElement(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite  + "')]"));
+				// WebElement DRN=driver
+				// .findElement(By.xpath("//div[contains(text(),'"
+				// +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + "')]"));
 
-				List<WebElement> valueElements = driver
-						.findElements(By.xpath("//div[contains(text(),'" +Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite+ "')]"));
+				List<WebElement> valueElements = driver.findElements(By.xpath(
+						"//div[contains(text(),'" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + "')]"));
 				if (valueElements.contains(valueElements)) {
 					System.out.println("Step One");
 					if (valueElements.size() > 0) {
 						// Value found, click the button in the same row/div
 
-						WebElement button = driver
-								.findElement(By.xpath("//div[contains(text(),'" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
+						WebElement button = driver.findElement(By.xpath(
+								"//div[contains(text(),'" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
 										+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
 
 						button.click();
-						System.out.println("✅ Clicked on Select button for value: " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
+						System.out.println("✅ Clicked on Select button for value: "
+								+ Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
 						found = true;
 						break;
 					}
@@ -2247,32 +2028,35 @@ public class Deposite_Assayer_Maker {
 						System.out.println("Step two");
 						nextButtons.get(0).click();
 						try {
-						if (valueElements.size() > 0) {
-							// Value found, click the button in the same row/div
+							if (valueElements.size() > 0) {
+								// Value found, click the button in the same row/div
 
-							WebElement button = driver
-									.findElement(By.xpath("//div[contains(text(),'" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
-											+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
+								WebElement button = driver.findElement(By.xpath("//div[contains(text(),'"
+										+ Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
+										+ "')]/preceding::div[@class='ui-grid-cell-contents ng-scope'][1]"));
 
-							button.click();
-							System.out.println("✅ Clicked on Select button for value: " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
-							found = true;
-							break;
-						}
+								button.click();
+								System.out.println("✅ Clicked on Select button for value: "
+										+ Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite);
+								found = true;
+								break;
+							}
 						} catch (Exception e) {
 							System.out.println("Unexpected error for valueElements: " + e.getMessage());
 						}
 						System.out.println("➡️ Moved to next page...");
 						Thread.sleep(2000); // Wait for next page data to load
 					} else {
-						System.out.println("❌ Value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + " not found in any page.");
+						System.out.println("❌ Value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
+								+ " not found in any page.");
 						break;
 					}
 				}
 			}
 
 			if (!found) {
-				System.out.println("⚠️ Target value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + " was not found in the table.");
+				System.out.println("⚠️ Target value " + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite
+						+ " was not found in the table.");
 			}
 
 			/*
@@ -2288,14 +2072,14 @@ public class Deposite_Assayer_Maker {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(COA_No)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(COA_No))
-						.sendKeys(String.valueOf(Assayring_Referance+i));
+						.sendKeys(String.valueOf(Assayring_Referance + i));
 				Assayring_Referance_No.sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
 				// js.executeScript("arguments[0].scrollIntoView(true);",
 				// Assayring_Referance_No);
 				js.executeScript("arguments[0].click();", COA_No);
-				js.executeScript("arguments[0].value='" + Assayring_Referance+i + "';", COA_No);
+				js.executeScript("arguments[0].value='" + Assayring_Referance + i + "';", COA_No);
 				js.executeScript("arguments[0].click();", COA_No);
 
 			} catch (NoSuchElementException e) {
@@ -2428,9 +2212,9 @@ public class Deposite_Assayer_Maker {
 					System.out.println("Address not found: " + e.getMessage());
 				} catch (Exception e) {
 					System.out.println("Unexpected error for Address: " + e.getMessage());
-					
+
 				}
-				
+
 				break;
 			case 1001:
 				System.out.println("You selected: ALUMINUM");
@@ -2555,7 +2339,7 @@ public class Deposite_Assayer_Maker {
 	}
 
 	public void Deposit_Assayer_Pending_CR318() throws InterruptedException {
-		
+
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 
@@ -2578,7 +2362,7 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer : " + e.getMessage());
 		}
-		
+
 		Thread.sleep(1000);
 
 		if (PendingforDepositAssayer.isDisplayed()) {
@@ -2588,7 +2372,7 @@ public class Deposite_Assayer_Maker {
 			System.out.println("Pending for Deposit Confirm is not visible");
 		}
 		Thread.sleep(1000);
-		
+
 	}
-	
-	}
+
+}

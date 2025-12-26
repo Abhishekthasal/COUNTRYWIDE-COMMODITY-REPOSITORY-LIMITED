@@ -25,7 +25,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-@Test(retryAnalyzer= Utillity.RetryTest.class)
+//@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void RP_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Deposite_Request_Maker start");
@@ -33,8 +33,8 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 					driver, Wait);
 
 			LoginPages Login = new LoginPages(driver, Wait);
-		//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
-			Login.PortalLogin("RP-KUNVARJI", "PRAKASH", "121@test");
+		Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			//Login.PortalLogin("RP-KUNVARJI", "PRAKASH", "121@test");
 			//Login.PortalLogin("rp-KML", "user1", "121@test");
 			Depo.General_Deposite_Request();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -57,8 +57,8 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "RP_Deposite_Request_Checker is start");
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("RP-Abhishek", "user52", "121@test");
-			Login.PortalLogin("rp-KML", "user2", "121@test");
+			Login.PortalLogin("RP-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("rp-KML", "user2", "121@test");
 			Dash.Deposite_Request();
 			test.log(LogStatus.PASS, "RP_Deposite_Request_Checker is successfull");
 		} catch (Exception e) {
@@ -107,14 +107,14 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-//@Test(retryAnalyzer= Utillity.RetryTest.class)
+@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Maker is start");
 			Deposite_Assayer_Maker Assayer = new Deposite_Assayer_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("Asyr-3338084", "user1", "121@test");
-			// Login.PortalLogin("Assayer01", "user1", "121@test");
+			 //Login.PortalLogin("Assayer01", "user1", "121@test");
 			Assayer.Deposit_Assayer();
 			test.log(LogStatus.PASS, "Deposite_Assayer_Maker is successfull");
 		} catch (Exception e) {
