@@ -779,9 +779,9 @@ public class Exchange_Non_Agri_WareHouse {
 		Thread.sleep(4000);
 		try { 
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click(); 
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code_Value);
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			Variety_Code_Text.sendKeys(Keys.ENTER);
 		} catch (NoSuchElementException e) {
 			System.out.println("Element not found: " + e.getMessage());

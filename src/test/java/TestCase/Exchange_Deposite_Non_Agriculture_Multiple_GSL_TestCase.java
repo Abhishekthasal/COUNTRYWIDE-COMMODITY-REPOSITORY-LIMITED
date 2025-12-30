@@ -25,7 +25,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Non_Agriculture");
 
-//	 @Test
+	// @Test
 	void Exchange_Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculturet_Maker start");
@@ -131,7 +131,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	 //@Test(retryAnalyzer = Utillity.RetryTest.class)
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Deposite_Assayer_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Checker is start");

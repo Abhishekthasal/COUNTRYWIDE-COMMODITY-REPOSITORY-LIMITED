@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.Government_Agency_TestCase">
+      <class name="TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase">
         <methods>
           <include name="setup"/>
-          <include name="DashBord_WareHouse_Maker"/>
+          <include name="Deposit_Confirm_WH_Maker"/>
         </methods>
-      </class> <!-- TestCase.Government_Agency_TestCase -->
+      </class> <!-- TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
