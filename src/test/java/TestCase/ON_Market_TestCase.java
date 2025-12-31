@@ -40,7 +40,7 @@ public class ON_Market_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test
+	@Test
 	void Settlement_Master_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Settlement_Master_Checker start");

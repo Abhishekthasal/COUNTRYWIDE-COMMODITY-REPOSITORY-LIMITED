@@ -107,7 +107,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-@Test(retryAnalyzer= Utillity.RetryTest.class)
+//@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Maker is start");
@@ -160,7 +160,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 
 	}
 
-//@Test(retryAnalyzer= Utillity.RetryTest.class)
+@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Checker is start");

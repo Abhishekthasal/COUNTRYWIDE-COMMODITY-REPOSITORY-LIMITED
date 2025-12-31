@@ -30,7 +30,7 @@ public class CR246_TestCase extends BaseClass {
 			TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 			Log.Logout();
 		} catch (Exception e) {
-			test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed"
+			test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed :"
 					+ e.getMessage());
 		}
 		Report.endTest(test);
