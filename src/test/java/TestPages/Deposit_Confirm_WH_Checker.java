@@ -774,7 +774,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=1;  i<=Exchange_Non_Agri_WareHouse.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
@@ -797,11 +797,11 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		WebElement Actions_btn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])["+i+"]"));
 		//WebElement Actions_btn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])["+i+"]"));
 		try {
-			Actions_btn.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed,trying Actions_btn click...");
 			js.executeScript("arguments[0].click();", Actions_btn);

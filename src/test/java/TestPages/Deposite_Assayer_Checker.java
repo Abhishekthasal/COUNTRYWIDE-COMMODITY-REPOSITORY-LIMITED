@@ -797,7 +797,7 @@ public class Deposite_Assayer_Checker {
 		}
 	}
 
-	public void Exchange_Deposite_Assayer_Non_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposite_Assayer_Non_Agriculture_Multiple_GSL() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -818,7 +818,7 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 1; i < DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 1; i < Exchange_Non_Agri_WareHouse.totalBags; i++) {
 			try {
 				Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
 			} catch (ElementClickInterceptedException e) {
@@ -875,6 +875,8 @@ public class Deposite_Assayer_Checker {
 			}
 
 			Assaying_Report_Menu.sendKeys(Keys.ENTER);
+			
+			Thread.sleep(2000);
 			try {
 				Authorized_checkbox.click();
 

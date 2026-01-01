@@ -831,7 +831,7 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 1; i <= Exchange_Non_Agri_WareHouse.totalBags; i++) {
 			Thread.sleep(3000);
 			try {
 				New_btn.sendKeys(Keys.ENTER);

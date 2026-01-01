@@ -1,5 +1,6 @@
 package TestPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -9,7 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import Utillity.ExcelUtils;
 
@@ -38,8 +41,11 @@ public class Exports_Reports {
 	@FindBy(xpath = "//span[normalize-space()='Exports']")
 	WebElement Exports_btn;
 
-	@FindBy(xpath = "//span[@class='title ng-binding'][normalize-space()='CM Payout Transfer']")
+	@FindBy(xpath = "(//span[@class='title ng-binding'][normalize-space()='CM Payout Transfer'])[2]")
 	WebElement CM_Payout_Transfer_btn;
+
+	@FindBy(xpath = "//h4[normalize-space()='CM Payout Transfer Export']")
+	WebElement ClickOnly;
 
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement New_btn;
@@ -47,47 +53,61 @@ public class Exports_Reports {
 	@FindBy(xpath = "//button[@title='NOTHING SELECTED']")
 	WebElement Exchange_ID_btn;
 
-	@FindBy(xpath = "(//input[@type='text'])[1])")
+	@FindBy(xpath = "//div[@class='btn-group bootstrap-select form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required open']//input[@type='text']")
 	WebElement Exchange_ID_txt;
-	
+
 	@FindBy(xpath = "//button[@data-id='settle_selection_box']//span[@class='filter-option pull-left'][normalize-space()='Nothing selected']")
 	WebElement settle_selection_box_btn;
-	
+
 	@FindBy(xpath = "(//input[@type='text'])[2]")
 	WebElement settle_selection_box_txt;
-	
+
 	@FindBy(xpath = "//button[@data-id='comm_selection_box']//span[@class='filter-option pull-left'][normalize-space()='Nothing selected']")
-			WebElement comm_selection_box_btn;
-	
+	WebElement comm_selection_box_btn;
+
 	@FindBy(xpath = "(//input[@type='text'])[3]")
 	WebElement comm_selection_box_txt;
-	
-	@FindBy(xpath="//button[@data-id='client_selection_box']")
+
+	@FindBy(xpath = "//button[@data-id='client_selection_box']")
 	WebElement client_selection_box_btn;
-	
-	@FindBy(xpath="(//input[@type='text'])[4]")
+
+	@FindBy(xpath = "(//input[@type='text'])[4]")
 	WebElement client_selection_box_txt;
-	
-	@FindBy(xpath="//input[@id='from_date']")
+
+	@FindBy(xpath = "//input[@id='from_date']")
 	WebElement from_date_btn;
-	
-	@FindBy(xpath="//input[@id='to_date']")
+
+	@FindBy(xpath = "(//select[@class='yearselect'])[1]")
+	WebElement from_Years;
+
+	@FindBy(xpath = "(//select[@class='monthselect'])[1]")
+	WebElement from_months;
+
+	// @FindBy(xpath="//td[@class='available'][normalize-space()='29']")
+
+	@FindBy(xpath = "//input[@id='to_date']")
 	WebElement to_date_btn;
-	
-	@FindBy(xpath="//span[normalize-space()='Export']")
+
+	@FindBy(xpath = "(//select[@class='yearselect'])[3]")
+	WebElement to_Years;
+
+	@FindBy(xpath = "(//select[@class='monthselect'])[3]")
+	WebElement to_months;
+
+	@FindBy(xpath = "//span[normalize-space()='Export']")
 	WebElement Export_btn;
-	
-	
+
+	@FindBy(xpath = "//button[normalize-space()='Ok']")
+	WebElement Ok_btn;
 
 	public void CR246_TestCase1() throws InterruptedException {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
-		
-		
+
 		try {
-		//	if(CM_Payout_Transfer_btn.isDisplayed()) {
-			Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
-			//}
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
@@ -112,27 +132,191 @@ public class Exports_Reports {
 		// New_btn.click();
 
 		Exchange_ID_btn.click();
-		//Thread.sleep(1000);
-		Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
-		//Thread.sleep(1000);
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
 		Exchange_ID_txt.sendKeys(Keys.ENTER);
-		
+
+		ClickOnly.click();
+
 		settle_selection_box_btn.click();
 		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
 		settle_selection_box_txt.sendKeys(Keys.ENTER);
-		
+		ClickOnly.click();
+
 		comm_selection_box_btn.click();
 		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
 		comm_selection_box_txt.sendKeys(Keys.ENTER);
-		
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
 		from_date_btn.click();
-		
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
 		to_date_btn.click();
-		
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
 		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
 	}
 
-	public void CR246_TestCase2() {
+	public void CR246_TestCase2() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			// if(CM_Payout_Transfer_btn.isDisplayed()) {
+			Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			// }
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys(""); // 11 - MCX
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+		/*
+		 * Assert.assertTrue(mandatoryError.isDisplayed(),
+		 * "Exchange ID should be mandatory");
+		 */
+
+		ClickOnly.click();
+		try {
+			settle_selection_box_btn.click();
+			settle_selection_box_txt.sendKeys("");// 21082018256
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript settle_selection_box_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "" + "';", settle_selection_box_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("settle_selection_box_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error settle_selection_box_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
 
 	}
 

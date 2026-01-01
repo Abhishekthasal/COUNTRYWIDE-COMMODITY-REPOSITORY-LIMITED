@@ -16,7 +16,7 @@ public class CR246_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("CR246");
 
-	@Test
+	//@Test
 	void Test_Case1() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Test_Case1 is  start");
@@ -37,7 +37,7 @@ public class CR246_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test
+	@Test
 	void Test_Case2() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Test_Case2 is start");

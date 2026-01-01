@@ -113,7 +113,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.endTest(test);
 		Report.flush();
 	}
-	// @Test
+	//@Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is start");
