@@ -26,10 +26,13 @@ public class Exports_Reports {
 	static int dataRow = 2; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
-	long CC_Client_Id_DePledge = excel.getCC_Client_Id_DePledge(dataRow); // 180000110000033L;
-	public static int Pledge_Sequence_No = excel.getPledge_Sequence_No_DePledge(dataRow);
-	static String CC_DePledge_Request_No = excel.getCC_DePledge_Request_No(dataRow);
-	long ENWR_DePledge = excel.getCC_ENWR_DePledge(dataRow);
+	/*
+	 * long CC_Client_Id_DePledge = excel.getCC_Client_Id_DePledge(dataRow); //
+	 * 180000110000033L; public static int Pledge_Sequence_No =
+	 * excel.getPledge_Sequence_No_DePledge(dataRow); static String
+	 * CC_DePledge_Request_No = excel.getCC_DePledge_Request_No(dataRow); long
+	 * ENWR_DePledge = excel.getCC_ENWR_DePledge(dataRow);
+	 */
 
 	public Exports_Reports(WebDriver driver, WebDriverWait Wait) {
 
@@ -237,6 +240,7 @@ public class Exports_Reports {
 
 		Exchange_ID_btn.click();
 		// Thread.sleep(1000);
+		//Exchange_ID value is blank
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys(""); // 11 - MCX
 		} catch (ElementClickInterceptedException e) {
@@ -257,6 +261,7 @@ public class Exports_Reports {
 		 */
 
 		ClickOnly.click();
+		//ettle_selection_box value is blank
 		try {
 			settle_selection_box_btn.click();
 			settle_selection_box_txt.sendKeys("");// 21082018256
@@ -320,24 +325,1091 @@ public class Exports_Reports {
 
 	}
 
-	public void CR246_TestCase3() {
+	public void CR246_TestCase3() throws InterruptedException {
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
 
 	}
 
-	public void CR246_TestCase4() {
+	public void CR246_TestCase4() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
 
 	}
 
-	public void CR246_TestCase5() {
+	public void CR246_TestCase5() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
 
 	}
 
-	public void CR246_TestCase6() {
+	public void CR246_TestCase6() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
 
 	}
 
-	public void CR246_TestCase7() {
+	public void CR246_TestCase7() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
 
 	}
+
+	public void CR246_Test_Case8() throws InterruptedException {
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
+		
+	}
+
+	public void CR246_Test_Case9() throws InterruptedException {
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
+		
+	}
+
+	public void CR246_Test_Case10() throws InterruptedException {
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
+		
+	}
+
+	public void CR246_Test_Case11() throws InterruptedException {
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
+		
+	}
+
+	public void CR246_Test_Case12() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+
+		try {
+			if (CM_Payout_Transfer_btn.isDisplayed()) {
+				Wait.until(ExpectedConditions.elementToBeClickable(CM_Payout_Transfer_btn)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript CM_Payout_Transfer_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CM_Payout_Transfer_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("CM_Payout_Transfer_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error CM_Payout_Transfer_btn: " + e.getMessage());
+		}
+
+		Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+		// New_btn.click();
+
+		Exchange_ID_btn.click();
+		// Thread.sleep(1000);
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Exchange_ID_txt)).sendKeys("11 - MCX");
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + "11 - MCX" + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		ClickOnly.click();
+
+		settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys("21082018256");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		comm_selection_box_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		client_selection_box_btn.click();
+		client_selection_box_txt.sendKeys("155000010000019 - Shobhachand Sanjaykumar & Co.");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		ClickOnly.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2025");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Dec");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='29']"));
+
+		FromDate.click();
+
+		to_date_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
+		
+	}
+	
+	//CR247_TestCase below 
+	
+
+	public void CR247_TestCase1() {
+		
+		
+	}
+
+	public void CR247_Test_Case2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_Test_Case3() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_Test_Case4() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_TestCase5() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_TestCase6() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_TestCase7() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_TestCase8() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR246_TestCase9() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_TestCase10() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_Test_Case11() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void CR247_TestCase12() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }

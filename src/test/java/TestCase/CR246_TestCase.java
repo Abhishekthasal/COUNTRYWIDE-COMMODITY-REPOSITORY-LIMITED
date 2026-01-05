@@ -21,7 +21,8 @@ public class CR246_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Test_Case1 is  start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("", "admin", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			//Login.PortalLogin("", "admin", "121@test");
 			Exports_Reports Test_Case1 = new Exports_Reports(driver, Wait);
 			Test_Case1.CR246_TestCase1();
 			test.log(LogStatus.PASS,
@@ -37,7 +38,7 @@ public class CR246_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	@Test
+	//@Test
 	void Test_Case2() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Test_Case2 is start");
@@ -58,7 +59,7 @@ public class CR246_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test
+	@Test
 	void Test_Case3() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
@@ -145,22 +146,126 @@ public class CR246_TestCase extends BaseClass {
 	//@Test
 	void Test_Case7() throws IOException {
 		try {
-			test.log(LogStatus.INFO, "Client Account Opening for REPOSITORY start");
+			test.log(LogStatus.INFO, "Test_Case7 is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			Login.PortalLogin("", "admin", "121@test");
 			Exports_Reports Test_Case7 = new Exports_Reports(driver, Wait);
 			Test_Case7.CR246_TestCase7();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-					+ "Client Account Opening for REPOSITORY is success full");
+					+ "Test_Case7 is success full");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 			TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 			Log.Logout();
 		} catch (Exception e) {
-			test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test failed"
+			test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case7 is failed"
 					+ e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();
 	}
 
+	//@Test
+		void Test_Case8() throws IOException {
+			try {
+				test.log(LogStatus.INFO, "Test_Case8 is start");
+				LoginPages Login = new LoginPages(driver, Wait);
+				Login.PortalLogin("", "admin", "121@test");
+				Exports_Reports Test_Case8 = new Exports_Reports(driver, Wait);
+				Test_Case8.CR246_Test_Case8();
+				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+						+ "Test_Case8 is success full");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+				Log.Logout();
+			} catch (Exception e) {
+				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case8 is failed"
+						+ e.getMessage());
+			}
+			Report.endTest(test);
+			Report.flush();
+		}
+		
+		//@Test
+		void Test_Case9() throws IOException {
+			try {
+				test.log(LogStatus.INFO, "Test_Case9 is start");
+				LoginPages Login = new LoginPages(driver, Wait);
+				Login.PortalLogin("", "admin", "121@test");
+				Exports_Reports Test_Case9 = new Exports_Reports(driver, Wait);
+				Test_Case9.CR246_Test_Case9();
+				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+						+ "Test_Case9 is success full");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+				Log.Logout();
+			} catch (Exception e) {
+				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case9 is failed"
+						+ e.getMessage());
+			}
+			Report.endTest(test);
+			Report.flush();
+		}
+		
+		//@Test
+		void Test_Case10() throws IOException {
+			try {
+				test.log(LogStatus.INFO, "Test_Case10 is start");
+				LoginPages Login = new LoginPages(driver, Wait);
+				Login.PortalLogin("", "admin", "121@test");
+				Exports_Reports Test_Case10 = new Exports_Reports(driver, Wait);
+				Test_Case10.CR246_Test_Case10();
+				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+						+ "Test_Case10 is success full");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+				Log.Logout();
+			} catch (Exception e) {
+				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case10 is failed"
+						+ e.getMessage());
+			}
+			Report.endTest(test);
+			Report.flush();
+		}
+		
+		//@Test
+		void Test_Case11() throws IOException {
+			try {
+				test.log(LogStatus.INFO, "Test_Case11 is start");
+				LoginPages Login = new LoginPages(driver, Wait);
+				Login.PortalLogin("", "admin", "121@test");
+				Exports_Reports Test_Case11 = new Exports_Reports(driver, Wait);
+				Test_Case11.CR246_Test_Case11();
+				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+						+ "Test_Case11 is success full");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+				Log.Logout();
+			} catch (Exception e) {
+				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case11 is failed"
+						+ e.getMessage());
+			}
+			Report.endTest(test);
+			Report.flush();
+		}
+		
+		//@Test
+		void Test_Case12() throws IOException {
+			try {
+				test.log(LogStatus.INFO, "Test_Case12 is start");
+				LoginPages Login = new LoginPages(driver, Wait);
+				Login.PortalLogin("", "admin", "121@test");
+				Exports_Reports Test_Case12 = new Exports_Reports(driver, Wait);
+				Test_Case12.CR246_Test_Case12();
+				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+						+ "Test_Case12 is success full");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+				Log.Logout();
+			} catch (Exception e) {
+				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case12 is failed"
+						+ e.getMessage());
+			}
+			Report.endTest(test);
+			Report.flush();
+		}
 }
