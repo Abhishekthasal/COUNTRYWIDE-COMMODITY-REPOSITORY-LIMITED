@@ -2,6 +2,9 @@ package TestCase;
 
 import java.io.IOException;
 import java.time.Duration;
+
+import org.testng.annotations.Test;
+
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -12,11 +15,11 @@ import TestPages.LoginPages;
 public class CR247_TestCase extends BaseClass {
 	
 	
-	ExtentReports Report = new ExtentReports("C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport_CR246_"
+	ExtentReports Report = new ExtentReports("C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport_CR247_"
 			+ System.currentTimeMillis() + ".html", true);
-	ExtentTest test = Report.startTest("CR246");
+	ExtentTest test = Report.startTest("CR247");
 
-	//@Test
+	@Test
 	void CR247_TestCase1() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "CR247_TestCase1 is  start");
