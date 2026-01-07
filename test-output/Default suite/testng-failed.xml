@@ -6,7 +6,7 @@
       <class name="TestCase.CR247_TestCase">
         <methods>
           <include name="setup"/>
-          <include name="CR247_TestCase1"/>
+          <include name="CR247_TestCase9"/>
         </methods>
       </class> <!-- TestCase.CR247_TestCase -->
     </classes>

@@ -19,12 +19,12 @@ public class CR247_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("CR247");
 
-	@Test
+	//@Test
 	void CR247_TestCase1() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "CR247_TestCase1 is  start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("", "admin", "121@test");
+			Login.PortalLogin("rp-abhishek", "user51", "121@test");
 			Exports_Reports Test_Case1 = new Exports_Reports(driver, Wait);
 			Test_Case1.CR247_TestCase1();
 			test.log(LogStatus.PASS,
@@ -45,7 +45,7 @@ public class CR247_TestCase extends BaseClass {
 			try {
 				test.log(LogStatus.INFO, "CR247_Test_Case2 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("", "admin", "121@test");
+				Login.PortalLogin("rp-abhishek", "user51", "121@test");
 				Exports_Reports Test_Case2 = new Exports_Reports(driver, Wait);
 				Test_Case2.CR247_Test_Case2();
 				test.log(LogStatus.PASS,
@@ -66,7 +66,7 @@ public class CR247_TestCase extends BaseClass {
 			try {
 				test.log(LogStatus.INFO, "CR247_Test_Case3 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("", "admin", "121@test");
+				Login.PortalLogin("rp-abhishek", "user51", "121@test");
 				Exports_Reports Test_Case3 = new Exports_Reports(driver, Wait);
 				Test_Case3.CR247_Test_Case3();
 				test.log(LogStatus.PASS,
@@ -82,12 +82,12 @@ public class CR247_TestCase extends BaseClass {
 			Report.flush();
 		}
 		
-		//@Test
+	//	@Test
 		void CR247_Test_Case4() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "CR247_Test_Case4 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("", "admin", "121@test");
+				Login.PortalLogin("rp-abhishek", "user51", "121@test");
 				Exports_Reports Test_Case4 = new Exports_Reports(driver, Wait);
 				Test_Case4.CR247_Test_Case4();
 				test.log(LogStatus.PASS,
@@ -108,7 +108,7 @@ public class CR247_TestCase extends BaseClass {
 			try {
 				test.log(LogStatus.INFO, "CR247_TestCase5 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("", "admin", "121@test");
+				Login.PortalLogin("rp-abhishek", "user51", "121@test");
 				Exports_Reports Test_Case5 = new Exports_Reports(driver, Wait);
 				Test_Case5.CR247_TestCase5();
 				test.log(LogStatus.PASS,
@@ -129,7 +129,7 @@ public class CR247_TestCase extends BaseClass {
 			try {
 				test.log(LogStatus.INFO, "CR247_TestCase6 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("", "admin", "121@test");
+				Login.PortalLogin("rp-abhishek", "user51", "121@test");
 				Exports_Reports Test_Case6 = new Exports_Reports(driver, Wait);
 				Test_Case6.CR247_TestCase6();
 				test.log(LogStatus.PASS,
@@ -145,7 +145,7 @@ public class CR247_TestCase extends BaseClass {
 			Report.flush();
 		}
 		
-		//@Test
+	//	@Test
 		void CR247_TestCase7() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "CR247_TestCase7 is  start");
@@ -188,13 +188,13 @@ public class CR247_TestCase extends BaseClass {
 		}
 		
 		//@Test
-		void CR246_TestCase9() throws IOException {
+		void CR247_TestCase9() throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Test_Case9 is  start");
+				test.log(LogStatus.INFO, "CR247_TestCase9 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
 				Login.PortalLogin("", "admin", "121@test");
 				Exports_Reports Test_Case9 = new Exports_Reports(driver, Wait);
-				Test_Case9.CR246_TestCase9();
+				Test_Case9.CR247_TestCase9();
 				test.log(LogStatus.PASS,
 						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "CR247_Test_Case9 is success full");
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
@@ -208,10 +208,10 @@ public class CR247_TestCase extends BaseClass {
 			Report.flush();
 		}
 		
-		//@Test
+	//	@Test
 		void CR247_TestCase10() throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Test_Case10 is  start");
+				test.log(LogStatus.INFO, "CR247_TestCase10 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
 				Login.PortalLogin("", "admin", "121@test");
 				Exports_Reports Test_Case10 = new Exports_Reports(driver, Wait);
@@ -222,28 +222,28 @@ public class CR247_TestCase extends BaseClass {
 				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 				Log.Logout();
 			} catch (Exception e) {
-				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case10 is failed :"
+				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "CR247_Test_Case10 is failed :"
 						+ e.getMessage());
 			}
 			Report.endTest(test);
 			Report.flush();
 		}
 		
-		//@Test
+		@Test
 		void CR247_Test_Case11() throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Test_Case11 is  start");
+				test.log(LogStatus.INFO, "CR247_Test_Case11 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
 				Login.PortalLogin("", "admin", "121@test");
 				Exports_Reports Test_Case11 = new Exports_Reports(driver, Wait);
 				Test_Case11.CR247_Test_Case11();
 				test.log(LogStatus.PASS,
-						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case11 is success full");
+						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "CR247_Test_Case11 is success full");
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 				Log.Logout();
 			} catch (Exception e) {
-				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Test_Case11 is failed :"
+				test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "CR247_Test_Case11 is failed :"
 						+ e.getMessage());
 			}
 			Report.endTest(test);
@@ -253,7 +253,7 @@ public class CR247_TestCase extends BaseClass {
 		//@Test
 		void CR247_TestCase12() throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Test_Case12 is  start");
+				test.log(LogStatus.INFO, "CR247_TestCase12 is  start");
 				LoginPages Login = new LoginPages(driver, Wait);
 				Login.PortalLogin("", "admin", "121@test");
 				Exports_Reports Test_Case12 = new Exports_Reports(driver, Wait);
