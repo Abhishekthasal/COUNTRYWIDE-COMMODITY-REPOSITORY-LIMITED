@@ -6,7 +6,7 @@
       <class name="TestCase.Extension_Of_ENWR_TestCase">
         <methods>
           <include name="setup"/>
-          <include name="Extension_Of_ENWR_Request_Checker"/>
+          <include name="Extension_Of_ENWR_Request_Warehouse"/>
         </methods>
       </class> <!-- TestCase.Extension_Of_ENWR_TestCase -->
     </classes>

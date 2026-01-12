@@ -44,7 +44,7 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 		Report.flush();
 	}
 	 
-	 @Test(retryAnalyzer = Utillity.RetryTest.class)
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 		void Extension_Of_ENWR_Request_Checker() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Checker is start");
@@ -69,30 +69,52 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 			Report.flush();
 		}
 	 
-	 @Test(retryAnalyzer = Utillity.RetryTest.class)
-		void Extension_Of_ENWR_Request_Warehouse() throws IOException {
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+		void Extension_Of_ENWR_Request_Warehouse_Maker() throws IOException {
 			try {
-				test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Checker is start");
+				test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Warehouse_Maker is start");
 				
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("rp-Abhishek", "user52", "121@test");  //Abhishek
+				Login.PortalLogin("wsp9999996", "user71", "121@test");  //Abhishek
 				//Login.PortalLogin("RP-XYZ", "user119", "121@test");  //Adwait
 				 //Login.PortalLogin("RP-KML", "USER_A", "121@test");   //Akshay
 				
-				TestPages.Extension_Of_ENWR_Request_Checker Depo = new TestPages.Extension_Of_ENWR_Request_Checker(driver, Wait);
-				Depo.Extension_Of_ENWR_Checker();
+				TestPages.Extension_Of_ENWR_Request_Warehouse Depo = new TestPages.Extension_Of_ENWR_Request_Warehouse(driver, Wait);
+				Depo.Extension_Of_ENWR_Request_Warehouse_Maker();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-						+ "Extension_Of_ENWR_Request_Checker is success full");
+						+ "Extension_Of_ENWR_Request_Warehouse_Maker is success full");
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
 				Log.Logout();
 			} catch (Exception e) {
 				test.log(LogStatus.FAIL,
-						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Extension_Of_ENWR_Request_Checker is  failed:"+ e.getMessage());
+						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Extension_Of_ENWR_Request_Warehouse_Maker is  failed:"+ e.getMessage());
 			}
 			Report.endTest(test);
 			Report.flush();
 		}
-
-
+	 
+	 @Test(retryAnalyzer = Utillity.RetryTest.class)
+		void Extension_Of_ENWR_Request_Warehouse_Checker() throws IOException {
+			try {
+				test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Warehouse_Checker is start");
+				
+				LoginPages Login = new LoginPages(driver, Wait);
+				Login.PortalLogin("wsp9999996", "user72", "121@test");  //Abhishek
+				//Login.PortalLogin("RP-XYZ", "user119", "121@test");  //Adwait
+				 //Login.PortalLogin("RP-KML", "USER_A", "121@test");   //Akshay
+				TestPages.Extension_Of_ENWR_Request_Checker Depo = new TestPages.Extension_Of_ENWR_Request_Checker(driver, Wait);
+				Depo.Extension_Of_ENWR_Request_Warehouse_Checker();
+				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
+						+ "Extension_Of_ENWR_Request_Warehouse_Checker is success full");
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
+				TestPages.LogoutPage Log = new TestPages.LogoutPage(driver, Wait);
+				Log.Logout();
+			} catch (Exception e) {
+				test.log(LogStatus.FAIL,
+						test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)) + "Extension_Of_ENWR_Request_Warehouse_Checker is  failed:"+ e.getMessage());
+			}
+			Report.endTest(test);
+			Report.flush();
+		}
 }
