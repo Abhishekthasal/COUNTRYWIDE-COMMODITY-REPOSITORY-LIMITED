@@ -25,7 +25,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-//@Test(retryAnalyzer= Utillity.RetryTest.class)
+	//@Test(retryAnalyzer = Utillity.RetryTest.class)
 	void RP_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Deposite_Request_Maker start");
@@ -33,9 +33,9 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 					driver, Wait);
 
 			LoginPages Login = new LoginPages(driver, Wait);
-		Login.PortalLogin("rp-Abhishek", "user51", "121@test");
-			//Login.PortalLogin("RP-KUNVARJI", "PRAKASH", "121@test");
-			//Login.PortalLogin("rp-KML", "user1", "121@test");
+			// Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			// Login.PortalLogin("RP-KUNVARJI", "PRAKASH", "121@test");
+			Login.PortalLogin("rp-KML", "user1", "121@test");
 			Depo.General_Deposite_Request();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "RP_Deposite_Request_Maker is success full");
@@ -51,14 +51,14 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void RP_Deposite_Request_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "RP_Deposite_Request_Checker is start");
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("RP-Abhishek", "user52", "121@test");
-			//Login.PortalLogin("rp-KML", "user2", "121@test");
+			//Login.PortalLogin("RP-Abhishek", "user52", "121@test");
+			 Login.PortalLogin("rp-KML", "user2", "121@test");
 			Dash.Deposite_Request();
 			test.log(LogStatus.PASS, "RP_Deposite_Request_Checker is successfull");
 		} catch (Exception e) {
@@ -76,9 +76,9 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 			Physical_Deposit_Maker WSP = new Physical_Deposit_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			// Login.PortalLogin("wsp9996059", "user101", "121@test");
-			
+
 			Login.PortalLogin("wsp9999996", "user1", "121@test");
-			//Login.PortalLogin("wsp9999996", "user71", "121@test");
+			// Login.PortalLogin("wsp9999996", "user71", "121@test");
 			WSP.General_Physical_Deposit_Maker();
 			test.log(LogStatus.PASS, "DashBord_WareHouse_Maker is successfull");
 		} catch (Exception e) {
@@ -89,7 +89,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test(retryAnalyzer= Utillity.RetryTest.class)
+	// @Test(retryAnalyzer= Utillity.RetryTest.class)
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBoard_WareHouse_Checker is start");
@@ -114,7 +114,7 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 			Deposite_Assayer_Maker Assayer = new Deposite_Assayer_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("Asyr-3338084", "user1", "121@test");
-			 //Login.PortalLogin("Assayer01", "user1", "121@test");
+			// Login.PortalLogin("Assayer01", "user1", "121@test");
 			Assayer.Deposit_Assayer();
 			test.log(LogStatus.PASS, "Deposite_Assayer_Maker is successfull");
 		} catch (Exception e) {
@@ -143,14 +143,14 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test(retryAnalyzer = Utillity.RetryTest.class)
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Deposit_Confirm_WH_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Maker is start");
 			Deposit_Confirm_WH_Maker Confirn_Maker = new Deposit_Confirm_WH_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("wsp9999996", "user71", "121@test");
-			//Login.PortalLogin("wsp9996059", "user101", "121@test");
+			// Login.PortalLogin("wsp9996059", "user101", "121@test");
 			Confirn_Maker.Deposit_Confirm_WH();
 			test.log(LogStatus.PASS, "Deposit_Confirm_WH_Maker is successfull");
 		} catch (Exception e) {
@@ -160,14 +160,14 @@ public class General_Deposite_Agriculture_TestCase extends BaseClass {
 
 	}
 
-@Test(retryAnalyzer= Utillity.RetryTest.class)
+//@Test(retryAnalyzer= Utillity.RetryTest.class)
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Checker is start");
 			TestPages.Deposit_Confirm_WH_Checker Confirm = new TestPages.Deposit_Confirm_WH_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			Login.PortalLogin("wsp9999996", "user72", "121@test");
-			//Login.PortalLogin("wsp9996059", "user102", "121@test");
+			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			Confirm.Deposit_Confirm_WH();
 			test.log(LogStatus.PASS, "Deposit_Confirm_WH_Checker is successfull");
 		} catch (Exception e) {

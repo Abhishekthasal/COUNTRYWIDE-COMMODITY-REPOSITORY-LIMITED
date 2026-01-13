@@ -69,7 +69,7 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 			Report.flush();
 		}
 	 
-	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 @Test(retryAnalyzer = Utillity.RetryTest.class)
 		void Extension_Of_ENWR_Request_Warehouse_Maker() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Warehouse_Maker is start");
@@ -94,7 +94,7 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 			Report.flush();
 		}
 	 
-	 @Test(retryAnalyzer = Utillity.RetryTest.class)
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 		void Extension_Of_ENWR_Request_Warehouse_Checker() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Warehouse_Checker is start");

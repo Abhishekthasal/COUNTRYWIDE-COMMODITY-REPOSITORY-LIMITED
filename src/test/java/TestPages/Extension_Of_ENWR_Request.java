@@ -22,7 +22,7 @@ public class Extension_Of_ENWR_Request {
 	public static String WH_ID ="1000421";    
 	public String Client_ID ="100673000000011";            //excel.getClientID(dataRow);//excel.getWhID(dataRow);// "5750013";
 	public static String Commodity_Code ="15"; // excel.getCommodityCode(dataRow);
-	public static String ENWR= "110001018669";
+	public static String ENWR= "110001032504";
 
 	public Extension_Of_ENWR_Request(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;

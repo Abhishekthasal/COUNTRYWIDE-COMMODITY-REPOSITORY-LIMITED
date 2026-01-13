@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.Extension_Of_ENWR_TestCase">
+      <class name="TestCase.Government_Agency_TestCase">
         <methods>
+          <include name="DashBoard_WareHouse_Checker"/>
           <include name="setup"/>
-          <include name="Extension_Of_ENWR_Request_Warehouse"/>
         </methods>
-      </class> <!-- TestCase.Extension_Of_ENWR_TestCase -->
+      </class> <!-- TestCase.Government_Agency_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -64,7 +64,8 @@ public class Extension_Of_ENWR_Request_Warehouse {
 
 		Transactions_Btn.click();
 
-		Wait.until(ExpectedConditions.elementToBeClickable(Extension_Of_Validity_Wsp_Btn)).click();
+		Extension_Of_Validity_Wsp_Btn.click();
+		//Wait.until(ExpectedConditions.elementToBeClickable(Extension_Of_Validity_Wsp_Btn)).click();
 
 		New_Btn.click();
 

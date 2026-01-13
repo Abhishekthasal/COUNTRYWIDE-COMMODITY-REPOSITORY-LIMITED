@@ -27,8 +27,8 @@ public class Withdrawal_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Withdrawal_Request_Maker start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("wsp9999996", "user71", "121@test");
-			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
-			Login.PortalLogin("RP-KML", "user_A", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			//Login.PortalLogin("RP-KML", "user_A", "121@test");
 			try {
 				TestPages.Withdrawal_Function WF = new TestPages.Withdrawal_Function(driver, Wait);
 			WF.Withdrawal_Request_RP();
@@ -55,8 +55,8 @@ public class Withdrawal_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Withdrawal_checker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
-			Login.PortalLogin("RP-KML", "user_B", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("RP-KML", "user_B", "121@test");
 			TestPages.Withdrawal_Function_Checker WF = new TestPages.Withdrawal_Function_Checker(driver, Wait);
 			WF.Withdrawal_Checker();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -72,13 +72,14 @@ public class Withdrawal_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test
+//	@Test
 		void Withdrawal_Confirm() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Withdrawal_Confirm start");
 				LoginPages Login = new LoginPages(driver, Wait);
 				//Login.PortalLogin("wsp9999996", "user71", "121@test");
-				Login.PortalLogin("wsp9999996", "user1", "121@test");
+				Login.PortalLogin("wsp9997115", "bhanu", "test@123");
+				//Login.PortalLogin("wsp9999996", "user1", "121@test");
 				TestPages.Withdrawal_Confirm_WSP_Maker WF = new TestPages.Withdrawal_Confirm_WSP_Maker(driver, Wait);
 				WF.Withdrawal_Confirm_WSP();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -100,7 +101,8 @@ public class Withdrawal_TestCase extends BaseClass {
 			try {
 				test.log(LogStatus.INFO, "Withdrawal_Confirm_checker start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("wsp9999996", "user2", "121@test");
+				//Login.PortalLogin("wsp9999996", "user2", "121@test");
+				Login.PortalLogin("wsp9997115", "pratap", "121@test");
 				//Login.PortalLogin("wsp9999996", "user72", "121@test");
 				TestPages.Withdrawal_Function_Checker WF = new TestPages.Withdrawal_Function_Checker(driver, Wait);
 				WF.Withdrawal_Confirm();
