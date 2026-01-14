@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-13T18:12:41 IST" name="Default suite" finished-at="2026-01-13T18:13:18 IST" duration-ms="37573">
+  <suite started-at="2026-01-14T16:42:53 IST" name="Default suite" finished-at="2026-01-14T16:43:27 IST" duration-ms="33782">
     <groups>
     </groups>
-    <test started-at="2026-01-13T18:12:41 IST" name="Default test" finished-at="2026-01-13T18:13:18 IST" duration-ms="37573">
-      <class name="TestCase.Withdrawal_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Withdrawal_TestCase@446293d]" started-at="2026-01-13T18:12:41 IST" name="setup" finished-at="2026-01-13T18:12:44 IST" duration-ms="3128" status="PASS">
+    <test started-at="2026-01-14T16:42:53 IST" name="Default test" finished-at="2026-01-14T16:43:27 IST" duration-ms="33782">
+      <class name="TestCase.Depledge_Request_Test_Case">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Depledge_Request_Test_Case@29d89d5d]" started-at="2026-01-14T16:42:53 IST" name="setup" finished-at="2026-01-14T16:42:57 IST" duration-ms="3823" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Withdrawal_Confirm_checker()[pri:0, instance:TestCase.Withdrawal_TestCase@446293d]" started-at="2026-01-13T18:12:44 IST" name="Withdrawal_Confirm_checker" finished-at="2026-01-13T18:13:18 IST" duration-ms="34410" status="PASS">
+        <test-method signature="DePledge_Confirm_By_Pledgee()[pri:0, instance:TestCase.Depledge_Request_Test_Case@29d89d5d]" started-at="2026-01-14T16:42:57 IST" name="DePledge_Confirm_By_Pledgee" finished-at="2026-01-14T16:43:27 IST" duration-ms="29926" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Withdrawal_Confirm_checker -->
-      </class> <!-- TestCase.Withdrawal_TestCase -->
+        </test-method> <!-- DePledge_Confirm_By_Pledgee -->
+      </class> <!-- TestCase.Depledge_Request_Test_Case -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
