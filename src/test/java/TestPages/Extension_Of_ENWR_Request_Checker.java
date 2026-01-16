@@ -32,6 +32,9 @@ public class Extension_Of_ENWR_Request_Checker {
 
 	@FindBy(xpath = "//span[normalize-space()='Extension Of Validity Wsp/Wh']")
 	WebElement Extension_Of_Validity_Wsp_Btn;
+	
+	@FindBy(xpath = "//span[@class='title ng-binding'][normalize-space()='Extension Of Validity Assayer']")
+	WebElement Extension_Of_Validity_Assayer_Btn;
 
 	@FindBy(xpath = "//input[@placeholder='Search...']")
 	WebElement Search_Txt;
@@ -105,9 +108,6 @@ public class Extension_Of_ENWR_Request_Checker {
 	}
 
 	public void Extension_Of_ENWR_Request_Warehouse_Checker() throws InterruptedException {
-		
-		
-		
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Transactions_Btn)).click();
 
@@ -155,6 +155,105 @@ public class Extension_Of_ENWR_Request_Checker {
 			System.out.println("Unexpected error for save_btn: " + e.getMessage());
 		}
 
+	}
+
+
+	public void Extension_Of_Validity_Assayer() throws InterruptedException {
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(Transactions_Btn)).click();
+
+		Extension_Of_Validity_Assayer_Btn.click();
+		
+		
+		Search_Txt.sendKeys("4555516");
+
+		Search_Btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Actions_Btn)).click();
+
+		Authorized_Btn.click();
+
+		scroll.sendKeys(Keys.PAGE_DOWN);
+		scroll.sendKeys(Keys.PAGE_DOWN);
+
+		Thread.sleep(1000);
+		try {
+			if (Authorize_Chebox.isDisplayed()) {
+
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chebox)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Authorize_Chebox click...");
+			js.executeScript("arguments[0].click();", Authorize_Chebox);
+		} catch (NoSuchElementException e) {
+			System.out.println("verify_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for verify_btn: " + e.getMessage());
+		}
+
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Save_Btn.click();
+			} else {
+				System.out.println("We are unable to click the save button");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript save_btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("save_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for save_btn: " + e.getMessage());
+		}
+		
+	}
+
+	public void Extension_Of_Validity_Confirm_Checker() throws InterruptedException {
+		Wait.until(ExpectedConditions.elementToBeClickable(Transactions_Btn)).click();
+
+		Extension_Of_Validity_Assayer_Btn.click();
+		
+		
+		Search_Txt.sendKeys("4555516");
+
+		Search_Btn.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Actions_Btn)).click();
+
+		Authorized_Btn.click();
+
+		scroll.sendKeys(Keys.PAGE_DOWN);
+		scroll.sendKeys(Keys.PAGE_DOWN);
+
+		Thread.sleep(1000);
+		try {
+			if (Authorize_Chebox.isDisplayed()) {
+
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorize_Chebox)).click();
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Authorize_Chebox click...");
+			js.executeScript("arguments[0].click();", Authorize_Chebox);
+		} catch (NoSuchElementException e) {
+			System.out.println("verify_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for verify_btn: " + e.getMessage());
+		}
+
+		try {
+			if (Save_Btn.isDisplayed()) {
+				Save_Btn.click();
+			} else {
+				System.out.println("We are unable to click the save button");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript save_btn click...");
+			js.executeScript("arguments[0].click();", Save_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("save_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for save_btn: " + e.getMessage());
+		}
 	}
 
 }

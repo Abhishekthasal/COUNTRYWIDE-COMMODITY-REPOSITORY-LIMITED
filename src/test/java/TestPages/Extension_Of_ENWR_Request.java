@@ -11,18 +11,31 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import Utillity.ExcelUtils;
+
 public class Extension_Of_ENWR_Request {
 
 	WebDriver driver;
 	WebDriverWait Wait;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	
-	public static String Instr_Slip_No = "9012026A"; 
-	public String WSP_ID ="9999996";                //excel.getWspID(dataRow);
-	public static String WH_ID ="1000421";    
-	public String Client_ID ="100673000000011";            //excel.getClientID(dataRow);//excel.getWhID(dataRow);// "5750013";
-	public static String Commodity_Code ="15"; // excel.getCommodityCode(dataRow);
-	public static String ENWR= "110001032504";
+	 String projectPath = System.getProperty("user.dir");
+		static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Extension_Of_ENWR_Request.xlsx";
+		static String sheet = "Extension_Of_ENWR_Request";
+		static int dataRow = 1; // second row of data
+		static ExcelUtils excel = new ExcelUtils(path, sheet);
+	
+	
+	
+	public static String Instr_Slip_No =excel.getInstr_Slip_No_Extension(dataRow);    // "9012026A"; 
+	public int WSP_ID =excel.getWSP_ID_Extension(dataRow);               //"9999996";                //excel.getWspID(dataRow);
+	public static int WH_ID =excel.getWH_ID_Extension(dataRow);       //  "1000421";    
+	public long Client_ID =excel.getClient_ID_Extension(dataRow);                     //"100673000000011";            //excel.getClientID(dataRow);//excel.getWhID(dataRow);// "5750013";
+	public static String Commodity_Code =excel.getCommodity_Code_Extension(dataRow);                  //"15"; // excel.getCommodityCode(dataRow);
+	public static long ENWR=excel.getENWR_Extension(dataRow);                          // "110001032504";
+	
+	
+	
 
 	public Extension_Of_ENWR_Request(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -120,13 +133,13 @@ public class Extension_Of_ENWR_Request {
 		Execution_Date_Txt.click();
 		Todays_Date.click();
 
-		Execution_Date_Txt.click();
+		Execution_Date_Txt.click(); 
 		Execution_Date_value.click();
 		// Execution_Date_Txt.sendKeys(Keys.ENTER);
 		try {
-			if (WSP_ID.matches("^[a-zA-Z0-9]{7}$")) {
+			if (String.valueOf(WSP_ID).matches("^[a-zA-Z0-9]{7}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_btn)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(WSP_Txt)).sendKeys(WSP_ID);
+				Wait.until(ExpectedConditions.elementToBeClickable(WSP_Txt)).sendKeys(String.valueOf(WSP_ID));
 				Wait.until(ExpectedConditions.elementToBeClickable(WSP_Txt)).sendKeys(Keys.ENTER);
 				// WSP_Txt.sendKeys(Keys.ENTER);
 			} else {
@@ -146,9 +159,9 @@ public class Extension_Of_ENWR_Request {
 		}
 		try {
 			if (WH_Btn.isDisplayed()) {
-				if (WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+				if (String.valueOf(WH_ID).matches("^[a-zA-Z0-9]{7}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WH_Btn)).click();
-					Wait.until(ExpectedConditions.elementToBeClickable(WH_Txt)).sendKeys(WH_ID);
+					Wait.until(ExpectedConditions.elementToBeClickable(WH_Txt)).sendKeys(String.valueOf(WH_ID));
 					Thread.sleep(1000);
 					WH_Txt.sendKeys(Keys.ENTER);
 				}
@@ -176,13 +189,13 @@ public class Extension_Of_ENWR_Request {
 		
 		
 		client_Id_Btn.click();
-		client_Id_Txt.sendKeys(Client_ID);
+		client_Id_Txt.sendKeys(String.valueOf(Client_ID));
 		client_Id_Txt.sendKeys(Keys.ENTER);
 		
 		
 		TransctionStmt_btn.click();
 
-		Search_Txt.sendKeys(ENWR);
+		Search_Txt.sendKeys(String.valueOf(ENWR));
 		Search_Btn.click();
 
 		Select_Btn.click();

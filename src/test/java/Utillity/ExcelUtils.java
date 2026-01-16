@@ -1417,4 +1417,41 @@ public class ExcelUtils {
 		return (long) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
 
+	/*****************************************
+	 * Extension_Of_ENWR_Request
+	 ********************/
+	
+	public String getInstr_Slip_No_Extension(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+	
+	public int getWSP_ID_Extension(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+
+	public int getWH_ID_Extension(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+
+	
+	public long getClient_ID_Extension(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	public String getCommodity_Code_Extension(int rowNum) {
+		return getCellData(rowNum, 4);
+	}
+	
+	public long getENWR_Extension(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
