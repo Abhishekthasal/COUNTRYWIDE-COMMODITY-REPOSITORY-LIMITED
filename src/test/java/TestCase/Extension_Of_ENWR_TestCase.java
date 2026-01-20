@@ -18,7 +18,7 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Extension_Of_ENWR for General");
 
-	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Extension_Of_ENWR_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Maker is start");
@@ -95,7 +95,7 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	 @Test(retryAnalyzer = Utillity.RetryTest.class)
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Extension_Of_ENWR_Request_Warehouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Warehouse_Checker is start");
@@ -150,7 +150,7 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Extension_Of_Validity_Assayer_Checker is start");
 
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("Asyr-3338084", "user1", "121@test");
+			Login.PortalLogin("Asyr-3338084", "user2", "121@test");
 			// Login.PortalLogin("Assayer01", "user1", "121@test");
 			TestPages.Extension_Of_ENWR_Request_Checker Depo = new TestPages.Extension_Of_ENWR_Request_Checker(driver,
 					Wait);
@@ -198,7 +198,7 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Extension_Of_Validity_Confirm_Checker is start");
 
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user71", "121@test"); // Abhishek
+			Login.PortalLogin("wsp9999996", "user72", "121@test"); // Abhishek
 
 			TestPages.Extension_Of_ENWR_Request_Checker Depo = new TestPages.Extension_Of_ENWR_Request_Checker(driver,
 					Wait);

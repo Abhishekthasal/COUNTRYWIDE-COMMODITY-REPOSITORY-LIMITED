@@ -71,7 +71,7 @@ public class Extension_Of_Validity_Assayer_Maker {
 
 		Submit_Btn.click();
 
-		shelflife_Txt.sendKeys("90");
+		shelflife_Txt.sendKeys(String.valueOf(Extension_Of_ENWR_Request.shelflife_Days));
 		Thread.sleep(1000);
 
 		try {

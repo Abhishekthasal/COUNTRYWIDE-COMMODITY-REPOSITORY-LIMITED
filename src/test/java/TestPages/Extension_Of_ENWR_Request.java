@@ -33,7 +33,7 @@ public class Extension_Of_ENWR_Request {
 	public long Client_ID =excel.getClient_ID_Extension(dataRow);                     //"100673000000011";            //excel.getClientID(dataRow);//excel.getWhID(dataRow);// "5750013";
 	public static String Commodity_Code =excel.getCommodity_Code_Extension(dataRow);                  //"15"; // excel.getCommodityCode(dataRow);
 	public static long ENWR=excel.getENWR_Extension(dataRow);                          // "110001032504";
-	
+	public static int shelflife_Days =excel.getshelflife_Days(dataRow);
 	
 	
 

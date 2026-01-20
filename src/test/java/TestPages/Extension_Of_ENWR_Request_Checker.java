@@ -117,12 +117,14 @@ public class Extension_Of_ENWR_Request_Checker {
 	}
 
 	public void Extension_Of_ENWR_Request_Warehouse_Checker() throws InterruptedException {
-		
+		System.out.println("DRN No is "+Extension_Of_ENWR_Request.ENWR);
 		
 		try {
 			Connection conn = DataBaseUtility.getConnection();
 
-			String Input = "select DRN from deposit_txn where id in (select deposit_txn_id from deposit_txn_wh where id in (select Deposit_Wh_Txn_id from deposit_wh_lotdet where WR_no = ?))";
+			String Input =
+					"SELECT dt.DRN FROM deposit_txn dt JOIN deposit_txn_wh dwh ON dt.id = dwh.deposit_txn_id JOIN deposit_wh_lotdet dlot"
+					+ " ON dwh.id = dlot.Deposit_Wh_Txn_id WHERE dlot.WR_no like ?";
 			PreparedStatement DRN_No_Id = conn.prepareStatement(Input);
 			DRN_No_Id.setString(1, "%" + Extension_Of_ENWR_Request.ENWR + "%");
 			ResultSet rs1 = DRN_No_Id.executeQuery();
@@ -139,14 +141,12 @@ public class Extension_Of_ENWR_Request_Checker {
 			e.printStackTrace();
 		}
 		
-		/*
-		 * select DRN from deposit_txn where id in (select deposit_txn_id from
-		 * deposit_txn_wh where id in (select Deposit_Wh_Txn_id from deposit_wh_lotdet
-		 * where WR_no in (110001032504)));
-		 */
-
+		
 		Wait.until(ExpectedConditions.elementToBeClickable(Transactions_Btn)).click();
 
+		
+		Thread.sleep(1000);
+		//Extension_Of_Validity_Wsp_Btn.click();
 		Wait.until(ExpectedConditions.elementToBeClickable(Extension_Of_Validity_Wsp_Btn)).click();
 		// Wait.until(ExpectedConditions.elementToBeClickable(Extension_Of_Validity_Request_Btn)).click();
 
@@ -248,13 +248,14 @@ public class Extension_Of_ENWR_Request_Checker {
 		try {
 			Connection conn = DataBaseUtility.getConnection();
 
-			String Input = "select DRN from deposit_txn where id in(select  deposit_txn_id from  deposit_txn_wh where id in (select  Deposit_Wh_Txn_id from  deposit_wh_lotdet where WR_no in (?)));";
+			String Input = "SELECT dt.DRN FROM deposit_txn dt JOIN deposit_txn_wh dwh ON dt.id = dwh.deposit_txn_id JOIN deposit_wh_lotdet dlot   ON dwh.id = dlot.Deposit_Wh_Txn_id WHERE dlot.WR_no like ?";
 			PreparedStatement DRN_No_Id = conn.prepareStatement(Input);
 			DRN_No_Id.setString(1, "%" + Extension_Of_ENWR_Request.ENWR + "%");
 			ResultSet rs1 = DRN_No_Id.executeQuery();
 			if (rs1.next()) {
 				DRN_No = rs1.getString("DRN");
-				System.out.println("Internal_Ref print: " + DRN_No);
+				System.out.println("DRN is print: " + DRN_No);
+				
 				rs1.close();
 				DRN_No_Id.close();
 				conn.close();
@@ -266,10 +267,11 @@ public class Extension_Of_ENWR_Request_Checker {
 		
 		Wait.until(ExpectedConditions.elementToBeClickable(Transactions_Btn)).click();
 
+		Thread.sleep(1000);
 		Extension_Of_Validity_Assayer_Btn.click();
 		
 		
-		Search_Txt.sendKeys("4555516");
+		Search_Txt.sendKeys(DRN_No);
 
 		Search_Btn.click();
 

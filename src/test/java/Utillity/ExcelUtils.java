@@ -1446,7 +1446,9 @@ public class ExcelUtils {
 		return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
 	}
 	
-	
+	public int getshelflife_Days(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
+	}
 	
 	
 	
