@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.Extension_Of_ENWR_TestCase">
+      <class name="TestCase.CR212_TestCase">
         <methods>
           <include name="setup"/>
-          <include name="Extension_Of_Validity_Confirm_Checker"/>
+          <include name="Test_Case1"/>
         </methods>
-      </class> <!-- TestCase.Extension_Of_ENWR_TestCase -->
+      </class> <!-- TestCase.CR212_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
