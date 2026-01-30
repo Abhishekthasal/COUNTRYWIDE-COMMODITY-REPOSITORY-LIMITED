@@ -20,7 +20,7 @@ public class Pledge_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Pledge_Creation Report");
 
-	//@Test
+	@Test
 	void Pledge_Creation() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Pledge_Creation start");
@@ -72,7 +72,7 @@ public class Pledge_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-
+     //Data Base Connection Required
 	//@Test
 	void Pledge_Creation_WareHouse() throws IOException {
 		try {
@@ -80,7 +80,7 @@ public class Pledge_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Logion for Pledge_Creation WareHouse start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("wsp9996059", "user101", "121@test");
-			Login.PortalLogin("wsp9999996", "user1", "121@test");
+			Login.PortalLogin("wsp9999996", "user71", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledge_Creation WareHouse start");
 			TestPages.Pledge_Creation_WareHouse Exch = new TestPages.Pledge_Creation_WareHouse(driver, Wait);
@@ -106,7 +106,7 @@ public class Pledge_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Logion for Pledge_Creation WareHouse Authorized start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("wsp9996059", "user102", "121@test");
-			Login.PortalLogin("wsp9999996", "user2", "121@test");
+			Login.PortalLogin("wsp9999996", "user72", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledge_Creation WareHouse Authorized start");
 			TestPages.Pledge_Creation_Request_Authorized Exch = new TestPages.Pledge_Creation_Request_Authorized(driver,
@@ -153,7 +153,7 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	 @Test
+	// @Test
 	void pledgee_Creation_Authorized() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for pledgee_Creation_Authorized start");

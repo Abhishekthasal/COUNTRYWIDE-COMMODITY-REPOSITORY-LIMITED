@@ -210,7 +210,7 @@ public class RP_Exchange_Deposite_Agriculture_Maker {
 			System.out.println("Unexpected error for Commodity_Segment_Ok_btn: " + e.getMessage());
 		}
 		try {
-			if (Deposite.matches("^[a-zA-Z0-9]{7}$")) {
+			if (Deposite.matches("^[a-zA-Z0-9]{0,10}$")) {
 				Deposite_No.click();
 				Wait.until(ExpectedConditions.elementToBeClickable(Deposite_No)).sendKeys(Deposite);
 				Deposite_No.click();

@@ -25,8 +25,8 @@ public class Depledge_Request_Test_Case extends BaseClass {
 			test.log(LogStatus.INFO, "Login for Depledge_Request start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("rp-bhanu", "sarthak", "121@test");
-			Login.PortalLogin("RP-KML", "user_A", "121@test");
-			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			//Login.PortalLogin("RP-KML", "user_A", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Depledge_Request creation  start");
 			TestPages.Depledge_Request Pledge = new TestPages.Depledge_Request(driver, Wait);
@@ -52,13 +52,13 @@ public class Depledge_Request_Test_Case extends BaseClass {
 		Report.flush();
 	}
 
-	 //@Test
+	// @Test
 	void Depledge_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Depledge_Request_Checker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("RP-KML", "user_B", "121@test");
-			//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("RP-KML", "user_B", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 			//Login.PortalLogin("rp-bhanu", "sarthakp", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Depledge_Request_Checker creation  start");
@@ -85,8 +85,8 @@ public class Depledge_Request_Test_Case extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Logion for DePledge_Confirm_By_Pledgee start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-UCOBANK", "panvel1", "121@test");
-			//Login.PortalLogin("rp-bhanu", "sarthak", "121@test");
+			//Login.PortalLogin("rp-UCOBANK", "panvel1", "121@test");
+			Login.PortalLogin("rp-bhanu", "sarthak", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "DePledge_Confirm_By_Pledgee start");
 			TestPages.DePledge_Confirm_By_Pledgee Exch = new TestPages.DePledge_Confirm_By_Pledgee(driver, Wait);
