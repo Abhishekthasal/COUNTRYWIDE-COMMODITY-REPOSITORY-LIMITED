@@ -1665,7 +1665,10 @@ public class Deposite_Assayer_Maker {
 
 			try {
 				if (RP_Exchange_Deposite_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{0,50}$")) {
-					SampleId_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));
+					
+					//020220260
+					SampleId_txt.sendKeys("020220260" + i);
+					//SampleId_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));
 				} else {
 					System.out.println("Invalid Sample. Please enter exactly 50 digits (numbers only):");
 

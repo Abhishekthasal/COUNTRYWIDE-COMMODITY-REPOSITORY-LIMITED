@@ -22,7 +22,7 @@ public class Settlement_Master_CC_Login {
 
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ON_Market.xlsx";
 	static String sheet = "Settlement";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 2; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	String ExchangeMaster = excel.getExchangeMaster(dataRow);
@@ -30,6 +30,7 @@ public class Settlement_Master_CC_Login {
 	static int settlement_No = excel.getsettlement_No(dataRow);
 	int settlement_Year = excel.getsettlement_Year(dataRow);
 	String commodity = excel.getcommodity(dataRow);
+	 String SYMBOL =excel.getSYMBOL(dataRow);
 	String expectedDay =excel.getexpectedDay(dataRow);//"30-11-2025";
 	String trade_Day =excel.gettrade_Day(dataRow);//"15-10-2025";
 	String PostExpiry_Validity_Day =excel.getPostExpiry_Validity_Date(dataRow);  //"30-11-2025"; 
@@ -46,7 +47,8 @@ public class Settlement_Master_CC_Login {
 	String early_Payin_End_date =excel.getearly_Payin_End_date(dataRow); // "15-10-2025"; 
 	int early_Payin_End_Date_hr = excel.getearly_Payin_End_Date_hr(dataRow);
 	int early_Payin_End_Date_mn = excel.getearly_Payin_End_Date_mn(dataRow);
-
+   
+	
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	public Settlement_Master_CC_Login(WebDriver driver, WebDriverWait Wait) {
@@ -56,7 +58,7 @@ public class Settlement_Master_CC_Login {
 	}
 
 	// --------------for Request for Depledge_Request creation process-------------
-	@FindBy(xpath = "//span[normalize-space()='Masters']")
+	@FindBy(xpath = "(//span[normalize-space()='Masters'])[1]")
 	WebElement Masters_Btn;
 
 	@FindBy(xpath = "//a[@ui-sref='Masters.Settlement']//span[@class='title ng-binding'][normalize-space()='Settlement']")
@@ -96,7 +98,16 @@ public class Settlement_Master_CC_Login {
 
 	@FindBy(xpath = "(//input[@type='text'])[1]")
 	WebElement COMM_CODE_NAME_Txt;
-
+	
+	@FindBy(xpath="//button[@class='btn dropdown-toggle btn-default']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement SYMBOL_Btn;
+	
+	@FindBy(xpath = "(//input[@type='text'])[2]")
+	WebElement SYMBOL_Txt;
+	
+	@FindBy(xpath="//li[@class='active']//a[@class='ng-binding ng-scope']")
+	WebElement SYMBOL_active;
+	
 	@FindBy(xpath = "(//input[@id='expiry_Date'])[1]")
 	WebElement expiry_Date_txt;
 
@@ -137,9 +148,9 @@ public class Settlement_Master_CC_Login {
 	WebElement Save_btn;
 
 	public void Settlement_Master() throws InterruptedException {
-
+		//Thread.sleep(2000);
 		try {
-
+			//Masters_Btn.click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Masters_Btn)).click();
 
 		} catch (ElementClickInterceptedException e) {
@@ -226,6 +237,22 @@ public class Settlement_Master_CC_Login {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for COMM_CODE_NAME_Txt: " + e.getMessage());
 		}
+		
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(SYMBOL_Btn)).click();
+			Wait.until(ExpectedConditions.elementToBeClickable(SYMBOL_Txt)).sendKeys(SYMBOL);
+			Wait.until(ExpectedConditions.elementToBeClickable(SYMBOL_active)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying SYMBOL_Btn click...");
+			js.executeScript("arguments[0].click();", SYMBOL_Btn);
+			js.executeScript("arguments[0].value='" + SYMBOL + "';", SYMBOL_Txt);
+			js.executeScript("arguments[0].click();", SYMBOL_active);
+		} catch (NoSuchElementException e) {
+			System.out.println("SYMBOL_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for SYMBOL_Btn: " + e.getMessage());
+		}
+		
 		Thread.sleep(1000);
 		// Open the calendar expiry_Date
 		WebElement expiry_Date = driver.findElement(By.xpath("//input[@id='expiry_Date']"));

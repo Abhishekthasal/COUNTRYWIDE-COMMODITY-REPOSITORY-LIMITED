@@ -1018,21 +1018,13 @@ public class ExcelUtils {
 	public String getcommodity(int rowNum) {
 		return getCellData(rowNum, 4);
 	}
-
+	
+	public String getSYMBOL(int rowNum) {
+		return getCellData(rowNum, 5);
+	}
+	
 	public String getexpectedDay(int rowNum) {
 
-		Cell cell = Sheet.getRow(rowNum).getCell(5);
-		if (DateUtil.isCellDateFormatted(cell)) {
-			Date date = cell.getDateCellValue();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			return sdf.format(date);
-		} else {
-			// If date stored as text: "12/12/2025"
-			return cell.getStringCellValue().trim();
-		}
-	}
-
-	public String gettrade_Day(int rowNum) {
 		Cell cell = Sheet.getRow(rowNum).getCell(6);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
@@ -1044,7 +1036,7 @@ public class ExcelUtils {
 		}
 	}
 
-	public String getPostExpiry_Validity_Date(int rowNum) {
+	public String gettrade_Day(int rowNum) {
 		Cell cell = Sheet.getRow(rowNum).getCell(7);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
@@ -1056,7 +1048,7 @@ public class ExcelUtils {
 		}
 	}
 
-	public String getDelivery_Marking(int rowNum) {
+	public String getPostExpiry_Validity_Date(int rowNum) {
 		Cell cell = Sheet.getRow(rowNum).getCell(8);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
@@ -1068,7 +1060,7 @@ public class ExcelUtils {
 		}
 	}
 
-	public String getpay_In_date(int rowNum) {
+	public String getDelivery_Marking(int rowNum) {
 		Cell cell = Sheet.getRow(rowNum).getCell(9);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
@@ -1080,16 +1072,28 @@ public class ExcelUtils {
 		}
 	}
 
-	public int getpay_In_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
+	public String getpay_In_date(int rowNum) {
+		Cell cell = Sheet.getRow(rowNum).getCell(10);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
 
-	public int getpay_In_Date_mn(int rowNum) {
+	public int getpay_In_Date_hr(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(11).getNumericCellValue();
 	}
 
+	public int getpay_In_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(12).getNumericCellValue();
+	}
+
 	public String getpay_out_date(int rowNum) {
-		Cell cell = Sheet.getRow(rowNum).getCell(12);
+		Cell cell = Sheet.getRow(rowNum).getCell(13);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1101,15 +1105,15 @@ public class ExcelUtils {
 	}
 
 	public int getpay_out_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(13).getNumericCellValue();
-	}
-
-	public int getpay_out_Date_mn(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(14).getNumericCellValue();
 	}
 
+	public int getpay_out_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(15).getNumericCellValue();
+	}
+
 	public String getearly_pay_In_date(int rowNum) {
-		Cell cell = Sheet.getRow(rowNum).getCell(15);
+		Cell cell = Sheet.getRow(rowNum).getCell(16);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1121,15 +1125,15 @@ public class ExcelUtils {
 	}
 
 	public int getearly_pay_In_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(16).getNumericCellValue();
-	}
-
-	public int getearly_pay_In_Date_mn(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(17).getNumericCellValue();
 	}
 
+	public int getearly_pay_In_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(18).getNumericCellValue();
+	}
+
 	public String getearly_Payin_End_date(int rowNum) {
-		Cell cell = Sheet.getRow(rowNum).getCell(18);
+		Cell cell = Sheet.getRow(rowNum).getCell(19);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1141,11 +1145,11 @@ public class ExcelUtils {
 	}
 
 	public int getearly_Payin_End_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(19).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(20).getNumericCellValue();
 	}
 
 	public int getearly_Payin_End_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(20).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(21).getNumericCellValue();
 	}
 
 	/*************************************
