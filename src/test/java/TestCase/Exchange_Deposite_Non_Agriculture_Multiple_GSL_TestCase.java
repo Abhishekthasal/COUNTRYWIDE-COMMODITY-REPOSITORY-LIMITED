@@ -23,18 +23,19 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			+ " Exchange_Deposite_Non_Agri_GSL" + +System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Non_Agriculture");
 
-	 @Test
+	//@Test
 	void Exchange_Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculturet_Maker start");
+
+			LoginPages Login = new LoginPages(driver, Wait);
+			 Login.PortalLogin("RP-KML", "user_A", "121@test");
+			// Login.PortalLogin("RP-UATTEST", "user1", "121@test");// Lakshuman Sir
+			// Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu1", "121@test");//Bhanu
+			//Login.PortalLogin("rp-Abhishek", "user51", "121@test"); // Abhishek
+
 			Exchange_Deposite_Request_Non_Agriculture_Maker Depo = new Exchange_Deposite_Request_Non_Agriculture_Maker(
 					driver, Wait);
-			LoginPages Login = new LoginPages(driver, Wait);
-			// Login.PortalLogin("RP-KML", "user_A", "121@test");
-
-			Login.PortalLogin("RP-UATTEST", "user1", "121@test");// Lakshuman Sir
-			// Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu1", "121@test");//Bhanu
-			// Login.PortalLogin("rp-Abhishek", "user51", "121@test"); /Abhishek
 			Depo.Non_Agriculture_Exchange_Deposite_Request();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "Exchange_Deposite_Non_Agriculturet_Maker is success full");
@@ -56,8 +57,8 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			// Login.PortalLogin("RP-KML", "user_B", "121@test");
-			Login.PortalLogin("RP-UATTEST", "user2", "121@test");
-			// Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			// Login.PortalLogin("RP-UATTEST", "user2", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 			// Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu2", "121@test");
 			Dash.Exchange_Deposite_Request_Non_Agriculture_Checker();
 			test.log(LogStatus.PASS, "Exchange_Deposite_Non_Agriculture_Checker is successfull");
@@ -69,15 +70,15 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.flush();
 	}
 
-	//Database 
-//	@Test
+	// Database
+	//@Test
 	void DashBoard_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Maker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			// Login.PortalLogin("wsp9999996", "user1", "121@test");
-			Login.PortalLogin("WSP8888999", "user2", "121@test");
-			// Login.PortalLogin("wsp9999996", "user71", "121@test");
+			 Login.PortalLogin("WSP8888999", "user2", "121@test");
+			//Login.PortalLogin("wsp9999996", "user71", "121@test");
 			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			// Login.PortalLogin("WSP9997115", "Bhanu", "121@test");
 			try {
@@ -181,7 +182,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.flush();
 	}
 
-	// @Test
+	 @Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposit_Confirm_WH_Checker is start");

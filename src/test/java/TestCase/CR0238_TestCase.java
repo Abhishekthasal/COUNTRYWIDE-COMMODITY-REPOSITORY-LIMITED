@@ -16,10 +16,10 @@ import TestPages.LoginPages;
 public class CR0238_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport_Extension_Of_ENWR_"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport_CR0238_TestCase_"
 					+ System.currentTimeMillis() + ".html",
 			true);
-	ExtentTest test = Report.startTest("Extension_Of_ENWR for General");
+	ExtentTest test = Report.startTest("CR0238_TestCase");
 
 	 @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Extension_Of_ENWR_Request_Maker() throws IOException {
