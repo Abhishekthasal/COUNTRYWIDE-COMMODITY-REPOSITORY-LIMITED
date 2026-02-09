@@ -2685,4 +2685,17 @@ public class Exports_Reports {
 
 	}
 
+	public void CR212_Pledge_Creation_Test_Case1() {
+		
+		
+		
+		
+		
+	}
+
+	public void CR212_De_Pledge_Test_Case1() {
+		
+		
+	}
+
 }
