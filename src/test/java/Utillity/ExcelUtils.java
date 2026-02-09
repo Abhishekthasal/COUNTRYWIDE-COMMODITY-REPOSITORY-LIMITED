@@ -1453,11 +1453,32 @@ public class ExcelUtils {
 	public int getshelflife_Days(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
 	}
+
 	
+	//---------------Exports_Reports-----------------//
+	public String getreportType(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+
+	public long getExchangeID(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
 	
+	public int getWSP_ID1(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
 	
+	public int getWHID1(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
 	
+	public String getCOMMODITY_CODE(int rowNum) {
+		return getCellData(rowNum, 4);
+	}
 	
+	public long getCLIENT_ID_Export(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
+	}
 	
 	
 }

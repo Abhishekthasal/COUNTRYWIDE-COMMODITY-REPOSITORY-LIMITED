@@ -14,10 +14,10 @@ import TestPages.LoginPages;
 public class CR0212_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports(
-			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport_CR0238_TestCase_"
+			"C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\ExtentReport_CR0212_TestCase_"
 					+ System.currentTimeMillis() + ".html",
 			true);
-	ExtentTest test = Report.startTest("CR0238_TestCase");
+	ExtentTest test = Report.startTest("CR0212_TestCase");
 
 	// @Test
 	void Pledge_Creation_Test_Case1() throws IOException {
@@ -35,7 +35,7 @@ public class CR0212_TestCase extends BaseClass {
 			Log.Logout();
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
-					+ "CR246_TestCase1 failed :" + e.getMessage());
+					+ "CR0212_TestCase1 failed :" + e.getMessage());
 		}
 		Report.endTest(test);
 		Report.flush();

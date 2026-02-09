@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import Utillity.ExcelUtils;
 
@@ -21,13 +20,20 @@ public class Exports_Reports {
 	WebDriver driver;
 	WebDriverWait Wait;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
-	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Margin_Depledge.xlsx";
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Exports_Reports.xlsx";
 	static String sheet = "CC Depledge Request";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
+	String reportType = excel.getreportType(dataRow);
+	long Exchange_ID = excel.getExchangeID(dataRow);
+	int WSP_ID = excel.getWSP_ID1(dataRow); 
+	int WHID=excel.getWHID1(dataRow);
+	String COMMODITY_CODE =excel.getCOMMODITY_CODE(dataRow);
+	long CLIENT_ID_Export=excel.getCLIENT_ID_Export(dataRow);
+	
+	//
 	/*
-	 * long CC_Client_Id_DePledge = excel.getCC_Client_Id_DePledge(dataRow); //
 	 * 180000110000033L; public static int Pledge_Sequence_No =
 	 * excel.getPledge_Sequence_No_DePledge(dataRow); static String
 	 * CC_DePledge_Request_No = excel.getCC_DePledge_Request_No(dataRow); long
@@ -55,9 +61,12 @@ public class Exports_Reports {
 
 	@FindBy(xpath = "(//span[@class='title ng-binding'][normalize-space()='CM Payout Transfer'])[1]")
 	WebElement Client_CM_Payout_Transfer_btn;
-	
-	@FindBy(xpath="//span[@class='title ng-binding'][normalize-space()='Pledge Export']")
+
+	@FindBy(xpath = "//span[@class='title ng-binding'][normalize-space()='Pledge Export']")
 	WebElement Pledge_Export_Btn;
+
+	@FindBy(xpath = "//span[normalize-space()='De-Pledge Export']")
+	WebElement De_Pledge_Export_Btn;
 
 	@FindBy(xpath = "//h4[normalize-space()='CM Payout Transfer Export']")
 	WebElement ClickOnly;
@@ -69,17 +78,16 @@ public class Exports_Reports {
 	WebElement TMClientidOk;
 	@FindBy(xpath = "//input[@id='ccdatalabel']")
 	WebElement ccdatalabelOk;
-	
 
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement New_btn;
 
-	@FindBy(xpath="//button[@data-id='reportType']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	@FindBy(xpath = "//button[@data-id='reportType']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement reportType_Btn;
-	
-	@FindBy(xpath="(//input[@type='text'])[1]")
+
+	@FindBy(xpath = "(//input[@type='text'])[1]")
 	WebElement reportType_Txt;
-	
+
 	@FindBy(xpath = "//button[@title='NOTHING SELECTED']")
 	WebElement Exchange_ID_btn;
 
@@ -141,7 +149,7 @@ public class Exports_Reports {
 	@FindBy(xpath = "//button[normalize-space()='Ok']")
 	WebElement Ok_btn;
 
-    //CR246_TestCase
+	// CR246_TestCase
 	public void CR246_TestCase1() throws InterruptedException {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
@@ -2585,8 +2593,108 @@ public class Exports_Reports {
 	}
 
 	// CR212_TestCase
-	public void CR212_TestCase1() throws InterruptedException {
-		
+	public void CR212_Pledge_Creation_Test_Case1() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(De_Pledge_Export_Btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Pledge_Export_Btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", De_Pledge_Export_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Pledge_Export_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Pledge_Export_Btn: " + e.getMessage());
+		}
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript New_btn click...");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", New_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("New_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error New_btn: " + e.getMessage());
+		}
+
+		reportType_Btn.click();
+
+		reportType_Txt.sendKeys(reportType);
+		reportType_Txt.sendKeys(Keys.ENTER);
+
+		Exchange_ID_btn.click();
+		try {
+			Exchange_ID_txt.sendKeys(String.valueOf(Exchange_ID));
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Exchange_ID_txt click...");
+			// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+			// New_btn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].value='" + Exchange_ID + "';", Exchange_ID_txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Exchange_ID_txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error Exchange_ID_txt: " + e.getMessage());
+		}
+		Thread.sleep(1000);
+		Exchange_ID_txt.sendKeys(Keys.ENTER);
+
+		BlankClick.click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(settlementwisecombobox_btn)).click();
+
+		Wait.until(ExpectedConditions.elementToBeClickable(settle_selection_box_txt)).sendKeys("11201801001");
+		Thread.sleep(1000);
+		// settle_selection_box_btn.click();
+		settle_selection_box_txt.sendKeys(Keys.ENTER);
+		BlankClick.click();
+
+		commoditywisecombobox_btn.click();
+		comm_selection_box_txt.sendKeys("15 - COTTON BALES");
+		Thread.sleep(1000);
+		comm_selection_box_txt.sendKeys(Keys.ENTER);
+		BlankClick.click();
+
+		tmclientidwisedatamaster_btn.click();
+		client_selection_box_txt.sendKeys("155000011505180 - TESTING TRADING MEMBER 14052018");
+		Thread.sleep(1000);
+		client_selection_box_txt.sendKeys(Keys.ENTER);
+		BlankClick.click();
+
+		from_date_btn.click();
+
+		Select A = new Select(from_Years);
+		A.selectByVisibleText("2026");
+
+		Select B = new Select(from_months);
+		B.selectByVisibleText("Jan");
+
+		WebElement FromDate = driver.findElement(By.xpath("//td[@class='available'][normalize-space()='2']"));
+
+		FromDate.click();
+
+		toDate_btn.click();
+
+		Select C = new Select(to_Years);
+		C.selectByVisibleText("2026");
+
+		Select D = new Select(to_months);
+		D.selectByVisibleText("Jan");
+
+		WebElement ToDate = driver
+				.findElement(By.xpath("//td[@class='today active start-date active end-date available']"));
+
+		ToDate.click();
+
+		// FromDate.click();
+
+		Export_btn.click();
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
+
+	}
+
+	public void CR212_De_Pledge_Test_Case1() throws InterruptedException {
+
 		Wait.until(ExpectedConditions.elementToBeClickable(Exports_btn)).click();
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Pledge_Export_Btn)).click();
@@ -2608,9 +2716,9 @@ public class Exports_Reports {
 		} catch (Exception e) {
 			System.out.println("Unexpected error New_btn: " + e.getMessage());
 		}
-		
+
 		reportType_Btn.click();
-		
+
 		reportType_Txt.sendKeys("Pledge Creation");
 		reportType_Txt.sendKeys(Keys.ENTER);
 
@@ -2681,21 +2789,8 @@ public class Exports_Reports {
 
 		Export_btn.click();
 		Thread.sleep(2000);
-		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();		
+		Wait.until(ExpectedConditions.elementToBeClickable(Ok_btn)).click();
 
-	}
-
-	public void CR212_Pledge_Creation_Test_Case1() {
-		
-		
-		
-		
-		
-	}
-
-	public void CR212_De_Pledge_Test_Case1() {
-		
-		
 	}
 
 }
