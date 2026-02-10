@@ -1460,8 +1460,9 @@ public class ExcelUtils {
 		return getCellData(rowNum, 0);
 	}
 
-	public long getExchangeID(int rowNum) {
-		return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	public String getExchangeID(int rowNum) {
+		//return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+		return getCellData(rowNum, 1);
 	}
 	
 	public int getWSP_ID1(int rowNum) {
@@ -1472,8 +1473,9 @@ public class ExcelUtils {
 		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
 	}
 	
-	public String getCOMMODITY_CODE(int rowNum) {
-		return getCellData(rowNum, 4);
+	public int getCOMMODITY_CODE_Export(int rowNum) {
+		//return getCellData(rowNum, 4);
+		return (int) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
 	
 	public long getCLIENT_ID_Export(int rowNum) {
