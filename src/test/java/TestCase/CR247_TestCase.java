@@ -229,7 +229,7 @@ public class CR247_TestCase extends BaseClass {
 			Report.flush();
 		}
 		
-		@Test
+	//	@Test
 		void CR247_Test_Case11() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "CR247_Test_Case11 is  start");

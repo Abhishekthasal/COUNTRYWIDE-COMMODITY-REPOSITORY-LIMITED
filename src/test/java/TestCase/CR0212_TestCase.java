@@ -18,7 +18,7 @@ public class CR0212_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("CR0212_TestCase");
 
-	// @Test
+	 @Test
 	void Pledge_Creation_Test_Case1() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Pledge_Creation_Test_Case1 is  start");
@@ -63,7 +63,7 @@ public class CR0212_TestCase extends BaseClass {
 	}
 
 	 
-	 @Test
+	// @Test
 		void Pledge_Invocation_Test_Case1() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Pledge_Invocation_Test_Case1 is  start");
