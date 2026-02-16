@@ -2,6 +2,7 @@ package TestPages;
 
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -159,11 +160,12 @@ public class ON_Market_Checker {
 			System.out.println("Transaction_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
+			
 		}
+		Thread.sleep(2000);
 		try {
 
 			Wait.until(ExpectedConditions.elementToBeClickable(OnMarket_Btn)).click();
-
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying OnMarket_Btn click...");
 			js.executeScript("arguments[0].click();", OnMarket_Btn);
