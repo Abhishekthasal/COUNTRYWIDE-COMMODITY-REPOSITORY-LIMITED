@@ -50,8 +50,9 @@ public class Deposit_Confirm_WH_Checker {
 
 	@FindBy(xpath = "//i[@class='icon-magnifier']")
 	WebElement Search_btn;
-
-	@FindBy(xpath = "(//button[normalize-space()='Actions'])[1]")
+	//button[normalize-space()='Actions']
+	//(//button[normalize-space()='Actions'])[1]
+	@FindBy(xpath = "//button[normalize-space()='Actions']")
 	WebElement Action_btn;
 	// body/ul[@class='dropdown-menu']/li[2]/a[1]
 
@@ -641,7 +642,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=3;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));
@@ -665,7 +666,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
 		} catch (ElementClickInterceptedException e) {

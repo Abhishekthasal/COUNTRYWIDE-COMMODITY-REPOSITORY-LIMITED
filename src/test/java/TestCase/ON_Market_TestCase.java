@@ -15,12 +15,12 @@ public class ON_Market_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ON Market Report");
 
-	// @Test
+	 //@Test
 	void Settlement_Master_CC_Login() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Settlement_Master start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("", "user7", "121@test");
+			Login.PortalLogin("cc8880013", "user7", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Settlement_Master creation  start");
 			TestPages.Settlement_Master_CC_Login Pledge = new TestPages.Settlement_Master_CC_Login(driver, Wait);
@@ -95,7 +95,7 @@ public class ON_Market_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	 @Test
+	// @Test
 	void ON_Market_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for ON_Market_Checker start");

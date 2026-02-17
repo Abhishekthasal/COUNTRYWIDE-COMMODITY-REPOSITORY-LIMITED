@@ -5,8 +5,8 @@
     <classes>
       <class name="TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase">
         <methods>
+          <include name="RP_Exchange_Deposite_Request_Maker"/>
           <include name="setup"/>
-          <include name="DashBoard_WareHouse_Checker"/>
         </methods>
       </class> <!-- TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase -->
     </classes>

@@ -258,7 +258,7 @@ public class Settlement_Master_CC_Login {
 		WebElement expiry_Date = driver.findElement(By.xpath("//input[@id='expiry_Date']"));
 		expiry_Date.click();
 		expiry_Date.sendKeys(expectedDay);
-		expiry_Date.sendKeys(Keys.ENTER);
+		//expiry_Date.sendKeys(Keys.ENTER);
 
 		// Open the calendar trade_Start_Date
 		WebElement trade_Start_Date = driver.findElement(By.xpath(" //input[@id='trade_Start_Date']"));
