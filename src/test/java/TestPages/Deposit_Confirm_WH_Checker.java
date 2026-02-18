@@ -775,7 +775,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=Exchange_Non_Agri_WareHouse.totalBags;  i++) {
+		for(int i=3;  i<=Exchange_Non_Agri_WareHouse.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
@@ -799,7 +799,7 @@ public class Deposit_Confirm_WH_Checker {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
 		Thread.sleep(3000);
-		WebElement Actions_btn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])["+i+"]"));
+		WebElement Actions_btn = driver.findElement(By.xpath("(//button[@class='btn btn-xs btn-primary blue dropdown-toggle'][normalize-space()='Actions'])["+i+"]"));
 		//WebElement Actions_btn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])["+i+"]"));
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).click();

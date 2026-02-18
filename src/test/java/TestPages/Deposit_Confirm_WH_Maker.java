@@ -895,7 +895,7 @@ public class Deposit_Confirm_WH_Maker {
 				System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 			}
 			WebElement Select_btn = driver.findElement(
-					By.xpath("(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[" + i + "]"));
+					By.xpath("(//button[@class='btn btn-default btn-xs'][normalize-space()='Select'])[1]"));
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Select_btn)).click();
 			} catch (ElementClickInterceptedException e) {

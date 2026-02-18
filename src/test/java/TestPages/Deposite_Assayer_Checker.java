@@ -818,7 +818,7 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 3; i < Exchange_Non_Agri_WareHouse.totalBags; i++) {
+		for (int i =1 ; i < Exchange_Non_Agri_WareHouse.totalBags; i++) {
 			try {
 				Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
 			} catch (ElementClickInterceptedException e) {

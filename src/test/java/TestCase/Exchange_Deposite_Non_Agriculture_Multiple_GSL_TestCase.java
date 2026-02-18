@@ -23,7 +23,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			+ " Exchange_Deposite_Non_Agri_GSL" + +System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Non_Agriculture");
 
-	@Test
+	//@Test
 	void Exchange_Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculturet_Maker start");
@@ -71,7 +71,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 	}
 
 	// Database
-//	@Test
+	//@Test
 	void DashBoard_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Maker is start");
@@ -182,7 +182,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.flush();
 	}
 
-	// @Test
+	 @Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposit_Confirm_WH_Checker is start");
