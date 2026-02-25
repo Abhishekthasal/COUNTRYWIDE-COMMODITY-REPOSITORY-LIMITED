@@ -642,7 +642,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=3;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));
@@ -775,7 +775,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=3;  i<=Exchange_Non_Agri_WareHouse.totalBags;  i++) {
+		for(int i=1;  i<=Exchange_Non_Agri_WareHouse.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
