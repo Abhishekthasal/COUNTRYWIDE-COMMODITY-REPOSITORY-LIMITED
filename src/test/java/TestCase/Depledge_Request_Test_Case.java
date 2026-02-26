@@ -19,7 +19,7 @@ public class Depledge_Request_Test_Case extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Depledge_Request Report");
 
-	// @Test
+	 @Test
 	void Depledge_Request() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Depledge_Request start");

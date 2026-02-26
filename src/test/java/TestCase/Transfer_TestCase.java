@@ -20,12 +20,15 @@ public class Transfer_TestCase  extends BaseClass {
 					+ System.currentTimeMillis() + ".html",
 			true);
 	ExtentTest test = Report.startTest("Transfer Report");
-	//@Test
+	@Test
 	void Transfer_Request() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Transfer_Request is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+		//	Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			
+			Login.PortalLogin("RP-UATTEST", "user1", "121@test");
+			
 			TestPages.Transfer_Request_RP_Maker Trf = new TestPages.Transfer_Request_RP_Maker(driver, Wait);
 			try {
 			Trf.Transfer_Request_Maker();
@@ -51,7 +54,8 @@ public class Transfer_TestCase  extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Transfer_Request_Checker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			Login.PortalLogin("RP-UATTEST", "user2", "121@test");
 			TestPages.Transfer_Request_RP_Checker Trf = new TestPages.Transfer_Request_RP_Checker(driver, Wait);
 			Trf.Transfer_Request_Checker();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -67,12 +71,13 @@ public class Transfer_TestCase  extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	@Test
+	//@Test
 	void Transfer_Warehouse_Approval_Request() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Transfer_Warehouse_Approval_Maker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user71", "121@test");
+			//Login.PortalLogin("wsp9999996", "user71", "121@test");
+			Login.PortalLogin("WSP8888999", "user2", "121@test");
 			TestPages.Transfer_Warehouse_Approval_Maker Trf = new TestPages.Transfer_Warehouse_Approval_Maker(driver, Wait);
 			Trf.Transfer_Warehouse_Approval_Request();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
@@ -88,12 +93,13 @@ public class Transfer_TestCase  extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	//@Test
+//	@Test
 		void Transfer_Warehouse_Approval_Checker() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Transfer_Warehouse_Approval_Checker is start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("wsp9999996", "user72", "121@test");
+				//Login.PortalLogin("wsp9999996", "user72", "121@test");
+				Login.PortalLogin("WSP8888999", "user3", "121@test");
 				TestPages.Transfer_Request_RP_Checker Trf = new TestPages.Transfer_Request_RP_Checker(driver, Wait);
 				Trf.Transfer_Warehouse_Approval_Checker();
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))

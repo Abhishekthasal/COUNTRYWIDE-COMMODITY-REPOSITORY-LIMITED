@@ -21,7 +21,7 @@ public class Transfer_Request_RP_Maker {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Transfer.xlsx";
 	static String sheet = "Transfer_Request";
-	static int dataRow = 3; // second row of data
+	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	
@@ -92,6 +92,8 @@ public class Transfer_Request_RP_Maker {
 
 	@FindBy(xpath = "(//input[@type='text'])[8]")
 	WebElement WH_Txt;
+	
+	//Commodity Segment
 
 	@FindBy(xpath = "//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Commodity_Bttn;
@@ -188,6 +190,8 @@ public class Transfer_Request_RP_Maker {
 			WebElement Ac = driver.findElement(By.xpath("//li[@class='active']//a"));
 			Ac.sendKeys(Keys.ENTER);
 
+			
+			
 			Commodity_Bttn.click();
 			Commodity_Txt.sendKeys(String.valueOf(Commodity_Code));
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
