@@ -25,7 +25,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-	 @Test(retryAnalyzer = Utillity.RetryTest.class)
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void RP_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "General_Deposite_Agriculture_Multiple_GSL_Maker start");
@@ -71,7 +71,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 //Database Connection is required for Physical_Deposit_Maker
-//	 @Test
+	// @Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is start");
@@ -119,10 +119,10 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			test.log(LogStatus.INFO, "Deposite_Assayer_Agriculture_Multiple_GSL_Maker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("Asyr-3338084", "user1", "121@test");
-			//Login.PortalLogin("ASYR-8889999", "user1", "121@test");
-			Login.PortalLogin("ASYR-2905202", "Bhanu1", "121@Test");//bhanu
+			Login.PortalLogin("ASYR-8889999", "user1", "121@test");
+			//Login.PortalLogin("ASYR-2905202", "Bhanu1", "121@Test");//bhanu
 			//Login.PortalLogin("ASYR-1002121", "user119", "121@test");
-			// Login.PortalLogin("Assayer01", "user4", "121@test");
+			 //Login.PortalLogin("Assayer01", "user4", "121@test");
 			Deposite_Assayer_Maker Assayer = new Deposite_Assayer_Maker(driver, Wait);
 			Assayer.Deposit_Assayer_Agriculture_Multiple_GSL_Maker();
 			test.log(LogStatus.PASS, "Deposite_Assayer_Agriculture_Multiple_GSL_Maker is successfull");
@@ -141,8 +141,8 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			Deposite_Assayer_Checker Assayer = new Deposite_Assayer_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("Asyr-3338084", "user2", "121@test");
-			//Login.PortalLogin("ASYR-8889999", "user2", "121@test");
-			Login.PortalLogin("ASYR-2905202", "Bhanu2", "121@test");//bhanu
+			Login.PortalLogin("ASYR-8889999", "user2", "121@test");
+			//Login.PortalLogin("ASYR-2905202", "Bhanu2", "121@test");//bhanu
 			//Login.PortalLogin("ASYR-1002121", "user120", "121@test");
 			//Login.PortalLogin("Assayer01", "user112", "121@test");
 			// Login.PortalLogin("Assayer01", "user2", "121@test");
@@ -176,7 +176,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		}
 	}
 
-	//@Test
+	@Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker is start");
@@ -184,7 +184,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("WSP9996059", "user112", "121@test");
 			//Login.PortalLogin("WSP8888999", "user3", "121@test");
-			Login.PortalLogin("WSP9997115", "Pratap", "121@Test");//bhanu
+			Login.PortalLogin("WSP9997115", "Pratap", "Mar@2026");//bhanu
 			//Login.PortalLogin("wsp9999996", "user72", "121@test");
 			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			//Login.PortalLogin("WSP-8843376", "user120", "121@test");

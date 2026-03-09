@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-05T17:03:16 IST" name="Default suite" finished-at="2026-03-05T17:08:00 IST" duration-ms="284296">
+  <suite started-at="2026-03-06T16:21:59 IST" name="Default suite" finished-at="2026-03-06T16:24:50 IST" duration-ms="170768">
     <groups>
     </groups>
-    <test started-at="2026-03-05T17:03:16 IST" name="Default test" finished-at="2026-03-05T17:08:00 IST" duration-ms="284296">
+    <test started-at="2026-03-06T16:21:59 IST" name="Default test" finished-at="2026-03-06T16:24:50 IST" duration-ms="170768">
       <class name="TestCase.General_Deposite_Agriculture_Multiple_GSL_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.General_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2026-03-05T17:03:16 IST" name="setup" finished-at="2026-03-05T17:03:23 IST" duration-ms="7719" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.General_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2026-03-06T16:21:59 IST" name="setup" finished-at="2026-03-06T16:22:03 IST" duration-ms="4126" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Deposit_Confirm_WH_Checker()[pri:0, instance:TestCase.General_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2026-03-05T17:03:23 IST" name="Deposit_Confirm_WH_Checker" finished-at="2026-03-05T17:08:00 IST" duration-ms="276523" status="PASS">
+        <test-method signature="Deposit_Confirm_WH_Checker()[pri:0, instance:TestCase.General_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2026-03-06T16:22:03 IST" name="Deposit_Confirm_WH_Checker" finished-at="2026-03-06T16:24:50 IST" duration-ms="166612" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Deposit_Confirm_WH_Checker -->

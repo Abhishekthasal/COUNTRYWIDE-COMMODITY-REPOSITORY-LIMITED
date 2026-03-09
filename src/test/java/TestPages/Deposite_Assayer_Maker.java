@@ -101,7 +101,7 @@ public class Deposite_Assayer_Maker {
 	@FindBy(xpath = "//a[normalize-space()='Goods Quality']")
 	WebElement Goods_Quality_Manu;
 
-	@FindBy(xpath = "//select[@id='ddlcommodityMaster']")
+	@FindBy(xpath = "(//select[@id='ddlcommodityMaster'])[1]")
 	WebElement Grade_Desig;
 	/**************************************
 	 * QP Details for Cotton Bales for GA // Start
@@ -236,8 +236,7 @@ public class Deposite_Assayer_Maker {
 	@FindBy(xpath = "(//input[@id='Address'])[8]")
 	WebElement MOISTURE_ARHAR;
 
-	// ***************************QP details for SOYABEAN
-	// Start**********************************************
+	// ***************************QP details for SOYABEAN Start*********************
 	@FindBy(xpath = "//select[contains(@class, 'form-control') and @ng-model='vm.DepositAssayer.commodityDesignation']")
 	WebElement Grade_SOYABEAN;
 
