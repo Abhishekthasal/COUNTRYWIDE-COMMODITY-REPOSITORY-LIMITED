@@ -977,6 +977,7 @@ public class Exchange_Non_Agri_WareHouse {
 						try {
 							Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
 							System.out.println("✅ Confirmation clicked for row " + i);
+							js.executeScript("arguments[0].click();", Add_Button); // JS click is safer
 						} catch (Exception e) {
 							System.out.println("⚠️ Confirmation not found for row " + i);
 						}
