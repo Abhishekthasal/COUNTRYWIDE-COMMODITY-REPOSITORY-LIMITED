@@ -334,10 +334,19 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "(//input[@id='Address'])[9]")
 	WebElement Address9;
+	@FindBy(xpath = "(//input[@id='Address'])[10]")
+	WebElement Address10;
 
 	@FindBy(xpath = "//select[@ng-model='Commodity.qp_Value']")
 	WebElement GINNING_PATTERN_ROLLER_GINNED_COTTON;
-
+	
+	@FindBy(xpath = "//select[@name='qp_Value']")
+	WebElement CARBITOL_Drop;
+	
+	@FindBy(xpath = "(//select[@ng-disabled='IsVisible'])[2]")
+	WebElement SOLUBILITY_Drop;
+	@FindBy(xpath = "(//select[@ng-disabled='IsVisible'])[3]")
+	WebElement ETHYL_Drop;
 	@FindBy(xpath = "(//input[@id='Address'])[5]")
 	WebElement MOISTURE_BY_MASS_EX;
 
@@ -1487,6 +1496,27 @@ public class Deposite_Assayer_Maker {
 				Address8.sendKeys("42");
 
 				break;
+
+			case 947:
+				System.out.println("You selected: MENTHA Oil");
+				Select MENTHA = new Select(Grade_Desig);
+				MENTHA.selectByVisibleText("GENERAL");
+				Grade_Desig.click();
+				/*
+				 * Select Pre_Qualification = new Select(Pre_Qualification_Txt);
+				 * Pre_Qualification.selectByIndex(1);
+				 */
+
+				Address1.sendKeys("-36");
+				/*
+				 * Address2.sendKeys("7"); Address3.sendKeys("12"); Address4.sendKeys("17");
+				 * Address5.sendKeys("22"); Address6.sendKeys("27"); Address7.sendKeys("32");
+				 * Select Sd = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+				 * Sd.selectByIndex(2); Address8.sendKeys("42");
+				 */
+				Address10.sendKeys("1.42");
+
+				break;
 			case 49:
 				System.out.println("You selected: Arhar");
 				Select Grade_DE = new Select(Grade_ARHAR);
@@ -1626,7 +1656,7 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 2; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -1664,9 +1694,9 @@ public class Deposite_Assayer_Maker {
 
 			try {
 				if (RP_Exchange_Deposite_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{0,50}$")) {
-					
-					//020220260
-					//SampleId_txt.sendKeys("020220260" + i);
+
+					// 020220260
+					// SampleId_txt.sendKeys("020220260" + i);
 					SampleId_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));
 				} else {
 					System.out.println("Invalid Sample. Please enter exactly 50 digits (numbers only):");
@@ -1813,7 +1843,6 @@ public class Deposite_Assayer_Maker {
 				REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
 				YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
 
-			
 				break;
 			case 49:
 				System.out.println("You selected: Arhar");
@@ -1831,6 +1860,32 @@ public class Deposite_Assayer_Maker {
 				WEEVILLED_PULSES.sendKeys("4");
 				MOISTURE_ARHAR.sendKeys("12");
 
+				break;
+
+			case 947:
+				System.out.println("You selected: MENTHA Oil");
+				Select MENTHA = new Select(Grade_Desig);
+				MENTHA.selectByVisibleText("GENERAL");
+				Grade_Desig.click();
+				/*
+				 * Select Pre_Qualification = new Select(Pre_Qualification_Txt);
+				 * Pre_Qualification.selectByIndex(1);
+				 */
+
+				Address1.sendKeys("67");
+				Address2.sendKeys("2");
+				Select Sd = new Select(CARBITOL_Drop);
+				Sd.selectByIndex(2);
+				Address3.sendKeys("1");
+				Address4.sendKeys("-36");
+				Address5.sendKeys("0.8");
+				Select SO = new Select(SOLUBILITY_Drop);
+				SO.selectByIndex(1);
+				Select ET = new Select(ETHYL_Drop);
+				ET.selectByIndex(1);
+				Address6.sendKeys("65");
+				Address7.sendKeys("1.42");
+				
 				break;
 			case 6:
 				System.out.println("You selected: CHANA ");
@@ -1875,7 +1930,7 @@ public class Deposite_Assayer_Maker {
 			default:
 				System.out.println("Invalid selection!");
 			}
-			
+
 			try {
 				if (Upload_Assaying_Report.isDisplayed()) {
 					Upload_Assaying_Report.click();

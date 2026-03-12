@@ -358,6 +358,9 @@ public class Physical_Deposit_Maker {
 	@FindBy(xpath = "//div[@class='col-sm-4']//input[@id='a']")
 	WebElement Bag;
 
+	@FindBy(xpath="//button[normalize-space()='Ok']")
+	WebElement Records_Not_Found_popup;
+	
 	@FindBy(xpath = "(//a[@class='nav-link ng-binding'][normalize-space()='Lot Details'])[2]")
 	WebElement Lots;
 
@@ -905,6 +908,18 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Physical_Deposite: " + e.getMessage());
 		}
+		try {
+			
+			Wait.until(ExpectedConditions.elementToBeClickable(Records_Not_Found_popup)).click();;
+		}catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying  Records_Not_Found_popup click...");
+			js.executeScript("arguments[0].click();", Records_Not_Found_popup);
+		} catch (NoSuchElementException e) {
+			System.out.println("Records_Not_Found_popup not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Records_Not_Found_popup: " + e.getMessage());
+		}
+		
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Physical_New_Req)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -1772,7 +1787,7 @@ public class Physical_Deposit_Maker {
 			System.out.println("Unexpected error for Deposite_No: " + e.getMessage());
 		}
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Submit_btn)).click();
@@ -1794,7 +1809,7 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Accept_check: " + e.getMessage());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -1813,7 +1828,7 @@ public class Physical_Deposit_Maker {
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 		try {
 			Variety_Code_bttn.click();
 			Thread.sleep(1000);

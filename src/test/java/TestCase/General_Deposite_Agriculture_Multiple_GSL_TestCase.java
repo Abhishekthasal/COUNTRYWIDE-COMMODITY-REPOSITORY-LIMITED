@@ -25,7 +25,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for General");
 
-	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void RP_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "General_Deposite_Agriculture_Multiple_GSL_Maker start");
@@ -34,8 +34,8 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");  //Abhishek
 			//Login.PortalLogin("RP-XYZ", "user119", "121@test");  //Adwait
 			 //Login.PortalLogin("RP-KML", "USER_A", "121@test");   //Akshay
-			Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu1", "121@test");//Bhanu
-			//Login.PortalLogin("RP-UATTEST", "user1", "121@test");//Lakshman
+			//Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu1", "121@test");//Bhanu
+			Login.PortalLogin("RP-UATTEST", "user1", "121@test");//Lakshman
 			Depo.General_Deposite_Request();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+ "General_Deposite_Agriculture_Multiple_GSLt_Maker is success full");
@@ -59,8 +59,8 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			//Login.PortalLogin("RP-Abhishek", "user52", "121@test");
 			//Login.PortalLogin("RP-XYZ", "user2", "121@test");
 			//Login.PortalLogin("RP-KML", "user2", "121@test");
-			//Login.PortalLogin("RP-UATTEST", "user2", "121@test");
-			Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu2", "121@test");//Bhanu
+			Login.PortalLogin("RP-UATTEST", "user6", "121@test");
+			//Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu2", "121@test");//Bhanu
 			Dash.Deposite_Request();
 			test.log(LogStatus.PASS, "General_Deposite_Agriculture_Multiple_GSL_Checker is successfull");
 		} catch (Exception e) {
@@ -80,8 +80,8 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			//Login.PortalLogin("wsp9999996", "user71", "121@test");
 			//Login.PortalLogin("wsp9999996", "user1", "121@test");
 			//Login.PortalLogin("WSP9996059", "user111", "121@test");
-		//	Login.PortalLogin("WSP8888999", "user2", "121@test");
-			Login.PortalLogin("WSP9997115", "Bhanu", "121@Test");//bhanu
+			Login.PortalLogin("WSP8888999", "user7", "121@test");
+			//Login.PortalLogin("WSP9997115", "Bhanu", "121@Test");//bhanu
 			WSP.General_Physical_Deposit_Maker_Multiple_GSL();
 			test.log(LogStatus.PASS, "DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is successfull");
 		} catch (Exception e) {
@@ -101,8 +101,8 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			//Login.PortalLogin("wsp9999996", "user2", "121@test");
 			// Login.PortalLogin("wsp9999996", "user72", "121@test");
 			//Login.PortalLogin("WSP9996059", "user112", "121@test");
-			//Login.PortalLogin("WSP8888999", "user3", "121@test");
-			Login.PortalLogin("WSP9997115", "Pratap", "121@Test");//bhanu
+			Login.PortalLogin("WSP8888999", "user8", "121@test");
+			//Login.PortalLogin("WSP9997115", "Pratap", "121@Test");//bhanu
 			WSP_CH.Deposit_Maker_Multiple_GSL_Checker();
 			test.log(LogStatus.PASS, "DashBoard_WareHouse_Agriculture_Multiple_GSL_Checker is successfull");
 		} catch (Exception e) {
@@ -113,7 +113,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
- //@Test
+// @Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Agriculture_Multiple_GSL_Maker is start");
@@ -156,7 +156,7 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		Report.flush();
 	}
 
-	 //@Test
+	// @Test
 	void Deposit_Confirm_WH_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Agriculture_Multiple_GSL_Maker is start");
@@ -164,8 +164,8 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("WSP9996059", "user111", "121@test");
 			//Login.PortalLogin("wsp9999996", "user71", "121@test");
-			//Login.PortalLogin("WSP8888999", "user2", "121@test");
-			Login.PortalLogin("WSP9997115", "Bhanu", "121@Test");//bhanu
+			Login.PortalLogin("WSP8888999", "user7", "121@test");
+			//Login.PortalLogin("WSP9997115", "Bhanu", "121@Test");//bhanu
 			// Login.PortalLogin("wsp9996059", "user101", "121@test");
 			//Login.PortalLogin("WSP-8843376", "user119", "121@test");
 			Confirn_Maker.Deposit_Confirm_WH_Agriculture_Multiple_GSL_Maker();
@@ -176,15 +176,15 @@ public class General_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseClas
 		}
 	}
 
-	@Test
+	//@Test
 	void Deposit_Confirm_WH_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker is start");
 			TestPages.Deposit_Confirm_WH_Checker Confirm = new TestPages.Deposit_Confirm_WH_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("WSP9996059", "user112", "121@test");
-			//Login.PortalLogin("WSP8888999", "user3", "121@test");
-			Login.PortalLogin("WSP9997115", "Pratap", "Mar@2026");//bhanu
+			Login.PortalLogin("WSP8888999", "user8", "121@test");
+			//Login.PortalLogin("WSP9997115", "Pratap", "Mar@2026");//bhanu
 			//Login.PortalLogin("wsp9999996", "user72", "121@test");
 			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			//Login.PortalLogin("WSP-8843376", "user120", "121@test");

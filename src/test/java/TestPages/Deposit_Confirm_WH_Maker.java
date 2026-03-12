@@ -65,6 +65,8 @@ public class Deposit_Confirm_WH_Maker {
 
 	@FindBy(xpath = "//a[normalize-space()='View Report']")
 	WebElement View_Report;
+	@FindBy(xpath = "//button[normalize-space()='Ok']")
+	WebElement Records_Not_Found_popup;
 
 	@FindBy(xpath = "//button[@class='btn btn-primary blue']//span[contains(text(),'Verify')]")
 	WebElement Verify_btn;
@@ -514,6 +516,18 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
+		try {
+
+			Wait.until(ExpectedConditions.elementToBeClickable(Records_Not_Found_popup)).click();
+		} /*
+			 * catch (ElementClickInterceptedException e) { System.out.
+			 * println("Normal click failed, trying  Records_Not_Found_popup click...");
+			 * js.executeScript("arguments[0].click();", Records_Not_Found_popup); }
+			 */ catch (NoSuchElementException e) {
+			System.out.println("Records_Not_Found_popup not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Records_Not_Found_popup: " + e.getMessage());
+		}
 
 		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(2000);
@@ -873,7 +887,8 @@ public class Deposit_Confirm_WH_Maker {
 				}
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
-				js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + "';",
+				js.executeScript(
+						"arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + "';",
 						Warehouse_id_Txt);
 			} catch (NoSuchElementException e) {
 				System.out.println("Search_btn not found: " + e.getMessage());
@@ -882,7 +897,7 @@ public class Deposit_Confirm_WH_Maker {
 			}
 			Thread.sleep(1000);
 			// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 			try {
 				driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_btn)).click();
