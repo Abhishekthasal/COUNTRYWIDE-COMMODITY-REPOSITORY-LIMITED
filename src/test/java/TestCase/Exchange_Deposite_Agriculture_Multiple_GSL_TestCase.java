@@ -27,7 +27,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Deposite");
 
-@Test
+//@Test
 	void RP_Exchange_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Request_Agriculture_Multiple_GSL_Maker start");
@@ -50,15 +50,15 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 		Report.flush();
 	}
 
-	// @Test
+	 @Test
 	void RP_Deposite_Request_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Request_Agriculture_Multiple_GSL_Checker is start");
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("rp-KML", "user_b", "121@test");
-			// Login.PortalLogin("rp-Abhishek", "user52", "121@test");
-			 Login.PortalLogin("RP-UATTEST", "user6", "121@test");
+			 Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			// Login.PortalLogin("RP-UATTEST", "user6", "121@test");
 			Dash.Exchange_Deposite_Deposite_Request();
 			test.log(LogStatus.PASS, "Exchange_Deposite_Request_Agriculture_Multiple_GSL_Checker is successfull");
 		} catch (Exception e) {

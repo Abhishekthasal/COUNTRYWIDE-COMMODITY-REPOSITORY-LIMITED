@@ -64,7 +64,7 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-//@Test
+@Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBord_WareHouse_Maker is start");
@@ -99,7 +99,7 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 
 	}
-@Test
+//@Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Deposite_Assayer_Maker is start");
