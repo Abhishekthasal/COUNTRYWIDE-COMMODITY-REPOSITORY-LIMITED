@@ -26,7 +26,7 @@ public class Client_Account_opening_For_RP {
 	// String projectPath = System.getProperty("user.dir");
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ClientOpening.xlsx";
 	static String sheet = "ClientOpening";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 3; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 

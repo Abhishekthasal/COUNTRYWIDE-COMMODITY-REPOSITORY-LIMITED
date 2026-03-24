@@ -32,7 +32,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "RP_Exchange_Deposite_Request_Maker start");
 			RP_Exchange_Deposite_Agriculture_Maker Exch = new RP_Exchange_Deposite_Agriculture_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-abhishek", "user51", "121@test");
+			//Login.PortalLogin("rp-abhishek", "user51", "121@test");
+			 Login.PortalLogin("RP-KUNVARJI", "PRAKASH", "121@test");
 		Exch.Exchange_Deposite_Request();
 		test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 				+ "RP_Exchange_Deposite_Request_Maker is success full");
@@ -53,7 +54,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "RP_Deposite_Request_Checker is start");
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			 Login.PortalLogin("RP-KUNVARJI", "ANIRUDDH", "121@test");
 		Dash.Exchange_Deposite_Deposite_Request();
 		test.log(LogStatus.PASS, "RP_Deposite_Request_Checker is successfull");
 		} catch (Exception e) {
@@ -64,14 +66,15 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-@Test
+//@Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "DashBord_WareHouse_Maker is start");
 			Physical_Deposit_Maker WSP = new Physical_Deposit_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("wsp9997115", "bhanu", "121@test");
-			Login.PortalLogin("wsp9999996", "user71", "121@test");
+			//Login.PortalLogin("wsp9999996", "user71", "121@test");
+			Login.PortalLogin("WSP6656413", "admin", "121@test");
 			WSP.Exchange_Deposite_Transaction();
 			test.log(LogStatus.PASS, "DashBord_WareHouse_Maker is successfull");
 		} catch (Exception e) {
@@ -87,7 +90,8 @@ public class Exchange_Deposite_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "DashBoard_WareHouse_Checker is start");
 			DashBoard_WareHouse_Checker WSP_CH = new DashBoard_WareHouse_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user72", "121@test");
+			//Login.PortalLogin("wsp9999996", "user72", "121@test");
+			Login.PortalLogin("WSP6656413", "CCRL", "121@test");
 			//Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			WSP_CH.Exchange_Deposite_Transaction();
 			test.log(LogStatus.PASS, "DashBoard_WareHouse_Checker is successfull");

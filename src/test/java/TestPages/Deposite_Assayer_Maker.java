@@ -339,10 +339,10 @@ public class Deposite_Assayer_Maker {
 
 	@FindBy(xpath = "//select[@ng-model='Commodity.qp_Value']")
 	WebElement GINNING_PATTERN_ROLLER_GINNED_COTTON;
-	
+
 	@FindBy(xpath = "//select[@name='qp_Value']")
 	WebElement CARBITOL_Drop;
-	
+
 	@FindBy(xpath = "(//select[@ng-disabled='IsVisible'])[2]")
 	WebElement SOLUBILITY_Drop;
 	@FindBy(xpath = "(//select[@ng-disabled='IsVisible'])[3]")
@@ -1656,7 +1656,7 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 2; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -1829,20 +1829,24 @@ public class Deposite_Assayer_Maker {
 				Grade.selectByVisibleText("GENERAL");
 				Grade_Desig.click();
 				/*
-				 * Select Pre_Qualification = new Select(Pre_Qualification_Txt);
-				 * Pre_Qualification.selectByIndex(1);
+				 * Address1.sendKeys(String.valueOf(28)); Address2.sendKeys(String.valueOf(4));
+				 * Address3.sendKeys(String.valueOf(4)); Address4.sendKeys(String.valueOf(28));
+				 * Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+				 * S.selectByIndex(1);
+				 * 
+				 * Address5.sendKeys(String.valueOf(7)); Address6.sendKeys(String.valueOf(80));
+				 * Address7.sendKeys(String.valueOf(8));
 				 */
-				STAPLE_SPAN_LENGTH_Ex.sendKeys(String.valueOf(28));
-				MICRONAIRE_EX.sendKeys(String.valueOf(4));
-				TRASH_ex.sendKeys(String.valueOf(4));
-				TENSILE_STRENGTH_EX.sendKeys(String.valueOf(28));
+                //PreProd Data
+				Address1.sendKeys(String.valueOf(28));
+				Address2.sendKeys(String.valueOf(4));
+				Address3.sendKeys(String.valueOf(28));
+				Address4.sendKeys(String.valueOf(4));
+				Address5.sendKeys(String.valueOf(73));
+				Address6.sendKeys(String.valueOf(1));
+				Address7.sendKeys(String.valueOf(9));
 				Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
 				S.selectByIndex(1);
-
-				MOISTURE_BY_MASS_EX.sendKeys(String.valueOf(7));
-				REFLECTANCE_RD_VALUE_EX.sendKeys(String.valueOf(80));
-				YELLOWNESS_B_VALUE_EX.sendKeys(String.valueOf(8));
-
 				break;
 			case 49:
 				System.out.println("You selected: Arhar");
@@ -1885,7 +1889,7 @@ public class Deposite_Assayer_Maker {
 				ET.selectByIndex(1);
 				Address6.sendKeys("65");
 				Address7.sendKeys("1.42");
-				
+
 				break;
 			case 6:
 				System.out.println("You selected: CHANA ");

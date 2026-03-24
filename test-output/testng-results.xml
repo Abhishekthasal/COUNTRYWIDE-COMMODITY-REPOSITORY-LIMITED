@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-17T17:38:02 IST" name="Default suite" finished-at="2026-03-17T17:47:13 IST" duration-ms="550840">
+  <suite started-at="2026-03-24T14:58:33 IST" name="Default suite" finished-at="2026-03-24T14:58:42 IST" duration-ms="8686">
     <groups>
     </groups>
-    <test started-at="2026-03-17T17:38:02 IST" name="Default test" finished-at="2026-03-17T17:47:13 IST" duration-ms="550840">
-      <class name="TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2026-03-17T17:38:02 IST" name="setup" finished-at="2026-03-17T17:38:06 IST" duration-ms="4760" status="PASS">
+    <test started-at="2026-03-24T14:58:33 IST" name="Default test" finished-at="2026-03-24T14:58:42 IST" duration-ms="8686">
+      <class name="TestCase.ON_Market_TestCase">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2026-03-24T14:58:33 IST" name="setup" finished-at="2026-03-24T14:58:36 IST" duration-ms="3001" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="DashBoard_WareHouse_Maker()[pri:0, instance:TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2026-03-17T17:38:06 IST" name="DashBoard_WareHouse_Maker" finished-at="2026-03-17T17:47:13 IST" duration-ms="546048" status="PASS">
+        <test-method signature="On_Market_RP_Login()[pri:0, instance:TestCase.ON_Market_TestCase@29d89d5d]" started-at="2026-03-24T14:58:36 IST" name="On_Market_RP_Login" finished-at="2026-03-24T14:58:42 IST" duration-ms="5640" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DashBoard_WareHouse_Maker -->
-      </class> <!-- TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase -->
+        </test-method> <!-- On_Market_RP_Login -->
+      </class> <!-- TestCase.ON_Market_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
