@@ -1828,25 +1828,26 @@ public class Deposite_Assayer_Maker {
 				Select Grade = new Select(Grade_Desig);
 				Grade.selectByVisibleText("GENERAL");
 				Grade_Desig.click();
-				/*
-				 * Address1.sendKeys(String.valueOf(28)); Address2.sendKeys(String.valueOf(4));
-				 * Address3.sendKeys(String.valueOf(4)); Address4.sendKeys(String.valueOf(28));
-				 * Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
-				 * S.selectByIndex(1);
-				 * 
-				 * Address5.sendKeys(String.valueOf(7)); Address6.sendKeys(String.valueOf(80));
-				 * Address7.sendKeys(String.valueOf(8));
-				 */
-                //PreProd Data
+
 				Address1.sendKeys(String.valueOf(28));
 				Address2.sendKeys(String.valueOf(4));
-				Address3.sendKeys(String.valueOf(28));
-				Address4.sendKeys(String.valueOf(4));
-				Address5.sendKeys(String.valueOf(73));
-				Address6.sendKeys(String.valueOf(1));
-				Address7.sendKeys(String.valueOf(9));
+				Address3.sendKeys(String.valueOf(4));
+				Address4.sendKeys(String.valueOf(28));
 				Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
 				S.selectByIndex(1);
+
+				Address5.sendKeys(String.valueOf(7));
+				Address6.sendKeys(String.valueOf(80));
+				Address7.sendKeys(String.valueOf(8));
+
+				/*
+				 * //PreProd Data Address1.sendKeys(String.valueOf(28));
+				 * Address2.sendKeys(String.valueOf(4)); Address3.sendKeys(String.valueOf(28));
+				 * Address4.sendKeys(String.valueOf(4)); Address5.sendKeys(String.valueOf(73));
+				 * Address6.sendKeys(String.valueOf(1)); Address7.sendKeys(String.valueOf(9));
+				 * Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
+				 * S.selectByIndex(1);
+				 */
 				break;
 			case 49:
 				System.out.println("You selected: Arhar");
