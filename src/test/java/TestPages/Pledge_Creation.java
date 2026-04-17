@@ -26,7 +26,8 @@ public class Pledge_Creation {
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	
-	
+	String Agricultural2="Non_Agricultural";
+	String Agricultural1="Agricultural";
 	public static int pledge_Req_Number = excel.getpledge_Req_Number(dataRow);
 	public static String Client_ID =excel.getClient_ID(dataRow);
 	public int WH_id =excel.getWH_id(dataRow);
@@ -36,6 +37,7 @@ public class Pledge_Creation {
 	int Bags =excel.getBagsp(dataRow);
 	static int pledge_value=excel.getpledge_value(dataRow);
 	String ifsc_Code = excel.getifsc_Code(dataRow);
+	String Commodity_Segment = excel.getCommodity_Segment(dataRow);
 
 	public Pledge_Creation(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -79,8 +81,22 @@ public class Pledge_Creation {
 
 	@FindBy(xpath = "(//input[@type='text'])[19]")
 	WebElement WH_ID_Text;
+	
+	
 	//(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[5]
 	//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']
+	
+	
+	@FindBy(xpath="//span[@class='filter-option pull-left'][normalize-space()='Agricultural']")
+	WebElement Commodity_Segment_Btn;
+	
+	@FindBy(xpath="//span[@class='text'][normalize-space()='Agricultural']")
+	WebElement Agricultural_Btn;
+	
+	@FindBy(xpath="//span[normalize-space()='Non-Agricultural']")
+	WebElement Non_Agricultural_Btn;
+	
+	
 	@FindBy(xpath = "(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[5]")
 	WebElement Commodity_Code;
 
@@ -155,18 +171,16 @@ public class Pledge_Creation {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for pledge_Req_No: " + e.getMessage());
 		}
-
-		Request_Date.click();
-		// Assert.assertTrue(Request_Date.isDisplayed(), "Request_Date button not
-		// visible");
-
-		Request_Date_Active.click();
-		// Assert.assertTrue(Request_Date_Active.isDisplayed(), "Request_Date_Active
-		// button not visible");
-
-		Execution_Date.click();
-
-		Execution_Date_Active.click();
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Request_Date)).click();
+		
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Request_Date_Active)).click();
+		
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Execution_Date)).click();
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Execution_Date_Active)).click();
 
 		// driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
 		try {
@@ -214,6 +228,19 @@ public class Pledge_Creation {
 		}
 		// js.executeScript("arguments[0].scrollIntoView(true);", Commodity_Code);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		
+		Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Segment_Btn)).click();
+		
+		if(Commodity_Segment.equals(Agricultural1)) {
+			Wait.until(ExpectedConditions.elementToBeClickable(Agricultural_Btn)).click();
+			
+		}else if(Commodity_Segment.equals(Agricultural2)){
+			Wait.until(ExpectedConditions.elementToBeClickable(Non_Agricultural_Btn)).click();
+		}else {
+			System.out.println("Commodity_Segment is not valid");
+		}
+		
+		
 		try {
 			if (String.valueOf(Commodity).matches("^[0-9]{0,4}$")) {
 			Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Code)).click();

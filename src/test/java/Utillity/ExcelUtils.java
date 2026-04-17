@@ -632,6 +632,10 @@ public class ExcelUtils {
 	public int getPledge_Confirm_code(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
 	}
+	
+	public String getCommodity_Segment(int rowNum) {
+		return getCellData(rowNum, 10);
+	}
 
 	/***********************************
 	 * DPlageRequest

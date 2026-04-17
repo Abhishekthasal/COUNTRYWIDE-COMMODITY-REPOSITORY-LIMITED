@@ -67,7 +67,7 @@ public class Pledge_Creation_Request_Authorized {
 
 		Wait.until(ExpectedConditions.elementToBeClickable(submit)).click();
 		
-		Actions.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Actions)).click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Authorize)).click();
 		
