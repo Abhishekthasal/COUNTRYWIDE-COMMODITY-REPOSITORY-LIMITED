@@ -46,7 +46,7 @@ public class CR0336_TestCase extends BaseClass {
 			Report.flush();
 		}
 
-		 @Test
+		@Test
 		void Pledge_Creation_Request_Authorized() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Logion for Pledge_Creation Authorized start");
@@ -130,12 +130,12 @@ public class CR0336_TestCase extends BaseClass {
 			Report.flush();
 		}
 
-		// @Test
+		 //@Test
 		void pledgee_Creation() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Logion for pledgee_Creation start");
 				LoginPages Login = new LoginPages(driver, Wait);
-				Login.PortalLogin("rp-UCOBANK", "panvel1", "121@test01");
+				Login.PortalLogin("rp-UCOBANK", "panvel1", "121@test");
 				// Login.PortalLogin("rp-bhanu", "sarthak", "121@test");
 				test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 				test.log(LogStatus.INFO, "pledgee_Creation start");
@@ -156,7 +156,7 @@ public class CR0336_TestCase extends BaseClass {
 			Report.flush();
 		}
 
-		//@Test
+	//	@Test
 		void pledgee_Creation_Authorized() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Logion for pledgee_Creation_Authorized start");

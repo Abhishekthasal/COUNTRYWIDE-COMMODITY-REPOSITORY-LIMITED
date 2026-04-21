@@ -30,8 +30,8 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 			test.log(LogStatus.INFO, "Exchange_Deposite_Request_Agriculture_Multiple_GSL_Maker start");
 			RP_Exchange_Deposite_Agriculture_Maker Exch = new RP_Exchange_Deposite_Agriculture_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-abhishek", "user51", "121@test");
-			//Login.PortalLogin("rp-KML", "user_a", "121@test");
+			//Login.PortalLogin("rp-abhishek", "user51", "121@test");
+			Login.PortalLogin("rp-KML", "user_a", "121@test");
 			// Login.PortalLogin("RP-UATTEST", "user5", "121@test");
 			//Login.PortalLogin("RP-KUNVARJI", "PreProd_Abhi", "121@test");
 			Exch.Exchange_Deposite_Request();
@@ -48,14 +48,14 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 		Report.flush();
 	}
 
-	// @Test
+	//@Test
 	void RP_Deposite_Request_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Request_Agriculture_Multiple_GSL_Checker is start");
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("rp-KML", "user_b", "121@test");
-			 Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			Login.PortalLogin("rp-KML", "user_b", "121@test");
+			// Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 			// Login.PortalLogin("RP-UATTEST", "user6", "121@test");
 			// Login.PortalLogin("RP-KUNVARJI", "PRAKASH", "121@test");
 			Dash.Exchange_Deposite_Deposite_Request();
@@ -118,7 +118,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 			test.log(LogStatus.INFO, "Exchange_Deposite_Assayer_Agriculture_Multiple_GSL_Maker is start");
 			Deposite_Assayer_Maker Assayer = new Deposite_Assayer_Maker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("Asyr-3338084", "user1", "121@test01");
+			Login.PortalLogin("Asyr-3338084", "user1", "121@test");
 			// Login.PortalLogin("Asyr-2905202", "bhanu1", "121@test");
 			 //Login.PortalLogin("ASYR-8889999", "user1", "121@test");
 			//Login.PortalLogin("ASYR-8889999", "user1", "121@test");
