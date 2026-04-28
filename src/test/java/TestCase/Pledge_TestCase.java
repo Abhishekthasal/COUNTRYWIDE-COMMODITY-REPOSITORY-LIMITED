@@ -83,7 +83,7 @@ public class Pledge_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Logion for Pledge_Creation WareHouse start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			// Login.PortalLogin("wsp9996059", "user101", "121@test");
-			Login.PortalLogin("wsp9999996", "user71", "121@test01");
+			Login.PortalLogin("wsp9999996", "user71", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledge_Creation WareHouse start");
 			TestPages.Pledge_Creation_WareHouse Exch = new TestPages.Pledge_Creation_WareHouse(driver, Wait);
@@ -130,7 +130,7 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-//	 @Test
+	// @Test
 	void pledgee_Creation() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for pledgee_Creation start");
