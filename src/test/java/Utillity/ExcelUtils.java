@@ -1486,5 +1486,24 @@ public class ExcelUtils {
 		return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
 	}
 	
+	//-----------------------------Pledge_Invocation----------------------
+	
+	public long getPledge_Invocation_CLIENT_ID(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+	}
+	
+	public int getPledge_Invocation_pledge_Sequence_No(int rowNum) {
+		//return getCellData(rowNum, 4);
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public String getpledge_Inv_Req_No(int rowNum) {
+		return getCellData(rowNum, 2);
+	}
+	
+	public int get_Pledge_Invocation_no_of_bags(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
 	
 }

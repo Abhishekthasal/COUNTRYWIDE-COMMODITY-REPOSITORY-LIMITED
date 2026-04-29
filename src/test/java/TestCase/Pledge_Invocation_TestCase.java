@@ -16,14 +16,12 @@ public class Pledge_Invocation_TestCase extends BaseClass {
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("Pledge_Invocation Report");
 
-	 @Test
+//	 @Test
 	void Pledge_Invocation() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for Pledge_Invocation start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			 Login.PortalLogin("rp-UCOBANK", "panvel1", "121@test");
-			// Login.PortalLogin("wsp9999996", "user71", "121@test");
-			//Login.PortalLogin("RP-KUNVARJI", "PreProd_Abhi", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledge_Invocation creation is start");
 			Pledge_Invocation Pledge = new Pledge_Invocation(driver, Wait);
@@ -43,7 +41,7 @@ public class Pledge_Invocation_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	// @Test
+	 @Test
 	void Pledge_Invocation_Request_Authorized() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for Pledge_Invocation Authorized start");
