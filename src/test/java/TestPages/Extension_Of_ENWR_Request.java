@@ -18,24 +18,23 @@ public class Extension_Of_ENWR_Request {
 	WebDriver driver;
 	WebDriverWait Wait;
 	JavascriptExecutor js = (JavascriptExecutor) driver;
-	
-	 String projectPath = System.getProperty("user.dir");
-		static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Extension_Of_ENWR_Request.xlsx";
-		static String sheet = "Extension_Of_ENWR_Request";
-		static int dataRow = 1; // second row of data
-		static ExcelUtils excel = new ExcelUtils(path, sheet);
-	
-	
-	
-	public static String Instr_Slip_No =excel.getInstr_Slip_No_Extension(dataRow);    // "9012026A"; 
-	public int WSP_ID =excel.getWSP_ID_Extension(dataRow);               //"9999996";                //excel.getWspID(dataRow);
-	public static int WH_ID =excel.getWH_ID_Extension(dataRow);       //  "1000421";    
-	public long Client_ID =excel.getClient_ID_Extension(dataRow);                     //"100673000000011";            //excel.getClientID(dataRow);//excel.getWhID(dataRow);// "5750013";
-	public static String Commodity_Code =excel.getCommodity_Code_Extension(dataRow);                  //"15"; // excel.getCommodityCode(dataRow);
-	public static long ENWR=excel.getENWR_Extension(dataRow);                          // "110001032504";
-	public static int shelflife_Days =excel.getshelflife_Days(dataRow);
-	
-	
+
+	String projectPath = System.getProperty("user.dir");
+	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Extension_Of_ENWR_Request.xlsx";
+	static String sheet = "Extension_Of_ENWR_Request";
+	static int dataRow = 1; // second row of data
+	static ExcelUtils excel = new ExcelUtils(path, sheet);
+
+	public static String Instr_Slip_No = excel.getInstr_Slip_No_Extension(dataRow); // "9012026A";
+	public int WSP_ID = excel.getWSP_ID_Extension(dataRow); // "9999996"; //excel.getWspID(dataRow);
+	public static int WH_ID = excel.getWH_ID_Extension(dataRow); // "1000421";
+	public long Client_ID = excel.getClient_ID_Extension(dataRow); // "100673000000011";
+																	// //excel.getClientID(dataRow);//excel.getWhID(dataRow);//
+																	// "5750013";
+	public static String Commodity_Code = excel.getCommodity_Code_Extension(dataRow); // "15"; //
+																						// excel.getCommodityCode(dataRow);
+	public static long ENWR = excel.getENWR_Extension(dataRow); // "110001032504";
+	public static int shelflife_Days = excel.getshelflife_Days(dataRow);
 
 	public Extension_Of_ENWR_Request(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -133,7 +132,7 @@ public class Extension_Of_ENWR_Request {
 		Execution_Date_Txt.click();
 		Todays_Date.click();
 
-		Execution_Date_Txt.click(); 
+		Execution_Date_Txt.click();
 		Execution_Date_value.click();
 		// Execution_Date_Txt.sendKeys(Keys.ENTER);
 		try {
@@ -182,17 +181,15 @@ public class Extension_Of_ENWR_Request {
 		Agricultural_Btn.click();
 		Agricultural_Txt.sendKeys("Agricultural");
 		Agricultural_Txt.sendKeys(Keys.ENTER);
-		
+
 		CommodityMaster_Btn.click();
 		CommodityMaster_Txt.sendKeys(Commodity_Code);
 		CommodityMaster_Txt.sendKeys(Keys.ENTER);
-		
-		
+
 		client_Id_Btn.click();
 		client_Id_Txt.sendKeys(String.valueOf(Client_ID));
 		client_Id_Txt.sendKeys(Keys.ENTER);
-		
-		
+
 		TransctionStmt_btn.click();
 
 		Search_Txt.sendKeys(String.valueOf(ENWR));
