@@ -68,7 +68,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 		Report.flush();
 	}
 
-//	@Test
+	@Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_DashBord_WareHouse_Agriculture_Multiple_GSL_Maker is start");

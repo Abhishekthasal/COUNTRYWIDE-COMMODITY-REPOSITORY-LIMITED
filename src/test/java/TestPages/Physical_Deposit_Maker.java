@@ -1705,7 +1705,8 @@ public class Physical_Deposit_Maker {
 			if (rs1.next()) {
 				Internal_Ref = rs1.getString("Id");
 				System.out.println("Internal_Ref print: " + Internal_Ref);
-			}
+				System.out.println("DRN no"+RP_Exchange_Deposite_Agriculture_Maker.Deposite);
+				}
 			String query_OTP = "SELECT a.auth_code " + "FROM auth_code_generation a "
 					+ "JOIN deposit_txn d ON a.ref_id = d.Id " + "WHERE d.DRN LIKE ?";
 			PreparedStatement stmt = conn.prepareStatement(query_OTP);
