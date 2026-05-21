@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-05-08T13:07:14 IST" name="Default suite" finished-at="2026-05-08T13:07:31 IST" duration-ms="16382">
+  <suite started-at="2026-05-18T18:11:32 IST" name="Default suite" finished-at="2026-05-18T18:11:43 IST" duration-ms="11194">
     <groups>
     </groups>
-    <test started-at="2026-05-08T13:07:14 IST" name="Default test" finished-at="2026-05-08T13:07:31 IST" duration-ms="16382">
-      <class name="TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2026-05-08T13:07:15 IST" name="setup" finished-at="2026-05-08T13:07:18 IST" duration-ms="3151" status="PASS">
+    <test started-at="2026-05-18T18:11:32 IST" name="Default test" finished-at="2026-05-18T18:11:43 IST" duration-ms="11194">
+      <class name="TestCase.Pledge_TestCase">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCase.Pledge_TestCase@29d89d5d]" started-at="2026-05-18T18:11:32 IST" name="setup" finished-at="2026-05-18T18:11:35 IST" duration-ms="3459" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="DashBord_WareHouse_Maker()[pri:0, instance:TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase@29d89d5d]" started-at="2026-05-08T13:07:18 IST" name="DashBord_WareHouse_Maker" finished-at="2026-05-08T13:07:31 IST" duration-ms="13194" status="PASS">
+        <test-method signature="pledgee_Creation()[pri:0, instance:TestCase.Pledge_TestCase@29d89d5d]" started-at="2026-05-18T18:11:35 IST" name="pledgee_Creation" finished-at="2026-05-18T18:11:43 IST" duration-ms="7698" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DashBord_WareHouse_Maker -->
-      </class> <!-- TestCase.Exchange_Deposite_Agriculture_Multiple_GSL_TestCase -->
+        </test-method> <!-- pledgee_Creation -->
+      </class> <!-- TestCase.Pledge_TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
