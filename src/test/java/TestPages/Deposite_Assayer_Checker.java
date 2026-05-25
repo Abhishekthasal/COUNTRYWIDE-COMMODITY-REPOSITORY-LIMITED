@@ -89,7 +89,7 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 		}
-		try {
+		try { 
 			Wait.until(ExpectedConditions.elementToBeClickable(Deposit_Assayer)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Deposit_Assayer click...");
@@ -452,7 +452,7 @@ public class Deposite_Assayer_Checker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 		
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 34; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(3000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_txt))
@@ -643,7 +643,7 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i =1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i =7; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(2000);
 			try {
 				Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));

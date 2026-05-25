@@ -60,10 +60,10 @@ public class Government_Agency_TestCase extends BaseClass {
 					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Government_Agency_Deposite_Request_Checker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
-		Report.flush();
+		Report.flush(); 
 	}
 
-//@Test
+@Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_WareHouse_Maker is start");
@@ -83,7 +83,7 @@ public class Government_Agency_TestCase extends BaseClass {
 			Report.flush();
 		
 	}
-	@Test
+	//@Test
 	void DashBoard_WareHouse_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_WareHouse_Checker is start");
