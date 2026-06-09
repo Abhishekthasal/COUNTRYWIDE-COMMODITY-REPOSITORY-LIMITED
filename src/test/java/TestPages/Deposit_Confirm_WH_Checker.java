@@ -50,14 +50,18 @@ public class Deposit_Confirm_WH_Checker {
 
 	@FindBy(xpath = "//i[@class='icon-magnifier']")
 	WebElement Search_btn;
-
-	@FindBy(xpath = "(//button[normalize-space()='Actions'])[1]")
+	//button[normalize-space()='Actions']
+	//(//button[normalize-space()='Actions'])[1]
+	@FindBy(xpath = "//button[normalize-space()='Actions']")
 	WebElement Action_btn;
 	// body/ul[@class='dropdown-menu']/li[2]/a[1]
 
 	// a[normalize-space()='Authorize']
 	@FindBy(xpath = "//a[normalize-space()='Authorize']")
 	WebElement Authorized_btn;
+	
+	@FindBy(xpath = "// body/ul[@class='dropdown-menu']/li[2]/a[1]")
+	WebElement Authorized_GSL_btn;
 	
 	@FindBy(xpath = "//body/ul[@class='dropdown-menu']/li[2]/a[1]")
 			WebElement Authorized_Non_btn;
@@ -83,6 +87,7 @@ public class Deposit_Confirm_WH_Checker {
 	
 	@FindBy(xpath="//span[normalize-space()='Save']")
 	WebElement Save_btn1;
+	
 	public void Deposit_Confirm_WH() {
 		
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
@@ -478,7 +483,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=2;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite+i));
@@ -518,7 +523,7 @@ public class Deposit_Confirm_WH_Checker {
 		 */
 		Thread.sleep(3000);
 		    try {
-		    	Action_btn.click();
+		    	Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
 		   // Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
 		    //System.out.println("Element clicked successfully.");
 		}catch (ElementClickInterceptedException e) {
@@ -638,7 +643,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=21;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));
@@ -662,7 +667,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Action_btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -771,12 +776,12 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=1;  i<=Exchange_Non_Agri_WareHouse.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, trying Search_txt click...");
 			js.executeScript("arguments[0].value='" + Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite + "';",
 					Search_txt);
 		} catch (NoSuchElementException e) {
@@ -787,34 +792,36 @@ public class Deposit_Confirm_WH_Checker {
 		try {
 			Search_btn.click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed, trying  Search_btn click...");
 			js.executeScript("arguments[0].click();", Search_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Search_btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Search_btn: " + e.getMessage());
 		}
-		WebElement Actions_btn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])["+i+"]"));
+		Thread.sleep(3000);
+		WebElement Actions_btn = driver.findElement(By.xpath("(//button[@class='btn btn-xs btn-primary blue dropdown-toggle'][normalize-space()='Actions'])["+i+"]"));
+		//WebElement Actions_btn = driver.findElement(By.xpath("(//button[normalize-space()='Actions'])["+i+"]"));
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Actions_btn)).click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
+			System.out.println("Normal click failed,trying Actions_btn click...");
 			js.executeScript("arguments[0].click();", Actions_btn);
 		} catch (NoSuchElementException e) {
 			System.out.println("Action_btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Action_btn: " + e.getMessage());
 		}
-		//body/ul[@class='dropdown-menu']/li[2]/a[1]
+		
 		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
+			Wait.until(ExpectedConditions.elementToBeClickable(Authorized_GSL_btn)).click();
 		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].click();", Authorized_btn);
+			System.out.println("Normal click failed, trying Authorized_GSL_btn click...");
+			js.executeScript("arguments[0].click();", Authorized_GSL_btn);
 		} catch (NoSuchElementException e) {
-			System.out.println("Authorized_btn not found: " + e.getMessage());
+			System.out.println("Authorized_GSL_btn not found: " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Unexpected error for Authorized_btn: " + e.getMessage());
+			System.out.println("Unexpected error for Authorized_GSL_btn: " + e.getMessage());
 		}
 		try {
 			Lot_Details.click();

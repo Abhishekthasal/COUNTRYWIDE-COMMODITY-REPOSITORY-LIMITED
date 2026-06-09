@@ -21,14 +21,14 @@ public class Government_Agency_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Government_Agency");
 
-@Test
+//@Test
 	void Government_Agency_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_Deposite_Request_Maker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
 			//Login.PortalLogin("RP-XYZ", "user119", "121@test");
-			Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu1", "121@test");
+			//Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu1", "121@test");
 			//Login.PortalLogin("RP-KML", "USER_A", "121@test");
 			Government_Agency_Deposite_Request_Maker Depo = new Government_Agency_Deposite_Request_Maker(driver, Wait);
 			Depo.Government_Agency_Deposite();
@@ -44,13 +44,13 @@ public class Government_Agency_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-//@Test
+	//@Test
 	void RP_Deposite_Request_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_Deposite_Request_Checker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu2", "121@test");
-			//Login.PortalLogin("RP-Abhishek", "user52", "121@test");
+			//Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu2", "121@test");
+			Login.PortalLogin("RP-Abhishek", "user52", "121@test");
 			//Login.PortalLogin("RP-KML", "USER_B", "121@test");
 			RP_Deposite_Request_Checker Dash = new RP_Deposite_Request_Checker(driver, Wait);
 			Dash.Government_Agency_Deposite_Request();
@@ -60,17 +60,18 @@ public class Government_Agency_TestCase extends BaseClass {
 					test.addScreenCapture(ScreenShort.CaptureScreen(driver)) + "Government_Agency_Deposite_Request_Checker Test failed: " + e.getMessage());
 		}
 		Report.endTest(test);
-		Report.flush();
+		Report.flush(); 
 	}
 
-//@Test
+@Test
 	void DashBord_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_WareHouse_Maker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("wsp9996059", "user102", "121@test");
 			//Login.PortalLogin("WSP9999996", "Swarupv", "121@test");
-			Login.PortalLogin("wsp9997115", "bhanu", "121@test");
+			//Login.PortalLogin("wsp9997115", "bhanu", "test@123");
+			Login.PortalLogin("WSP9999996", "user71", "121@Test");
 			Physical_Deposit_Maker WSP = new Physical_Deposit_Maker(driver, Wait);
 			WSP.Government_Agency_Deposite_Transaction();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+ "Government_Agency_WareHouse_Maker is successfull");
@@ -89,7 +90,8 @@ public class Government_Agency_TestCase extends BaseClass {
 			LoginPages Login = new LoginPages(driver, Wait);
 			 //Login.PortalLogin("wsp9999996", "user72", "121@test");
 			//Login.PortalLogin("wsp9996059", "user101", "121@test");
-			Login.PortalLogin("wsp9997115", "pratap", "121@test");
+			//Login.PortalLogin("wsp9997115", "pratap", "121@test");
+			Login.PortalLogin("WSP9999996", "user72", "121@etst");
 			DashBoard_WareHouse_Checker WSP_CH = new DashBoard_WareHouse_Checker(driver, Wait);
 			WSP_CH.Government_Agency_Deposite_Transaction_Checker();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+"Government_Agency_WareHouse_Checker is successfull");

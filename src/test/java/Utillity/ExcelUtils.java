@@ -513,8 +513,12 @@ public class ExcelUtils {
 		return (int) Sheet.getRow(rowNum).getCell(26).getNumericCellValue();
 	}
 
-	public String getBag_Total_ex_py(int rowNum) {
-		return getCellData(rowNum, 27);
+	public int getBag_Total_ex_py(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(27).getNumericCellValue();
+		
+	}
+	public int gettotalBags_ex_py(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(28).getNumericCellValue();
 	}
 
 	/***********************************
@@ -627,6 +631,10 @@ public class ExcelUtils {
 
 	public int getPledge_Confirm_code(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(9).getNumericCellValue();
+	}
+	
+	public String getCommodity_Segment(int rowNum) {
+		return getCellData(rowNum, 10);
 	}
 
 	/***********************************
@@ -1014,21 +1022,13 @@ public class ExcelUtils {
 	public String getcommodity(int rowNum) {
 		return getCellData(rowNum, 4);
 	}
-
+	
+	public String getSYMBOL(int rowNum) {
+		return getCellData(rowNum, 5);
+	}
+	
 	public String getexpectedDay(int rowNum) {
 
-		Cell cell = Sheet.getRow(rowNum).getCell(5);
-		if (DateUtil.isCellDateFormatted(cell)) {
-			Date date = cell.getDateCellValue();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			return sdf.format(date);
-		} else {
-			// If date stored as text: "12/12/2025"
-			return cell.getStringCellValue().trim();
-		}
-	}
-
-	public String gettrade_Day(int rowNum) {
 		Cell cell = Sheet.getRow(rowNum).getCell(6);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
@@ -1040,7 +1040,7 @@ public class ExcelUtils {
 		}
 	}
 
-	public String getPostExpiry_Validity_Date(int rowNum) {
+	public String gettrade_Day(int rowNum) {
 		Cell cell = Sheet.getRow(rowNum).getCell(7);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
@@ -1052,7 +1052,7 @@ public class ExcelUtils {
 		}
 	}
 
-	public String getDelivery_Marking(int rowNum) {
+	public String getPostExpiry_Validity_Date(int rowNum) {
 		Cell cell = Sheet.getRow(rowNum).getCell(8);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
@@ -1064,7 +1064,7 @@ public class ExcelUtils {
 		}
 	}
 
-	public String getpay_In_date(int rowNum) {
+	public String getDelivery_Marking(int rowNum) {
 		Cell cell = Sheet.getRow(rowNum).getCell(9);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
@@ -1076,16 +1076,28 @@ public class ExcelUtils {
 		}
 	}
 
-	public int getpay_In_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(10).getNumericCellValue();
+	public String getpay_In_date(int rowNum) {
+		Cell cell = Sheet.getRow(rowNum).getCell(10);
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} else {
+			// If date stored as text: "12/12/2025"
+			return cell.getStringCellValue().trim();
+		}
 	}
 
-	public int getpay_In_Date_mn(int rowNum) {
+	public int getpay_In_Date_hr(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(11).getNumericCellValue();
 	}
 
+	public int getpay_In_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(12).getNumericCellValue();
+	}
+
 	public String getpay_out_date(int rowNum) {
-		Cell cell = Sheet.getRow(rowNum).getCell(12);
+		Cell cell = Sheet.getRow(rowNum).getCell(13);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1097,15 +1109,15 @@ public class ExcelUtils {
 	}
 
 	public int getpay_out_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(13).getNumericCellValue();
-	}
-
-	public int getpay_out_Date_mn(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(14).getNumericCellValue();
 	}
 
+	public int getpay_out_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(15).getNumericCellValue();
+	}
+
 	public String getearly_pay_In_date(int rowNum) {
-		Cell cell = Sheet.getRow(rowNum).getCell(15);
+		Cell cell = Sheet.getRow(rowNum).getCell(16);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1117,15 +1129,15 @@ public class ExcelUtils {
 	}
 
 	public int getearly_pay_In_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(16).getNumericCellValue();
-	}
-
-	public int getearly_pay_In_Date_mn(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(17).getNumericCellValue();
 	}
 
+	public int getearly_pay_In_Date_mn(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(18).getNumericCellValue();
+	}
+
 	public String getearly_Payin_End_date(int rowNum) {
-		Cell cell = Sheet.getRow(rowNum).getCell(18);
+		Cell cell = Sheet.getRow(rowNum).getCell(19);
 		if (DateUtil.isCellDateFormatted(cell)) {
 			Date date = cell.getDateCellValue();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1137,11 +1149,11 @@ public class ExcelUtils {
 	}
 
 	public int getearly_Payin_End_Date_hr(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(19).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(20).getNumericCellValue();
 	}
 
 	public int getearly_Payin_End_Date_mn(int rowNum) {
-		return (int) Sheet.getRow(rowNum).getCell(20).getNumericCellValue();
+		return (int) Sheet.getRow(rowNum).getCell(21).getNumericCellValue();
 	}
 
 	/*************************************
@@ -1413,4 +1425,85 @@ public class ExcelUtils {
 		return (long) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
 	}
 
+	/*****************************************
+	 * Extension_Of_ENWR_Request
+	 ********************/
+	
+	public String getInstr_Slip_No_Extension(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+	
+	public int getWSP_ID_Extension(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+
+	public int getWH_ID_Extension(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+
+	
+	public long getClient_ID_Extension(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	public String getCommodity_Code_Extension(int rowNum) {
+		return getCellData(rowNum, 4);
+	}
+	
+	public long getENWR_Extension(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
+	}
+	
+	public int getshelflife_Days(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(6).getNumericCellValue();
+	}
+
+	
+	//---------------Exports_Reports-----------------//
+	public String getreportType(int rowNum) {
+		return getCellData(rowNum, 0);
+	}
+
+	public String getExchangeID(int rowNum) {
+		//return (long) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+		return getCellData(rowNum, 1);
+	}
+	
+	public int getWSP_ID1(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(2).getNumericCellValue();
+	}
+	
+	public int getWHID1(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	public int getCOMMODITY_CODE_Export(int rowNum) {
+		//return getCellData(rowNum, 4);
+		return (int) Sheet.getRow(rowNum).getCell(4).getNumericCellValue();
+	}
+	
+	public long getCLIENT_ID_Export(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(5).getNumericCellValue();
+	}
+	
+	//-----------------------------Pledge_Invocation----------------------
+	
+	public long getPledge_Invocation_CLIENT_ID(int rowNum) {
+		return (long) Sheet.getRow(rowNum).getCell(0).getNumericCellValue();
+	}
+	
+	public int getPledge_Invocation_pledge_Sequence_No(int rowNum) {
+		//return getCellData(rowNum, 4);
+		return (int) Sheet.getRow(rowNum).getCell(1).getNumericCellValue();
+	}
+	
+	public String getpledge_Inv_Req_No(int rowNum) {
+		return getCellData(rowNum, 2);
+	}
+	
+	public int get_Pledge_Invocation_no_of_bags(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(3).getNumericCellValue();
+	}
+	
+	
 }

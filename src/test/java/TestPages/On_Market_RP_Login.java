@@ -23,7 +23,7 @@ public class On_Market_RP_Login {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ON_Market.xlsx";
 	static String sheet = "OnMarket";
-	static int dataRow = 4; // second row of data
+	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 

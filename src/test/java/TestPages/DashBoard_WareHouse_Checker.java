@@ -1327,7 +1327,7 @@ public class DashBoard_WareHouse_Checker {
 			System.out.println("Unexpected error for Lot_Details: " + e.getMessage());
 		}
 
-		for (int i = 1; i <= totalBags; i++) {
+		for (int i = 1; i <= Exchange_Non_Agri_WareHouse.totalBags; i++) {
 			/*for (int j = 3; j <= totalBags; j += 3) {*/
 
 				 int k = j * i;
@@ -1365,8 +1365,9 @@ public class DashBoard_WareHouse_Checker {
 				} catch (Exception e) {
 					System.out.println("Unexpected error for bagField: " + e.getMessage());
 				}
+				
 			}
-		//}
+		
 		try {
 			Verification_manu.click();
 		} catch (ElementClickInterceptedException e) {

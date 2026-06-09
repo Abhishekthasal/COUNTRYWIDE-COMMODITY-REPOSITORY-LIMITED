@@ -23,6 +23,7 @@ import Utillity.ExcelUtils;
 
 public class Physical_Deposit_Maker {
 
+	private static final Object Commodity_Code = null;
 	// private static final String Commodity_Code = null;
 	WebDriver driver;
 	WebDriverWait Wait;
@@ -75,7 +76,9 @@ public class Physical_Deposit_Maker {
 	int shelflife = excel.getshelflife_py(dataRow);
 	public static String Bag_Total = excel.getBag_Total_py(dataRow);
 	static int Bags = excel.getBags_py(dataRow);
+	String Commodity = "15";
 	String Variety_Code = "999 - Cotton Bales";
+	String Dispatch_Source = "e-Samridhi";   //e-Samridhi
 	int j = 3;
 	int i;
 //	int k = j * i;
@@ -93,10 +96,10 @@ public class Physical_Deposit_Maker {
 	WebElement Physical_Deposite;
 	@FindBy(xpath = "(//a[@ui-sref='Transactions.Depositgoverment'])[1]")
 	WebElement Depositgoverment;
-	
-	@FindBy(xpath="//a[normalize-space()='Pending for Physical Deposit']")
+
+	@FindBy(xpath = "//a[normalize-space()='Pending for Physical Deposit']")
 	WebElement PendingforPhysical;
-	
+
 	@FindBy(xpath = "//button[normalize-space()='New']")
 	WebElement Physical_New_Req;
 	@FindBy(xpath = "(//input[@name='drn1'])[1]")
@@ -112,6 +115,16 @@ public class Physical_Deposit_Maker {
 	// normalize-space(text())='Submit']
 	@FindBy(xpath = "//button[@type='submit' and @ng-disabled='submitShow' and normalize-space(text())='Submit']")
 	WebElement submit_btn;
+
+	@FindBy(xpath = "//select[@id='dispatchSourceCombobox']")
+	WebElement Dispatch_Source_btn;
+
+	@FindBy(xpath = "//div[@class='btn-group bootstrap-select form-control ng-touched ng-not-empty ng-dirty ng-valid-parse ng-valid ng-valid-required dropup open']//input[@type='text']")
+	WebElement Dispatch_Source_Txt;
+
+	@FindBy(xpath = "//button[@ng-click='vm.validateDispatchId()']")
+	WebElement Validate_Btn;
+
 	@FindBy(xpath = "//input[@name='Tare_Weight']")
 	WebElement Tare_Weight;
 	@FindBy(xpath = "//button[@data-id='VarietyMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
@@ -357,6 +370,9 @@ public class Physical_Deposit_Maker {
 
 	@FindBy(xpath = "//div[@class='col-sm-4']//input[@id='a']")
 	WebElement Bag;
+
+	@FindBy(xpath = "//button[normalize-space()='Ok']")
+	WebElement Records_Not_Found_popup;
 
 	@FindBy(xpath = "(//a[@class='nav-link ng-binding'][normalize-space()='Lot Details'])[2]")
 	WebElement Lots;
@@ -905,6 +921,19 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Physical_Deposite: " + e.getMessage());
 		}
+		/*
+		 * try {
+		 * 
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Records_Not_Found_popup)).
+		 * click(); ; } catch (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying  Records_Not_Found_popup click...");
+		 * js.executeScript("arguments[0].click();", Records_Not_Found_popup); } catch
+		 * (NoSuchElementException e) {
+		 * System.out.println("Records_Not_Found_popup not found: " + e.getMessage()); }
+		 * catch (Exception e) {
+		 * System.out.println("Unexpected error for Records_Not_Found_popup: " +
+		 * e.getMessage()); }
+		 */
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Physical_New_Req)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -1013,22 +1042,23 @@ public class Physical_Deposit_Maker {
 		Thread.sleep(2000);
 		try {
 			if (WeighbridgeNetWeight.matches("^[0-9]{0,15}$")) {
-				
+
 				String numStr = String.valueOf(WeighbridgeNetWeight);
 
 				for (char ch : numStr.toCharArray()) {
 					Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(String.valueOf(ch));
-				    Thread.sleep(200);  // optional delay to mimic human typig
+					Thread.sleep(200); // optional delay to mimic human typig
 				}
 			}
-			/*	Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
-				Thread.sleep(2000);
-				web_bridge.clear();
-				Thread.sleep(3000);
-				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
-			} else {
-				System.out.println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):");
-			}*/
+			/*
+			 * Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(
+			 * WeighbridgeNetWeight); Thread.sleep(2000); web_bridge.clear();
+			 * Thread.sleep(3000);
+			 * Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(
+			 * WeighbridgeNetWeight); } else { System.out.
+			 * println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):"
+			 * ); }
+			 */
 		} catch (ElementClickInterceptedException e) {
 			js.executeScript("arguments[0].value='" + WeighbridgeNetWeight + "';", web_bridge);
 		} catch (NoSuchElementException e) {
@@ -1099,131 +1129,131 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Lot : " + e.getMessage());
 		}
-		//js.executeScript("arguments[0].scrollIntoView()", Add_Button);
+		// js.executeScript("arguments[0].scrollIntoView()", Add_Button);
 		WebElement remainingBagsElement = driver
 				.findElement(By.xpath("//div[@class='row ng-scope']//div[@class='col-sm-2']")); // Adjust ID
 		int remainingBags = Integer.parseInt(remainingBagsElement.getText());
-		System.out.println("remainingBags is :"+remainingBags);
+		System.out.println("remainingBags is :" + remainingBags);
 		int noOfBags = Integer.parseInt(Bag_Total);
-		System.out.println("noOfBags is :"+noOfBags);
+		System.out.println("noOfBags is :" + noOfBags);
 		try {
-		if (remainingBags != noOfBags) {
-			for (int i = 1; i <= remainingBags; i++) {
-				System.out.println("remainingBags is for:" + remainingBags);
-				driver.findElement(By.xpath("(//input[@name='godown'])[" + i + "]")).sendKeys("Godown " + i);
+			if (remainingBags != noOfBags) {
+				for (int i = 1; i <= remainingBags; i++) {
+					System.out.println("remainingBags is for:" + remainingBags);
+					driver.findElement(By.xpath("(//input[@name='godown'])[" + i + "]")).sendKeys("Godown " + i);
 
-				WebElement stack_no = driver.findElement(By.xpath("(//input[@name='stack_no'])[" + i + "]"));
-				Wait.until(ExpectedConditions.elementToBeClickable(stack_no)).sendKeys("stack_no" + i);
+					WebElement stack_no = driver.findElement(By.xpath("(//input[@name='stack_no'])[" + i + "]"));
+					Wait.until(ExpectedConditions.elementToBeClickable(stack_no)).sendKeys("stack_no" + i);
 
-				WebElement lot_no = driver.findElement(By.xpath("(//input[@name='lot_no'])[" + i + "]"));
-				Wait.until(ExpectedConditions.elementToBeClickable(lot_no)).sendKeys("Lot " + i);
+					WebElement lot_no = driver.findElement(By.xpath("(//input[@name='lot_no'])[" + i + "]"));
+					Wait.until(ExpectedConditions.elementToBeClickable(lot_no)).sendKeys("Lot " + i);
 
-				/*
-				 * try { if (Number_Of_Bags_PopUp.isDisplayed()) {
-				 * Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).
-				 * click(); } } catch (NoSuchElementException e) {
-				 * System.out.println(" Number_Of_Bags_PopUp Element is not visible");
-				 * 
-				 * } catch (Exception e) {
-				 * System.out.println(" Number_Of_Bags_PopUp Element not found"); }
-				 */
-				int k = j * i;
-				WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
-				NO_Bag.sendKeys(String.valueOf(Bags));
-				NO_Bag.clear();
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-				NO_Bag.sendKeys(String.valueOf(Bags));
+					/*
+					 * try { if (Number_Of_Bags_PopUp.isDisplayed()) {
+					 * Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).
+					 * click(); } } catch (NoSuchElementException e) {
+					 * System.out.println(" Number_Of_Bags_PopUp Element is not visible");
+					 * 
+					 * } catch (Exception e) {
+					 * System.out.println(" Number_Of_Bags_PopUp Element not found"); }
+					 */
+					int k = j * i;
+					WebElement NO_Bag = driver.findElement(By.xpath("(//input[@name='no_of_bag'])[" + k + "]"));
+					NO_Bag.sendKeys(String.valueOf(Bags));
+					NO_Bag.clear();
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+					NO_Bag.sendKeys(String.valueOf(Bags));
 
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
-				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
-				
-				WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
-				Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
-						.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
-				/*
-				 * // Wait for Quantity field to auto-fill by backend WebElement quantityField =
-				 * driver.findElement(By.xpath("//input[@name='QTY']"));
-				 * 
-				 * // Wait until quantity field has a non-empty value
-				 * Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
-				 * 
-				 * // Fetch the auto-filled value String autoFilledQuantity =
-				 * quantityField.getAttribute("value");
-				 * System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
-				 */
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+					Wait.until(ExpectedConditions.elementToBeClickable(sample_Id)).sendKeys(Keys.TAB);
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 
-				try {
-					if (Number_Of_Bags_PopUp.isDisplayed()) {
-						Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
-					}
-				} catch (NoSuchElementException e) {
-					System.out.println(" Number_Of_Bags_PopUp Element is not visible");
+					WebElement sample_Id = driver.findElement(By.xpath("(//input[@name='sample_Id'])[" + i + "]"));
+					Wait.until(ExpectedConditions.elementToBeClickable(sample_Id))
+							.sendKeys(RP_Deposite_Request_Agriculture_Maker.Deposite + i);
+					/*
+					 * // Wait for Quantity field to auto-fill by backend WebElement quantityField =
+					 * driver.findElement(By.xpath("//input[@name='QTY']"));
+					 * 
+					 * // Wait until quantity field has a non-empty value
+					 * Wait.until(ExpectedConditions.attributeToBeNotEmpty(quantityField, "value"));
+					 * 
+					 * // Fetch the auto-filled value String autoFilledQuantity =
+					 * quantityField.getAttribute("value");
+					 * System.out.println("Auto-filled Quantity is: " + autoFilledQuantity);
+					 */
 
-				} catch (Exception e) {
-					System.out.println(" Number_Of_Bags_PopUp Element not found");
-				}
-
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-				if (i < remainingBags) {
 					try {
-						if (Add_Button.isDisplayed() && Add_Button.isEnabled()) {
-							try {
-								if (Add_Button.isDisplayed()) {
-									Add_Button.click();
-									Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
-									Add_Button.click();
-								}
-							} catch (ElementClickInterceptedException e) {
-								System.out.println("Normal click failed, trying JavaScript Add_Button_before click...");
-								js.executeScript("arguments[0].click();", Add_Button);
-							} catch (NoSuchElementException e) {
-								System.out.println("Add_Button_before not found: " + e.getMessage());
-							} catch (Exception e) {
-								System.out.println("Unexpected error for Add_Button_before: " + e.getMessage());
-							}
-							try {
-								if (Lots_Confirmation.isDisplayed()) {
-									Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
-								}
-							} catch (NoSuchElementException e) {
-								System.out.println("Lots_Confirmation is not visible");
-							} catch (Exception e) {
-								System.out.println("Lots_Confirmation not found error");
-							}
-							Add_Button.click();
+						if (Number_Of_Bags_PopUp.isDisplayed()) {
+							Wait.until(ExpectedConditions.elementToBeClickable(Number_Of_Bags_PopUp)).click();
 						}
-
-					} catch (ElementClickInterceptedException e) {
-						System.out.println("Normal click failed, trying JavaScript Lots_Confirmation click...");
-						((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-								Verification_page);
-						Wait.until(ExpectedConditions.elementToBeClickable(Verification_page)).click();
-
 					} catch (NoSuchElementException e) {
-						System.out.println("Element not found: " + e.getMessage());
+						System.out.println(" Number_Of_Bags_PopUp Element is not visible");
+
 					} catch (Exception e) {
-						System.out.println("Unexpected error: " + e.getMessage());
+						System.out.println(" Number_Of_Bags_PopUp Element not found");
+					}
+
+					driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+					if (i < remainingBags) {
+						try {
+							if (Add_Button.isDisplayed() && Add_Button.isEnabled()) {
+								try {
+									if (Add_Button.isDisplayed()) {
+										Add_Button.click();
+										Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
+										Add_Button.click();
+									}
+								} catch (ElementClickInterceptedException e) {
+									System.out.println(
+											"Normal click failed, trying JavaScript Add_Button_before click...");
+									js.executeScript("arguments[0].click();", Add_Button);
+								} catch (NoSuchElementException e) {
+									System.out.println("Add_Button_before not found: " + e.getMessage());
+								} catch (Exception e) {
+									System.out.println("Unexpected error for Add_Button_before: " + e.getMessage());
+								}
+								try {
+									if (Lots_Confirmation.isDisplayed()) {
+										Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
+									}
+								} catch (NoSuchElementException e) {
+									System.out.println("Lots_Confirmation is not visible");
+								} catch (Exception e) {
+									System.out.println("Lots_Confirmation not found error");
+								}
+								Add_Button.click();
+							}
+
+						} catch (ElementClickInterceptedException e) {
+							System.out.println("Normal click failed, trying JavaScript Lots_Confirmation click...");
+							((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+									Verification_page);
+							Wait.until(ExpectedConditions.elementToBeClickable(Verification_page)).click();
+
+						} catch (NoSuchElementException e) {
+							System.out.println("Element not found: " + e.getMessage());
+						} catch (Exception e) {
+							System.out.println("Unexpected error: " + e.getMessage());
+						}
+						if (Add_Button.isDisplayed() && !Add_Button.isEnabled()) {
+							System.out.println("Add button is not ready.");
+							break;
+						}
 					}
 					if (Add_Button.isDisplayed() && !Add_Button.isEnabled()) {
 						System.out.println("Add button is not ready.");
 						break;
 					}
 				}
-				if (Add_Button.isDisplayed() && !Add_Button.isEnabled()) {
-					System.out.println("Add button is not ready.");
-					break;
-				}
+				remainingBagsElement.getText();
+			} else {
+				System.out.println("loop is not working");
 			}
-			remainingBagsElement.getText();
-		} else {
-			System.out.println("loop is not working");
-		}
 		} catch (Exception e) {
 			System.out.println("Unexpected error for loop: " + e.getMessage());
 		}
 
-		
 		try {
 			if (Verification_page.isDisplayed()) {
 				js.executeScript("arguments[0].scrollIntoView()", Verification_page);
@@ -1459,7 +1489,7 @@ public class Physical_Deposit_Maker {
 			Variety_Code_bttn.click();
 			Thread.sleep(1000);
 			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-			//Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+			// Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
 			Thread.sleep(2000);
 			Variety_Code_Text.sendKeys(Keys.ENTER);
 		} catch (ElementClickInterceptedException e) {
@@ -1474,7 +1504,7 @@ public class Physical_Deposit_Maker {
 			System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
 		}
 
-		//assaying_type_Text.sendKeys(assaying_type); 
+		// assaying_type_Text.sendKeys(assaying_type);
 		try {
 			Select Sa = new Select(assaying_type_Text);
 			Sa.selectByContainsVisibleText(assaying_type);
@@ -1505,10 +1535,10 @@ public class Physical_Deposit_Maker {
 
 			for (char ch : numStr.toCharArray()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(String.valueOf(ch));
-			    Thread.sleep(200);  // optional delay to mimic human typig
+				Thread.sleep(200); // optional delay to mimic human typig
 			}
 		}
-		
+
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
 		if (EstimatedValueAtDeposit.matches("^[0-9]{0,15}$")) {
@@ -1689,6 +1719,7 @@ public class Physical_Deposit_Maker {
 			if (rs1.next()) {
 				Internal_Ref = rs1.getString("Id");
 				System.out.println("Internal_Ref print: " + Internal_Ref);
+				System.out.println("DRN no" + RP_Exchange_Deposite_Agriculture_Maker.Deposite);
 			}
 			String query_OTP = "SELECT a.auth_code " + "FROM auth_code_generation a "
 					+ "JOIN deposit_txn d ON a.ref_id = d.Id " + "WHERE d.DRN LIKE ?";
@@ -1771,7 +1802,7 @@ public class Physical_Deposit_Maker {
 			System.out.println("Unexpected error for Deposite_No: " + e.getMessage());
 		}
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Submit_btn)).click();
@@ -1793,7 +1824,7 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Accept_check: " + e.getMessage());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -1811,26 +1842,30 @@ public class Physical_Deposit_Maker {
 		 * Wait.until(ExpectedConditions.elementToBeClickable(Bag)).sendKeys("10");
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
-		
-		Thread.sleep(4000);
-		try {
-			Variety_Code_bttn.click();
-			Thread.sleep(1000);
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-			//Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
-			Variety_Code_Text.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-			Thread.sleep(1000);
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-			Thread.sleep(2000);
-			Variety_Code_Text.click();
-		} catch (NoSuchElementException e) {
-			System.out.println("Variety_Code_Text not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
-		}
+
+		Thread.sleep(5000);
+		//if (Commodity.equals(Commodity_Code)) {
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+				Thread.sleep(5000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code); //
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+				Thread.sleep(2000);
+				Variety_Code_Text.sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+				Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+				Thread.sleep(2000);
+				Variety_Code_Text.click();
+			} catch (NoSuchElementException e) {
+				System.out.println("Variety_Code_Text not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
+			}
+			/*
+			 * } else { System.out.println("Variety_Code is not requird"); }
+			 */
 
 		// assaying_type_Text.sendKeys(assaying_type);
 		try {
@@ -1874,23 +1909,25 @@ public class Physical_Deposit_Maker {
 		Thread.sleep(2000);
 		try {
 			if (WeighbridgeNetWeight.matches("^[0-9]{0,19}$")) {
-			
+
 				String numStr = String.valueOf(WeighbridgeNetWeight);
 
 				for (char ch : numStr.toCharArray()) {
 					Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(String.valueOf(ch));
-				    Thread.sleep(200);  // optional delay to mimic human typig
+					Thread.sleep(200); // optional delay to mimic human typig
 				}
-				
+
 			}
-				/*Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
-				
-				web_bridge.clear();
-				Thread.sleep(3000);
-				Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(WeighbridgeNetWeight);
-			} else {
-				System.out.println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):");
-			}*/
+			/*
+			 * Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(
+			 * WeighbridgeNetWeight);
+			 * 
+			 * web_bridge.clear(); Thread.sleep(3000);
+			 * Wait.until(ExpectedConditions.elementToBeClickable(web_bridge)).sendKeys(
+			 * WeighbridgeNetWeight); } else { System.out.
+			 * println("Invalid WeighbridgeNetWeight. Please enter exactly 19 digits (numbers only):"
+			 * ); }
+			 */
 		} catch (ElementClickInterceptedException e) {
 			js.executeScript("arguments[0].value='" + WeighbridgeNetWeight + "';", web_bridge);
 		} catch (NoSuchElementException e) {
@@ -2026,7 +2063,7 @@ public class Physical_Deposit_Maker {
 					System.out.println(" Number_Of_Bags_PopUp Element not found");
 				}
 
-				//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+				// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 
 				if (i < remainingBags) {
 					try {
@@ -2034,18 +2071,20 @@ public class Physical_Deposit_Maker {
 							try {
 								if (Add_Button.isDisplayed()) {
 									Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
-									/*
-									 * try {
-									 * Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click(
-									 * ); } catch (ElementClickInterceptedException e) { System.out.println(
-									 * "Normal click failed, trying JavaScript Lots_Confirmation click...");
-									 * js.executeScript("arguments[0].click();", Lots_Confirmation); } catch
-									 * (NoSuchElementException e) {
-									 * System.out.println("Lots_Confirmation not found: " + e.getMessage()); } catch
-									 * (Exception e) { System.out.println("Unexpected error for Lots_Confirmation: "
-									 * + e.getMessage()); }
-									 * Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
-									 */
+
+									try {
+										Wait.until(ExpectedConditions.elementToBeClickable(Lots_Confirmation)).click();
+									} catch (ElementClickInterceptedException e) {
+										System.out.println(
+												"Normal click failed, trying JavaScript Lots_Confirmation click...");
+										js.executeScript("arguments[0].click();", Lots_Confirmation);
+									} catch (NoSuchElementException e) {
+										System.out.println("Lots_Confirmation not found: " + e.getMessage());
+									} catch (Exception e) {
+										System.out.println("Unexpected error for Lots_Confirmation: " + e.getMessage());
+									}
+									Wait.until(ExpectedConditions.elementToBeClickable(Add_Button)).click();
+
 								}
 							} catch (ElementClickInterceptedException e) {
 								System.out.println("Normal click failed, trying JavaScript Add_Button click...");
@@ -2215,7 +2254,7 @@ public class Physical_Deposit_Maker {
 
 	}
 
-	public void Government_Agency_Deposite_Transaction() {
+	public void Government_Agency_Deposite_Transaction() throws InterruptedException {
 
 		try {
 			Connection conn = DataBaseUtility.getConnection();
@@ -2325,13 +2364,44 @@ public class Physical_Deposit_Maker {
 		} /*
 			 * finally { System.out.println("submit_btn should be click");
 			 * submit_btn.click(); }
+			 * 
 			 */
+		try {
+			Dispatch_Source_btn.click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Dispatch_Source click...");
+			js.executeScript("arguments[0].click();", Dispatch_Source_btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Dispatch_Source_btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Dispatch_Source_btn: " + e.getMessage());
+		}
+		System.out.println("value of DIS"+Dispatch_Source);
+		Thread.sleep(2000);
+		WebElement Dispatch_Source_Txt = driver.findElement(
+			    By.xpath("//span[contains(normalize-space(),'" + Dispatch_Source + "')]"));
+		System.out.println("value of DIS"+Dispatch_Source);
+		Dispatch_Source_Txt.click();
+		try {
+			//Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).sendKeys(Dispatch_Source);
+			Thread.sleep(500);
+			Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Dispatch_Source_Txt click...");
+			js.executeScript("arguments[0].value='" + Dispatch_Source + "';", Dispatch_Source_Txt);
+			js.executeScript("arguments[0].click();", Dispatch_Source_Txt);
+		} catch (NoSuchElementException e) {
+			System.out.println("Dispatch_Source_Txt not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Dispatch_Source_Txt: " + e.getMessage());
+		}
+
 		try {
 			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 			if (dispatch_id_GA.isDisplayed()) {
 				// Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
-			Thread.sleep(1000);
+				Thread.sleep(1000);
 				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA))
 						.sendKeys(String.valueOf(dispatch_Number));
 				Thread.sleep(1000);
@@ -2350,7 +2420,20 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for dispatch_id: " + e.getMessage());
 		}
+
+		try {
+			Validate_Btn.click();
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Validate_Btn click...");
+			js.executeScript("arguments[0].click();", Validate_Btn);
+		} catch (NoSuchElementException e) {
+			System.out.println("Validate_Btn not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Validate_Btn: " + e.getMessage());
+		}
+
 		/*
+		 * 
 		 * Tare_Weight.sendKeys("100"); Tare_Weight.sendKeys(Keys.TAB);
 		 * driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		 * 
@@ -2886,7 +2969,7 @@ public class Physical_Deposit_Maker {
 	}
 
 	public void Physical_Deposit_Pending_CR118() throws InterruptedException {
-		
+
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -2907,14 +2990,14 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Physical_Deposite: " + e.getMessage());
 		}
-		
-		//PendingforPledgeCreation_link.getAttribute(null);
+
+		// PendingforPledgeCreation_link.getAttribute(null);
 		Thread.sleep(1000);
-		
-		if(PendingforPhysical.isDisplayed()) {
-			
+
+		if (PendingforPhysical.isDisplayed()) {
+
 			PendingforPhysical.click();
-		}else {
+		} else {
 			System.out.println("Pending for Physical Deposit is not visible");
 		}
 		Thread.sleep(1000);

@@ -21,9 +21,9 @@ public class Withdrawal_Function {
 
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Withdrawal.xlsx";
 	static String sheet = "Withdrawal_Request";
-	static int dataRow = 2; // second row of data
+	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
-	static ExcelUtils excel = new ExcelUtils(path, sheet); 
+	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
 	/*
 	 * public static int Withdrawal_Request_No = 9996059; public static int WH_ID =
@@ -73,8 +73,9 @@ public class Withdrawal_Function {
 
 	@FindBy(xpath = "//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Commodity_Code_bttn;
-	
-	//@FindBy(xpath="//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+
+	// @FindBy(xpath="//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option
+	// pull-left'][normalize-space()='NOTHING SELECTED']")
 
 	@FindBy(xpath = "(//input[@type='text'])[10]")
 	WebElement Commodity_Code_Txt;
@@ -108,11 +109,11 @@ public class Withdrawal_Function {
 
 	@FindBy(xpath = "//span[normalize-space()='Save']")
 	WebElement Save_Bttn;
-	
-	public void Withdrawal_Request_RP() {
-		
+
+	public void Withdrawal_Request_RP() throws InterruptedException {
+
 		Transaction_Btn.click();
-		
+
 		Withdrawal_Request.click();
 
 		New_Button.click();
@@ -125,23 +126,23 @@ public class Withdrawal_Function {
 		Date_Selecter.click();
 
 		Date.click();
-		
+
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
 		try {
-		if (String.valueOf(WH_ID).matches("^[a-zA-Z0-9]{0,7}$")) {
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With)).click();
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys((String.valueOf(WH_ID)));
-			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-			 //WH_ID_With_Txt.sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
-			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
-		//	Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
-			//WH_ID_With_Txt.click();
-		} else {
-			System.out.println("Invalid WH_ID ");
-		}
-		}catch (ElementClickInterceptedException e) {
+			if (String.valueOf(WH_ID).matches("^[a-zA-Z0-9]{0,7}$")) {
+				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With)).click();
+				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys((String.valueOf(WH_ID)));
+				// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+				// WH_ID_With_Txt.sendKeys(Keys.ENTER);
+				Thread.sleep(2000);
+				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+				Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+				// Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
+				// WH_ID_With_Txt.click();
+			} else {
+				System.out.println("Invalid WH_ID ");
+			}
+		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript WH_ID_Btn click...");
 			js.executeScript("arguments[0].click();", WH_ID_With);
 			js.executeScript("arguments[0].value='" + WH_ID + "';", WH_ID_With_Txt);
@@ -158,7 +159,7 @@ public class Withdrawal_Function {
 //			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).sendKeys(Keys.ENTER);
 //			Wait.until(ExpectedConditions.elementToBeClickable(WH_ID_With_Txt)).click();
 //		}
-		//driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		// driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		Select Se = new Select(Commodity_Segment_txt);
 		Se.selectByContainsVisibleText(Commodity_Segment);
 
@@ -179,13 +180,14 @@ public class Withdrawal_Function {
 			System.out.println("Invalid Client_ID ");
 		}
 		Warehouse_Receipt_No.click();
-		
+
 		if (String.valueOf(ENWR).matches("^[a-zA-Z0-9]{0,15}$")) {
 			Search_ENWR_With.sendKeys((String.valueOf(ENWR)));
 		} else {
 			System.out.println("Invalid Client_ID ");
 		}
 		Search_Button.click();
+		Thread.sleep(4000);
 
 		Select_ENWR_Button.click();
 

@@ -58,15 +58,15 @@ public class Pledge_Creation_Request_Authorized {
 
 	public void Pledge_Creation_Authorized() {
 
-		Transaction_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 
-		Pledge_Creation_tab.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Pledge_Creation_tab)).click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Search_Button))
 				.sendKeys(String.valueOf(Pledge_Creation.pledge_Req_Number));
 
 		Wait.until(ExpectedConditions.elementToBeClickable(submit)).click();
-
+		
 		Wait.until(ExpectedConditions.elementToBeClickable(Actions)).click();
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Authorize)).click();
@@ -153,7 +153,7 @@ public class Pledge_Creation_Request_Authorized {
 
 	}
 
-	public void pledgee_Creation_Auth() {
+	public void pledgee_Creation_Auth() throws InterruptedException {
 
 		Transaction_Btn.click();
 
@@ -164,12 +164,9 @@ public class Pledge_Creation_Request_Authorized {
 		submit.click();
 
 		Actions.click();
+		Thread.sleep(1000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Authorize)).click();
 		
-		if (Authorize.isDisplayed()) {
-			Authorize.click();
-		} else {
-			System.out.println("Authorize Button is not Visible");
-		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		Scroll.sendKeys(Keys.PAGE_DOWN);
 		Scroll.sendKeys(Keys.PAGE_DOWN);

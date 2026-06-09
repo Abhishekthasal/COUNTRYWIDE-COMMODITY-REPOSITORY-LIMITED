@@ -43,7 +43,10 @@ public class Deposite_Assayer_Checker {
 
 	@FindBy(xpath = "//a[normalize-space()='Authorized']")
 	WebElement Authorized_btn;
-
+	
+	@FindBy(xpath ="//body/ul[@class='dropdown-menu']/li[2]/a[1]")
+	WebElement Authorized_GSLbtn;
+	
 	@FindBy(xpath = "(//a[normalize-space()='Goods Quality'])[1]")
 	WebElement Goods_Quality_menu;
 
@@ -86,7 +89,7 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 		}
-		try {
+		try { 
 			Wait.until(ExpectedConditions.elementToBeClickable(Deposit_Assayer)).click();
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Deposit_Assayer click...");
@@ -449,7 +452,7 @@ public class Deposite_Assayer_Checker {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
 		
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 34; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(3000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_txt))
@@ -640,7 +643,7 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i =1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i =16; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(2000);
 			try {
 				Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite + i));
@@ -794,7 +797,7 @@ public class Deposite_Assayer_Checker {
 		}
 	}
 
-	public void Exchange_Deposite_Assayer_Non_Agriculture_Multiple_GSL() {
+	public void Exchange_Deposite_Assayer_Non_Agriculture_Multiple_GSL() throws InterruptedException {
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -815,7 +818,7 @@ public class Deposite_Assayer_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 1; i < DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i =1 ; i < Exchange_Non_Agri_WareHouse.totalBags; i++) {
 			try {
 				Search_txt.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
 			} catch (ElementClickInterceptedException e) {
@@ -851,10 +854,10 @@ public class Deposite_Assayer_Checker {
 				System.out.println("Unexpected error for Actions_btn: " + e.getMessage());
 			}
 			try {
-				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_btn)).click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Authorized_GSLbtn)).click();
 			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript Authorized_btn click...");
-				js.executeScript("arguments[0].click();", Authorized_btn);
+				System.out.println("Normal click failed, trying JavaScript Authorized_GSLbtn click...");
+				js.executeScript("arguments[0].click();", Authorized_GSLbtn);
 			} catch (NoSuchElementException e) {
 				System.out.println("Authorized_btn not found: " + e.getMessage());
 			} catch (Exception e) {
@@ -872,6 +875,8 @@ public class Deposite_Assayer_Checker {
 			}
 
 			Assaying_Report_Menu.sendKeys(Keys.ENTER);
+			
+			Thread.sleep(2000);
 			try {
 				Authorized_checkbox.click();
 
@@ -910,8 +915,9 @@ public class Deposite_Assayer_Checker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Save_btn: " + e.getMessage());
 			}
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
+			Thread.sleep(3000);
 			Search_txt.clear();
+		
 		}
 
 	}

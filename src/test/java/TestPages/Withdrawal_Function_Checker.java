@@ -68,7 +68,7 @@ public class Withdrawal_Function_Checker {
 
 	public void Withdrawal_Checker() {
 
-		Transaction_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 
 		Withdrawal_Request.click();
 

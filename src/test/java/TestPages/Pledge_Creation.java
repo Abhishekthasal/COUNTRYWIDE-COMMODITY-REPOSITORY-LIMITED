@@ -24,18 +24,20 @@ public class Pledge_Creation {
 	static String sheet = "PladgeRequest";
 	static int dataRow = 1; // second row of data
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
-	
-	
-	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+
+	String Agricultural2 = "Non_Agricultural";
+	String Agricultural1 = "Agricultural";
 	public static int pledge_Req_Number = excel.getpledge_Req_Number(dataRow);
-	public static String Client_ID =excel.getClient_ID(dataRow);
-	public int WH_id =excel.getWH_id(dataRow);
+	public static String Client_ID = excel.getClient_ID(dataRow);
+	public int WH_id = excel.getWH_id(dataRow);
 	public static int Commodity = excel.getCommodity(dataRow);
 	String pledgee_Client = excel.getpledgee_Client(dataRow);
 	String ENWR = excel.getENWR(dataRow);
-	int Bags =excel.getBagsp(dataRow);
-	static int pledge_value=excel.getpledge_value(dataRow);
+	int Bags = excel.getBagsp(dataRow);
+	static int pledge_value = excel.getpledge_value(dataRow);
 	String ifsc_Code = excel.getifsc_Code(dataRow);
+	String Commodity_Segment = excel.getCommodity_Segment(dataRow);
 
 	public Pledge_Creation(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -79,8 +81,21 @@ public class Pledge_Creation {
 
 	@FindBy(xpath = "(//input[@type='text'])[19]")
 	WebElement WH_ID_Text;
-	//(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[5]
-	//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']
+
+	// (//span[@class='filter-option pull-left'][normalize-space()='NOTHING
+	// SELECTED'])[5]
+	// button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option
+	// pull-left'][normalize-space()='NOTHING SELECTED']
+
+	@FindBy(xpath = "//span[@class='filter-option pull-left'][normalize-space()='Agricultural']")
+	WebElement Commodity_Segment_Btn;
+
+	@FindBy(xpath = "//span[@class='text'][normalize-space()='Agricultural']")
+	WebElement Agricultural_Btn;
+
+	@FindBy(xpath = "//span[normalize-space()='Non-Agricultural']")
+	WebElement Non_Agricultural_Btn;
+
 	@FindBy(xpath = "(//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED'])[5]")
 	WebElement Commodity_Code;
 
@@ -126,13 +141,13 @@ public class Pledge_Creation {
 	@FindBy(xpath = "//button[@button-busy='vm.saving']")
 	WebElement Save_Button;
 
-	public void Pledge_Creation_Request() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Transaction_Btn.click();
+	public void Pledge_Creation_Request() throws InterruptedException {
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		// Assert.assertTrue(Transaction_Btn.isDisplayed(), "Transaction button not
 		// visible");
 
-		Pledge_Creation.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Pledge_Creation)).click();
 		// Assert.assertTrue(Pledge_Creation.isDisplayed(), "Pledge_Creation button not
 		// visible");
 
@@ -155,18 +170,16 @@ public class Pledge_Creation {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for pledge_Req_No: " + e.getMessage());
 		}
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Request_Date)).click();
 
-		Request_Date.click();
-		// Assert.assertTrue(Request_Date.isDisplayed(), "Request_Date button not
-		// visible");
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Request_Date_Active)).click();
 
-		Request_Date_Active.click();
-		// Assert.assertTrue(Request_Date_Active.isDisplayed(), "Request_Date_Active
-		// button not visible");
-
-		Execution_Date.click();
-
-		Execution_Date_Active.click();
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Execution_Date)).click();
+		Thread.sleep(2000);
+		Wait.until(ExpectedConditions.elementToBeClickable(Execution_Date_Active)).click();
 
 		// driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
 		try {
@@ -214,16 +227,29 @@ public class Pledge_Creation {
 		}
 		// js.executeScript("arguments[0].scrollIntoView(true);", Commodity_Code);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+		Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Segment_Btn)).click();
+
+		if (Commodity_Segment.equals(Agricultural1)) {
+			Wait.until(ExpectedConditions.elementToBeClickable(Agricultural_Btn)).click();
+
+		} else if (Commodity_Segment.equals(Agricultural2)) {
+			Wait.until(ExpectedConditions.elementToBeClickable(Non_Agricultural_Btn)).click();
+		} else {
+			System.out.println("Commodity_Segment is not valid");
+		}
+
 		try {
 			if (String.valueOf(Commodity).matches("^[0-9]{0,4}$")) {
-			Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Code)).click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Commodity_Code)).click();
 				Wait.until(ExpectedConditions.visibilityOf(Commodity_text)).sendKeys(String.valueOf(Commodity));
-						//(Commodity_text)).sendKeys(String.valueOf(Commodity));
-				System.out.println("Commodity code is :"+Commodity);
-				WebElement Active =driver.findElement(By.xpath("//div[@class='btn-group bootstrap-select form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required dropup open']//li[@class='active']//a"));
+				// (Commodity_text)).sendKeys(String.valueOf(Commodity));
+				System.out.println("Commodity code is :" + Commodity);
+				WebElement Active = driver.findElement(By.xpath(
+						"//div[@class='btn-group bootstrap-select form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required dropup open']//li[@class='active']//a"));
 				Wait.until(ExpectedConditions.visibilityOf(Active)).click();
-				//Wait.until(ExpectedConditions.visibilityOf(Commodity_text)).sendKeys(Keys.ENTER);
-				//Wait.until(ExpectedConditions.elementToBeClickable(Commodity_text)).sendKeys(Keys.ENTER);
+				// Wait.until(ExpectedConditions.visibilityOf(Commodity_text)).sendKeys(Keys.ENTER);
+				// Wait.until(ExpectedConditions.elementToBeClickable(Commodity_text)).sendKeys(Keys.ENTER);
 			} else {
 				System.out.println("Invalid Commodity_Code. Please enter exactly 4 alphanumeric characters");
 			}
@@ -236,12 +262,12 @@ public class Pledge_Creation {
 			System.out.println("Commodity_Code not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Commodity_Code: " + e.getMessage());
-		} /*finally {
-			System.out.println("Commodity_Code should be click");
-			js.executeScript("arguments[0].click();", Commodity_Code);
-			js.executeScript("arguments[0].value='" + Commodity + "';", Commodity_text);
-			js.executeScript("arguments[0].click();", Commodity_text);
-		}*/
+		} /*
+			 * finally { System.out.println("Commodity_Code should be click");
+			 * js.executeScript("arguments[0].click();", Commodity_Code);
+			 * js.executeScript("arguments[0].value='" + Commodity + "';", Commodity_text);
+			 * js.executeScript("arguments[0].click();", Commodity_text); }
+			 */
 
 		eff_Start_date.click();
 
@@ -255,19 +281,22 @@ public class Pledge_Creation {
 		} else {
 			System.out.println(" Invalid pledgee_Client. Please enter exactly 15 alphanumeric characters");
 		}
-
-		if (ifsc_Text.isDisplayed()) {
-			ifsc_Text.sendKeys(ifsc_Code);
-		} else {
-			System.out.println("ifsc_Text is not visible");
-		}
-
+		/*
+		 * try { if (ifsc_Text.isDisplayed()) { ifsc_Text.sendKeys(ifsc_Code); } else {
+		 * System.out.println("ifsc_Text is not visible"); } } catch
+		 * (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying ifsc_Text JavaScript click...");
+		 * js.executeScript("arguments[0].value='" + ifsc_Code + "';", ifsc_Text); }
+		 * catch (NoSuchElementException e) { System.out.println("ifsc_Text not found: "
+		 * + e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for ifsc_Text: " + e.getMessage()); }
+		 */
 		Receipt_list.click();
 
 		try {
 			if (String.valueOf(ENWR).matches("^[a-zA-Z0-9]{0,15}$")) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Search_Text)).sendKeys(String.valueOf(ENWR));
-				System.out.println("ENWR value is :"+ENWR);
+				System.out.println("ENWR value is :" + ENWR);
 			} else {
 				System.out.println("Invalid Commodity_Code. Please enter 15 numeric characters");
 			}
@@ -281,9 +310,8 @@ public class Pledge_Creation {
 		}
 
 		Search_Button.click();
-		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 
+		Thread.sleep(4000);
 		Wait.until(ExpectedConditions.elementToBeClickable(Select_Button)).click();
 		try {
 			if (String.valueOf(Bags).matches("^[0-9]{0,4}$")) {
@@ -303,7 +331,7 @@ public class Pledge_Creation {
 		pledge_value_txt.sendKeys(String.valueOf(pledge_value));
 
 		Wait.until(ExpectedConditions.elementToBeClickable(Remark)).sendKeys("Done");
-		
+
 		try {
 			if (Verify_Button.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(Verify_Button)).click();

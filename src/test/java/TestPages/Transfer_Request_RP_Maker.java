@@ -4,8 +4,10 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,34 +23,27 @@ public class Transfer_Request_RP_Maker {
 	WebDriverWait Wait;
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\Transfer.xlsx";
 	static String sheet = "Transfer_Request";
-	static int dataRow = 3; // second row of data
+	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
-	
+
 	/*
-	public static String Instr_Slip_No = "3456790";
-	int WSP_ID = 9999996;
-	int WH_ID = 1000421;
-	int Commodity_Code = 1;
-	Long Client_ID = 100673000000011L;
-	Long targetClient_Id = 120733340001420L;
-	Long ENWR = 110001023032L;
-	int Bags = 100;
-	String TransferReason = "GIFT";
-*/
+	 * public static String Instr_Slip_No = "3456790"; int WSP_ID = 9999996; int
+	 * WH_ID = 1000421; int Commodity_Code = 1; Long Client_ID = 100673000000011L;
+	 * Long targetClient_Id = 120733340001420L; Long ENWR = 110001023032L; int Bags
+	 * = 100; String TransferReason = "GIFT";
+	 */
 
 	public static String Instr_Slip_No = excel.getInstr_Slip_No(dataRow);
-	int WSP_ID =excel.getWSP_ID(dataRow);
+	int WSP_ID = excel.getWSP_ID(dataRow);
 	int WH_ID = excel.getWH_ID(dataRow);
-	int Commodity_Code =excel.getCommodity_Code(dataRow);
-	long Client_ID =excel.getClient_ID_Transfer(dataRow);
-	long targetClient_Id =excel.gettargetClient_Id_Transfer(dataRow);
-	long ENWR =excel.getENWR_Transfer(dataRow);
-	int Bags =excel.getBags_Transfer(dataRow);
+	int Commodity_Code = excel.getCommodity_Code(dataRow);
+	long Client_ID = excel.getClient_ID_Transfer(dataRow);
+	long targetClient_Id = excel.gettargetClient_Id_Transfer(dataRow);
+	long ENWR = excel.getENWR_Transfer(dataRow);
+	int Bags = excel.getBags_Transfer(dataRow);
 	String TransferReason = excel.getTransferReason(dataRow);
-	
-	
-	
+
 	public Transfer_Request_RP_Maker(WebDriver driver, WebDriverWait Wait) {
 
 		this.driver = driver;
@@ -92,6 +87,8 @@ public class Transfer_Request_RP_Maker {
 
 	@FindBy(xpath = "(//input[@type='text'])[8]")
 	WebElement WH_Txt;
+
+	// Commodity Segment
 
 	@FindBy(xpath = "//button[@data-id='CommodityMasterSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Commodity_Bttn;
@@ -150,7 +147,7 @@ public class Transfer_Request_RP_Maker {
 			System.out.println("Invalid Instr_Slip_No Number");
 		}
 
-		Request_Date.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Request_Date)).click();
 		DayOfWeek today = LocalDateTime.now().getDayOfWeek();
 		if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
 			// Click on Weekend date button
@@ -164,7 +161,7 @@ public class Transfer_Request_RP_Maker {
 			System.out.println("Today date button clicked");
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		Execution_Date.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Execution_Date)).click();
 		if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
 			// Click on Weekend date button
 			WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
@@ -178,9 +175,33 @@ public class Transfer_Request_RP_Maker {
 			todayButton.click();
 			System.out.println("Today date button clicked");
 
-			Wsp_Bttn.click();
+			
+			try {
+				if (String.valueOf(WSP_ID).matches("^[a-zA-Z0-9]{7}$")) {
+					Wait.until(ExpectedConditions.elementToBeClickable(Wsp_Bttn)).click();
+					Wait.until(ExpectedConditions.elementToBeClickable(Wsp_Txt)).sendKeys(String.valueOf(WSP_ID));
+					Thread.sleep(1000);
+					Wait.until(ExpectedConditions.elementToBeClickable(Wsp_Txt)).sendKeys(Keys.ENTER);
+					//Wait.until(ExpectedConditions.elementToBeClickable(Wsp_Txt)).sendKeys(Keys.ENTER);
+				} else {
+					System.out.println("Invalid WSP_ID. Please enter exactly 7 alphanumeric characters:");
+				}
+			} catch (ElementClickInterceptedException e) {
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", Wsp_Bttn);
+				js.executeScript("arguments[0].value='" + WSP_ID + "';", Wsp_Txt);
+				js.executeScript("arguments[0].click();", Wsp_Txt);
+				// WSP_ID_txt.click();
+			} catch (NoSuchElementException e) {
+				System.out.println("WSP_ID_btn not found: " + e.getMessage());
+
+			} catch (Exception e) {
+				System.out.println("Unexpected error for WSP_ID_btn: " + e.getMessage());
+			}
+			
+			/*Wsp_Bttn.click();
 			Wsp_Txt.sendKeys(String.valueOf(WSP_ID));
-			Wsp_Txt.sendKeys(Keys.ENTER);
+			Wsp_Txt.sendKeys(Keys.ENTER);*/
 
 			WH_Bttn.click();
 			WH_Txt.sendKeys(String.valueOf(WH_ID));
@@ -188,6 +209,8 @@ public class Transfer_Request_RP_Maker {
 			WebElement Ac = driver.findElement(By.xpath("//li[@class='active']//a"));
 			Ac.sendKeys(Keys.ENTER);
 
+			
+			
 			Commodity_Bttn.click();
 			Commodity_Txt.sendKeys(String.valueOf(Commodity_Code));
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
@@ -226,7 +249,7 @@ public class Transfer_Request_RP_Maker {
 				System.out.println("Save_Bttn is not Visible");
 			}
 
-		}
+			
 	}
-
+	}
 }

@@ -21,5 +21,4 @@ public class BaseClass {
 	public void setup() {
 		driver = BrowserFactory.initializeDriver(driver, Conf.getBrowser(), Conf.getURL());
 	}
-
 }

@@ -20,7 +20,8 @@ public class ON_Market_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Login for Settlement_Master start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("cc8880013", "user1", "121@test");
+			//Login.PortalLogin("cc8880013", "user7", "121@test");
+			Login.PortalLogin("CC8880002", "admin", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Settlement_Master creation  start");
 			TestPages.Settlement_Master_CC_Login Pledge = new TestPages.Settlement_Master_CC_Login(driver, Wait);
@@ -45,7 +46,8 @@ public class ON_Market_TestCase extends BaseClass {
 		try {
 			test.log(LogStatus.INFO, "Login for Settlement_Master_Checker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("cc8880013", "user2", "121@test");
+			//Login.PortalLogin("cc8880013", "user2", "121@test");
+			Login.PortalLogin("CC8880002", "Abhishek", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Settlement_Master_Checker creation  start");
 			TestPages.ON_Market_Checker Pledge = new TestPages.ON_Market_Checker(driver, Wait);
@@ -65,12 +67,13 @@ public class ON_Market_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	 //@Test
+	@Test
 	void On_Market_RP_Login() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Login for On_Market Maker start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			//Login.PortalLogin("rp-Abhishek", "user51", "121@test");
+			 Login.PortalLogin("RP-KUNVARJI", "PRAKASH", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "On_Market Maker creation  start");
 			TestPages.On_Market_RP_Login Market = new TestPages.On_Market_RP_Login(driver, Wait);

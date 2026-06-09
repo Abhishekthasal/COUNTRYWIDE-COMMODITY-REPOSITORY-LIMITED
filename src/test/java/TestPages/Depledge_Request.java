@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utillity.ExcelUtils;
@@ -67,7 +68,7 @@ public class Depledge_Request {
 
 	public void Depledge_Request_Maker() {
 		
-		Transaction_Btn.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Transaction_Btn)).click();
 		
 		try {
 			Records_Not_Found.click();
@@ -78,7 +79,7 @@ public class Depledge_Request {
 		}
 		
 		
-		Depledge_Request.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(Depledge_Request)).click();
 		
 		try {
 			Records_Not_Found.click();
@@ -88,7 +89,7 @@ public class Depledge_Request {
 			System.out.println("Records_Not_Found button Not Visible Second");
 		}
 		
-		New_Button.click();
+		Wait.until(ExpectedConditions.elementToBeClickable(New_Button)).click();
 		try {
 			if (Pledgor_Client_ID_txt.isDisplayed()) {
 				if (String.valueOf(Pledgor_Client_ID).matches("^[a-zA-Z0-9]{0,16}$")) {

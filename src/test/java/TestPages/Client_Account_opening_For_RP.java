@@ -26,7 +26,7 @@ public class Client_Account_opening_For_RP {
 	// String projectPath = System.getProperty("user.dir");
 	static String path = "C:\\Users\\abhishekyt\\git\\repository\\Automation\\Data\\ClientOpening.xlsx";
 	static String sheet = "ClientOpening";
-	static int dataRow = 1; // second row of data
+	static int dataRow = 3; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
 
@@ -206,8 +206,9 @@ public class Client_Account_opening_For_RP {
 
 	@FindBy(xpath = "(//input[@name='ifsc'])[1]")
 	WebElement ifsc_No;
-
-	@FindBy(xpath = "//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']
+	//button[@data-id='MicrSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']
+	@FindBy(xpath = "//button[@data-id='MicrSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement MICR;
 
 	@FindBy(xpath = "//div[@class='tab-pane ng-scope active']//li[2]//a[1]")
