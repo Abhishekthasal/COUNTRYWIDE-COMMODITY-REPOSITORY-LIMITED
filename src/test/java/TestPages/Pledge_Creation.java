@@ -281,21 +281,16 @@ public class Pledge_Creation {
 		} else {
 			System.out.println(" Invalid pledgee_Client. Please enter exactly 15 alphanumeric characters");
 		}
-		try {
-			if (ifsc_Text.isDisplayed()) {
-				ifsc_Text.sendKeys(ifsc_Code);
-			} else {
-				System.out.println("ifsc_Text is not visible");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying ifsc_Text JavaScript click...");
-			js.executeScript("arguments[0].value='" + ifsc_Code + "';", ifsc_Text);
-		} catch (NoSuchElementException e) {
-			System.out.println("ifsc_Text not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for ifsc_Text: " + e.getMessage());
-		}
-
+		/*
+		 * try { if (ifsc_Text.isDisplayed()) { ifsc_Text.sendKeys(ifsc_Code); } else {
+		 * System.out.println("ifsc_Text is not visible"); } } catch
+		 * (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying ifsc_Text JavaScript click...");
+		 * js.executeScript("arguments[0].value='" + ifsc_Code + "';", ifsc_Text); }
+		 * catch (NoSuchElementException e) { System.out.println("ifsc_Text not found: "
+		 * + e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for ifsc_Text: " + e.getMessage()); }
+		 */
 		Receipt_list.click();
 
 		try {

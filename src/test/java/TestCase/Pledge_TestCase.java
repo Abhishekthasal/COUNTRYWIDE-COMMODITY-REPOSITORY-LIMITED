@@ -49,11 +49,10 @@ public class Pledge_TestCase extends BaseClass {
 	// @Test
 	void Pledge_Creation_Request_Authorized() throws IOException {
 		try {
-			test.log(LogStatus.INFO, "Logion for Pledge_Creation Authorized start");
 			LoginPages Login = new LoginPages(driver, Wait);
 			// Login.PortalLogin("RP-KML", "user_B", "121@test");
 			// Login.PortalLogin("wsp9999996", "user72", "121@test");
-			// Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			 //Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 			Login.PortalLogin("RP-KUNVARJI", "PRAKASH", "121@test");
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver)));
 			test.log(LogStatus.INFO, "Pledge_Creation Authorized start");
@@ -132,7 +131,7 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	 @Test
+	// @Test
 	void pledgee_Creation() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for pledgee_Creation start");
@@ -159,7 +158,7 @@ public class Pledge_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	//@Test
+	@Test
 	void pledgee_Creation_Authorized() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Logion for pledgee_Creation_Authorized start");

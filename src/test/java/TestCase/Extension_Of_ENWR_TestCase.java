@@ -18,7 +18,7 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("Extension_Of_ENWR for General");
 
-	 @Test(retryAnalyzer = Utillity.RetryTest.class)
+	// @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Extension_Of_ENWR_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Extension_Of_ENWR_Request_Maker is start");
@@ -120,14 +120,14 @@ public class Extension_Of_ENWR_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 @Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Extension_Of_Validity_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Extension_Of_Validity_Assayer_Maker is start");
 
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("Asyr-3338084", "user1", "121@test");
-			// Login.PortalLogin("Assayer01", "user1", "121@test");
+		//	Login.PortalLogin("Asyr-3338084", "user1", "121@test");
+			 Login.PortalLogin("Assayer01", "user1", "121@test");
 			TestPages.Extension_Of_Validity_Assayer_Maker Depo = new TestPages.Extension_Of_Validity_Assayer_Maker(
 					driver, Wait);
 			Depo.Extension_Of_Validity_Assayer();

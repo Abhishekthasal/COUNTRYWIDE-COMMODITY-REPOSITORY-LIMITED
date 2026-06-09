@@ -1664,7 +1664,7 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 2; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {
@@ -1677,7 +1677,7 @@ public class Deposite_Assayer_Maker {
 			}
 			Thread.sleep(2000);
 			try {
-				if (RP_Exchange_Deposite_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+				if (RP_Exchange_Deposite_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{0,15}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(WareHouse_Id_btn)).click();
 					WareHouse_Id_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.WH_ID));
 					WareHouse_Id_txt.sendKeys(Keys.ENTER);
@@ -1856,7 +1856,6 @@ public class Deposite_Assayer_Maker {
 				 * Select S = new Select(GINNING_PATTERN_ROLLER_GINNED_COTTON);
 				 * S.selectByIndex(1);
 				 */
-
 				break;
 			case 49:
 				System.out.println("You selected: Arhar");
@@ -2171,7 +2170,7 @@ public class Deposite_Assayer_Maker {
 			}
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-				Today_dates.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
 				js.executeScript("arguments[0].scrollIntoView(true);", Calander);
@@ -2238,26 +2237,22 @@ public class Deposite_Assayer_Maker {
 				} catch (Exception e) {
 					System.out.println("Unexpected error for remark: " + e.getMessage());
 				}
-				try {
-					NABLCertificateDate.click();
-				} catch (ElementClickInterceptedException e) {
-					js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateDate);
-					js.executeScript("arguments[0].click();", NABLCertificateDate);
-				} catch (NoSuchElementException e) {
-					System.out.println("NABLCertificateDate not found: " + e.getMessage());
-				} catch (Exception e) {
-					System.out.println("Unexpected error for NABLCertificateDate: " + e.getMessage());
-				}
-				try {
-					Today_dates.click();
-				} catch (ElementClickInterceptedException e) {
-					js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
-					js.executeScript("arguments[0].click();", Today_dates);
-				} catch (NoSuchElementException e) {
-					System.out.println("Today_dates not found: " + e.getMessage());
-				} catch (Exception e) {
-					System.out.println("Unexpected error for Today_dates: " + e.getMessage());
-				}
+				/*
+				 * try { NABLCertificateDate.click(); } catch (ElementClickInterceptedException
+				 * e) { js.executeScript("arguments[0].scrollIntoView(true);",
+				 * NABLCertificateDate); js.executeScript("arguments[0].click();",
+				 * NABLCertificateDate); } catch (NoSuchElementException e) {
+				 * System.out.println("NABLCertificateDate not found: " + e.getMessage()); }
+				 * catch (Exception e) {
+				 * System.out.println("Unexpected error for NABLCertificateDate: " +
+				 * e.getMessage()); } try { Today_dates.click(); } catch
+				 * (ElementClickInterceptedException e) {
+				 * js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
+				 * js.executeScript("arguments[0].click();", Today_dates); } catch
+				 * (NoSuchElementException e) { System.out.println("Today_dates not found: " +
+				 * e.getMessage()); } catch (Exception e) {
+				 * System.out.println("Unexpected error for Today_dates: " + e.getMessage()); }
+				 */
 				try {
 					NABLCertificateRefNo.sendKeys(NABLCertificateRefNum);
 				} catch (ElementClickInterceptedException e) {

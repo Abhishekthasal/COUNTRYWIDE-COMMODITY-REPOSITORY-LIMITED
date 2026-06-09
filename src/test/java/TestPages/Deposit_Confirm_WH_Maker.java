@@ -126,10 +126,10 @@ public class Deposit_Confirm_WH_Maker {
 			System.out.println("Unexpected error for Warehouse_id: " + e.getMessage());
 		}
 		try {
-			if (RP_Deposite_Request_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{7}$")) {
+			if (RP_Deposite_Request_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{0,15}$")) {
 				Deposite_ID.sendKeys(String.valueOf(RP_Deposite_Request_Agriculture_Maker.Deposite));
 			} else {
-				System.out.println("Invalid Deposit_Type. Please enter exactly 20 alphanumeric characters:");
+				System.out.println("Invalid Deposit_Type. Please enter 15 alphanumeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Deposite_ID click...");
@@ -684,7 +684,7 @@ public class Deposit_Confirm_WH_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for (int i = 1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i = 16; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			Thread.sleep(3000);
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
@@ -859,13 +859,13 @@ public class Deposit_Confirm_WH_Maker {
 			}
 			Thread.sleep(2000);
 			try {
-				if (Exchange_Deposite_Request_Non_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{7}$")) {
+				if (Exchange_Deposite_Request_Non_Agriculture_Maker.WH_ID.matches("^[a-zA-Z0-9]{0,15}$")) {
 					Warehouse_id.click();
 					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt))
 							.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.WH_ID));
 					Wait.until(ExpectedConditions.elementToBeClickable(Warehouse_id_Txt)).sendKeys(Keys.ENTER);
 				} else {
-					System.out.println("Invalid WH_ID. Please enter exactly 7 alphanumeric characters:");
+					System.out.println("Invalid WH_ID. Please enter greter 15 alphanumeric characters:");
 				}
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript Warehouse_id click...");

@@ -78,7 +78,7 @@ public class Physical_Deposit_Maker {
 	static int Bags = excel.getBags_py(dataRow);
 	String Commodity = "15";
 	String Variety_Code = "999 - Cotton Bales";
-	String Dispatch_Source = "e-Samridhi";
+	String Dispatch_Source = "e-Samridhi";   //e-Samridhi
 	int j = 3;
 	int i;
 //	int k = j * i;
@@ -1844,7 +1844,7 @@ public class Physical_Deposit_Maker {
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 
 		Thread.sleep(5000);
-		if (Commodity.equals(Commodity_Code)) {
+		//if (Commodity.equals(Commodity_Code)) {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
 				Thread.sleep(5000);
@@ -1863,9 +1863,9 @@ public class Physical_Deposit_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
 			}
-		} else {
-			System.out.println("Variety_Code is not requird");
-		}
+			/*
+			 * } else { System.out.println("Variety_Code is not requird"); }
+			 */
 
 		// assaying_type_Text.sendKeys(assaying_type);
 		try {
@@ -2376,12 +2376,14 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Dispatch_Source_btn: " + e.getMessage());
 		}
+		System.out.println("value of DIS"+Dispatch_Source);
 		Thread.sleep(2000);
-		WebElement Dispatch_Source_Txt = driver
-				.findElement(By.xpath("//span[normalize-space()='" + Dispatch_Source + "'])"));
-
+		WebElement Dispatch_Source_Txt = driver.findElement(
+			    By.xpath("//span[contains(normalize-space(),'" + Dispatch_Source + "')]"));
+		System.out.println("value of DIS"+Dispatch_Source);
+		Dispatch_Source_Txt.click();
 		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).sendKeys(Dispatch_Source);
+			//Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).sendKeys(Dispatch_Source);
 			Thread.sleep(500);
 			Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).click();
 		} catch (ElementClickInterceptedException e) {
