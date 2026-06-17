@@ -24,7 +24,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Deposite");
 
-	// @Test
+	 @Test
 	void RP_Exchange_Deposite_Request_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Request_Agriculture_Multiple_GSL_Maker start");
@@ -100,7 +100,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 			// Login.PortalLogin("WSP6656413", "admin", "121@test"); // --PreProd Test---
 			// Login.PortalLogin("wsp9999996", "user2", "121@test");
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
-			 Login.PortalLogin("wsp9999996", "user72", "121@Test");
+			 Login.PortalLogin("wsp9999996", "user72", "121@test");
 			WSP_CH.Exchange_Deposit_Multiple_GSL_Checker();
 			test.log(LogStatus.PASS, "Exchange_DashBoard_WareHouse_Agriculture_Multiple_GSL_Checker is successfull");
 		} catch (Exception e) {
@@ -122,7 +122,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 			// Login.PortalLogin("Asyr-2905202", "bhanu1", "121@test");
 			//Login.PortalLogin("ASYR-8889999", "user1", "121@test");
 			// Login.PortalLogin("ASYR-8889999", "user1", "121@test");
-			 Login.PortalLogin("ASYR-7000016", "Arpit1234", "121@test");
+			// Login.PortalLogin("ASYR-7000016", "Arpit1234", "121@test");
 			Assayer.Exchange_Deposit_Assayer_Agriculture_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_Deposite_Assayer_Agriculture_Multiple_GSL_Maker is successfull");
 		} catch (Exception e) {
@@ -157,7 +157,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 
 	}
 
-	 @Test
+	// @Test
 	void Deposit_Confirm_WH_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL_Maker is start");
@@ -188,12 +188,12 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 			test.log(LogStatus.INFO, "Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL_Checker is start");
 			Deposit_Confirm_WH_Checker Confirm = new Deposit_Confirm_WH_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			// Login.PortalLogin("wsp9999996", "user72", "121@test");
+			 Login.PortalLogin("wsp9999996", "user72", "121@test");
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			// Login.PortalLogin("wsp9999996", "user6", "121@test");
 			// Login.PortalLogin("WSP8888999", "user8", "121@test");
 			//Login.PortalLogin("WSP8888999", "user3", "121@test");
-			 Login.PortalLogin("WSP6656413", "admin", "121@test"); // -------PreProd
+			// Login.PortalLogin("WSP6656413", "admin", "121@test"); // -------PreProd
 			// Test----------
 			// Login.PortalLogin("WSP8888999", "user4", "121@test");
 			Confirm.Exchange_Deposit_Confirm_WH_Agriculture_Multiple_GSL();

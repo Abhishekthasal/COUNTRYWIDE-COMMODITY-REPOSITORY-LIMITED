@@ -7,7 +7,7 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import TestPages.BaseClass;
-import TestPages.Exports_Reports;
+//import TestPages.Exports_Reports;
 import TestPages.LoginPages;
 
 public class CR0336_TestCase extends BaseClass {
@@ -18,7 +18,7 @@ public class CR0336_TestCase extends BaseClass {
 			true);
 	ExtentTest test = Report.startTest("CR0212_TestCase");
 
-	// @Test
+	 @Test
 		void Pledge_Creation() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Login for Pledge_Creation start");
@@ -46,7 +46,7 @@ public class CR0336_TestCase extends BaseClass {
 			Report.flush();
 		}
 
-		@Test
+		//@Test
 		void Pledge_Creation_Request_Authorized() throws IOException {
 			try {
 				test.log(LogStatus.INFO, "Logion for Pledge_Creation Authorized start");

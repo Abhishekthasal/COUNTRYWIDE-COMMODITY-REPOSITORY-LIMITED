@@ -10,6 +10,13 @@ public class DataBaseUtility {
 	        String username = "ccrl1";
 	        String password = "ccrl@123";
 
+	        
+			/*
+			 * String url =
+			 * "jdbc:mysql://192.168.19.163:3066/live_dump_new?useSSL=false&connectTimeout=120000&allowPublicKeyRetrieval=true";
+			 * String username = "ccrl"; String password = "Ccrl@pp0";
+			 */
+	        
         Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(url, username, password);
     }

@@ -1664,7 +1664,7 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Assayer: " + e.getMessage());
 		}
-		for (int i = 2; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
+		for (int i =1; i <= DashBoard_WareHouse_Checker.totalBags; i++) {
 			try {
 				Wait.until(ExpectedConditions.elementToBeClickable(New_btn)).sendKeys(Keys.ENTER);
 			} catch (ElementClickInterceptedException e) {

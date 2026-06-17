@@ -14,14 +14,14 @@ import TestPages.DePledge_Confirm_By_Pledgee;
 import TestPages.LoginPages;
 import TestPages.Pledge_Creation_WareHouse;
 
-//@Listeners(Utillity.TestNGListeners.class)
+@Listeners(Utillity.TestNGListeners.class)
 public class CR319_show_completed_transaction_data_for_the_relevant_modules_TestCase extends BaseClass {
 
 	ExtentReports Report = new ExtentReports("C:\\Users\\abhishekyt\\git\\repository\\Automation\\Reports\\CR319_19_Dec"
 			+ System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("CR319-show completed transaction data");
 
-	//@Test
+	@Test
 	void Pledge_Creation_Confirmation_CR319() throws IOException, InterruptedException {
 		/* LogEntries logs = driver.manage().logs().get(LogType.BROWSER); */
 		try {

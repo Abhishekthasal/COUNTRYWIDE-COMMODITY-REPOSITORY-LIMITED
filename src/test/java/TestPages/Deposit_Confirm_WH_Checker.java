@@ -643,7 +643,7 @@ public class Deposit_Confirm_WH_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Deposit_Confirm_WH_btn: " + e.getMessage());
 		}
-		for(int i=21;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
+		for(int i=1;  i<=DashBoard_WareHouse_Checker.totalBags;  i++) {
 			Thread.sleep(3000);
 		try {
 			Search_txt.sendKeys(String.valueOf(RP_Exchange_Deposite_Agriculture_Maker.Deposite+i));

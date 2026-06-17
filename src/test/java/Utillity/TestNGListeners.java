@@ -1,8 +1,8 @@
 package Utillity;
 
 import java.io.IOException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.bidi.log.LogEntry;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.bidi.log.LogEntry;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.testng.ISuite;
@@ -12,7 +12,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.IExtentTestClass;
+//import com.relevantcodes.extentreports.IExtentTestClass;
 import TestPages.BaseClass;
 import TestPages.ScreenShort;
 
