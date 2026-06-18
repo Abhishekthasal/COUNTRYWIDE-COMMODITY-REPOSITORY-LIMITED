@@ -212,12 +212,12 @@ public class Government_Agency_Deposite_Request_Maker {
 
 		Commodity_Segment_Ok_btn.click();
 
-		if (Deposite.matches("^[a-zA-Z0-9]{7}$")) {
+		if (Deposite.matches("^[a-zA-Z0-9]{0,15}$")) {
 			Deposite_No.sendKeys(Keys.ENTER);
 			Wait.until(ExpectedConditions.elementToBeClickable(Deposite_No)).sendKeys(String.valueOf(Deposite));
 			Deposite_No.click();
 		} else {
-			System.out.println("Invalid Deposite. Please enter exactly 7 alphanumeric characters:");
+			System.out.println("Invalid Deposite. Please enter 0 to 15 alphanumeric characters:");
 		}
 
 		// Deposit_Type DropDown

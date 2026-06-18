@@ -78,7 +78,14 @@ public class Physical_Deposit_Maker {
 	static int Bags = excel.getBags_py(dataRow);
 	String Commodity = "15";
 	String Variety_Code = "999 - Cotton Bales";
-	String Dispatch_Source = "e-Samridhi";   //e-Samridhi
+	String Dispatch_Source = "e-Samridhi"; // e-Samridhi
+	String NameofSLA ="Laxmi Product";
+	String Type_of_Gunny_Bags="SBT";
+	int Weight_of_Gunny_Bags=100;
+	String Status_of_Gunny_Bags ="Old";
+	String Gunny_Bags_Stenciled ="Yes";
+	String Gunny_Bags_QR_Tagged ="Yes";
+	String Gunny_Bags_Machine_Stitched="Yes";
 	int j = 3;
 	int i;
 //	int k = j * i;
@@ -133,6 +140,55 @@ public class Physical_Deposit_Maker {
 	// select[@id='VarietyMasterSelectionCombobox']
 	// (//input[@type='text'])[25]
 
+	@FindBy(xpath="//button[@data-id='SLASelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement NameofSLA_Btn;
+	@FindBy(xpath="(//input[@type='text'])[22]")
+	WebElement NameofSLA_Txt;
+	@FindBy(xpath="//div[@class='form-group form-md-line-input no-hint BorderShow']//li[2]//a[1]")
+	WebElement NameofSLA_Value;
+	
+	@FindBy(xpath="//span[@class='filter-option pull-left'][normalize-space()='B Twill']")
+	WebElement Type_of_Gunny_Bags_Btn;
+	
+	@FindBy(xpath="(//input[@type='text'])[25]")
+	WebElement Type_of_Gunny_Bags_Txt;
+	
+	@FindBy(xpath="//input[@id='GunnyWeightSelectionCombobox']")
+	WebElement Weight_of_Gunny_Bags_Txt;
+	
+	@FindBy(xpath="//button[@data-id='GunnyStatusSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement Status_of_Gunny_Bags_Btn;
+	
+	@FindBy(xpath="(//input[@type='text'])[27]")
+	WebElement Status_of_Gunny_Bags_Txt;
+	
+	@FindBy(xpath="//button[@data-id='GunnyStenciledSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement Gunny_Bags_Stenciled_Btn;
+	
+	@FindBy(xpath="(//input[@type='text'])[28]")
+	WebElement Gunny_Bags_Stenciled_Txt;
+	
+	@FindBy(xpath="//button[@data-id='GunnyQRTaggedSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	WebElement Gunny_Bags_QR_Tagged_Btn;
+	
+	@FindBy(xpath="(//input[@type='text'])[29]")
+	WebElement Gunny_Bags_QR_Tagged_Txt;
+	
+	@FindBy(xpath="//button[@data-id='GunnyMachineStitchedSelectionCombobox']")
+	WebElement Gunny_Bags_Machine_Stitched_Btn;
+	
+	@FindBy(xpath="(//input[@type='text'])[30]")
+	WebElement Gunny_Bags_Machine_Stitched_Txt;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@FindBy(xpath = "(//input[@type='text'])[25]")
 	WebElement Variety_Code_Text;
 	// input[@name='dispatch_id' and @ng-model='vm.CreateDepositWspWh.dispatch_id']
@@ -1844,28 +1900,28 @@ public class Physical_Deposit_Maker {
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 
 		Thread.sleep(5000);
-		//if (Commodity.equals(Commodity_Code)) {
-			try {
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-				Thread.sleep(5000);
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code); //
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
-				Thread.sleep(2000);
-				Variety_Code_Text.sendKeys(Keys.ENTER);
-			} catch (ElementClickInterceptedException e) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-				Thread.sleep(1000);
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-				Thread.sleep(2000);
-				Variety_Code_Text.click();
-			} catch (NoSuchElementException e) {
-				System.out.println("Variety_Code_Text not found: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
-			}
-			/*
-			 * } else { System.out.println("Variety_Code is not requird"); }
-			 */
+		// if (Commodity.equals(Commodity_Code)) {
+		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+			Thread.sleep(5000);
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code); //
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
+			Variety_Code_Text.sendKeys(Keys.ENTER);
+		} catch (ElementClickInterceptedException e) {
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+			Thread.sleep(1000);
+			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+			Thread.sleep(2000);
+			Variety_Code_Text.click();
+		} catch (NoSuchElementException e) {
+			System.out.println("Variety_Code_Text not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
+		}
+		/*
+		 * } else { System.out.println("Variety_Code is not requird"); }
+		 */
 
 		// assaying_type_Text.sendKeys(assaying_type);
 		try {
@@ -2361,13 +2417,12 @@ public class Physical_Deposit_Maker {
 			System.out.println("Transaction_Btn not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
-		} /*
-			 * finally { System.out.println("submit_btn should be click");
-			 * submit_btn.click(); }
-			 * 
-			 */
+		}
+
+		Thread.sleep(2000);
 		try {
 			Dispatch_Source_btn.click();
+			Thread.sleep(500);
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Dispatch_Source click...");
 			js.executeScript("arguments[0].click();", Dispatch_Source_btn);
@@ -2376,14 +2431,26 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Dispatch_Source_btn: " + e.getMessage());
 		}
-		System.out.println("value of DIS"+Dispatch_Source);
-		Thread.sleep(2000);
-		WebElement Dispatch_Source_Txt = driver.findElement(
-			    By.xpath("//span[contains(normalize-space(),'" + Dispatch_Source + "')]"));
-		System.out.println("value of DIS"+Dispatch_Source);
-		Dispatch_Source_Txt.click();
+
+		driver.findElement(By.xpath("//span[contains(normalize-space(),'Others')]")).click();
+		//		System.out.println("value of DIS"+Dispatch_Source);
+
+		// WebElement Dispatch_Source_Txt = driver.findElement(
+		// By.cssSelector("div[class='col-sm-12'] li:nth-child(2) a:nth-child(1)"));
+		/*
+		 * WebElement Dispatch_Source_Txt = try {
+		 * 
+		 * WebElement Dispatch_Source_Txt = driver.findElement(
+		 * By.xpath("//div[@class='col-sm-12']//li[3]//a[1]"));
+		 * 
+		 * } catch (Exception e) {
+		 * System.out.println("Unexpected error for Dispatch_Source_btn: " +
+		 * e.getMessage()); }
+		 */
+//		Dispatch_Source_Txt.click();
+
 		try {
-			//Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).sendKeys(Dispatch_Source);
+			// Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).sendKeys(Dispatch_Source);
 			Thread.sleep(500);
 			Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).click();
 		} catch (ElementClickInterceptedException e) {
@@ -2431,7 +2498,33 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Validate_Btn: " + e.getMessage());
 		}
-
+		NameofSLA_Btn.click();
+		NameofSLA_Txt.sendKeys(NameofSLA);
+		NameofSLA_Txt.click();
+		
+		Type_of_Gunny_Bags_Btn.click();
+		Type_of_Gunny_Bags_Txt.sendKeys(Type_of_Gunny_Bags);
+		Type_of_Gunny_Bags_Txt.click();
+		
+		Weight_of_Gunny_Bags_Txt.sendKeys(String.valueOf(Weight_of_Gunny_Bags));
+		
+		Status_of_Gunny_Bags_Btn.click();
+		Status_of_Gunny_Bags_Txt.sendKeys(Status_of_Gunny_Bags);
+		Status_of_Gunny_Bags_Txt.click();
+		
+		Gunny_Bags_Stenciled_Btn.click();
+		Gunny_Bags_Stenciled_Txt.sendKeys(Gunny_Bags_Stenciled);
+		Gunny_Bags_Stenciled_Txt.click();
+		
+		Gunny_Bags_QR_Tagged_Btn.click();
+		Gunny_Bags_QR_Tagged_Txt.sendKeys(Gunny_Bags_QR_Tagged);
+		Gunny_Bags_QR_Tagged_Txt.click();
+		
+		Gunny_Bags_Machine_Stitched_Btn.click();
+		Gunny_Bags_Machine_Stitched_Txt.sendKeys(Gunny_Bags_Machine_Stitched);
+		Gunny_Bags_Machine_Stitched_Txt.click();
+		
+		
 		/*
 		 * 
 		 * Tare_Weight.sendKeys("100"); Tare_Weight.sendKeys(Keys.TAB);
