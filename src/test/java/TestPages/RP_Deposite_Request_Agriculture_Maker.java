@@ -223,12 +223,12 @@ public class RP_Deposite_Request_Agriculture_Maker {
 		}
 
 		try {
-			if (Deposite.matches("^[a-zA-Z0-9]{7}$")) {
+			if (Deposite.matches("^[a-zA-Z0-9]{0,15}$")) {
 				Deposite_No.sendKeys(Keys.ENTER);
 				Wait.until(ExpectedConditions.elementToBeClickable(Deposite_No)).sendKeys(String.valueOf(Deposite));
 				Deposite_No.click();
 			} else {
-				System.out.println("Invalid Deposite. Please enter exactly 7 alphanumeric characters:");
+				System.out.println("Invalid Deposite. Please enter 0 to 15  alphanumeric characters:");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");

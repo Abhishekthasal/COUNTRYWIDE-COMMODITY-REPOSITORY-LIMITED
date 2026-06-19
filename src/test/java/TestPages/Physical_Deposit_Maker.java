@@ -79,13 +79,13 @@ public class Physical_Deposit_Maker {
 	String Commodity = "15";
 	String Variety_Code = "999 - Cotton Bales";
 	String Dispatch_Source = "e-Samridhi"; // e-Samridhi
-	String NameofSLA ="Laxmi Product";
-	String Type_of_Gunny_Bags="SBT";
-	int Weight_of_Gunny_Bags=100;
-	String Status_of_Gunny_Bags ="Old";
-	String Gunny_Bags_Stenciled ="Yes";
-	String Gunny_Bags_QR_Tagged ="Yes";
-	String Gunny_Bags_Machine_Stitched="Yes";
+	String NameofSLA = "Laxmi Product";
+	String Type_of_Gunny_Bags = "SBT";
+	int Weight_of_Gunny_Bags = 100;
+	String Status_of_Gunny_Bags = "Old";
+	String Gunny_Bags_Stenciled = "Yes";
+	String Gunny_Bags_QR_Tagged = "Yes";
+	String Gunny_Bags_Machine_Stitched = "Yes";
 	int j = 3;
 	int i;
 //	int k = j * i;
@@ -140,55 +140,46 @@ public class Physical_Deposit_Maker {
 	// select[@id='VarietyMasterSelectionCombobox']
 	// (//input[@type='text'])[25]
 
-	@FindBy(xpath="//button[@data-id='SLASelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+	@FindBy(xpath = "//button[@data-id='SLASelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement NameofSLA_Btn;
-	@FindBy(xpath="(//input[@type='text'])[22]")
+	@FindBy(xpath = "(//input[@type='text'])[22]")
 	WebElement NameofSLA_Txt;
-	@FindBy(xpath="//div[@class='form-group form-md-line-input no-hint BorderShow']//li[2]//a[1]")
+	@FindBy(xpath = "//div[@class='form-group form-md-line-input no-hint BorderShow']//li[2]//a[1]")
 	WebElement NameofSLA_Value;
-	
-	@FindBy(xpath="//span[@class='filter-option pull-left'][normalize-space()='B Twill']")
+
+	@FindBy(xpath = "//button[@data-id='GunnyTypeSelectionCombobox']")
 	WebElement Type_of_Gunny_Bags_Btn;
-	
-	@FindBy(xpath="(//input[@type='text'])[25]")
+
+	@FindBy(xpath = "(//input[@type='text'])[25]")
 	WebElement Type_of_Gunny_Bags_Txt;
-	
-	@FindBy(xpath="//input[@id='GunnyWeightSelectionCombobox']")
+
+	@FindBy(xpath = "//input[@id='GunnyWeightSelectionCombobox']")
 	WebElement Weight_of_Gunny_Bags_Txt;
-	
-	@FindBy(xpath="//button[@data-id='GunnyStatusSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+
+	@FindBy(xpath = "//button[@data-id='GunnyStatusSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Status_of_Gunny_Bags_Btn;
-	
-	@FindBy(xpath="(//input[@type='text'])[27]")
+
+	@FindBy(xpath = "(//input[@type='text'])[27]")
 	WebElement Status_of_Gunny_Bags_Txt;
-	
-	@FindBy(xpath="//button[@data-id='GunnyStenciledSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+
+	@FindBy(xpath = "//button[@data-id='GunnyStenciledSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Gunny_Bags_Stenciled_Btn;
-	
-	@FindBy(xpath="(//input[@type='text'])[28]")
+
+	@FindBy(xpath = "(//input[@type='text'])[28]")
 	WebElement Gunny_Bags_Stenciled_Txt;
-	
-	@FindBy(xpath="//button[@data-id='GunnyQRTaggedSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
+
+	@FindBy(xpath = "//button[@data-id='GunnyQRTaggedSelectionCombobox']//span[@class='filter-option pull-left'][normalize-space()='NOTHING SELECTED']")
 	WebElement Gunny_Bags_QR_Tagged_Btn;
-	
-	@FindBy(xpath="(//input[@type='text'])[29]")
+
+	@FindBy(xpath = "(//input[@type='text'])[29]")
 	WebElement Gunny_Bags_QR_Tagged_Txt;
-	
-	@FindBy(xpath="//button[@data-id='GunnyMachineStitchedSelectionCombobox']")
+
+	@FindBy(xpath = "//button[@data-id='GunnyMachineStitchedSelectionCombobox']")
 	WebElement Gunny_Bags_Machine_Stitched_Btn;
-	
-	@FindBy(xpath="(//input[@type='text'])[30]")
+
+	@FindBy(xpath = "(//input[@type='text'])[30]")
 	WebElement Gunny_Bags_Machine_Stitched_Txt;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@FindBy(xpath = "(//input[@type='text'])[25]")
 	WebElement Variety_Code_Text;
 	// input[@name='dispatch_id' and @ng-model='vm.CreateDepositWspWh.dispatch_id']
@@ -2374,11 +2365,9 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Physical_New_Req: " + e.getMessage());
 		}
-		// try {
+
 		if (Internal_Ref.matches("^[0-9]{5}$")) {
-			// Internal_Ref_No.click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Internal_Ref_No)).sendKeys(String.valueOf(Internal_Ref));
-			System.out.println("Internal_Ref no is:" + Internal_Ref);
 			Internal_Ref_No.sendKeys(Keys.ENTER);
 		} else {
 			System.out.println("Invalid Internal_Ref. Please enter exactly 5 digits (numbers only):");
@@ -2402,12 +2391,7 @@ public class Physical_Deposit_Maker {
 			System.out.println("Invalid OTP_Auth. Please enter exactly 6 digits (numbers only):");
 		}
 		Wait.until(ExpectedConditions.elementToBeClickable(Submit_btn)).click();
-
-		// Wait.until(ExpectedConditions.elementToBeClickable(Accept_check)).isSelected();
-
 		Accept_check.isSelected();
-
-		// submit_btn.click();
 		try {
 			submit_btn.click();
 		} catch (ElementClickInterceptedException e) {
@@ -2418,63 +2402,18 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 		}
-
-		Thread.sleep(2000);
+		
+		Select Vegad = new Select(Dispatch_Source_btn);
+		Vegad.selectByContainsVisibleText("Others");
+	
 		try {
-			Dispatch_Source_btn.click();
-			Thread.sleep(500);
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Dispatch_Source click...");
-			js.executeScript("arguments[0].click();", Dispatch_Source_btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Dispatch_Source_btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Dispatch_Source_btn: " + e.getMessage());
-		}
-
-		driver.findElement(By.xpath("//span[contains(normalize-space(),'Others')]")).click();
-		//		System.out.println("value of DIS"+Dispatch_Source);
-
-		// WebElement Dispatch_Source_Txt = driver.findElement(
-		// By.cssSelector("div[class='col-sm-12'] li:nth-child(2) a:nth-child(1)"));
-		/*
-		 * WebElement Dispatch_Source_Txt = try {
-		 * 
-		 * WebElement Dispatch_Source_Txt = driver.findElement(
-		 * By.xpath("//div[@class='col-sm-12']//li[3]//a[1]"));
-		 * 
-		 * } catch (Exception e) {
-		 * System.out.println("Unexpected error for Dispatch_Source_btn: " +
-		 * e.getMessage()); }
-		 */
-//		Dispatch_Source_Txt.click();
-
-		try {
-			// Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).sendKeys(Dispatch_Source);
-			Thread.sleep(500);
-			Wait.until(ExpectedConditions.elementToBeClickable(Dispatch_Source_Txt)).click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Dispatch_Source_Txt click...");
-			js.executeScript("arguments[0].value='" + Dispatch_Source + "';", Dispatch_Source_Txt);
-			js.executeScript("arguments[0].click();", Dispatch_Source_Txt);
-		} catch (NoSuchElementException e) {
-			System.out.println("Dispatch_Source_Txt not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Dispatch_Source_Txt: " + e.getMessage());
-		}
-
-		try {
-			// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 			if (dispatch_id_GA.isDisplayed()) {
-				// Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
 				Thread.sleep(1000);
 				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA))
 						.sendKeys(String.valueOf(dispatch_Number));
 				Thread.sleep(1000);
 				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
-				// Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id)).sendKeys(String.valueOf(dispatch_Number));
-				System.out.println(dispatch_Number);
 			} else {
 				System.out.println("dispatch_id is:" + dispatch_Number);
 			}
@@ -2498,33 +2437,34 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Validate_Btn: " + e.getMessage());
 		}
+		
 		NameofSLA_Btn.click();
 		NameofSLA_Txt.sendKeys(NameofSLA);
-		NameofSLA_Txt.click();
-		
+		Thread.sleep(500);
+		Wait.until(ExpectedConditions.elementToBeClickable(NameofSLA_Txt)).sendKeys(Keys.ENTER);
+
 		Type_of_Gunny_Bags_Btn.click();
 		Type_of_Gunny_Bags_Txt.sendKeys(Type_of_Gunny_Bags);
-		Type_of_Gunny_Bags_Txt.click();
-		
+		Wait.until(ExpectedConditions.elementToBeClickable(Type_of_Gunny_Bags_Txt)).sendKeys(Keys.ENTER);
+
 		Weight_of_Gunny_Bags_Txt.sendKeys(String.valueOf(Weight_of_Gunny_Bags));
-		
+
 		Status_of_Gunny_Bags_Btn.click();
 		Status_of_Gunny_Bags_Txt.sendKeys(Status_of_Gunny_Bags);
-		Status_of_Gunny_Bags_Txt.click();
-		
+		Wait.until(ExpectedConditions.elementToBeClickable(Status_of_Gunny_Bags_Txt)).sendKeys(Keys.ENTER);
+
 		Gunny_Bags_Stenciled_Btn.click();
 		Gunny_Bags_Stenciled_Txt.sendKeys(Gunny_Bags_Stenciled);
-		Gunny_Bags_Stenciled_Txt.click();
-		
+		Wait.until(ExpectedConditions.elementToBeClickable(Gunny_Bags_Stenciled_Txt)).sendKeys(Keys.ENTER);
+
 		Gunny_Bags_QR_Tagged_Btn.click();
 		Gunny_Bags_QR_Tagged_Txt.sendKeys(Gunny_Bags_QR_Tagged);
-		Gunny_Bags_QR_Tagged_Txt.click();
-		
+		Wait.until(ExpectedConditions.elementToBeClickable(Gunny_Bags_QR_Tagged_Txt)).sendKeys(Keys.ENTER);
+
 		Gunny_Bags_Machine_Stitched_Btn.click();
 		Gunny_Bags_Machine_Stitched_Txt.sendKeys(Gunny_Bags_Machine_Stitched);
-		Gunny_Bags_Machine_Stitched_Txt.click();
-		
-		
+		Wait.until(ExpectedConditions.elementToBeClickable(Gunny_Bags_Machine_Stitched_Txt)).sendKeys(Keys.ENTER);
+
 		/*
 		 * 
 		 * Tare_Weight.sendKeys("100"); Tare_Weight.sendKeys(Keys.TAB);
