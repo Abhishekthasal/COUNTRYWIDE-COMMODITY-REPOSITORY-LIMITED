@@ -70,6 +70,9 @@ public class DashBoard_WareHouse_Checker {
 	@FindBy(xpath = "//input[@id='webbridge']")
 	WebElement Weighbridge_Net_Weight;
 
+	@FindBy(xpath = "//div[@class='col-sm-4']//input[@name='EstimatedValue']")
+	WebElement Estimated;
+	
 	@FindBy(xpath = "//a[normalize-space()='Lot Details']")
 	WebElement Lot_Details;
 
@@ -954,6 +957,22 @@ public class DashBoard_WareHouse_Checker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Weighbridge_Net_Weight: " + e.getMessage());
 		}
+		//CR-0400 Estimated value should be mandatory input field to checker at eNWR issuance process
+		try {
+			if (Physical_Deposit_Maker.EstimatedValueAtDeposit.matches("^[0-9]{0,15}$")) {
+				Estimated.sendKeys(Physical_Deposit_Maker.EstimatedValueAtDeposit);
+			} else {
+				System.out.println("Invalid EstimatedValueAtDeposit");
+			}
+		} catch (ElementClickInterceptedException e) {
+			System.out.println("Normal click failed, trying JavaScript Estimated click...");
+			js.executeScript("arguments[0].value='" +Physical_Deposit_Maker.EstimatedValueAtDeposit + "';", Estimated);
+		} catch (NoSuchElementException e) {
+			System.out.println("Estimated not found: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Unexpected error for Estimated: " + e.getMessage());
+		}
+		
 		try {
 			Lot_Details.click();
 		} catch (ElementClickInterceptedException e) {

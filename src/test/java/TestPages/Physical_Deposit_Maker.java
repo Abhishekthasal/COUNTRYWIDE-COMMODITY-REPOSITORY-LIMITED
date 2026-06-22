@@ -3,7 +3,10 @@ package TestPages;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.DayOfWeek;
 import java.time.Duration;
+import java.time.LocalDateTime;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,22 +35,7 @@ public class Physical_Deposit_Maker {
 	static int dataRow = 1; // second row of data
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	static ExcelUtils excel = new ExcelUtils(path, sheet);
-	/*
-	 * String Internal_Ref = "53406"; // 53267; String OTP_Auth = "674841"; //
-	 * 557332; int Tare_Weight_value = 200; String assaying_type = "Self Verified";
-	 * String Weight_bridge = "Abhishek"; String Weight_bridge_Receipt = "12343";
-	 * public static String Sample = "46202556"; public static int lot_No =
-	 * 46202554; public String dispatch_Number = "RDW6225032511181520"; int
-	 * Assayring_Referance_Id = 406202507; static String WeighbridgeNetWeight =
-	 * "1190"; String EstimatedValueAtDeposit = "5000"; String MoistureAtDeposit =
-	 * "6"; String Rate_of_Storage_Charges = "6"; String Per_UOM = "5"; String
-	 * Godown_No = "A"; String Stack_No = "B"; String Lot_No = "c"; String
-	 * PanCard_No = "BPTPT5612N"; String DepositerName = "Abhishek Thasal"; String
-	 * L1 = "Room No 102"; String L2 = "Jarimari Mandir Road"; String L3 =
-	 * "Umelman"; String City_Name = "Vasai"; String PinCode = "401202"; int
-	 * shelflife = 179; String Bag_Total =
-	 * RP_Deposite_Request_Agriculture_Maker.bags; static int Bags = 100;
-	 */
+
 	String Internal_Ref;// = excel.getInternal_Ref_py(dataRow);//"53429";
 	String OTP_Auth;// =excel.getOTP_Auth_py(dataRow);// "886612";
 	int Tare_Weight_value = excel.getTare_Weight_value_py(dataRow);
@@ -59,7 +47,7 @@ public class Physical_Deposit_Maker {
 	public String dispatch_Number = excel.getdispatch_Number_py(dataRow);
 	int Assayring_Referance_Id = excel.getAssayring_Referance_Id_py(dataRow);
 	static String WeighbridgeNetWeight = excel.getWeighbridgeNetWeighte_py(dataRow);
-	String EstimatedValueAtDeposit = excel.getEstimatedValueAtDeposit_py(dataRow);
+	static String EstimatedValueAtDeposit = excel.getEstimatedValueAtDeposit_py(dataRow);
 	String MoistureAtDeposit = excel.getMoistureAtDeposit_py(dataRow);
 	String Rate_of_Storage_Charges = excel.getRate_of_Storage_Charges_py(dataRow);
 	String Per_UOM = excel.getPer_UOM_py(dataRow);
@@ -76,19 +64,18 @@ public class Physical_Deposit_Maker {
 	int shelflife = excel.getshelflife_py(dataRow);
 	public static String Bag_Total = excel.getBag_Total_py(dataRow);
 	static int Bags = excel.getBags_py(dataRow);
+	String Dispatch_Source = excel.getDispatch_Source_py(dataRow); // "Others"; // e-Samridhi/Others
+	String NameofSLA = excel.getNameofSLA_py(dataRow); // "Laxmi Product";
+	String Type_of_Gunny_Bags = excel.getGunny_Bags_py(dataRow); // "SBT";
+	int Weight_of_Gunny_Bags = excel.getWeight_of_Gunny_Bags(dataRow); // 100;
+	String Status_of_Gunny_Bags = excel.getStatus_of_Gunny_Bags(dataRow); // "Old";
+	String Gunny_Bags_Stenciled = excel.getGunny_Bags_Stenciled(dataRow); // "Yes";
+	String Gunny_Bags_QR_Tagged = excel.getGunny_Bags_QR_Tagged(dataRow); // "Yes";
+	String Gunny_Bags_Machine_Stitched = excel.getGunny_Bags_Machine_Stitched(dataRow); // "Yes";
 	String Commodity = "15";
 	String Variety_Code = "999 - Cotton Bales";
-	String Dispatch_Source = "e-Samridhi"; // e-Samridhi
-	String NameofSLA = "Laxmi Product";
-	String Type_of_Gunny_Bags = "SBT";
-	int Weight_of_Gunny_Bags = 100;
-	String Status_of_Gunny_Bags = "Old";
-	String Gunny_Bags_Stenciled = "Yes";
-	String Gunny_Bags_QR_Tagged = "Yes";
-	String Gunny_Bags_Machine_Stitched = "Yes";
 	int j = 3;
 	int i;
-//	int k = j * i;
 
 	public Physical_Deposit_Maker(WebDriver driver, WebDriverWait Wait) {
 		this.driver = driver;
@@ -277,6 +264,8 @@ public class Physical_Deposit_Maker {
 	WebElement monthselect;
 	@FindBy(xpath = "//div[@class='calendar left single']//select[@class='yearselect']")
 	WebElement yearselect;
+	@FindBy(xpath = "//td[@class='today weekend active start-date active end-date available']")
+	WebElement WeekEnd_Date;
 	@FindBy(xpath = "(//td[@class='today active start-date active end-date in-range available'])[1]")
 	WebElement Today_dates;
 	@FindBy(xpath = "//input[@id='shelflife']")
@@ -1532,26 +1521,30 @@ public class Physical_Deposit_Maker {
 		 */
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 		Thread.sleep(2000);
-		try {
-			Variety_Code_bttn.click();
-			Thread.sleep(1000);
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-			// Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
-			Variety_Code_Text.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-			Thread.sleep(1000);
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-			Thread.sleep(2000);
-			Variety_Code_Text.click();
-		} catch (NoSuchElementException e) {
-			System.out.println("Variety_Code_Text not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
+
+		if (Commodity.equals(Commodity_Code)) {
+			try {
+				Variety_Code_bttn.click();
+				Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+				// Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+				Thread.sleep(2000);
+				Variety_Code_Text.sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+				Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+				Thread.sleep(2000);
+				Variety_Code_Text.click();
+			} catch (NoSuchElementException e) {
+				System.out.println("Variety_Code_Text not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
+			}
+		} else {
+			System.out.println("Variety_Code is not requird");
 		}
 
-		// assaying_type_Text.sendKeys(assaying_type);
 		try {
 			Select Sa = new Select(assaying_type_Text);
 			Sa.selectByContainsVisibleText(assaying_type);
@@ -1571,7 +1564,6 @@ public class Physical_Deposit_Maker {
 		}
 		if (Weight_bridge_Receipt.matches("^[a-zA-Z0-9]{0,50}$")) {
 			Weight_bridge_Receipt_text.sendKeys(Weight_bridge_Receipt);
-			// int Quantity = Notional_Quantity.getText();
 		} else {
 			System.out.println("Invalid Weight_bridge. Please enter exactly 50 alphanumeric characters:");
 
@@ -1891,28 +1883,29 @@ public class Physical_Deposit_Maker {
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 
 		Thread.sleep(5000);
-		// if (Commodity.equals(Commodity_Code)) {
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-			Thread.sleep(5000);
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code); //
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
-			Variety_Code_Text.sendKeys(Keys.ENTER);
-		} catch (ElementClickInterceptedException e) {
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-			Thread.sleep(1000);
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-			Thread.sleep(2000);
-			Variety_Code_Text.click();
-		} catch (NoSuchElementException e) {
-			System.out.println("Variety_Code_Text not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
+		if (Commodity.equals(Commodity_Code)) {
+			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+				Thread.sleep(5000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code); //
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
+				Thread.sleep(2000);
+				Variety_Code_Text.sendKeys(Keys.ENTER);
+			} catch (ElementClickInterceptedException e) {
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
+				Thread.sleep(1000);
+				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
+				Thread.sleep(2000);
+				Variety_Code_Text.click();
+			} catch (NoSuchElementException e) {
+				System.out.println("Variety_Code_Text not found: " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
+			}
+
+		} else {
+			System.out.println("Variety_Code is not requird");
 		}
-		/*
-		 * } else { System.out.println("Variety_Code is not requird"); }
-		 */
 
 		// assaying_type_Text.sendKeys(assaying_type);
 		try {
@@ -2402,10 +2395,11 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Transaction_Btn: " + e.getMessage());
 		}
-		
+		// CR-0418 Need to Validate the Dispatch ID with NEML through API for Government
+		// Agency Deposit Type in Physical Deposit module
 		Select Vegad = new Select(Dispatch_Source_btn);
-		Vegad.selectByContainsVisibleText("Others");
-	
+		Vegad.selectByContainsVisibleText(Dispatch_Source);
+
 		try {
 			if (dispatch_id_GA.isDisplayed()) {
 				Wait.until(ExpectedConditions.elementToBeClickable(dispatch_id_GA)).click();
@@ -2427,22 +2421,22 @@ public class Physical_Deposit_Maker {
 			System.out.println("Unexpected error for dispatch_id: " + e.getMessage());
 		}
 
-		try {
-			Validate_Btn.click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Validate_Btn click...");
-			js.executeScript("arguments[0].click();", Validate_Btn);
-		} catch (NoSuchElementException e) {
-			System.out.println("Validate_Btn not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Validate_Btn: " + e.getMessage());
-		}
-		
+		/*
+		 * try { Validate_Btn.click(); } catch (ElementClickInterceptedException e) {
+		 * System.out.
+		 * println("Normal click failed, trying JavaScript Validate_Btn click...");
+		 * js.executeScript("arguments[0].click();", Validate_Btn); } catch
+		 * (NoSuchElementException e) { System.out.println("Validate_Btn not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for Validate_Btn: " + e.getMessage()); }
+		 */
+		// CR 402 - Government Agency_Introducing new fields in eNWR issuance process
 		NameofSLA_Btn.click();
 		NameofSLA_Txt.sendKeys(NameofSLA);
 		Thread.sleep(500);
 		Wait.until(ExpectedConditions.elementToBeClickable(NameofSLA_Txt)).sendKeys(Keys.ENTER);
 
+		//
 		Type_of_Gunny_Bags_Btn.click();
 		Type_of_Gunny_Bags_Txt.sendKeys(Type_of_Gunny_Bags);
 		Wait.until(ExpectedConditions.elementToBeClickable(Type_of_Gunny_Bags_Txt)).sendKeys(Keys.ENTER);
@@ -2529,7 +2523,7 @@ public class Physical_Deposit_Maker {
 			if (EstimatedValueAtDeposit.matches("^[0-9]{0,15}$")) {
 				Estimated.sendKeys(EstimatedValueAtDeposit);
 			} else {
-				System.out.println("Invalid EstimatedValueAtDeposit. Please enter exactly 15 digits (numbers only):");
+				System.out.println("Invalid EstimatedValueAtDeposit");
 			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript Estimated click...");
@@ -2681,123 +2675,76 @@ public class Physical_Deposit_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Depositor_Detail: " + e.getMessage());
 		}
-		try {
-			if (PanCard_No.matches("^[a-zA-Z0-9]{0,10}$")) {
-				PAN_No.click();
-				PAN_No.sendKeys(PanCard_No);
-			} else {
-				System.out.println("Invalid PanCard_No. Please enter exactly 10 digits (numbers only):");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript PAN_No click...");
-			js.executeScript("arguments[0].click();", PAN_No);
-			js.executeScript("arguments[0].value='" + PanCard_No + "';", PAN_No);
-		} catch (NoSuchElementException e) {
-			System.out.println("PAN_No not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for PAN_No: " + e.getMessage());
-		}
-		try {
-			if (DepositerName.matches("^[a-zA-Z0-9]{0,15}$")) {
-				Depositer.click();
-				Wait.until(ExpectedConditions.elementToBeClickable(Depositer)).sendKeys(DepositerName);
-				// Depositer.sendKeys(Keys.ENTER);
-			} else {
-				System.out.println("Invalid DepositerName. Please enter exactly 15 digits (numbers only):");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Depositer click...");
-			js.executeScript("arguments[0].click();", Depositer);
-			js.executeScript("arguments[0].value='" + DepositerName + "';", Depositer);
-		} catch (NoSuchElementException e) {
-			System.out.println("Depositer not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Depositer: " + e.getMessage());
-		}
-		try {
-			if (L1.matches("^[a-zA-Z0-9]{0,33}$")) {
-				Line_No_1.click();
-				Line_No_1.sendKeys(L1);
-			} else {
-				System.out.println("Invalid L1. Please enter exactly 15 digits (numbers only):");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Line_No_1 click...");
-			js.executeScript("arguments[0].click();", Line_No_1);
-			js.executeScript("arguments[0].value='" + L1 + "';", Line_No_1);
-		} catch (NoSuchElementException e) {
-			System.out.println("Line_No_1 not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Line_No_1: " + e.getMessage());
-		}
-		try {
-			if (L2.matches("^[a-zA-Z0-9]{0,33}$")) {
-				Line_No_2.click();
-				Line_No_2.sendKeys(L2);
-			} else {
-				System.out.println("Invalid L2. Please enter exactly 15 digits (numbers only):");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Line_No_2 click...");
-			js.executeScript("arguments[0].click();", Line_No_2);
-			js.executeScript("arguments[0].value='" + L2 + "';", Line_No_2);
-		} catch (NoSuchElementException e) {
-			System.out.println("Line_No_2 not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Line_No_2: " + e.getMessage());
-		}
-		try {
-			if (L3.matches("^[a-zA-Z0-9]{0,33}$")) {
-				Line_No_3.click();
-				Line_No_3.sendKeys(L3);
-			} else {
-				System.out.println("Invalid L3. Please enter exactly 15 digits (numbers only):");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript Line_No_3 click...");
-			js.executeScript("arguments[0].click();", Line_No_3);
-			js.executeScript("arguments[0].value='" + L3 + "';", Line_No_3);
-		} catch (NoSuchElementException e) {
-			System.out.println("Line_No_3 not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for Line_No_3: " + e.getMessage());
-		}
-		try {
-			if (City_Name.matches("^[a-zA-Z0-9]{0,33}$")) {
-				City.sendKeys(City_Name);
-			} else {
-				System.out.println("Invalid City_Name. Please enter exactly 15 digits (numbers only):");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript City click...");
-			js.executeScript("arguments[0].value='" + City_Name + "';", City);
-		} catch (NoSuchElementException e) {
-			System.out.println("City not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for City: " + e.getMessage());
-		}
-		try {
-			if (PinCode.matches("^[0-9]{0,11}$")) {
-				PinCode_Text.sendKeys(PinCode);
-				PinCode_Text.sendKeys(Keys.ENTER);
-				PinCode_Text.sendKeys(Keys.ENTER);
-			} else {
-				System.out.println("Invalid PinCode. Please enter exactly 15 digits (numbers only):");
-			}
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript PinCode_Text click...");
-			js.executeScript("arguments[0].value='" + L3 + "';", PinCode_Text);
-			js.executeScript("arguments[0].click();", PinCode_Text);
-			js.executeScript("arguments[0].click();", PinCode_Text);
-		} catch (NoSuchElementException e) {
-			System.out.println("PinCode_Text not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for PinCode_Text: " + e.getMessage());
-		}
-
-		// State.click();
-		// Wait.until(ExpectedConditions.textToBePresentInElementValue(State,
-		// "Maharashtra"));
+		/*
+		 * try { if (PanCard_No.matches("^[a-zA-Z0-9]{0,10}$")) { PAN_No.click();
+		 * PAN_No.sendKeys(PanCard_No); } else { System.out.
+		 * println("Invalid PanCard_No. Please enter exactly 10 digits (numbers only):"
+		 * ); } } catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying JavaScript PAN_No click...");
+		 * js.executeScript("arguments[0].click();", PAN_No);
+		 * js.executeScript("arguments[0].value='" + PanCard_No + "';", PAN_No); } catch
+		 * (NoSuchElementException e) { System.out.println("PAN_No not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for PAN_No: " + e.getMessage()); } try {
+		 * if (DepositerName.matches("^[a-zA-Z0-9]{0,15}$")) { Depositer.click();
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Depositer)).sendKeys(
+		 * DepositerName); // Depositer.sendKeys(Keys.ENTER); } else {
+		 * System.out.println("Invalid DepositerName"); } } catch
+		 * (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript Depositer click...");
+		 * js.executeScript("arguments[0].click();", Depositer);
+		 * js.executeScript("arguments[0].value='" + DepositerName + "';", Depositer); }
+		 * catch (NoSuchElementException e) { System.out.println("Depositer not found: "
+		 * + e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for Depositer: " + e.getMessage()); }
+		 * try { if (L1.matches("^[a-zA-Z0-9]{0,33}$")) { Line_No_1.click();
+		 * Line_No_1.sendKeys(L1); } else { System.out.println("Invalid L1"); } } catch
+		 * (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript Line_No_1 click...");
+		 * js.executeScript("arguments[0].click();", Line_No_1);
+		 * js.executeScript("arguments[0].value='" + L1 + "';", Line_No_1); } catch
+		 * (NoSuchElementException e) { System.out.println("Line_No_1 not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for Line_No_1: " + e.getMessage()); }
+		 * try { if (L2.matches("^[a-zA-Z0-9]{0,33}$")) { Line_No_2.click();
+		 * Line_No_2.sendKeys(L2); } else { System.out.
+		 * println("Invalid L2. Please enter exactly 15 digits (numbers only):"); } }
+		 * catch (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript Line_No_2 click...");
+		 * js.executeScript("arguments[0].click();", Line_No_2);
+		 * js.executeScript("arguments[0].value='" + L2 + "';", Line_No_2); } catch
+		 * (NoSuchElementException e) { System.out.println("Line_No_2 not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for Line_No_2: " + e.getMessage()); }
+		 * try { if (L3.matches("^[a-zA-Z0-9]{0,33}$")) { Line_No_3.click();
+		 * Line_No_3.sendKeys(L3); } else { System.out.println("Invalid L3"); } } catch
+		 * (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript Line_No_3 click...");
+		 * js.executeScript("arguments[0].click();", Line_No_3);
+		 * js.executeScript("arguments[0].value='" + L3 + "';", Line_No_3); } catch
+		 * (NoSuchElementException e) { System.out.println("Line_No_3 not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for Line_No_3: " + e.getMessage()); }
+		 * try { if (City_Name.matches("^[a-zA-Z0-9]{0,33}$")) {
+		 * City.sendKeys(City_Name); } else { System.out.println("Invalid City_Name"); }
+		 * } catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying JavaScript City click...");
+		 * js.executeScript("arguments[0].value='" + City_Name + "';", City); } catch
+		 * (NoSuchElementException e) { System.out.println("City not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for City: " + e.getMessage()); } try {
+		 * if (PinCode.matches("^[0-9]{0,6}$")) { PinCode_Text.sendKeys(PinCode);
+		 * PinCode_Text.sendKeys(Keys.ENTER); PinCode_Text.sendKeys(Keys.ENTER); } else
+		 * { System.out.println("Invalid PinCode"); } } catch
+		 * (ElementClickInterceptedException e) { System.out.
+		 * println("Normal click failed, trying JavaScript PinCode_Text click...");
+		 * js.executeScript("arguments[0].value='" + L3 + "';", PinCode_Text);
+		 * js.executeScript("arguments[0].click();", PinCode_Text);
+		 * js.executeScript("arguments[0].click();", PinCode_Text); } catch
+		 * (NoSuchElementException e) { System.out.println("PinCode_Text not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for PinCode_Text: " + e.getMessage()); }
+		 */
 
 		// --------- Deposit Assayer WebElement ---------------
 		try {
@@ -2830,13 +2777,40 @@ public class Physical_Deposit_Maker {
 			System.out.println("Unexpected error for Assayring_Referance_No: " + e.getMessage());
 		}
 
-		Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
-
-		// AssayingDate.click();
-
-		Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-
-		Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+		/*
+		 * Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
+		 * 
+		 * // AssayingDate.click();
+		 * 
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
+		 * 
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+		 */
+		/*
+		 * try {
+		 * Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click(); //
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click(); //
+		 * Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+		 * DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+		 * 
+		 * if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) { // Click on
+		 * Weekend date button WebElement weekendButton =
+		 * Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+		 * weekendButton.click(); System.out.println("Weekend button clicked"); } else {
+		 * // Click on Today date button WebElement todayButton =
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+		 * Wait.until(ExpectedConditions.elementToBeClickable(todayButton)).click();
+		 * System.out.println("Today date button clicked"); } } catch
+		 * (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying JavaScript click...");
+		 * js.executeScript("arguments[0].click();", AssayingDate);
+		 * js.executeScript("arguments[0].click();", Calander);
+		 * js.executeScript("arguments[0].click();", Today_dates); } catch
+		 * (NoSuchElementException e) { System.out.println("Element not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error: " + e.getMessage()); }
+		 */
 
 		try {
 			if (String.valueOf(shelflife).matches("^[0-9]{0,5}$")) {
@@ -2916,10 +2890,13 @@ public class Physical_Deposit_Maker {
 			Select Grade_CHANA = new Select(Grade_CHANA_WHOLE);
 			Grade_CHANA.selectByVisibleText("NAFED FAQ");
 			// Grade_CHANA_WHOLE.click();
-
+			Thread.sleep(2000);
+			
 			Select Qualification = new Select(Pre_Qualification_Txt);
 			Qualification.selectByContainsVisibleText("Qualified");
 
+			Thread.sleep(2000);
+			
 			OTHER_FOOD_GRAINS_CHANA.sendKeys("3");
 
 			DAMAGED_GRAINS_CHANA.sendKeys("3");
@@ -2935,6 +2912,9 @@ public class Physical_Deposit_Maker {
 			MOISTURE_CONTENT_Chana.sendKeys("14");
 
 			SLIGHTLY_DAMAGED_TOUCHED_GRAINS_Chana.sendKeys("4");
+			
+			//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+			Thread.sleep(2000);
 			break;
 		case 13:
 			System.out.println("You selected: Soyabean");
@@ -2955,6 +2935,7 @@ public class Physical_Deposit_Maker {
 			System.out.println("Invalid selection!");
 		}
 		// -----------------Deposit Confirm WebElement------------
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
 		try {
 			Deposit_Confirm.click();
 		} catch (ElementClickInterceptedException e) {
@@ -2968,7 +2949,7 @@ public class Physical_Deposit_Maker {
 
 		Lots.click();
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
 
 		try {
 			if (Verify_btn.isDisplayed()) {

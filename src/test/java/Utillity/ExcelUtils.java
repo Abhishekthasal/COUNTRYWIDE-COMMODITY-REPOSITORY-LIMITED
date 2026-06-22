@@ -288,6 +288,41 @@ public class ExcelUtils {
 	public int gettotalBags(int rowNum) {
 		return (int) Sheet.getRow(rowNum).getCell(28).getNumericCellValue();
 	}
+	
+	public String getDispatch_Source_py(int rowNum) {
+		return getCellData(rowNum, 29);
+	}
+	
+	public String getNameofSLA_py(int rowNum) {
+		return getCellData(rowNum, 30);
+	}
+	
+	public String getGunny_Bags_py(int rowNum) {
+		return getCellData(rowNum, 31);
+	}
+	
+	public int getWeight_of_Gunny_Bags(int rowNum) {
+		return (int) Sheet.getRow(rowNum).getCell(32).getNumericCellValue();
+	}
+	
+	public String getStatus_of_Gunny_Bags(int rowNum) {
+		return getCellData(rowNum, 33);
+	}
+	
+	public String getGunny_Bags_Stenciled(int rowNum) {
+		return getCellData(rowNum, 34);
+	}
+	
+	
+	public String getGunny_Bags_QR_Tagged(int rowNum) {
+		return getCellData(rowNum, 35);
+	}
+	
+	
+	public String getGunny_Bags_Machine_Stitched(int rowNum) {
+		return getCellData(rowNum, 36);
+	}
+	
 
 	/************ RP_Exchange_Deposite_Agriculture_Maker *************************/
 	public String getCommoditySegment_Ex(int rowNum) {
@@ -588,6 +623,10 @@ public class ExcelUtils {
 	public String getBag_UOM_GA(int rowNum) {
 		return getCellData(rowNum, 15);
 	}
+	
+	
+	
+	
 
 	/***********************************
 	 * PladgeRequest

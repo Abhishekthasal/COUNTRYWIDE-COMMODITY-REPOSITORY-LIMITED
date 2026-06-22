@@ -355,12 +355,15 @@ public class Client_Account_opening_For_RP {
 
 		Bank_Details.click();
 
+		//CR-0417 Removal of mandatory validation of Bank Details for RP users
+		
 		bank_Account_No.sendKeys(String.valueOf(Account_No));
 
 		ifsc_No.click();
 		ifsc_No.sendKeys(String.valueOf(IFSC));
 		ifsc_No.sendKeys(Keys.TAB);
 		Thread.sleep(2000);
+		
 		Wait.until(ExpectedConditions.elementToBeClickable(MICR)).click();
 		Wait.until(ExpectedConditions.elementToBeClickable(MICR_Code)).click();
 

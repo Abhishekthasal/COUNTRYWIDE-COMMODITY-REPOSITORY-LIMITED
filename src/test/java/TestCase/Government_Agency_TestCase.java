@@ -44,7 +44,7 @@ public class Government_Agency_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	//@Test
+//	@Test
 	void RP_Deposite_Request_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Government_Agency_Deposite_Request_Checker is start");
@@ -91,7 +91,7 @@ public class Government_Agency_TestCase extends BaseClass {
 			 //Login.PortalLogin("wsp9999996", "user72", "121@test");
 			//Login.PortalLogin("wsp9996059", "user101", "121@test");
 			//Login.PortalLogin("wsp9997115", "pratap", "121@test");
-			Login.PortalLogin("WSP9999996", "user72", "121@etst");
+			Login.PortalLogin("WSP9999996", "user72", "121@test");
 			DashBoard_WareHouse_Checker WSP_CH = new DashBoard_WareHouse_Checker(driver, Wait);
 			WSP_CH.Government_Agency_Deposite_Transaction_Checker();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))+"Government_Agency_WareHouse_Checker is successfull");

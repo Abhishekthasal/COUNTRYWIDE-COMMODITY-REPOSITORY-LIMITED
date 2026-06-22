@@ -491,12 +491,42 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Assayring_Referance_No: " + e.getMessage());
 		}
+		/*
+		 * JavascriptExecutor js = (JavascriptExecutor) driver;
+		 * js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate); try {
+		 * AssayingDate.click();
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click(); }
+		 * catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying JavaScript click...");
+		 * js.executeScript("arguments[0].click();", AssayingDate);
+		 * js.executeScript("arguments[0].click();", Calander);
+		 * js.executeScript("arguments[0].click();", Today_dates); } catch
+		 * (NoSuchElementException e) { System.out.println("Element not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error: " + e.getMessage()); }
+		 */
+		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
 		try {
-			AssayingDate.click();
+			Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-			Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+			// Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+			// Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+			DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+
+			if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+				// Click on Weekend date button
+				WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+				weekendButton.click();
+				System.out.println("Weekend button clicked");
+			} else {
+				// Click on Today date button
+				WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+				Wait.until(ExpectedConditions.elementToBeClickable(todayButton)).click();
+				System.out.println("Today date button clicked");
+			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
 			js.executeScript("arguments[0].click();", AssayingDate);
@@ -507,23 +537,7 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error: " + e.getMessage());
 		}
-		/*
-		 * String Month_Present = monthselect.getText();
-		 * System.out.println(Month_Present); String Year_Present =yearselect.getText();
-		 * System.out.println(Year_Present);
-		 *
-		 * Select Month =new Select(monthselect);
-		 *
-		 * Select Year =new Select(yearselect);
-		 *
-		 * LocalDateTime Live = LocalDateTime.now();
-		 *
-		 * while(Live.equals(Month)&& Live.equals(Year)) {
-		 *
-		 * Today_dates.click();
-		 *
-		 * }
-		 */
+		
 		try {
 			if (String.valueOf(shelflife).matches("^[0-9]{0,5}$")) {
 				shelflife_count.sendKeys(shelflife);
@@ -804,40 +818,54 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Assayring_Referance_No: " + e.getMessage());
 		}
+		/*
+		 * JavascriptExecutor js = (JavascriptExecutor) driver;
+		 * js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate); try {
+		 * Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
+		 * Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+		 * 
+		 * } catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying JavaScript click...");
+		 * js.executeScript("arguments[0].click();", AssayingDate);
+		 * js.executeScript("arguments[0].click();", Calander);
+		 * js.executeScript("arguments[0].click();", WeekEnd_Date); } catch
+		 * (NoSuchElementException e) { System.out.println("Element not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error: " + e.getMessage()); }
+		 */
+	
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
 		try {
 			Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-			Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+			// Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+			// Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+			DayOfWeek today = LocalDateTime.now().getDayOfWeek();
 
+			if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+				// Click on Weekend date button
+				WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+				weekendButton.click();
+				System.out.println("Weekend button clicked");
+			} else {
+				// Click on Today date button
+				WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+				Wait.until(ExpectedConditions.elementToBeClickable(todayButton)).click();
+				System.out.println("Today date button clicked");
+			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
 			js.executeScript("arguments[0].click();", AssayingDate);
 			js.executeScript("arguments[0].click();", Calander);
-			js.executeScript("arguments[0].click();", WeekEnd_Date);
+			js.executeScript("arguments[0].click();", Today_dates);
 		} catch (NoSuchElementException e) {
 			System.out.println("Element not found: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Unexpected error: " + e.getMessage());
 		}
-		/*
-		 * String Month_Present = monthselect.getText();
-		 * System.out.println(Month_Present); String Year_Present =yearselect.getText();
-		 * System.out.println(Year_Present);
-		 *
-		 * Select Month =new Select(monthselect);
-		 *
-		 * Select Year =new Select(yearselect);
-		 *
-		 * LocalDateTime Live = LocalDateTime.now();
-		 *
-		 * while(Live.equals(Month)&& Live.equals(Year)) {
-		 *
-		 * Today_dates.click();
-		 *
-		 * }
-		 */
+		
 		try {
 			if (String.valueOf(shelflife).matches("^[0-9]{0,5}$")) {
 				shelflife_count.sendKeys(shelflife);
@@ -1102,31 +1130,57 @@ public class Deposite_Assayer_Maker {
 		} catch (Exception e) {
 			System.out.println("Unexpected error for Assayring_Referance_No: " + e.getMessage());
 		}
+		/*
+		 * try { AssayingDate.click(); } catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying JavaScript click...");
+		 * js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
+		 * js.executeScript("arguments[0].click();", AssayingDate); } catch
+		 * (NoSuchElementException e) { System.out.println("AssayingDate not found: " +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for AssayingDate: " + e.getMessage()); }
+		 * try { Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
+		 * Today_dates.click(); } catch (ElementClickInterceptedException e) {
+		 * System.out.println("Normal click failed, trying JavaScript click...");
+		 * js.executeScript("arguments[0].scrollIntoView(true);", Calander);
+		 * js.executeScript("arguments[0].click();", Calander);
+		 * js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
+		 * js.executeScript("arguments[0].click();", Today_dates); } catch
+		 * (NoSuchElementException e) { System.out.println("Calander not found:" +
+		 * e.getMessage()); } catch (Exception e) {
+		 * System.out.println("Unexpected error for Calander: " + e.getMessage()); }
+		 */
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
 		try {
-			AssayingDate.click();
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
-			js.executeScript("arguments[0].click();", AssayingDate);
-		} catch (NoSuchElementException e) {
-			System.out.println("AssayingDate not found: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error for AssayingDate: " + e.getMessage());
-		}
-		try {
+			Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
 			Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-			Today_dates.click();
+			// Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+			// Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+			DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+
+			if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+				// Click on Weekend date button
+				WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+				weekendButton.click();
+				System.out.println("Weekend button clicked");
+			} else {
+				// Click on Today date button
+				WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+				Wait.until(ExpectedConditions.elementToBeClickable(todayButton)).click();
+				System.out.println("Today date button clicked");
+			}
 		} catch (ElementClickInterceptedException e) {
 			System.out.println("Normal click failed, trying JavaScript click...");
-			js.executeScript("arguments[0].scrollIntoView(true);", Calander);
+			js.executeScript("arguments[0].click();", AssayingDate);
 			js.executeScript("arguments[0].click();", Calander);
-			js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
 			js.executeScript("arguments[0].click();", Today_dates);
 		} catch (NoSuchElementException e) {
-			System.out.println("Calander not found:" + e.getMessage());
+			System.out.println("Element not found: " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Unexpected error for Calander: " + e.getMessage());
+			System.out.println("Unexpected error: " + e.getMessage());
 		}
+		
 		try {
 			shelflife_count.sendKeys(shelflife);
 		} catch (ElementClickInterceptedException e) {
@@ -1182,25 +1236,49 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for remark: " + e.getMessage());
 			}
+			/*
+			 * try { NABLCertificateDate.click(); } catch (ElementClickInterceptedException
+			 * e) { js.executeScript("arguments[0].scrollIntoView(true);",
+			 * NABLCertificateDate); js.executeScript("arguments[0].click();",
+			 * NABLCertificateDate); } catch (NoSuchElementException e) {
+			 * System.out.println("NABLCertificateDate not found: " + e.getMessage()); }
+			 * catch (Exception e) {
+			 * System.out.println("Unexpected error for NABLCertificateDate: " +
+			 * e.getMessage()); } try { Today_dates.click(); } catch
+			 * (ElementClickInterceptedException e) {
+			 * js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
+			 * js.executeScript("arguments[0].click();", Today_dates); } catch
+			 * (NoSuchElementException e) { System.out.println("Today_dates not found: " +
+			 * e.getMessage()); } catch (Exception e) {
+			 * System.out.println("Unexpected error for Today_dates: " + e.getMessage()); }
+			 */
+			
 			try {
-				NABLCertificateDate.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(NABLCertificateDate)).click();
+				Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
+				
+				DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+
+				if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+					// Click on Weekend date button
+					WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+					weekendButton.click();
+					System.out.println("Weekend button clicked");
+				} else {
+					// Click on Today date button
+					WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+					Wait.until(ExpectedConditions.elementToBeClickable(todayButton)).click();
+					System.out.println("Today date button clicked");
+				}
 			} catch (ElementClickInterceptedException e) {
-				js.executeScript("arguments[0].scrollIntoView(true);", NABLCertificateDate);
-				js.executeScript("arguments[0].click();", NABLCertificateDate);
-			} catch (NoSuchElementException e) {
-				System.out.println("NABLCertificateDate not found: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Unexpected error for NABLCertificateDate: " + e.getMessage());
-			}
-			try {
-				Today_dates.click();
-			} catch (ElementClickInterceptedException e) {
-				js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
+				System.out.println("Normal click failed, trying JavaScript click...");
+				js.executeScript("arguments[0].click();", AssayingDate);
+				js.executeScript("arguments[0].click();", Calander);
 				js.executeScript("arguments[0].click();", Today_dates);
 			} catch (NoSuchElementException e) {
-				System.out.println("Today_dates not found: " + e.getMessage());
+				System.out.println("Element not found: " + e.getMessage());
 			} catch (Exception e) {
-				System.out.println("Unexpected error for Today_dates: " + e.getMessage());
+				System.out.println("Unexpected error: " + e.getMessage());
 			}
 			try {
 				NABLCertificateRefNo.sendKeys(NABLCertificateRefNum);
@@ -1429,23 +1507,7 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error: " + e.getMessage());
 			}
-			/*
-			 * String Month_Present = monthselect.getText();
-			 * System.out.println(Month_Present); String Year_Present =yearselect.getText();
-			 * System.out.println(Year_Present);
-			 *
-			 * Select Month =new Select(monthselect);
-			 *
-			 * Select Year =new Select(yearselect);
-			 *
-			 * LocalDateTime Live = LocalDateTime.now();
-			 *
-			 * while(Live.equals(Month)&& Live.equals(Year)) {
-			 *
-			 * Today_dates.click();
-			 *
-			 * }
-			 */
+			
 			try {
 				if (String.valueOf(shelflife).matches("^[0-9]{0,5}$")) {
 					Wait.until(ExpectedConditions.elementToBeClickable(shelflife_count)).sendKeys(shelflife);
@@ -1760,12 +1822,42 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Assayring_Referance_No: " + e.getMessage());
 			}
+			/*
+			 * JavascriptExecutor js = (JavascriptExecutor) driver;
+			 * js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate); try {
+			 * AssayingDate.click();
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click(); }
+			 * catch (ElementClickInterceptedException e) {
+			 * System.out.println("Normal click failed, trying JavaScript click...");
+			 * js.executeScript("arguments[0].click();", AssayingDate);
+			 * js.executeScript("arguments[0].click();", Calander);
+			 * js.executeScript("arguments[0].click();", Today_dates); } catch
+			 * (NoSuchElementException e) { System.out.println("Element not found: " +
+			 * e.getMessage()); } catch (Exception e) {
+			 * System.out.println("Unexpected error: " + e.getMessage()); }
+			 */
+			
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
 			try {
-				AssayingDate.click();
+				Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+				DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+
+				if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+					// Click on Weekend date button
+					WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+					weekendButton.click();
+					System.out.println("Weekend button clicked");
+				} else {
+					// Click on Today date button
+					WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+					Wait.until(ExpectedConditions.elementToBeClickable(todayButton)).click();
+					System.out.println("Today date button clicked");
+				}
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
 				js.executeScript("arguments[0].click();", AssayingDate);
@@ -1776,23 +1868,7 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error: " + e.getMessage());
 			}
-			/*
-			 * String Month_Present = monthselect.getText();
-			 * System.out.println(Month_Present); String Year_Present =yearselect.getText();
-			 * System.out.println(Year_Present);
-			 *
-			 * Select Month =new Select(monthselect);
-			 *
-			 * Select Year =new Select(yearselect);
-			 *
-			 * LocalDateTime Live = LocalDateTime.now();
-			 *
-			 * while(Live.equals(Month)&& Live.equals(Year)) {
-			 *
-			 * Today_dates.click();
-			 *
-			 * }
-			 */
+			
 			try {
 				if (String.valueOf(shelflife).matches("^[0-9]{0,5}$")) {
 					shelflife_count.sendKeys(shelflife);
@@ -2157,31 +2233,57 @@ public class Deposite_Assayer_Maker {
 			} catch (Exception e) {
 				System.out.println("Unexpected error for Assayring_Referance_No: " + e.getMessage());
 			}
+			/*
+			 * try { AssayingDate.click(); } catch (ElementClickInterceptedException e) {
+			 * System.out.println("Normal click failed, trying JavaScript click...");
+			 * js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
+			 * js.executeScript("arguments[0].click();", AssayingDate); } catch
+			 * (NoSuchElementException e) { System.out.println("AssayingDate not found: " +
+			 * e.getMessage()); } catch (Exception e) {
+			 * System.out.println("Unexpected error for AssayingDate: " + e.getMessage()); }
+			 * try { Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
+			 * Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click(); }
+			 * catch (ElementClickInterceptedException e) {
+			 * System.out.println("Normal click failed, trying JavaScript click...");
+			 * js.executeScript("arguments[0].scrollIntoView(true);", Calander);
+			 * js.executeScript("arguments[0].click();", Calander);
+			 * js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
+			 * js.executeScript("arguments[0].click();", Today_dates); } catch
+			 * (NoSuchElementException e) { System.out.println("Calander not found:" +
+			 * e.getMessage()); } catch (Exception e) {
+			 * System.out.println("Unexpected error for Calander: " + e.getMessage()); }
+			 */
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
 			try {
-				AssayingDate.click();
-			} catch (ElementClickInterceptedException e) {
-				System.out.println("Normal click failed, trying JavaScript click...");
-				js.executeScript("arguments[0].scrollIntoView(true);", AssayingDate);
-				js.executeScript("arguments[0].click();", AssayingDate);
-			} catch (NoSuchElementException e) {
-				System.out.println("AssayingDate not found: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Unexpected error for AssayingDate: " + e.getMessage());
-			}
-			try {
+				Wait.until(ExpectedConditions.elementToBeClickable(AssayingDate)).click();
 				Wait.until(ExpectedConditions.elementToBeClickable(Calander)).click();
-				Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(Today_dates)).click();
+				// Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date)).click();
+				DayOfWeek today = LocalDateTime.now().getDayOfWeek();
+
+				if (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY) {
+					// Click on Weekend date button
+					WebElement weekendButton = Wait.until(ExpectedConditions.elementToBeClickable(WeekEnd_Date));
+					weekendButton.click();
+					System.out.println("Weekend button clicked");
+				} else {
+					// Click on Today date button
+					WebElement todayButton = Wait.until(ExpectedConditions.elementToBeClickable(Today_dates));
+					Wait.until(ExpectedConditions.elementToBeClickable(todayButton)).click();
+					System.out.println("Today date button clicked");
+				}
 			} catch (ElementClickInterceptedException e) {
 				System.out.println("Normal click failed, trying JavaScript click...");
-				js.executeScript("arguments[0].scrollIntoView(true);", Calander);
+				js.executeScript("arguments[0].click();", AssayingDate);
 				js.executeScript("arguments[0].click();", Calander);
-				js.executeScript("arguments[0].scrollIntoView(true);", Today_dates);
 				js.executeScript("arguments[0].click();", Today_dates);
 			} catch (NoSuchElementException e) {
-				System.out.println("Calander not found:" + e.getMessage());
+				System.out.println("Element not found: " + e.getMessage());
 			} catch (Exception e) {
-				System.out.println("Unexpected error for Calander: " + e.getMessage());
+				System.out.println("Unexpected error: " + e.getMessage());
 			}
+			
 			try {
 				shelflife_count.sendKeys(shelflife);
 			} catch (ElementClickInterceptedException e) {
