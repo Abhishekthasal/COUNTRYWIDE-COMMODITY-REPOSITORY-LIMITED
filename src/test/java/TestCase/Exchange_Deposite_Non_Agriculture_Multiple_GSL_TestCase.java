@@ -23,7 +23,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			+ " Exchange_Deposite_Non_Agri_GSL" + +System.currentTimeMillis() + ".html", true);
 	ExtentTest test = Report.startTest("ENWR_Generation for Exchange_Non_Agriculture");
 
-	//@Test
+//	@Test
 	void Exchange_Deposite_Request_Non_Agriculture_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculturet_Maker start");
@@ -50,7 +50,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 		Report.flush();
 	}
 
-	// @Test
+//	 @Test
 	void RP_Deposite_Request_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Deposite_Non_Agriculture_Checker is start");
@@ -58,7 +58,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("RP-KML", "user_B", "121@test");
 			 Login.PortalLogin("RP-UATTEST", "user2", "121@test");
-			 Login.PortalLogin("rp-Abhishek", "user52", "121@test");
+			// Login.PortalLogin("rp-Abhishek", "user52", "121@test");
 			// Login.PortalLogin("RP-COUNTRYWIDE", "Bhanu2", "121@test");
 			Dash.Exchange_Deposite_Request_Non_Agriculture_Checker();
 			test.log(LogStatus.PASS, "Exchange_Deposite_Non_Agriculture_Checker is successfull");
@@ -130,8 +130,8 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			LoginPages Login = new LoginPages(driver, Wait);
 			//Login.PortalLogin("Asyr-3338084", "user1", "121@test");
 			// Login.PortalLogin("ASYR-2905202", "Bhanu1", "121@best");
-			// Login.PortalLogin("ASYR-8889999", "user1", "121@test"); //Lakshuman
-			 Login.PortalLogin("Assayer01", "user1", "121@test"); //Lakshuman
+			 Login.PortalLogin("ASYR-8889999", "user1", "121@test"); //Lakshuman
+			// Login.PortalLogin("Assayer01", "user1", "121@test"); //Lakshuman
 			// Login.PortalLogin("Assayer01", "user1", "121@test");
 			Assayer.Exchange_Deposit_Assayer_Non_Agriculture_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is successfull");
@@ -151,7 +151,7 @@ public class Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase extends Bas
 			LoginPages Login = new LoginPages(driver, Wait);
 			// Login.PortalLogin("Assayer01", "user2", "121@test");
 			// Login.PortalLogin("ASYR-2905202", "Bhanu2", "121@test");
-			 Login.PortalLogin("Assayer01", "user2", "121@test"); //Lakshuman
+			 Login.PortalLogin("ASYR-8889999", "user2", "121@test"); //Lakshuman
 			//Login.PortalLogin("Asyr-3338084", "user2", "121@test");
 			Assayer.Exchange_Deposite_Assayer_Non_Agriculture_Multiple_GSL();
 			test.log(LogStatus.PASS, "Exchange_Non_Agriculture_Deposite_Assayer_Checker is successfull");

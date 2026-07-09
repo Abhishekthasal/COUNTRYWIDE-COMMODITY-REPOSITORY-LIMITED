@@ -880,7 +880,7 @@ public class Deposit_Confirm_WH_Maker {
 			}
 			Thread.sleep(1000);
 			try {
-				if (Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{7}$")) {
+				if (Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite.matches("^[a-zA-Z0-9]{0,15}$")) {
 					Deposite_ID.sendKeys(String.valueOf(Exchange_Deposite_Request_Non_Agriculture_Maker.Deposite));
 				} else {
 					System.out.println("Invalid Deposite. Please enter exactly 7 alphanumeric characters:");

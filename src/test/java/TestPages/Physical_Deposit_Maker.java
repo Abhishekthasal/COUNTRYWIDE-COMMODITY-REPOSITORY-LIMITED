@@ -1883,30 +1883,27 @@ public class Physical_Deposit_Maker {
 		// Wait.until(ExpectedConditions.elementToBeClickable(Altert)).click();
 
 		Thread.sleep(5000);
-		if (Commodity.equals(Commodity_Code)) {
-			try {
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-				Thread.sleep(5000);
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code); //
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Keys.ENTER);
-				Thread.sleep(2000);
-				Variety_Code_Text.sendKeys(Keys.ENTER);
-			} catch (ElementClickInterceptedException e) {
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click();
-				Thread.sleep(1000);
-				Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code);
-				Thread.sleep(2000);
-				Variety_Code_Text.click();
-			} catch (NoSuchElementException e) {
-				System.out.println("Variety_Code_Text not found: " + e.getMessage());
-			} catch (Exception e) {
-				System.out.println("Unexpected error for Variety_Code_Text: " + e.getMessage());
-			}
-
-		} else {
-			System.out.println("Variety_Code is not requird");
-		}
-
+		/*
+		 * if (Commodity.equals(Commodity_Code)) { try {
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click(
+		 * ); Thread.sleep(5000);
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).
+		 * sendKeys(Variety_Code); //
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).
+		 * sendKeys(Keys.ENTER); Thread.sleep(2000);
+		 * Variety_Code_Text.sendKeys(Keys.ENTER); } catch
+		 * (ElementClickInterceptedException e) {
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_bttn)).click(
+		 * ); Thread.sleep(1000);
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).
+		 * sendKeys(Variety_Code); Thread.sleep(2000); Variety_Code_Text.click(); }
+		 * catch (NoSuchElementException e) {
+		 * System.out.println("Variety_Code_Text not found: " + e.getMessage()); } catch
+		 * (Exception e) { System.out.println("Unexpected error for Variety_Code_Text: "
+		 * + e.getMessage()); }
+		 * 
+		 * } else { System.out.println("Variety_Code is not requird"); }
+		 */
 		// assaying_type_Text.sendKeys(assaying_type);
 		try {
 			Select Sa = new Select(assaying_type_Text);

@@ -777,19 +777,19 @@ public class Exchange_Non_Agri_WareHouse {
 			System.out.println("Unexpected error for submit_btn: " + e.getMessage());
 		}
 		Thread.sleep(4000);
-		try {
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click();
-			Thread.sleep(3000);
-			Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).sendKeys(Variety_Code_Value);
-			Thread.sleep(3000);
-			Variety_Code_Text.sendKeys(Keys.ENTER);
-		} catch (NoSuchElementException e) {
-			System.out.println("Element not found: " + e.getMessage());
-		} catch (ElementClickInterceptedException e) {
-			System.out.println("Element not clickable at the moment: " + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Unexpected error: " + e.getMessage());
-		}
+		/*
+		 * try {
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code)).click();
+		 * Thread.sleep(3000);
+		 * Wait.until(ExpectedConditions.elementToBeClickable(Variety_Code_Text)).
+		 * sendKeys(Variety_Code_Value); Thread.sleep(3000);
+		 * Variety_Code_Text.sendKeys(Keys.ENTER); } catch (NoSuchElementException e) {
+		 * System.out.println("Element not found: " + e.getMessage()); } catch
+		 * (ElementClickInterceptedException e) {
+		 * System.out.println("Element not clickable at the moment: " + e.getMessage());
+		 * } catch (Exception e) { System.out.println("Unexpected error: " +
+		 * e.getMessage()); }
+		 */
 
 		Thread.sleep(1000);
 		try {
