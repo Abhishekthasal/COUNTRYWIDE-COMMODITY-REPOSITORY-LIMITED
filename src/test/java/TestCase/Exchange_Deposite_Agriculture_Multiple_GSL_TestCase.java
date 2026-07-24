@@ -146,7 +146,7 @@ public class Exchange_Deposite_Agriculture_Multiple_GSL_TestCase extends BaseCla
 			// Login.PortalLogin("Asyr-2905202", "bhanu2", "121@test");
 			Login.PortalLogin("ASYR-8889999", "user2", "121@test");
 	
-			// Login.PortalLogin("ASYR-7000016", "Aditya1234", "121@test");
+			
 			Assayer.Exchange_Deposite_Assayer_Agriculture_Multiple_GSL();
 
 			test.log(LogStatus.PASS, "Exchange_Deposite_Assayer_Agriculture_Multiple_GSL_Checker is successfull");
