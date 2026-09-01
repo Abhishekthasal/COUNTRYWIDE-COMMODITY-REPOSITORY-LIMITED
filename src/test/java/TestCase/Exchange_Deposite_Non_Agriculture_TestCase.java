@@ -67,12 +67,12 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		Report.flush();
 	}
 
-	@Test
+	//@Test
 	void DashBoard_WareHouse_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is start");
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user71", "121@test");
+			Login.PortalLogin("wsp9999996", "user71", "121@test1");
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			Exchange_Non_Agri_WareHouse WSP_CH = new Exchange_Non_Agri_WareHouse(driver, Wait);
@@ -93,7 +93,7 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Physical_Deposit_Request_Checker is start");
 			DashBoard_WareHouse_Checker WSP_CH = new DashBoard_WareHouse_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("wsp9999996", "user72", "121@test");
+			Login.PortalLogin("wsp9999996", "user72", "121@test1");
 			// Login.PortalLogin("wsp9997115", "pratap", "121@test");
 			// Login.PortalLogin("wsp9996059", "user102", "121@test");
 			WSP_CH.Exchange_Non_Agriculture_Physical_Deposit_Request_Checker();
@@ -106,7 +106,7 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	// @Test
+	 @Test
 	void Deposite_Assayer_Maker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Maker is start");
@@ -123,13 +123,13 @@ public class Exchange_Deposite_Non_Agriculture_TestCase extends BaseClass {
 		Report.endTest(test);
 		Report.flush();
 	}
-	// @Test(retryAnalyzer = Utillity.RetryTest.class)
+	 //@Test(retryAnalyzer = Utillity.RetryTest.class)
 	void Deposite_Assayer_Checker() throws IOException {
 		try {
 			test.log(LogStatus.INFO, "Exchange_Non_Agriculture_Deposite_Assayer_Checker is start");
 			Deposite_Assayer_Checker Assayer = new Deposite_Assayer_Checker(driver, Wait);
 			LoginPages Login = new LoginPages(driver, Wait);
-			Login.PortalLogin("Assayer01", "user2", "121@test");
+			Login.PortalLogin("Assayer01", "user2", "121@test1");
 			Assayer.Exchange_Non_Agriculture_Deposit_Assayer();
 			test.log(LogStatus.PASS, test.addScreenCapture(TestPages.ScreenShort.CaptureScreen(driver))
 					+"Exchange_Non_Agriculture_Deposite_Assayer_Checker is successfull");

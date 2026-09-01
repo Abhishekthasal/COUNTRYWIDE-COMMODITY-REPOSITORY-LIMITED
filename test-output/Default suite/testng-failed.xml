@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase">
+      <class name="TestCase.KYC_Verification_TestCase">
         <methods>
+          <include name="CR0425_TestCase1"/>
           <include name="setup"/>
-          <include name="Deposit_Confirm_WH_Maker"/>
         </methods>
-      </class> <!-- TestCase.Exchange_Deposite_Non_Agriculture_Multiple_GSL_TestCase -->
+      </class> <!-- TestCase.KYC_Verification_TestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
